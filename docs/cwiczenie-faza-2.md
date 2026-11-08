@@ -10,7 +10,7 @@ Do lekcji „Jak działa strona internetowa” (`t1-jak-dziala-strona`) dopisz 2
 2. **Podchwytliwe** (`choice`, trudność 3, `"tricky": true`): pytanie, w którym pierwsza myśl jest błędna.
    Pomysł: „Po zmianie rekordu A domeny strona dalej pokazuje stary serwer. Dlaczego?” (podpowiedź: TTL i pamięć podręczna DNS).
 
-Wzór pytania znajdziesz w tym samym pliku, w pytaniach `-01` … `-07` (otwarte to `-06` i `-07`). Nowe pytania dostają numery `-08` i `-09`.
+Wzór pytania znajdziesz w tym samym pliku, w pytaniach `-01` … `-08` (otwarte to `-05` … `-08`). Nowe pytania dostają numery `-09` i `-10`. Test pilnuje, żeby otwartych i zamkniętych było pół na pół, a Twoje dwa pytania (jedno otwarte, jedno zamknięte) tej równowagi nie psują.
 
 ## Jak sprawdzić
 

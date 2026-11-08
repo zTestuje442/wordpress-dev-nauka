@@ -35,6 +35,11 @@ describe("curriculum.json", () => {
           if (b.kind === "diagram") expect(diagramUrl(b.name), b.name).toBeDefined();
       });
 
+      test("pytań otwartych i zamkniętych jest pół na pół", () => {
+        const open = t.questions.filter(q => q.type === "open").length;
+        expect(Math.abs(open - (t.questions.length - open))).toBeLessThanOrEqual(1);
+      });
+
       test("pytania mają poprawny kształt", () => {
         expect(t.questions.length).toBeGreaterThanOrEqual(3);
         t.questions.forEach((q, i) => {

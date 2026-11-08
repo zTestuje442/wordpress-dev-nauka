@@ -1,4 +1,6 @@
 import { useMemo, useState } from "react";
+import { loadApiKey, saveApiKey } from "../lib/apiKey.ts";
+import type { Grade } from "../lib/grade.ts";
 import { claudePrompt, isCorrect, openPassed, orderQuestions, shuffledOptions, summary, type Result } from "../lib/quiz.ts";
 import type { Difficulty, Question } from "../types.ts";
 import Markdown, { InlineText } from "./Markdown.tsx";
@@ -19,31 +21,100 @@ function QuestionMeta({ q }: { q: Question }) {
   );
 }
 
+/** Pole na klucz API: raz wklejony zostaje w tej przeglądarce. */
+function ApiKeyForm({ onSaved }: { onSaved: (key: string) => void }) {
+  const [value, setValue] = useState("");
+  return (
+    <form className="key-form" onSubmit={(e) => { e.preventDefault(); saveApiKey(value); onSaved(value.trim()); }}>
+      <p>
+        Wklej klucz API z <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noreferrer">console.anthropic.com</a>,
+        a Claude będzie sprawdzać Twoje odpowiedzi. Klucz zostaje tylko w tej przeglądarce.
+      </p>
+      <p className="row">
+        <input type="password" value={value} onChange={(e) => setValue(e.target.value)}
+               placeholder="sk-ant-…" aria-label="Klucz API Claude" autoComplete="off" />
+        <button className="btn" disabled={!value.trim()}>Zapisz klucz</button>
+      </p>
+    </form>
+  );
+}
+
+/** Wynik oceny od Claude: werdykt, co dobrze, czego brakuje, błędy i poprawna odpowiedź. */
+function GradeView({ grade }: { grade: Grade }) {
+  return (
+    <div className={`grade ${grade.passed ? "ok" : "bad"}`}>
+      <p className="verdict">{grade.passed ? "Claude: zaliczone" : "Claude: jeszcze nie zaliczone"}</p>
+      <p>{grade.good}</p>
+      {grade.missing.length > 0 && <><p className="label">Czego zabrakło</p><ul>{grade.missing.map((m, i) => <li key={i}>{m}</li>)}</ul></>}
+      {grade.mistakes.length > 0 && <><p className="label">Co jest błędne</p><ul>{grade.mistakes.map((m, i) => <li key={i}>{m}</li>)}</ul></>}
+      <p className="label">Jak powinna brzmieć odpowiedź</p>
+      <p>{grade.correctAnswer}</p>
+    </div>
+  );
+}
+
 /**
- * Pytanie otwarte w 2 krokach: najpierw piszesz, potem widzisz wzór
- * i odhaczasz punkty, które masz w swojej odpowiedzi (samoocena).
+ * Pytanie otwarte. Najpierw piszesz odpowiedź. Potem:
+ * - z kluczem API: Claude ją ocenia i mówi, czego zabrakło;
+ * - bez klucza (albo gdy Claude nie odpowie): widzisz wzór i odhaczasz punkty samodzielnie.
  */
 function OpenQuestion({ q, onGraded }: { q: Question; onGraded: (written: string, passed: boolean) => void }) {
   const [text, setText] = useState("");
-  const [shown, setShown] = useState(false);       // wzór odsłonięty
+  const [apiKey, setApiKey] = useState(loadApiKey);
+  const [step, setStep] = useState<"write" | "grading" | "claude" | "self">("write");
+  const [grade, setGrade] = useState<Grade | null>(null);
+  const [error, setError] = useState("");
   const [ticked, setTicked] = useState<boolean[]>(() => (q.keyPoints ?? []).map(() => false));
   const [graded, setGraded] = useState(false);
   const [copied, setCopied] = useState(false);
   const points = q.keyPoints ?? [];
   const count = ticked.filter(Boolean).length;
+  const enough = text.trim().split(/\s+/).length >= 3;
 
-  if (!shown) {
-    return (
-      <form className="open-q" onSubmit={(e) => { e.preventDefault(); setShown(true); }}>
-        <textarea value={text} onChange={(e) => setText(e.target.value)} rows={5} autoFocus
-                  placeholder="Napisz odpowiedź własnymi słowami. Nie musi być idealna." aria-label="Twoja odpowiedź" />
-        <button className="btn" disabled={text.trim().split(/\s+/).length < 3}>Porównaj ze wzorem</button>
-      </form>
-    );
+  async function askClaude() {
+    setStep("grading"); setError("");
+    try {
+      const { gradeWithClaude } = await import("../lib/claude.ts"); // SDK ładuje się dopiero teraz
+      const g = await gradeWithClaude(apiKey, q, text);
+      setGrade(g); setStep("claude"); onGraded(text, g.passed);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Coś poszło nie tak."); setStep("write");
+    }
   }
 
   async function copy() {
     try { await navigator.clipboard.writeText(claudePrompt(q, text)); setCopied(true); } catch { setCopied(false); }
+  }
+
+  if (step === "write" || step === "grading") {
+    const busy = step === "grading";
+    return (
+      <div className="open-q">
+        <textarea value={text} onChange={(e) => setText(e.target.value)} rows={5} autoFocus disabled={busy}
+                  placeholder="Napisz odpowiedź własnymi słowami. Nie musi być idealna." aria-label="Twoja odpowiedź" />
+        {error && <p className="error" role="alert">{error}</p>}
+        <p className="row">
+          {apiKey
+            ? <button className="btn" disabled={!enough || busy} onClick={askClaude}>{busy ? "Claude sprawdza…" : "Sprawdź z Claude"}</button>
+            : null}
+          <button className={apiKey ? "btn ghost" : "btn"} disabled={!enough || busy} onClick={() => setStep("self")}>
+            {apiKey ? "Oceń samodzielnie" : "Porównaj ze wzorem"}
+          </button>
+        </p>
+        {apiKey
+          ? <button className="link" disabled={busy} onClick={() => { saveApiKey(""); setApiKey(""); setError(""); }}>Zmień klucz API</button>
+          : <ApiKeyForm onSaved={setApiKey} />}
+      </div>
+    );
+  }
+
+  if (step === "claude" && grade) {
+    return (
+      <div className="open-q">
+        <div className="written"><p className="label">Twoja odpowiedź</p><p>{text}</p></div>
+        <GradeView grade={grade} />
+      </div>
+    );
   }
 
   return (
@@ -65,7 +136,7 @@ function OpenQuestion({ q, onGraded }: { q: Question; onGraded: (written: string
           <button className="btn" onClick={() => { setGraded(true); onGraded(text, openPassed(count, points.length)); }}>
             Mam {count} z {points.length}, dalej
           </button>
-          <button className="btn ghost" onClick={copy}>{copied ? "Skopiowane, wklej w czacie z Claude" : "Skopiuj dla Claude do oceny"}</button>
+          <button className="btn ghost" onClick={copy}>{copied ? "Skopiowane, wklej w czacie z Claude" : "Skopiuj do czatu z Claude"}</button>
         </p>
       )}
     </div>

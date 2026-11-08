@@ -29,18 +29,6 @@
       {
         "id": "t1-jak-dziala-strona-03",
         "type": "choice",
-        "difficulty": 2,
-        "prompt": "Co składa gotowy HTML strony na WordPressie?",
-        "answer": "Kod PHP na serwerze, z treścią z bazy MySQL",
-        "distractors": [
-          "Przeglądarka użytkownika",
-          "Serwer DNS"
-        ],
-        "explanation": "WordPress to aplikacja PHP: serwer uruchamia PHP, który czyta bazę danych i zwraca HTML."
-      },
-      {
-        "id": "t1-jak-dziala-strona-04",
-        "type": "choice",
         "difficulty": 3,
         "tricky": true,
         "prompt": "Strona zwraca kod `200`, ale wyświetla napis „Nie znaleziono strony”. Co jest nie tak?",
@@ -52,7 +40,7 @@
         "explanation": "Kod 200 mówi „wszystko OK”. Strona błędu z kodem 200 myli Google, który może ją zaindeksować. To tzw. soft 404."
       },
       {
-        "id": "t1-jak-dziala-strona-05",
+        "id": "t1-jak-dziala-strona-04",
         "type": "error",
         "difficulty": 2,
         "prompt": "Klient wkleił w przeglądarkę adres `htps://www.przyklad.pl/kontakt` i strona się nie otwiera. Który fragment jest zły?",
@@ -65,7 +53,7 @@
         "explanation": "Protokół to `https://` (z dwoma t). Przeglądarka nie zna „htps”, więc nawet nie pyta DNS o adres."
       },
       {
-        "id": "t1-jak-dziala-strona-06",
+        "id": "t1-jak-dziala-strona-05",
         "type": "open",
         "difficulty": 2,
         "prompt": "Opisz własnymi słowami, co się dzieje od wpisania adresu strony na WordPressie do jej wyświetlenia.",
@@ -79,7 +67,7 @@
         "explanation": "Jeśli potrafisz opowiedzieć te 4 kroki, umiesz też szukać, na którym z nich strona „nie działa”."
       },
       {
-        "id": "t1-jak-dziala-strona-07",
+        "id": "t1-jak-dziala-strona-06",
         "type": "open",
         "difficulty": 3,
         "prompt": "Strona klienta się nie otwiera. Klient pyta: „To wina domeny czy serwera?”. Jak to sprawdzisz na początek i co wynika z wyniku?",
@@ -90,6 +78,32 @@
           "jest IP = szukam dalej: serwer, PHP, baza danych"
         ],
         "explanation": "Idziesz po kolei krokami z lekcji. Pierwszy krok to DNS, więc od niego zaczynasz szukanie."
+      },
+      {
+        "id": "t1-jak-dziala-strona-07",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Wyjaśnij własnymi słowami, czym jest adres IP i po co nam nazwa domeny.",
+        "answer": "Adres IP to numer, po którym komputery w internecie się znajdują, np. `93.184.215.14`. Domena (np. `mojafirma.pl`) to łatwa do zapamiętania nazwa, która wskazuje na ten numer. Ludzie zapamiętują nazwy, a DNS zamienia je na adresy IP.",
+        "keyPoints": [
+          "adres IP to numer, po którym komputery się odnajdują",
+          "domena to łatwa do zapamiętania nazwa",
+          "DNS zamienia domenę na adres IP"
+        ],
+        "explanation": "Domena jest dla ludzi, adres IP dla komputerów. DNS łączy jedno z drugim."
+      },
+      {
+        "id": "t1-jak-dziala-strona-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Klient chce kupić najtańszy hosting „tylko na pliki HTML” i postawić na nim WordPressa. Wyjaśnij mu, dlaczego to nie zadziała.",
+        "answer": "WordPress nie jest zbiorem gotowych plików HTML. To program w PHP, który przy każdym wejściu na stronę pobiera treść z bazy danych MySQL i dopiero wtedy składa HTML. Hosting tylko na pliki HTML nie ma PHP ani bazy danych, więc WordPress się na nim nie uruchomi.",
+        "keyPoints": [
+          "WordPress to program w PHP, a nie gotowe pliki HTML",
+          "treść jest w bazie danych MySQL",
+          "hosting musi mieć PHP i bazę danych"
+        ],
+        "explanation": "Przy wyborze hostingu pod WordPressa zawsze sprawdzasz PHP (wersję) i bazę MySQL/MariaDB."
       }
     ]
   }

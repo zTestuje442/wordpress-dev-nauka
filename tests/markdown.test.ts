@@ -7,8 +7,8 @@ describe("parseBlocks", () => {
     expect(parseBlocks(md)).toEqual([
       { kind: "heading", level: 2, text: "DNS" },
       { kind: "paragraph", text: "To jest **książka** adresowa. Ciąg dalszy." },
-      { kind: "list", ordered: false, items: ["A", "MX"] },
-      { kind: "list", ordered: true, items: ["jeden", "dwa"] },
+      { kind: "list", ordered: false, start: 1, items: ["A", "MX"] },
+      { kind: "list", ordered: true, start: 1, items: ["jeden", "dwa"] },
       { kind: "code", lang: "bash", code: "nslookup example.com\n\nkoniec" },
     ]);
   });
@@ -45,5 +45,10 @@ describe("parseInline", () => {
 
   test("link bez http nie jest linkiem", () => {
     expect(parseInline("[x](javascript:alert(1))")).toEqual([{ kind: "text", text: "[x](javascript:alert(1))" }]);
+  });
+
+  test("lista numerowana po bloku kodu liczy dalej", () => {
+    const blocks = parseBlocks("1. Pierwszy\n\n```bash\nnslookup x\n```\n\n2. Drugi\n3. Trzeci");
+    expect(blocks[2]).toEqual({ kind: "list", ordered: true, start: 2, items: ["Drugi", "Trzeci"] });
   });
 });

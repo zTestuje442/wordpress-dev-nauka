@@ -21,8 +21,8 @@ export default function Markdown({ source }: { source: string }) {
         return <H key={i}><InlineText text={b.text} /></H>;
       }
       case "list": {
-        const L = b.ordered ? "ol" : "ul";
-        return <L key={i}>{b.items.map((it, j) => <li key={j}><InlineText text={it} /></li>)}</L>;
+        if (b.ordered) return <ol key={i} start={b.start}>{b.items.map((it, j) => <li key={j}><InlineText text={it} /></li>)}</ol>;
+        return <ul key={i}>{b.items.map((it, j) => <li key={j}><InlineText text={it} /></li>)}</ul>;
       }
       case "diagram": {
         const url = diagramUrl(b.name);

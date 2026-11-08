@@ -80,3 +80,13 @@ pre code { background: none; padding: 0; }
   .tricky { background: #4a3a14; color: #f3d48a; }
   .tag.open { background: #1c3550; color: #a9cdf3; }
 }
+
+.task { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); display: grid; gap: .75rem; }
+.task h2, .task h3 { margin: 0; }
+.task h3 { font-size: 1rem; }
+.checklist { display: grid; gap: .4rem; }
+.done { margin: 0; color: var(--podstawy); font-weight: 600; }
+.hints { display: grid; gap: .5rem; justify-items: start; }
+.hint-box { margin: 0; padding: .6rem .9rem; border-radius: 8px; background: color-mix(in srgb, var(--junior) 10%, var(--card)); width: 100%; box-sizing: border-box; }
+.notes { display: grid; gap: .3rem; }
+.notes textarea { font: inherit; color: inherit; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: .6rem .8rem; resize: vertical; }

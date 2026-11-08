@@ -27,3 +27,10 @@
 17. Przycisk „Skopiuj do czatu z Claude” kopiuje pytanie, Twoją odpowiedź i punkty kontrolne jako gotowe polecenie do wklejenia w czacie z Claude, który oceni odpowiedź. Aplikacja nie łączy się sama z AI.
 18. Pół na pół (prośba Alka): w każdym temacie co najmniej 5 pytań otwartych i 5 zamkniętych (różnica najwyżej 1). Pilnuje tego test treści.
 19. Odpowiedzi otwartych aplikacja nie wysyła do płatnego API (decyzja Alka). Ocena to samoocena z punktami kontrolnymi, a przycisk „Skopiuj do czatu z Claude” daje gotowe polecenie do wklejenia w zwykłym czacie, w ramach planu, bez dodatkowych kosztów.
+
+## Faza 3 (2026-11-08)
+
+21. Zadanie praktyczne jest pod quizem (lekcja → quiz → zadanie). Ma polecenie, listę „Zrobione, gdy…” do odhaczania, podpowiedzi odsłaniane po jednej, pole na wyniki i ukryte rozwiązanie.
+22. „Skopiuj do czatu z Claude” w zadaniu kopiuje polecenie, listę kontrolną z odhaczeniami i Twoje wyniki. Bez płatnego API, jak w quizie (punkt 19).
+23. Logika zadania jest w `src/lib/task.ts` (testy w `tests/task.test.ts`), a wygląd w `src/components/TaskCard.tsx`. Postęp (co zrobione) zapisze Faza 4.
+24. Parser Markdown pamięta numer listy (`1.`, potem blok kodu, potem `2.`), żeby kroki zadania liczyły się dalej, a nie od 1.

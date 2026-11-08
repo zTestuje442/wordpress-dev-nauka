@@ -1,0 +1,11 @@
+[
+  { "week": 1, "title": "Podstawy WP + Serwer", "level": "podstawy" },
+  { "week": 2, "title": "Poczta, HTTP i panel WordPressa", "level": "podstawy" },
+  { "week": 3, "title": "Budowa strony firmowej", "level": "podstawy" },
+  { "week": 4, "title": "Podstawy SEO", "level": "podstawy" },
+  { "week": 5, "title": "SEO techniczne", "level": "junior" },
+  { "week": 6, "title": "Treści i warsztat", "level": "junior" },
+  { "week": 7, "title": "Sklep WooCommerce", "level": "junior" },
+  { "week": 8, "title": "Analityka, audyt i strategia", "level": "mid" },
+  { "week": 9, "title": "Kod i integracje", "level": "mid" }
+]

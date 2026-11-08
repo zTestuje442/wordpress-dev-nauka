@@ -1,11 +1,11 @@
 # Ćwiczenie dla Ciebie: pierwszy temat
 
-Dopisz do `src/data/curriculum.json` jeden temat, np. **„Domena i DNS”** (dział `internet-hosting`, poziom `podstawy`).
+Dopisz do `src/data/curriculum.json` jeden temat, temat **„DNS records”** z Tygodnia 1 (Podstawy WP + Serwer).
 
 ## Gotowe, gdy
 
 - `npm test` przechodzi (zielone ✓), a w teście widać id Twojego tematu
-- `npm run dev` pokazuje tytuł tematu przy poziomie `podstawy`
+- `npm run dev` pokazuje tytuł tematu przy Tygodniu 1
 - temat ma lekcję (kilka akapitów Markdown) i co najmniej 3 pytania: po jednym `choice`, `error` i `cloze`, w tym jedno z `"tricky": true`
 
 ## Podpowiedzi
@@ -20,15 +20,14 @@ Dopisz do `src/data/curriculum.json` jeden temat, np. **„Domena i DNS”** (dz
 ```json
 [
   {
-    "id": "podstawy-domena-dns",
-    "section": "internet-hosting",
-    "level": "podstawy",
-    "order": 1,
-    "title": "Domena i DNS",
+    "id": "t1-dns-records",
+    "week": 1,
+    "order": 2,
+    "title": "DNS records",
     "lesson": "Tu Twoja lekcja...",
     "questions": [
       {
-        "id": "podstawy-domena-dns-01",
+        "id": "t1-dns-records-01",
         "type": "choice",
         "difficulty": 1,
         "prompt": "Który rekord DNS wskazuje adres IPv4 serwera dla domeny?",

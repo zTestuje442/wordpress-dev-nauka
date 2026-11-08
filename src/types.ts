@@ -1,19 +1,21 @@
 // Typy danych aplikacji. Cała treść (lekcje, pytania, zadania) to pliki JSON w src/data.
 
-/** Poziomy na ścieżce, od najłatwiejszego. */
+/** Poziomy, od najłatwiejszego. Każdy tydzień ma jeden poziom. */
 export const LEVELS = ["podstawy", "junior", "mid"] as const;
 export type Level = (typeof LEVELS)[number];
 
-/** Działy (moduły) programu. */
-export const SECTIONS = ["internet-hosting", "fundamenty", "wordpress", "php-motywy", "seo"] as const;
-export type Section = (typeof SECTIONS)[number];
-
-/** Temat = jeden punkt na ścieżce: lekcja + quiz + (opcjonalnie) zadanie praktyczne. */
-export interface Topic {
-  id: string;            // np. "junior-hierarchia-szablonow"
-  section: Section;
+/** Tydzień = jeden punkt na ścieżce (src/data/weeks.json), np. „Tydzień 1: Podstawy WP + Serwer”. */
+export interface Week {
+  week: number;          // 1, 2, 3…
+  title: string;         // np. "Podstawy WP + Serwer"
   level: Level;
-  order: number;         // kolejność w obrębie działu i poziomu (1, 2, 3…)
+}
+
+/** Temat = jedna lekcja w tygodniu: treść + quiz + (opcjonalnie) zadanie praktyczne. */
+export interface Topic {
+  id: string;            // `t<tydzień>-<slug>`, np. "t1-dns-records"
+  week: number;          // numer tygodnia z weeks.json
+  order: number;         // kolejność w tygodniu (1, 2, 3…)
   title: string;         // tytuł po polsku
   lesson: string;        // treść lekcji w Markdown (z blokami kodu)
   questions: Question[];
@@ -27,7 +29,7 @@ export const QUESTION_TYPES = ["choice", "error", "cloze"] as const;
 export type QuestionType = (typeof QUESTION_TYPES)[number];
 
 export interface Question {
-  id: string;            // `${topicId}-NN`, np. "junior-hierarchia-szablonow-01"
+  id: string;            // `${topicId}-NN`, np. "t1-dns-records-01"
   type: QuestionType;    // choice = wybór, error = znajdź błąd w kodzie, cloze = uzupełnij lukę "___"
   difficulty: Difficulty;
   tricky?: boolean;      // pytanie podchwytliwe

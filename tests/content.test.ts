@@ -1,7 +1,17 @@
 // Sprawdza, czy treść w curriculum.json ma poprawny kształt.
 import { describe, expect, test } from "vitest";
-import { topics } from "../src/content.ts";
-import { LEVELS, QUESTION_TYPES, SECTIONS } from "../src/types.ts";
+import { topics, weeks } from "../src/content.ts";
+import { LEVELS, QUESTION_TYPES } from "../src/types.ts";
+
+describe("weeks.json", () => {
+  test("tygodnie mają kolejne numery od 1 i poprawny poziom", () => {
+    weeks.forEach((w, i) => {
+      expect(w.week).toBe(i + 1);
+      expect(LEVELS).toContain(w.level);
+      expect(w.title.trim()).not.toBe("");
+    });
+  });
+});
 
 describe("curriculum.json", () => {
   test("id tematów są unikalne", () => {
@@ -11,9 +21,9 @@ describe("curriculum.json", () => {
 
   for (const t of topics) {
     describe(t.id, () => {
-      test("dział, poziom i tytuł są poprawne", () => {
-        expect(SECTIONS).toContain(t.section);
-        expect(LEVELS).toContain(t.level);
+      test("tydzień, id i tytuł są poprawne", () => {
+        expect(weeks.map(w => w.week)).toContain(t.week);
+        expect(t.id).toMatch(new RegExp(`^t${t.week}-[a-z0-9-]+$`));
         expect(t.title.trim()).not.toBe("");
         expect(t.lesson.trim()).not.toBe("");
       });

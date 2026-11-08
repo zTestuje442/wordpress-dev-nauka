@@ -43,7 +43,9 @@ pre code { background: none; padding: 0; }
 .quiz .count { font-size: .95rem; font-weight: 400; color: var(--muted); margin-left: .5rem; }
 .q-meta { margin: 0; color: var(--muted); font-size: .9rem; }
 .dots { letter-spacing: .1em; color: var(--fg); }
-.tricky { margin-left: .6rem; padding: 0 .5rem; border-radius: 99px; background: #f9eeda; color: #8a5a00; }
+.tag { margin-left: .6rem; padding: 0 .5rem; border-radius: 99px; }
+.tricky { background: #f9eeda; color: #8a5a00; }
+.tag.open { background: #e7f1fb; color: #1d4f85; }
 .hint { color: var(--muted); margin: .5rem 0 0; }
 .options { list-style: none; padding: 0; display: grid; gap: .5rem; }
 .option { width: 100%; padding: .7rem 1rem; background: var(--card); border: 1px solid var(--line); border-radius: 8px; }
@@ -61,4 +63,20 @@ pre code { background: none; padding: 0; }
 .feedback.ok { border-color: var(--podstawy); }
 .feedback.bad { border-color: var(--mid); }
 .feedback p { margin: .5rem 0 1rem; }
-@media (prefers-color-scheme: dark) { .tricky { background: #4a3a14; color: #f3d48a; } }
+.open-q { margin: 1rem 0; display: grid; gap: 1rem; justify-items: start; }
+.open-q > * { box-sizing: border-box; width: 100%; }
+.open-q > .btn { width: auto; }
+.open-q textarea { font: inherit; color: inherit; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: .7rem .9rem; resize: vertical; }
+.written, .model { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: .8rem 1rem; }
+.model { border-left: 5px solid var(--podstawy); }
+.written p, .model p { margin: .25rem 0; }
+.written p:last-child { white-space: pre-wrap; }
+.label { font-size: .85rem; color: var(--muted); }
+.open-q fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: .4rem; }
+.open-q legend { margin-bottom: .4rem; font-weight: 600; }
+.point { display: flex; gap: .6rem; align-items: baseline; cursor: pointer; }
+.row { display: flex; gap: .5rem; flex-wrap: wrap; margin: 0; }
+@media (prefers-color-scheme: dark) {
+  .tricky { background: #4a3a14; color: #f3d48a; }
+  .tag.open { background: #1c3550; color: #a9cdf3; }
+}

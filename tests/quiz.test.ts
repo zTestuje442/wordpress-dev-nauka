@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { isCorrect, normalize, orderQuestions, shuffledOptions, summary } from "../src/lib/quiz.ts";
+import { claudePrompt, isCorrect, normalize, openPassed, orderQuestions, shuffledOptions, summary } from "../src/lib/quiz.ts";
 import type { Question } from "../src/types.ts";
 
 const q = (over: Partial<Question>): Question => ({
@@ -42,5 +42,22 @@ describe("quiz", () => {
     expect(s).toMatchObject({ good: 2, total: 3, percent: 67 });
     expect(s.wrong.map((r) => r.question.id)).toEqual(["2"]);
     expect(summary([]).percent).toBe(0);
+  });
+});
+
+describe("pytania otwarte", () => {
+  it("zalicza od połowy punktów kontrolnych", () => {
+    expect(openPassed(2, 4)).toBe(true);
+    expect(openPassed(1, 4)).toBe(false);
+    expect(openPassed(2, 3)).toBe(true);
+    expect(openPassed(1, 3)).toBe(false);
+    expect(openPassed(0, 0)).toBe(false);
+  });
+
+  it("buduje prompt dla Claude z pytaniem, odpowiedzią i punktami", () => {
+    const text = claudePrompt(q({ type: "open", prompt: "Co robi DNS?", keyPoints: ["zamienia nazwę na IP", "działa jak książka"] }), "  zamienia domenę na IP ");
+    expect(text).toContain("Pytanie: Co robi DNS?");
+    expect(text).toContain("Moja odpowiedź: zamienia domenę na IP\n");
+    expect(text).toContain("- zamienia nazwę na IP\n- działa jak książka");
   });
 });

@@ -23,3 +23,5 @@
 13. Odpowiedzi w `choice` i `error` są tasowane przy każdej rundzie, żeby nie zapamiętywać pozycji. Typ `error` też musi mieć `distractors` (zły fragment to `answer`, dobre fragmenty to `distractors`).
 14. W luce (`cloze`) wielkość liter, spacje i znaki ` nie mają znaczenia.
 15. Logika quizu jest w `src/lib/quiz.ts` (bez Reacta, z testami w `tests/quiz.test.ts`), a wygląd w `src/components/Quiz.tsx`. Postęp nie jest jeszcze zapisywany: to Faza 4.
+16. Pytania otwarte (`open`, prośba Alka: to, co się samemu napisze, lepiej zostaje w głowie). Najpierw piszesz odpowiedź, dopiero potem widać wzór (`answer`) i punkty kontrolne (`keyPoints`). Odhaczasz punkty, które masz w swojej odpowiedzi; zaliczone od połowy punktów. Niezaliczone wraca w „Powtórz błędne”.
+17. Przycisk „Skopiuj dla Claude” kopiuje pytanie, Twoją odpowiedź i punkty kontrolne jako gotowe polecenie do wklejenia w czacie z Claude, który oceni odpowiedź. Aplikacja nie łączy się sama z AI.

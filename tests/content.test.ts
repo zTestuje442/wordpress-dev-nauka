@@ -43,7 +43,8 @@ describe("curriculum.json", () => {
           expect([1, 2, 3]).toContain(q.difficulty);
           expect(q.answer.trim()).not.toBe("");
           expect(q.explanation.trim()).not.toBe("");
-          if (q.type !== "cloze") expect(q.distractors?.length).toBeGreaterThanOrEqual(2);
+          if (q.type === "choice" || q.type === "error") expect(q.distractors?.length).toBeGreaterThanOrEqual(2);
+          if (q.type === "open") expect(q.keyPoints?.length).toBeGreaterThanOrEqual(2);
           if (q.type === "cloze") expect(q.prompt.split("___").length - 1).toBe(1);
         });
       });

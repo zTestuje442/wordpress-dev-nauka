@@ -41,3 +41,24 @@ export function summary(results: Result[]) {
     wrong: results.filter((r) => !r.correct),
   };
 }
+
+/** Pytanie otwarte zaliczone, gdy odpowiedź zawiera co najmniej połowę punktów kontrolnych. */
+export function openPassed(ticked: number, total: number): boolean {
+  return total > 0 && ticked * 2 >= total;
+}
+
+/** Tekst do wklejenia w czacie z Claude, żeby dostać ocenę odpowiedzi otwartej. */
+export function claudePrompt(q: Question, written: string): string {
+  return [
+    "Uczę się WordPressa. Oceń moją odpowiedź na pytanie z quizu.",
+    "",
+    `Pytanie: ${q.prompt}`,
+    "",
+    `Moja odpowiedź: ${written.trim()}`,
+    "",
+    "Co powinno się znaleźć w odpowiedzi:",
+    ...(q.keyPoints ?? []).map((p) => `- ${p}`),
+    "",
+    "Napisz krótko po polsku: co jest dobrze, czego brakuje i czy coś jest błędne. Nie pisz całej odpowiedzi za mnie.",
+  ].join("\n");
+}

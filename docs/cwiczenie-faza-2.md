@@ -6,11 +6,11 @@ Bez programowania. Edytujesz tylko plik z treścią: `src/data/curriculum.json`.
 
 Do lekcji „Jak działa strona internetowa” (`t1-jak-dziala-strona`) dopisz 2 pytania:
 
-1. **Luka** (`cloze`, trudność 1): zdanie z jedną luką `___`, np. o porcie zwykłego HTTP.
+1. **Otwarte** (`open`, trudność 2): pytanie, na które odpowiada się własnymi słowami, np. „Wyjaśnij, czym różni się `http://` od `https://`”. W `answer` wpisz odpowiedź wzorcową, a w `keyPoints` 2–4 rzeczy, które muszą się w niej znaleźć.
 2. **Podchwytliwe** (`choice`, trudność 3, `"tricky": true`): pytanie, w którym pierwsza myśl jest błędna.
    Pomysł: „Po zmianie rekordu A domeny strona dalej pokazuje stary serwer. Dlaczego?” (podpowiedź: TTL i pamięć podręczna DNS).
 
-Wzór pytania znajdziesz w tym samym pliku, w pytaniach `-01` … `-05`. Nowe pytania dostają numery `-06` i `-07`.
+Wzór pytania znajdziesz w tym samym pliku, w pytaniach `-01` … `-07` (otwarte to `-06` i `-07`). Nowe pytania dostają numery `-08` i `-09`.
 
 ## Jak sprawdzić
 

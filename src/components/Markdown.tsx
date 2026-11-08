@@ -1,0 +1,32 @@
+import { parseBlocks, parseInline } from "../lib/markdown.ts";
+
+function InlineText({ text }: { text: string }) {
+  return parseInline(text).map((p, i) => {
+    switch (p.kind) {
+      case "bold": return <strong key={i}>{p.text}</strong>;
+      case "code": return <code key={i}>{p.text}</code>;
+      case "link": return <a key={i} href={p.url} target="_blank" rel="noreferrer">{p.text}</a>;
+      default: return p.text;
+    }
+  });
+}
+
+/** Wyświetla Markdown jako elementy React (bez innerHTML, więc treść nie wstrzyknie skryptu). */
+export default function Markdown({ source }: { source: string }) {
+  return parseBlocks(source).map((b, i) => {
+    switch (b.kind) {
+      case "heading": {
+        const H = (`h${b.level + 1}`) as "h2" | "h3" | "h4"; // h1 jest tytułem lekcji
+        return <H key={i}><InlineText text={b.text} /></H>;
+      }
+      case "list": {
+        const L = b.ordered ? "ol" : "ul";
+        return <L key={i}>{b.items.map((it, j) => <li key={j}><InlineText text={it} /></li>)}</L>;
+      }
+      case "code":
+        return <pre key={i} data-lang={b.lang || undefined}><code>{b.code}</code></pre>;
+      default:
+        return <p key={i}><InlineText text={b.text} /></p>;
+    }
+  });
+}

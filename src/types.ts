@@ -25,17 +25,18 @@ export interface Topic {
 /** Trudność pytania: 1 łatwe, 2 średnie, 3 trudne. */
 export type Difficulty = 1 | 2 | 3;
 
-export const QUESTION_TYPES = ["choice", "error", "cloze"] as const;
+export const QUESTION_TYPES = ["choice", "error", "cloze", "open"] as const;
 export type QuestionType = (typeof QUESTION_TYPES)[number];
 
 export interface Question {
   id: string;            // `${topicId}-NN`, np. "t1-dns-records-01"
-  type: QuestionType;    // choice = wybór, error = znajdź błąd w kodzie, cloze = uzupełnij lukę "___"
+  type: QuestionType;    // choice = wybór, error = znajdź błąd, cloze = uzupełnij lukę "___", open = odpowiedź własnymi słowami
   difficulty: Difficulty;
   tricky?: boolean;      // pytanie podchwytliwe
   prompt: string;        // polecenie (Markdown, może zawierać kod)
-  answer: string;        // poprawna odpowiedź
-  distractors?: string[]; // błędne odpowiedzi dla choice
+  answer: string;        // poprawna odpowiedź; dla open: odpowiedź wzorcowa (Markdown)
+  distractors?: string[]; // błędne odpowiedzi dla choice i error
+  keyPoints?: string[];  // dla open: co musi się znaleźć w odpowiedzi (2–5 punktów do odhaczenia)
   explanation: string;   // dlaczego tak, 1–2 zdania
 }
 

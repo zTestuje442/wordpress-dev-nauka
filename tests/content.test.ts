@@ -35,6 +35,14 @@ describe("curriculum.json", () => {
           if (b.kind === "diagram") expect(diagramUrl(b.name), b.name).toBeDefined();
       });
 
+      test("co najmniej 5 pytań otwartych i 5 zamkniętych, pół na pół", () => {
+        const open = t.questions.filter(q => q.type === "open").length;
+        const closed = t.questions.length - open;
+        expect(open).toBeGreaterThanOrEqual(5);
+        expect(closed).toBeGreaterThanOrEqual(5);
+        expect(Math.abs(open - closed)).toBeLessThanOrEqual(1);
+      });
+
       test("pytania mają poprawny kształt", () => {
         expect(t.questions.length).toBeGreaterThanOrEqual(3);
         t.questions.forEach((q, i) => {
@@ -43,7 +51,8 @@ describe("curriculum.json", () => {
           expect([1, 2, 3]).toContain(q.difficulty);
           expect(q.answer.trim()).not.toBe("");
           expect(q.explanation.trim()).not.toBe("");
-          if (q.type === "choice") expect(q.distractors?.length).toBeGreaterThanOrEqual(2);
+          if (q.type === "choice" || q.type === "error") expect(q.distractors?.length).toBeGreaterThanOrEqual(2);
+          if (q.type === "open") expect(q.keyPoints?.length).toBeGreaterThanOrEqual(2);
           if (q.type === "cloze") expect(q.prompt.split("___").length - 1).toBe(1);
         });
       });

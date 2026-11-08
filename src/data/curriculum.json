@@ -4,7 +4,7 @@
     "week": 1,
     "order": 1,
     "title": "Jak działa strona internetowa",
-    "lesson": "Kiedy wpisujesz adres strony w przeglądarce, w ciągu ułamka sekundy dzieją się cztery rzeczy. Zrozumienie ich pomoże Ci później szukać przyczyn, gdy strona „nie działa”.\n\n![Cała droga w jednej animacji: kroki 1–6](diagram:droga-zadania)\n\n## 1. Przeglądarka szuka adresu IP\n\nKomputery w internecie rozpoznają się po **adresach IP**, np. `93.184.215.14`. Nazwa domeny (np. `mojafirma.pl`) jest tylko wygodną etykietą. Przeglądarka pyta serwer **DNS**, jaki adres IP kryje się za nazwą. To trochę jak książka telefoniczna.\n\n## 2. Przeglądarka łączy się z serwerem\n\nPod adresem IP stoi **serwer**, czyli komputer, który cały czas czeka na połączenia. Przeglądarka łączy się z nim na odpowiednim **porcie**:\n\n- port **80** dla `http://`\n- port **443** dla `https://` (połączenie szyfrowane certyfikatem SSL)\n\n## 3. Serwer przygotowuje stronę\n\nW przypadku WordPressa serwer uruchamia kod **PHP**, który pobiera treść z bazy danych **MySQL** i składa z niej gotowy HTML. Dlatego hosting pod WordPressa musi mieć PHP i bazę danych.\n\n## 4. Przeglądarka wyświetla stronę\n\nSerwer odsyła odpowiedź z **kodem statusu** (np. `200` = wszystko w porządku, `404` = nie ma takiej strony) i treścią HTML. Przeglądarka dociąga jeszcze style CSS, skrypty i obrazy, a potem rysuje stronę.\n\n## Sprawdź sam\n\nAdres IP dowolnej domeny sprawdzisz w terminalu (Windows: wpisz `cmd` w menu Start):\n\n```bash\nnslookup wordpress.org\n```\n\nW odpowiedzi zobaczysz linię `Address:` z adresem IP serwera.",
+    "lesson": "Kiedy wpisujesz adres strony w przeglądarce, w ciągu ułamka sekundy dzieją się cztery rzeczy. Zrozumienie ich pomoże Ci później szukać przyczyn, gdy strona „nie działa”.\n\n![Cała droga w jednej animacji: kroki 1–6](diagram:droga-zadania)\n\n## 1. Przeglądarka szuka adresu IP\n\nKomputery w internecie rozpoznają się po **adresach IP**, np. `93.184.215.14`. Nazwa domeny (np. `mojafirma.pl`) jest tylko wygodną etykietą. Przeglądarka pyta serwer **DNS**, jaki adres IP kryje się za nazwą. To trochę jak książka telefoniczna.\n\n## 2. Przeglądarka łączy się z serwerem\n\nPod adresem IP stoi **serwer**, czyli komputer, który cały czas czeka na połączenia. Przeglądarka łączy się z nim na odpowiednim **porcie**:\n\n- port **80** dla `http://`\n- port **443** dla `https://` (połączenie szyfrowane certyfikatem SSL)\n\n## 3. Serwer przygotowuje stronę\n\nW przypadku WordPressa serwer uruchamia kod **PHP**, który pobiera treść z bazy danych **MySQL** i składa z niej gotowy HTML. Dlatego hosting pod WordPressa musi mieć PHP i bazę danych.\n\n## 4. Przeglądarka wyświetla stronę\n\nSerwer odsyła odpowiedź z **kodem statusu** (np. `200` = wszystko w porządku, `404` = nie ma takiej strony) i treścią HTML. Przeglądarka dociąga jeszcze style CSS, skrypty i obrazy, a potem rysuje stronę.\n\n## Sprawdź to w praktyce\n\nAdres IP dowolnej domeny sprawdzisz w terminalu (Windows: wpisz `cmd` w menu Start):\n\n```bash\nnslookup wordpress.org\n```\n\nW odpowiedzi zobaczysz linię `Address:` z adresem IP serwera.",
     "questions": [
       {
         "id": "t1-jak-dziala-strona-01",
@@ -29,18 +29,6 @@
       {
         "id": "t1-jak-dziala-strona-03",
         "type": "choice",
-        "difficulty": 2,
-        "prompt": "Co składa gotowy HTML strony na WordPressie?",
-        "answer": "Kod PHP na serwerze, z treścią z bazy MySQL",
-        "distractors": [
-          "Przeglądarka użytkownika",
-          "Serwer DNS"
-        ],
-        "explanation": "WordPress to aplikacja PHP: serwer uruchamia PHP, który czyta bazę danych i zwraca HTML."
-      },
-      {
-        "id": "t1-jak-dziala-strona-04",
-        "type": "choice",
         "difficulty": 3,
         "tricky": true,
         "prompt": "Strona zwraca kod `200`, ale wyświetla napis „Nie znaleziono strony”. Co jest nie tak?",
@@ -50,6 +38,97 @@
           "Serwer DNS podał zły adres IP"
         ],
         "explanation": "Kod 200 mówi „wszystko OK”. Strona błędu z kodem 200 myli Google, który może ją zaindeksować. To tzw. soft 404."
+      },
+      {
+        "id": "t1-jak-dziala-strona-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Klient wkleił w przeglądarkę adres `htps://www.przyklad.pl/kontakt` i strona się nie otwiera. Który fragment jest zły?",
+        "answer": "`htps://`",
+        "distractors": [
+          "`www.`",
+          "`przyklad.pl`",
+          "`/kontakt`"
+        ],
+        "explanation": "Protokół to `https://` (z dwoma t). Przeglądarka nie zna „htps”, więc nawet nie pyta DNS o adres."
+      },
+      {
+        "id": "t1-jak-dziala-strona-05",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Opisz własnymi słowami, co się dzieje od wpisania adresu strony na WordPressie do jej wyświetlenia.",
+        "answer": "Przeglądarka pyta serwer DNS o adres IP domeny. Potem łączy się z serwerem pod tym adresem (dla `https://` na porcie 443). Serwer uruchamia PHP, który pobiera treść z bazy MySQL i składa z niej HTML. Serwer odsyła HTML z kodem statusu, a przeglądarka dociąga CSS, skrypty i obrazy i rysuje stronę.",
+        "keyPoints": [
+          "przeglądarka pyta DNS o adres IP",
+          "łączy się z serwerem (HTTPS, port 443)",
+          "serwer uruchamia PHP, który bierze treść z bazy MySQL",
+          "serwer odsyła HTML, a przeglądarka wyświetla stronę"
+        ],
+        "explanation": "Jeśli potrafisz opowiedzieć te 4 kroki, umiesz też szukać, na którym z nich strona „nie działa”."
+      },
+      {
+        "id": "t1-jak-dziala-strona-06",
+        "type": "open",
+        "difficulty": 3,
+        "prompt": "Strona klienta się nie otwiera. Klient pyta: „To wina domeny czy serwera?”. Jak to sprawdzisz na początek i co wynika z wyniku?",
+        "answer": "Najpierw sprawdzam, czy domena zwraca adres IP, np. poleceniem `nslookup mojafirma.pl`. Jeśli nie ma adresu IP, problem jest po stronie domeny lub DNS (np. wygasła domena, zły rekord). Jeśli adres IP jest, DNS działa i szukam dalej: czy serwer odpowiada, czy działa PHP i baza danych.",
+        "keyPoints": [
+          "sprawdzam, czy domena zwraca adres IP (np. nslookup)",
+          "brak IP = problem z domeną lub DNS",
+          "jest IP = szukam dalej: serwer, PHP, baza danych"
+        ],
+        "explanation": "Idziesz po kolei krokami z lekcji. Pierwszy krok to DNS, więc od niego zaczynasz szukanie."
+      },
+      {
+        "id": "t1-jak-dziala-strona-07",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Wyjaśnij własnymi słowami, czym jest adres IP i po co nam nazwa domeny.",
+        "answer": "Adres IP to numer, po którym komputery w internecie się znajdują, np. `93.184.215.14`. Domena (np. `mojafirma.pl`) to łatwa do zapamiętania nazwa, która wskazuje na ten numer. Ludzie zapamiętują nazwy, a DNS zamienia je na adresy IP.",
+        "keyPoints": [
+          "adres IP to numer, po którym komputery się odnajdują",
+          "domena to łatwa do zapamiętania nazwa",
+          "DNS zamienia domenę na adres IP"
+        ],
+        "explanation": "Domena jest dla ludzi, adres IP dla komputerów. DNS łączy jedno z drugim."
+      },
+      {
+        "id": "t1-jak-dziala-strona-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Klient chce kupić najtańszy hosting „tylko na pliki HTML” i postawić na nim WordPressa. Wyjaśnij mu, dlaczego to nie zadziała.",
+        "answer": "WordPress nie jest zbiorem gotowych plików HTML. To program w PHP, który przy każdym wejściu na stronę pobiera treść z bazy danych MySQL i dopiero wtedy składa HTML. Hosting tylko na pliki HTML nie ma PHP ani bazy danych, więc WordPress się na nim nie uruchomi.",
+        "keyPoints": [
+          "WordPress to program w PHP, a nie gotowe pliki HTML",
+          "treść jest w bazie danych MySQL",
+          "hosting musi mieć PHP i bazę danych"
+        ],
+        "explanation": "Przy wyborze hostingu pod WordPressa zawsze sprawdzasz PHP (wersję) i bazę MySQL/MariaDB."
+      },
+      {
+        "id": "t1-jak-dziala-strona-09",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Zamiast strony widać napis „Error establishing a database connection”. Na którym kroku z lekcji jest problem?",
+        "answer": "Krok 3: PHP na serwerze nie może połączyć się z bazą danych MySQL",
+        "distractors": [
+          "Krok 1: DNS nie zna adresu IP domeny",
+          "Krok 4: przeglądarka nie umie wyświetlić HTML"
+        ],
+        "explanation": "Skoro widać komunikat od WordPressa, DNS i serwer działają. Zawiódł dopiero krok 3: połączenie PHP z bazą danych (np. złe hasło w wp-config.php albo baza nie działa)."
+      },
+      {
+        "id": "t1-jak-dziala-strona-10",
+        "type": "open",
+        "difficulty": 3,
+        "prompt": "Wyjaśnij, czym różni się sytuacja „strona pokazuje błąd 404” od sytuacji „strona w ogóle się nie łączy”. Gdzie szukasz przyczyny w każdym przypadku?",
+        "answer": "Przy błędzie 404 serwer działa i odpowiada, tylko nie ma takiej podstrony: szukasz w adresie, np. czy strona nie została usunięta albo przeniesiona. Gdy strona w ogóle się nie łączy, problem jest wcześniej: DNS nie podaje adresu IP albo serwer nie odpowiada. Wtedy sprawdzasz domenę, DNS i hosting.",
+        "keyPoints": [
+          "404: serwer działa, ale takiej podstrony nie ma",
+          "brak połączenia: problem wcześniej, z DNS albo serwerem",
+          "404 szukasz w adresie podstrony, brak połączenia w domenie lub hostingu"
+        ],
+        "explanation": "Kod 404 to odpowiedź serwera, więc kroki 1–3 zadziałały. Brak jakiejkolwiek odpowiedzi oznacza, że droga urwała się wcześniej."
       }
     ]
   }

@@ -1,13 +1,14 @@
 [
   {"week": 1, "title": "Podstawy WP + Serwer", "level": "podstawy"},
-  {"week": 2, "title": "Poczta, HTTP i panel WordPressa", "level": "podstawy"},
+  {"week": 2, "title": "Panel WordPressa, motywy i wtyczki", "level": "podstawy"},
   {"week": 3, "title": "Budowa strony firmowej", "level": "podstawy"},
   {"week": 4, "title": "Podstawy SEO", "level": "podstawy"},
-  {"week": 5, "title": "Kod z AI, tyle ile trzeba", "level": "junior"},
-  {"week": 6, "title": "SEO techniczne", "level": "junior"},
-  {"week": 7, "title": "Treści, ACF i warsztat", "level": "junior"},
-  {"week": 8, "title": "Sklep WooCommerce", "level": "junior"},
-  {"week": 9, "title": "Analityka, audyt i strategia", "level": "mid"},
-  {"week": 10, "title": "Zaawansowany WordPress bez kodowania", "level": "mid"},
-  {"week": 11, "title": "Integracje, wydajność i AI", "level": "mid"}
+  {"week": 5, "title": "Bezpieczeństwo i naprawa błędów", "level": "podstawy"},
+  {"week": 6, "title": "Kod z AI, tyle ile trzeba", "level": "junior"},
+  {"week": 7, "title": "SEO techniczne", "level": "junior"},
+  {"week": 8, "title": "Treści, ACF i warsztat", "level": "junior"},
+  {"week": 9, "title": "Sklep WooCommerce", "level": "junior"},
+  {"week": 10, "title": "Analityka, audyt i strategia", "level": "mid"},
+  {"week": 11, "title": "Zaawansowany WordPress bez kodowania", "level": "mid"},
+  {"week": 12, "title": "Integracje, wydajność i AI", "level": "mid"}
 ]

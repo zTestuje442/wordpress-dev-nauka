@@ -72,7 +72,12 @@ function OpenQuestion({ q, onGraded }: { q: Question; onGraded: (written: string
   );
 }
 
-export default function Quiz({ questions }: { questions: Question[] }) {
+interface QuizProps {
+  questions: Question[];
+  onFinished?: (percent: number) => void; // wynik całego quizu (nie rundy „Powtórz błędne”)
+}
+
+export default function Quiz({ questions, onFinished }: QuizProps) {
   // Pytania w tej rundzie: cały quiz albo tylko błędne. Nowa tablica = nowe tasowanie odpowiedzi.
   const [pool, setPool] = useState(questions);
   const list = useMemo(() => orderQuestions(pool), [pool]);
@@ -118,7 +123,11 @@ export default function Quiz({ questions }: { questions: Question[] }) {
     record(value, isCorrect(q, value));
   }
 
-  function next() { setIndex(index + 1); setGiven(null); setTyped(""); }
+  function next() {
+    const last = index + 1 >= list.length;
+    if (last && pool.length === questions.length) onFinished?.(summary(results).percent);
+    setIndex(index + 1); setGiven(null); setTyped("");
+  }
 
   return (
     <section className="quiz">

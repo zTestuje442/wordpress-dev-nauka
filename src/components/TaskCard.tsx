@@ -7,8 +7,16 @@ import Markdown, { InlineText } from "./Markdown.tsx";
  * Zadanie praktyczne: polecenie, lista „zrobione, gdy…”, podpowiedzi odsłaniane po jednej,
  * miejsce na wyniki, ukryte rozwiązanie i kopiowanie do czatu z Claude.
  */
-export default function TaskCard({ task, topicTitle }: { task: Task; topicTitle: string }) {
-  const [ticked, setTicked] = useState<boolean[]>(() => task.checklist.map(() => false));
+interface Props {
+  task: Task;
+  topicTitle: string;
+  initialTicked?: boolean[];               // zapisany postęp
+  onChange?: (ticked: boolean[]) => void;
+}
+
+export default function TaskCard({ task, topicTitle, initialTicked, onChange }: Props) {
+  const [ticked, setTickedState] = useState<boolean[]>(() => task.checklist.map((_, i) => initialTicked?.[i] ?? false));
+  function setTicked(next: boolean[]) { setTickedState(next); onChange?.(next); }
   const [hintsShown, setHintsShown] = useState(0);
   const [notes, setNotes] = useState("");
   const [solution, setSolution] = useState(false);

@@ -90,3 +90,11 @@ pre code { background: none; padding: 0; }
 .hint-box { margin: 0; padding: .6rem .9rem; border-radius: 8px; background: color-mix(in srgb, var(--junior) 10%, var(--card)); width: 100%; box-sizing: border-box; }
 .notes { display: grid; gap: .3rem; }
 .notes textarea { font: inherit; color: inherit; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: .6rem .8rem; resize: vertical; }
+
+.week-bar { height: 4px; margin: 0 1rem .6rem; background: var(--line); border-radius: 99px; overflow: hidden; }
+.week-bar span { display: block; height: 100%; background: var(--level); }
+.topic { display: flex; gap: .6rem; align-items: baseline; }
+.topic-check { color: var(--muted); width: 1em; }
+.is-done .topic-check { color: var(--podstawy); font-weight: 700; }
+.topic-title { flex: 1; }
+.chip { font-size: .8rem; color: var(--muted); border: 1px solid var(--line); border-radius: 99px; padding: 0 .5rem; white-space: nowrap; }

@@ -34,3 +34,10 @@
 22. „Skopiuj do czatu z Claude” w zadaniu kopiuje polecenie, listę kontrolną z odhaczeniami i Twoje wyniki. Bez płatnego API, jak w quizie (punkt 19).
 23. Logika zadania jest w `src/lib/task.ts` (testy w `tests/task.test.ts`), a wygląd w `src/components/TaskCard.tsx`. Postęp (co zrobione) zapisze Faza 4.
 24. Parser Markdown pamięta numer listy (`1.`, potem blok kodu, potem `2.`), żeby kroki zadania liczyły się dalej, a nie od 1.
+
+## Faza 4 (2026-11-08)
+
+25. Postęp jest zapisywany w `localStorage` tej przeglądarki (klucz `postep-v1`): najlepszy wynik całego quizu (runda „Powtórz błędne” się nie liczy) i odhaczenia zadania. Bez kont i serwera, więc postęp nie przechodzi między komputerami.
+26. Temat jest ukończony, gdy quiz ma co najmniej 80% (`PASS_PERCENT`), a zadanie (jeśli jest) ma odhaczoną całą listę. Na ścieżce: ✓ przy temacie, znaczki „quiz 85%” i „zadanie ✓”, pasek ukończenia pod tygodniem.
+27. Logika postępu jest w `src/lib/progress.ts` (testy w `tests/progress.test.ts`); stan trzyma `App.tsx` i zapisuje go przy każdej zmianie.
+28. GitHub Actions: `ci.yml` uruchamia lint, testy i build przy każdym PR; `deploy.yml` publikuje `dist/` na GitHub Pages po scaleniu do `main`. `base: './'` w `vite.config.ts`, żeby strona działała pod adresem `/wordpress-dev-nauka/`.

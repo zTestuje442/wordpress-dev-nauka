@@ -146,5 +146,316 @@
       ],
       "solution": "- `nslookup` pokazuje linię `Address:` z adresem IP. Adresy mogą się różnić w zależności od miejsca i czasu, bo duże strony mają wiele serwerów.\n- Strona główna `wordpress.org` zwraca **200** (wszystko w porządku).\n- Nieistniejąca podstrona zwraca **404** (nie ma takiej strony). Serwer działa i odpowiada, tylko nie ma tej podstrony.\n- `nslookup` sprawdza **krok 1** (DNS: nazwa → adres IP). Kod statusu w DevTools to **krok 4** (odpowiedź serwera do przeglądarki)."
     }
+  },
+  {
+    "id": "t1-hosting",
+    "week": 1,
+    "order": 3,
+    "title": "Hosting pod WordPressa",
+    "lesson": "**Hosting** to wynajęte miejsce na serwerze, który działa całą dobę. Leżą na nim pliki Twojej strony i jej baza danych. Domena to osobna usługa: tylko wskazuje, na którym serwerze strona stoi.\n\n![Trzy rodzaje hostingu](diagram:hosting-rodzaje)\n\n## Czego WordPress potrzebuje od serwera\n\nWedług oficjalnych wymagań WordPressa serwer powinien mieć:\n\n- **PHP 8.3** lub nowszy (to język, w którym napisany jest WordPress)\n- bazę **MySQL 8.0+** albo **MariaDB 10.11+**\n- obsługę **HTTPS**, czyli certyfikat SSL\n- serwer **Apache** lub **Nginx** z obsługą przyjaznych adresów (mod_rewrite)\n\nWordPress uruchomi się też na starszym PHP 7.4, ale ta wersja nie dostaje już poprawek bezpieczeństwa. Jeśli hosting oferuje tylko stare PHP, poszukaj innego.\n\n## Trzy rodzaje hostingu\n\n1. **Hosting współdzielony**: na jednym serwerze stoi wiele stron i dzielą się jego mocą. Jest tani i wystarcza na start: wizytówka, blog, mała strona firmowa.\n2. **VPS** (wirtualny serwer prywatny): dostajesz własny, wydzielony kawałek serwera. Jest szybszy i stabilniejszy, ale zwykle trzeba umieć nim zarządzać albo dopłacić za wersję zarządzaną.\n3. **Managed WordPress**: hosting przygotowany tylko pod WordPressa. Firma sama robi kopie zapasowe, aktualizacje i przyspieszanie (cache). Jest wygodny i droższy, czasem blokuje niektóre wtyczki.\n\nNa pierwszą stronę firmową zwykle wystarczy dobry hosting współdzielony z wyraźnym wsparciem dla WordPressa.\n\n## Panel hostingu\n\nHostingiem zarządzasz w **panelu** (np. cPanel, DirectAdmin albo własny panel firmy). To tam:\n\n- dodajesz domeny i subdomeny,\n- tworzysz bazy danych i konta pocztowe,\n- włączasz darmowy certyfikat SSL,\n- zmieniasz wersję PHP,\n- tworzysz konta FTP/SFTP do wgrywania plików.\n\n## Na co patrzeć przed zakupem\n\n- **Wersja PHP**: czy jest 8.3 lub nowsza i czy zmienisz ją samodzielnie w panelu.\n- **Kopie zapasowe**: czy są automatyczne, jak długo są trzymane i czy przywrócisz je jednym kliknięciem.\n- **Darmowy SSL** (zwykle Let's Encrypt).\n- **Lokalizacja serwera**: serwer w Polsce lub UE jest szybszy dla polskich klientów i prostszy przy RODO.\n- **Dostęp SFTP** (a najlepiej też SSH).\n- **Cena odnowienia**: promocja często dotyczy tylko pierwszego roku.\n- **Wsparcie techniczne** po polsku i jego godziny.\n\nUważaj na hasła „nieograniczone miejsce i transfer”. Prawie zawsze w regulaminie jest limit, nazywany zasadą uczciwego korzystania (fair use).\n\n## Czytaj dalej\n\n- [Oficjalne wymagania WordPressa](https://wordpress.org/about/requirements/)\n- [WPBeginner: jak wybrać hosting (po angielsku)](https://www.wpbeginner.com/wordpress-hosting/)",
+    "questions": [
+      {
+        "id": "t1-hosting-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Czym jest hosting?",
+        "answer": "Wynajętym miejscem na serwerze, gdzie leżą pliki i baza danych strony",
+        "distractors": [
+          "Nazwą strony, którą wpisujesz w przeglądarce",
+          "Programem do budowania stron na komputerze"
+        ],
+        "explanation": "Hosting to serwer, na którym strona działa. Nazwa strony to domena, czyli osobna usługa."
+      },
+      {
+        "id": "t1-hosting-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "WordPress zaleca PHP w wersji ___ lub nowszej.",
+        "answer": "8.3",
+        "explanation": "Tak podają oficjalne wymagania na wordpress.org. Starsze wersje, np. 7.4, nie dostają już poprawek bezpieczeństwa."
+      },
+      {
+        "id": "t1-hosting-03",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Oferta hostingu: `PHP 7.4`, `MySQL 8.0`, `darmowy SSL`, `codzienne kopie zapasowe`. Który punkt jest problemem?",
+        "answer": "`PHP 7.4`",
+        "distractors": [
+          "`MySQL 8.0`",
+          "`darmowy SSL`",
+          "`codzienne kopie zapasowe`"
+        ],
+        "explanation": "PHP 7.4 nie jest już wspierane i nie dostaje poprawek bezpieczeństwa. WordPress zaleca 8.3 lub nowsze."
+      },
+      {
+        "id": "t1-hosting-04",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Klient zakłada małą stronę firmową z 5 podstronami i formularzem kontaktowym. Jaki hosting na start polecisz?",
+        "answer": "Dobry hosting współdzielony ze wsparciem dla WordPressa",
+        "distractors": [
+          "Własny serwer postawiony w biurze klienta",
+          "Kilka VPS-ów połączonych w klaster"
+        ],
+        "explanation": "Mała strona firmowa nie potrzebuje dużej mocy. Współdzielony hosting jest tani i wystarczy. Gdy ruch urośnie, można przenieść stronę na VPS lub managed."
+      },
+      {
+        "id": "t1-hosting-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Hosting reklamuje się hasłem „Nieograniczone miejsce i transfer za 5 zł miesięcznie”. Co to zwykle oznacza?",
+        "answer": "Limit jest, tylko zapisany w regulaminie (fair use), a cena często rośnie po pierwszym roku",
+        "distractors": [
+          "Serwer naprawdę nie ma żadnych limitów",
+          "Taki hosting jest zawsze najszybszy, bo ma najwięcej miejsca"
+        ],
+        "explanation": "Żaden serwer nie ma nieograniczonych zasobów. Sprawdź regulamin i cenę odnowienia, a nie tylko cenę promocyjną."
+      },
+      {
+        "id": "t1-hosting-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Wyjaśnij własnymi słowami, czym różni się hosting od domeny.",
+        "answer": "Hosting to miejsce na serwerze, gdzie leżą pliki i baza danych strony. Domena to nazwa strony, np. mojafirma.pl, która przez DNS wskazuje adres IP tego serwera. To dwie osobne usługi i można je kupić w różnych firmach.",
+        "keyPoints": [
+          "hosting to serwer z plikami i bazą danych",
+          "domena to nazwa strony",
+          "domena przez DNS wskazuje serwer (adres IP)",
+          "to osobne usługi, mogą być w różnych firmach"
+        ],
+        "explanation": "Jeśli to rozróżniasz, łatwiej ustalisz, czy problem leży po stronie domeny (DNS), czy serwera."
+      },
+      {
+        "id": "t1-hosting-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Wymień co najmniej 4 rzeczy, które sprawdzisz w ofercie hostingu przed zakupem dla klienta.",
+        "answer": "Sprawdzę wersję PHP (8.3 lub nowsza), automatyczne kopie zapasowe i ich przywracanie, darmowy certyfikat SSL, lokalizację serwera (Polska lub UE), dostęp SFTP, cenę odnowienia po promocji i wsparcie techniczne.",
+        "keyPoints": [
+          "wersja PHP (8.3+)",
+          "automatyczne kopie zapasowe",
+          "darmowy SSL",
+          "lokalizacja serwera (PL/UE)",
+          "dostęp SFTP",
+          "cena odnowienia, nie tylko promocja"
+        ],
+        "explanation": "Wystarczą 4 z tej listy. Najczęściej zapomina się o cenie odnowienia i o tym, jak przywraca się kopię."
+      },
+      {
+        "id": "t1-hosting-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Kiedy warto wybrać hosting typu Managed WordPress zamiast zwykłego współdzielonego?",
+        "answer": "Gdy klient nie chce sam dbać o aktualizacje, kopie i szybkość strony, a strona jest ważna dla firmy, np. sklep albo strona z dużym ruchem. Managed jest droższy, ale firma hostingowa robi kopie, aktualizacje i cache. Trzeba tylko sprawdzić, czy nie blokuje potrzebnych wtyczek.",
+        "keyPoints": [
+          "hosting sam robi kopie, aktualizacje i cache",
+          "dobry dla ważnych stron, sklepów lub większego ruchu",
+          "jest droższy",
+          "może blokować niektóre wtyczki"
+        ],
+        "explanation": "To wybór między ceną a wygodą i bezpieczeństwem. Na start zwykle wystarczy współdzielony."
+      },
+      {
+        "id": "t1-hosting-09",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Hosting robi codzienne kopie zapasowe. Czy to wystarczy? Uzasadnij.",
+        "answer": "Nie do końca. Kopie hostingu leżą u tej samej firmy, często na tym samym serwerze, i bywają trzymane tylko kilka dni. Jeśli serwer padnie, konto zostanie zablokowane albo problem wyjdzie po tygodniu, kopii może nie być. Warto mieć też własną kopię poza hostingiem, np. wtyczką do chmury, i sprawdzić, czy przywracanie działa.",
+        "keyPoints": [
+          "kopie hostingu są u tej samej firmy",
+          "bywają trzymane krótko",
+          "warto mieć własną kopię poza hostingiem",
+          "trzeba sprawdzić, czy przywracanie działa"
+        ],
+        "explanation": "Kopia, której nie da się przywrócić, nie jest kopią. Zasada: co najmniej jedna kopia w innym miejscu niż strona."
+      },
+      {
+        "id": "t1-hosting-10",
+        "type": "open",
+        "difficulty": 3,
+        "prompt": "Klient mówi: „Kupiliśmy najtańszy hosting i strona działa bardzo wolno”. Co sprawdzisz po stronie hostingu?",
+        "answer": "Sprawdzę w panelu wersję PHP i w razie potrzeby ją podniosę. Zobaczę, gdzie stoi serwer, bo daleki serwer dodaje opóźnienie. Sprawdzę limity zasobów (procesor, pamięć) i czy strona ich nie przekracza. Zobaczę, czy hosting ma cache. Jeśli limity są za małe, zaproponuję wyższy pakiet albo inny hosting.",
+        "keyPoints": [
+          "wersja PHP",
+          "lokalizacja serwera",
+          "limity zasobów (procesor, pamięć)",
+          "cache po stronie hostingu",
+          "ewentualnie wyższy pakiet lub zmiana hostingu"
+        ],
+        "explanation": "Wolna strona może też wynikać z ciężkich wtyczek albo dużych zdjęć. Tym zajmiesz się w lekcjach o wydajności."
+      }
+    ],
+    "task": {
+      "task": "Porównaj dwie prawdziwe oferty hostingu tak, jakby klient poprosił Cię o wybór.\n\n1. Wybierz dwie firmy hostingowe działające w Polsce i wejdź na stronę ich najtańszego pakietu pod WordPressa.\n2. Dla każdej oferty znajdź: wersję PHP, kopie zapasowe (jak często, jak długo trzymane), SSL, lokalizację serwera, dostęp SFTP i **cenę odnowienia** po pierwszym roku.\n3. Wpisz wyniki w notatkach jako dwie listy albo tabelę.\n4. Napisz jedno zdanie: którą ofertę polecisz małej firmie i dlaczego.",
+      "checklist": [
+        "Masz dwie oferty z wersją PHP",
+        "Wiesz, jak każda robi kopie zapasowe",
+        "Znasz cenę odnowienia, nie tylko promocyjną",
+        "Masz jedno zdanie z rekomendacją i uzasadnieniem"
+      ],
+      "hints": [
+        "Szczegóły zwykle są w tabeli „Porównaj pakiety” albo w regulaminie lub cenniku na dole strony.",
+        "Cena odnowienia bywa podana drobnym drukiem przy gwiazdce, np. „cena w kolejnym roku”.",
+        "Jeśli czegoś nie ma na stronie, zapisz „brak informacji”. To też jest wynik, bo możesz o to zapytać wsparcie."
+      ],
+      "solution": "Dobra odpowiedź ma dla obu ofert te same punkty, żeby dało się je porównać:\n\n- **PHP**: 8.3 lub nowsze to plus. Jeśli tylko starsze, to minus.\n- **Kopie**: automatyczne, codzienne, trzymane co najmniej 7–14 dni i z przywracaniem w panelu.\n- **SSL**: darmowy (Let's Encrypt) powinien być w standardzie.\n- **Serwer**: w Polsce lub UE.\n- **SFTP**: dostępne.\n- **Cena**: porównujesz cenę odnowienia, bo stronę utrzymuje się latami.\n\nRekomendacja powinna wskazywać konkretny powód, np. „Polecam B, bo ma PHP 8.3, kopie z 14 dni i niższą cenę odnowienia, choć promocja jest droższa”."
+    }
+  },
+  {
+    "id": "t1-instalacja-ftp",
+    "week": 1,
+    "order": 4,
+    "title": "Instalacja WordPressa przez FTP",
+    "lesson": "Większość hostingów ma instalator WordPressa „jednym kliknięciem” i na co dzień warto go używać. Raz jednak dobrze zainstalować WordPressa ręcznie. Zobaczysz wtedy, z czego składa się każda strona na WordPressie: **pliki na serwerze**, **baza danych** i plik **wp-config.php**, który je łączy. Ta wiedza przyda się przy przenoszeniu stron i naprawie błędów.\n\n![Instalacja krok po kroku](diagram:instalacja-ftp)\n\n## Krok 1. Pobierz WordPressa\n\nPobierz paczkę ZIP z [pl.wordpress.org](https://pl.wordpress.org/download/) (wersja po polsku) i rozpakuj ją na komputerze. Powstanie folder `wordpress` z plikami i podfolderami `wp-admin`, `wp-content` i `wp-includes`.\n\n## Krok 2. Utwórz bazę danych w panelu hostingu\n\nW panelu hostingu w sekcji **Bazy danych** (MySQL):\n\n1. utwórz nową bazę,\n2. utwórz użytkownika bazy z silnym hasłem,\n3. dodaj tego użytkownika do bazy ze wszystkimi uprawnieniami.\n\nZapisz cztery dane: **nazwę bazy**, **użytkownika**, **hasło** i **host bazy** (najczęściej `localhost`, ale niektóre hostingi podają inny adres).\n\n## Krok 3. Wgraj pliki przez SFTP\n\nDo wgrywania plików użyj darmowego programu **FileZilla**. Dane do połączenia znajdziesz w panelu hostingu (konta FTP):\n\n- **Host**: adres serwera, np. `sftp://serwer123.hosting.pl`\n- **Użytkownik** i **hasło** konta FTP\n- **Port**: `22` dla SFTP\n\nWybieraj **SFTP**, a nie zwykłe FTP. Zwykłe FTP (port `21`) wysyła hasło bez szyfrowania.\n\nOtwórz po stronie serwera katalog domeny, zwykle `public_html`. Wgraj tam **zawartość** folderu `wordpress`, a nie cały folder. Jeśli wgrasz folder, strona otworzy się pod adresem `mojafirma.pl/wordpress/`.\n\n## Krok 4. Uruchom kreator instalacji\n\nWejdź na swoją domenę w przeglądarce. WordPress pokaże kreator:\n\n1. Wpisz cztery dane bazy z kroku 2. Prefiks tabel możesz zostawić `wp_`.\n2. Kreator sam utworzy plik `wp-config.php` z tymi danymi. Jeśli nie ma uprawnień do zapisu, pokaże treść pliku do wklejenia ręcznie.\n3. Podaj tytuł strony, nazwę użytkownika, silne hasło i e-mail administratora.\n\nNie wybieraj nazwy użytkownika `admin`. Boty próbują ją zgadywać jako pierwszą.\n\n## Widoczność dla wyszukiwarek\n\nW ostatnim kroku jest pole **„Proś wyszukiwarki o nieindeksowanie tej witryny”**. Zaznacz je, gdy budujesz stronę, żeby Google nie pokazywał niegotowej wersji. Przy starcie strony **koniecznie je odznacz** w **Ustawienia → Czytanie**. To częsty powód, dla którego nowa strona w ogóle nie pojawia się w Google.\n\n## Po instalacji\n\nPanel logowania znajdziesz pod adresem `mojafirma.pl/wp-admin`. Jeśli zamiast strony zobaczysz **„Error establishing a database connection”**, WordPress nie może połączyć się z bazą. Prawie zawsze winne są złe dane w `wp-config.php`.\n\n## Czytaj dalej\n\n- [Oficjalna instrukcja instalacji (po angielsku)](https://developer.wordpress.org/advanced-administration/before-install/howto-install/)\n- [Opis pliku wp-config.php (po angielsku)](https://developer.wordpress.org/advanced-administration/wordpress/wp-config/)\n- [WPBeginner: od czego zacząć (po angielsku)](https://www.wpbeginner.com/start-here/)",
+    "questions": [
+      {
+        "id": "t1-instalacja-ftp-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Z jakich trzech części składa się instalacja WordPressa?",
+        "answer": "Pliki na serwerze, baza danych i plik wp-config.php, który je łączy",
+        "distractors": [
+          "Domena, poczta e-mail i certyfikat SSL",
+          "Motyw, wtyczki i zdjęcia"
+        ],
+        "explanation": "Pliki to kod WordPressa, baza trzyma treści i ustawienia, a wp-config.php mówi plikom, jak połączyć się z bazą."
+      },
+      {
+        "id": "t1-instalacja-ftp-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Połączenie SFTP domyślnie używa portu ___.",
+        "answer": "22",
+        "explanation": "SFTP działa na porcie 22 i szyfruje połączenie. Zwykłe FTP używa portu 21 i wysyła hasło otwartym tekstem."
+      },
+      {
+        "id": "t1-instalacja-ftp-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "W którym pliku WordPress trzyma nazwę bazy, użytkownika i hasło do bazy?",
+        "answer": "`wp-config.php`",
+        "distractors": [
+          "`.htaccess`",
+          "`index.php`",
+          "`functions.php`"
+        ],
+        "explanation": "`wp-config.php` leży w głównym katalogu WordPressa. `.htaccess` dotyczy serwera i adresów, a `functions.php` należy do motywu."
+      },
+      {
+        "id": "t1-instalacja-ftp-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Ostatni krok instalacji: `Tytuł: Moja Firma`, `Użytkownik: admin`, `Hasło wygenerowane przez kreator`, `E-mail: biuro@mojafirma.pl`. Który wybór jest złym pomysłem?",
+        "answer": "`Użytkownik: admin`",
+        "distractors": [
+          "`Tytuł: Moja Firma`",
+          "`Hasło wygenerowane przez kreator`",
+          "`E-mail: biuro@mojafirma.pl`"
+        ],
+        "explanation": "Boty próbujące się włamać zaczynają od nazwy `admin`. Wybierz inną nazwę, a hasło zostaw silne, wygenerowane."
+      },
+      {
+        "id": "t1-instalacja-ftp-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Po instalacji strona otwiera się tylko pod adresem `mojafirma.pl/wordpress/`. Co się stało?",
+        "answer": "Na serwer trafił cały folder `wordpress` zamiast jego zawartości",
+        "distractors": [
+          "DNS jeszcze się nie odświeżył",
+          "Brakuje certyfikatu SSL"
+        ],
+        "explanation": "Adres odpowiada folderom na serwerze. Pliki WordPressa muszą leżeć bezpośrednio w `public_html`, a nie w podfolderze."
+      },
+      {
+        "id": "t1-instalacja-ftp-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Dlaczego do wgrywania plików lepiej używać SFTP niż zwykłego FTP?",
+        "answer": "Zwykłe FTP wysyła login, hasło i pliki bez szyfrowania, więc ktoś w tej samej sieci może je podejrzeć. SFTP szyfruje całe połączenie. Działa na porcie 22.",
+        "keyPoints": [
+          "FTP wysyła hasło bez szyfrowania",
+          "SFTP szyfruje połączenie",
+          "SFTP używa portu 22"
+        ],
+        "explanation": "To ta sama różnica co między http i https: dane te same, ale zaszyfrowane."
+      },
+      {
+        "id": "t1-instalacja-ftp-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Opisz po kolei kroki ręcznej instalacji WordPressa.",
+        "answer": "Pobieram WordPressa z pl.wordpress.org i rozpakowuję. W panelu hostingu tworzę bazę danych i użytkownika z hasłem i dodaję go do bazy. Przez SFTP wgrywam zawartość folderu wordpress do public_html. Wchodzę na domenę, w kreatorze podaję dane bazy, kreator tworzy wp-config.php. Na końcu podaję tytuł strony, użytkownika, hasło i e-mail.",
+        "keyPoints": [
+          "pobranie i rozpakowanie WordPressa",
+          "utworzenie bazy i użytkownika w panelu",
+          "wgranie plików przez SFTP do public_html",
+          "kreator: dane bazy → wp-config.php",
+          "tytuł, użytkownik, hasło, e-mail"
+        ],
+        "explanation": "To te same kroki co na animacji. Kolejność bazy i wgrywania plików może być odwrotna, ważne, żeby obie były gotowe przed kreatorem."
+      },
+      {
+        "id": "t1-instalacja-ftp-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jakie cztery dane zapiszesz po utworzeniu bazy danych i do czego są potrzebne?",
+        "answer": "Nazwę bazy, nazwę użytkownika bazy, hasło i host bazy (zwykle localhost). Wpisuję je w kreatorze instalacji, a on zapisuje je w wp-config.php. Dzięki nim WordPress łączy się z bazą.",
+        "keyPoints": [
+          "nazwa bazy",
+          "użytkownik bazy",
+          "hasło",
+          "host bazy (zwykle localhost)",
+          "trafiają do wp-config.php"
+        ],
+        "explanation": "Te same cztery dane sprawdzisz, gdy pojawi się błąd połączenia z bazą."
+      },
+      {
+        "id": "t1-instalacja-ftp-09",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Kiedy zaznaczyć pole „Proś wyszukiwarki o nieindeksowanie tej witryny” i co się stanie, jeśli zapomnisz je odznaczyć?",
+        "answer": "Zaznaczam je, gdy strona jest w budowie, żeby Google nie pokazywał niegotowej wersji. Przy starcie trzeba je odznaczyć w Ustawienia → Czytanie. Jeśli zostanie zaznaczone, WordPress prosi wyszukiwarki, żeby nie indeksowały strony, i strona nie pojawi się w Google.",
+        "keyPoints": [
+          "zaznaczyć w trakcie budowy",
+          "odznaczyć przy starcie strony",
+          "miejsce: Ustawienia → Czytanie",
+          "zaznaczone pole = strona nie pojawi się w Google"
+        ],
+        "explanation": "To jedno pole potrafi zablokować całe SEO. Warto je dopisać do listy kontrolnej przed startem strony."
+      },
+      {
+        "id": "t1-instalacja-ftp-10",
+        "type": "open",
+        "difficulty": 3,
+        "prompt": "Po instalacji widzisz „Error establishing a database connection”. Co sprawdzisz?",
+        "answer": "Otworzę wp-config.php i porównam DB_NAME, DB_USER, DB_PASSWORD i DB_HOST z danymi z panelu hostingu, szukając literówek i spacji. Sprawdzę w panelu, czy użytkownik jest dodany do bazy z uprawnieniami. Jeśli wszystko się zgadza, zapytam hosting, czy serwer bazy działa.",
+        "keyPoints": [
+          "dane w wp-config.php (DB_NAME, DB_USER, DB_PASSWORD, DB_HOST)",
+          "literówki lub spacje",
+          "użytkownik dodany do bazy z uprawnieniami",
+          "czy serwer bazy działa (wsparcie hostingu)"
+        ],
+        "explanation": "Ten błąd oznacza krok 3 z lekcji „Jak działa strona”: PHP działa, ale nie może dostać się do bazy."
+      }
+    ],
+    "task": {
+      "task": "Przygotuj wszystko do ręcznej instalacji. Do tego zadania nie potrzebujesz hostingu.\n\n1. Pobierz WordPressa z [pl.wordpress.org](https://pl.wordpress.org/download/) i rozpakuj go.\n2. Otwórz w Notatniku plik `wp-config-sample.php` i znajdź linie z `DB_NAME`, `DB_USER`, `DB_PASSWORD` i `DB_HOST`.\n3. Zainstaluj [FileZillę](https://filezilla-project.org/) (wersja Client) i znajdź pola Host, Użytkownik, Hasło i Port.\n4. W notatkach zapisz listę danych potrzebnych do instalacji: osobno do bazy i osobno do SFTP.\n\nJeśli masz już hosting, możesz pójść krok dalej: zainstaluj WordPressa ręcznie na subdomenie testowej, np. `test.mojafirma.pl`, z zaznaczonym nieindeksowaniem.",
+      "checklist": [
+        "WordPress pobrany i rozpakowany",
+        "Znalezione 4 linie z danymi bazy w wp-config-sample.php",
+        "FileZilla zainstalowana i wiesz, gdzie wpisać dane połączenia",
+        "Masz listę danych do bazy i do SFTP"
+      ],
+      "hints": [
+        "Plik `wp-config-sample.php` leży bezpośrednio w folderze `wordpress`, obok `wp-admin` i `wp-content`.",
+        "W FileZilli pola są na górnym pasku (szybkie łączenie). Pełne ustawienia są w Plik → Menedżer stron.",
+        "Lista ma 8 pozycji: 4 dla bazy i 4 dla SFTP."
+      ],
+      "solution": "W `wp-config-sample.php` zobaczysz linie podobne do tych:\n\n```php\ndefine( 'DB_NAME', 'database_name_here' );\ndefine( 'DB_USER', 'username_here' );\ndefine( 'DB_PASSWORD', 'password_here' );\ndefine( 'DB_HOST', 'localhost' );\n```\n\nKreator instalacji wpisuje tu Twoje dane i zapisuje plik jako `wp-config.php`.\n\nLista danych:\n\n- **Baza**: nazwa bazy, użytkownik bazy, hasło, host bazy (zwykle `localhost`).\n- **SFTP**: host serwera, użytkownik FTP, hasło FTP, port `22`.\n\nTo dwa różne konta: użytkownik bazy nie jest tym samym co użytkownik FTP."
+    }
   }
 ]

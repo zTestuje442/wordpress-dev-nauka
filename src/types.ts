@@ -5,7 +5,7 @@ export const LEVELS = ["podstawy", "junior", "mid"] as const;
 export type Level = (typeof LEVELS)[number];
 
 /** Działy (moduły) programu. */
-export const SECTIONS = ["fundamenty", "wordpress", "php-motywy", "seo"] as const;
+export const SECTIONS = ["internet-hosting", "fundamenty", "wordpress", "php-motywy", "seo"] as const;
 export type Section = (typeof SECTIONS)[number];
 
 /** Temat = jeden punkt na ścieżce: lekcja + quiz + (opcjonalnie) zadanie praktyczne. */

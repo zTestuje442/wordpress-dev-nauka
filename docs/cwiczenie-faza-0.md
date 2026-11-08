@@ -1,11 +1,11 @@
 # Ćwiczenie dla Ciebie: pierwszy temat
 
-Dopisz do `src/data/curriculum.json` jeden temat, np. **„Hierarchia szablonów”** (dział `php-motywy`, poziom `junior`).
+Dopisz do `src/data/curriculum.json` jeden temat, np. **„Domena i DNS”** (dział `internet-hosting`, poziom `podstawy`).
 
 ## Gotowe, gdy
 
 - `npm test` przechodzi (zielone ✓), a w teście widać id Twojego tematu
-- `npm run dev` pokazuje tytuł tematu przy poziomie `junior`
+- `npm run dev` pokazuje tytuł tematu przy poziomie `podstawy`
 - temat ma lekcję (kilka akapitów Markdown) i co najmniej 3 pytania: po jednym `choice`, `error` i `cloze`, w tym jedno z `"tricky": true`
 
 ## Podpowiedzi
@@ -20,20 +20,20 @@ Dopisz do `src/data/curriculum.json` jeden temat, np. **„Hierarchia szablonów
 ```json
 [
   {
-    "id": "junior-hierarchia-szablonow",
-    "section": "php-motywy",
-    "level": "junior",
+    "id": "podstawy-domena-dns",
+    "section": "internet-hosting",
+    "level": "podstawy",
     "order": 1,
-    "title": "Hierarchia szablonów",
+    "title": "Domena i DNS",
     "lesson": "Tu Twoja lekcja...",
     "questions": [
       {
-        "id": "junior-hierarchia-szablonow-01",
+        "id": "podstawy-domena-dns-01",
         "type": "choice",
         "difficulty": 1,
-        "prompt": "Który plik WordPress użyje jako ostatniej deski ratunku?",
-        "answer": "index.php",
-        "distractors": ["home.php", "page.php"],
+        "prompt": "Który rekord DNS wskazuje adres IPv4 serwera dla domeny?",
+        "answer": "A",
+        "distractors": ["MX", "TXT"],
         "explanation": "..."
       }
     ]

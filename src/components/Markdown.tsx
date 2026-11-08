@@ -1,7 +1,7 @@
 import { diagramUrl } from "../diagrams.ts";
 import { parseBlocks, parseInline } from "../lib/markdown.ts";
 
-function InlineText({ text }: { text: string }) {
+export function InlineText({ text }: { text: string }) {
   return parseInline(text).map((p, i) => {
     switch (p.kind) {
       case "bold": return <strong key={i}>{p.text}</strong>;

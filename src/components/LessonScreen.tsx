@@ -1,5 +1,6 @@
 import type { Topic } from "../types.ts";
 import Markdown from "./Markdown.tsx";
+import Quiz from "./Quiz.tsx";
 
 export default function LessonScreen({ topic, onBack }: { topic: Topic; onBack: () => void }) {
   return (
@@ -8,7 +9,7 @@ export default function LessonScreen({ topic, onBack }: { topic: Topic; onBack: 
       <p className="eyebrow">Tydzień {topic.week}</p>
       <h1>{topic.title}</h1>
       <Markdown source={topic.lesson} />
-      <p className="next">Quiz do tej lekcji pojawi się w Fazie 2 ({topic.questions.length} pytań czeka).</p>
+      <Quiz key={topic.id} questions={topic.questions} />
     </article>
   );
 }

@@ -15,3 +15,11 @@
 8. Kolory poziomów: podstawy zielony, junior niebieski, mid czerwony.
 9. Pierwsza lekcja „Jak działa strona internetowa” (t1, order 1) jest wzorem dla kolejnych.
 10. Grafiki w lekcjach: linia `![opis](diagram:nazwa)` wstawia plik `src/diagrams/<nazwa>.svg`. Animacje są w środku SVG (CSS), z jasnym i ciemnym motywem (`prefers-color-scheme`) i wersją bez ruchu (`prefers-reduced-motion`). Test pilnuje, że każda grafika użyta w lekcji istnieje.
+
+## Faza 2 (2026-11-08)
+
+11. Quiz jest pod lekcją, jedno pytanie naraz. Kolejność: od łatwych (●○○) do trudnych (●●●); pytania podchwytliwe mają żółtą plakietkę.
+12. Po każdej odpowiedzi od razu widać, czy dobrze, poprawną odpowiedź i wyjaśnienie. Na końcu wynik i przycisk „Powtórz błędne”.
+13. Odpowiedzi w `choice` i `error` są tasowane przy każdej rundzie, żeby nie zapamiętywać pozycji. Typ `error` też musi mieć `distractors` (zły fragment to `answer`, dobre fragmenty to `distractors`).
+14. W luce (`cloze`) wielkość liter, spacje i znaki ` nie mają znaczenia.
+15. Logika quizu jest w `src/lib/quiz.ts` (bez Reacta, z testami w `tests/quiz.test.ts`), a wygląd w `src/components/Quiz.tsx`. Postęp nie jest jeszcze zapisywany: to Faza 4.

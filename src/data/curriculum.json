@@ -50,6 +50,19 @@
           "Serwer DNS podał zły adres IP"
         ],
         "explanation": "Kod 200 mówi „wszystko OK”. Strona błędu z kodem 200 myli Google, który może ją zaindeksować. To tzw. soft 404."
+      },
+      {
+        "id": "t1-jak-dziala-strona-05",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Klient wkleił w przeglądarkę adres `htps://www.przyklad.pl/kontakt` i strona się nie otwiera. Który fragment jest zły?",
+        "answer": "`htps://`",
+        "distractors": [
+          "`www.`",
+          "`przyklad.pl`",
+          "`/kontakt`"
+        ],
+        "explanation": "Protokół to `https://` (z dwoma t). Przeglądarka nie zna „htps”, więc nawet nie pyta DNS o adres."
       }
     ]
   }

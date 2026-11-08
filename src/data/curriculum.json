@@ -104,6 +104,31 @@
           "hosting musi mieć PHP i bazę danych"
         ],
         "explanation": "Przy wyborze hostingu pod WordPressa zawsze sprawdzasz PHP (wersję) i bazę MySQL/MariaDB."
+      },
+      {
+        "id": "t1-jak-dziala-strona-09",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Zamiast strony widać napis „Error establishing a database connection”. Na którym kroku z lekcji jest problem?",
+        "answer": "Krok 3: PHP na serwerze nie może połączyć się z bazą danych MySQL",
+        "distractors": [
+          "Krok 1: DNS nie zna adresu IP domeny",
+          "Krok 4: przeglądarka nie umie wyświetlić HTML"
+        ],
+        "explanation": "Skoro widać komunikat od WordPressa, DNS i serwer działają. Zawiódł dopiero krok 3: połączenie PHP z bazą danych (np. złe hasło w wp-config.php albo baza nie działa)."
+      },
+      {
+        "id": "t1-jak-dziala-strona-10",
+        "type": "open",
+        "difficulty": 3,
+        "prompt": "Wyjaśnij, czym różni się sytuacja „strona pokazuje błąd 404” od sytuacji „strona w ogóle się nie łączy”. Gdzie szukasz przyczyny w każdym przypadku?",
+        "answer": "Przy błędzie 404 serwer działa i odpowiada, tylko nie ma takiej podstrony: szukasz w adresie, np. czy strona nie została usunięta albo przeniesiona. Gdy strona w ogóle się nie łączy, problem jest wcześniej: DNS nie podaje adresu IP albo serwer nie odpowiada. Wtedy sprawdzasz domenę, DNS i hosting.",
+        "keyPoints": [
+          "404: serwer działa, ale takiej podstrony nie ma",
+          "brak połączenia: problem wcześniej, z DNS albo serwerem",
+          "404 szukasz w adresie podstrony, brak połączenia w domenie lub hostingu"
+        ],
+        "explanation": "Kod 404 to odpowiedź serwera, więc kroki 1–3 zadziałały. Brak jakiejkolwiek odpowiedzi oznacza, że droga urwała się wcześniej."
       }
     ]
   }

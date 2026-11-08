@@ -1,6 +1,5 @@
 import { describe, expect, it } from "vitest";
 import { claudePrompt, isCorrect, normalize, openPassed, orderQuestions, shuffledOptions, summary } from "../src/lib/quiz.ts";
-import { gradePrompt, parseGrade } from "../src/lib/grade.ts";
 import type { Question } from "../src/types.ts";
 
 const q = (over: Partial<Question>): Question => ({
@@ -63,21 +62,3 @@ describe("pytania otwarte", () => {
   });
 });
 
-describe("ocena przez Claude", () => {
-  const open = q({ type: "open", prompt: "Co robi DNS?", answer: "Zamienia domenę na IP.", keyPoints: ["zamienia domenę na IP"] });
-
-  it("wysyła pytanie, punkty, wzór i odpowiedź w osobnych znacznikach", () => {
-    const text = gradePrompt(open, "  daje adres IP ");
-    expect(text).toContain("<pytanie>\nCo robi DNS?\n</pytanie>");
-    expect(text).toContain("- zamienia domenę na IP");
-    expect(text).toContain("<odpowiedz_wzorcowa>\nZamienia domenę na IP.\n</odpowiedz_wzorcowa>");
-    expect(text).toContain("<odpowiedz_ucznia>\ndaje adres IP\n</odpowiedz_ucznia>");
-  });
-
-  it("odczytuje poprawny JSON i odrzuca zły", () => {
-    const ok = parseGrade(JSON.stringify({ passed: false, good: "Dobry start.", missing: ["port 443"], mistakes: [], correct_answer: "Pełna odpowiedź." }));
-    expect(ok).toEqual({ passed: false, good: "Dobry start.", missing: ["port 443"], mistakes: [], correctAnswer: "Pełna odpowiedź." });
-    expect(parseGrade("nie json")).toBeNull();
-    expect(parseGrade(JSON.stringify({ passed: "tak" }))).toBeNull();
-  });
-});

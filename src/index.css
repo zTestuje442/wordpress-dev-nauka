@@ -80,14 +80,3 @@ pre code { background: none; padding: 0; }
   .tricky { background: #4a3a14; color: #f3d48a; }
   .tag.open { background: #1c3550; color: #a9cdf3; }
 }
-
-.key-form { border: 1px dashed var(--line); border-radius: 8px; padding: .8rem 1rem; color: var(--muted); }
-.key-form p { margin: 0 0 .5rem; }
-.key-form input { flex: 1; min-width: 12rem; font: inherit; color: inherit; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: .5rem .7rem; }
-.grade { background: var(--card); border: 1px solid var(--line); border-left: 5px solid; border-radius: 8px; padding: .8rem 1rem; }
-.grade.ok { border-left-color: var(--podstawy); }
-.grade.bad { border-left-color: var(--mid); }
-.grade p, .grade ul { margin: .3rem 0; }
-.verdict { font-weight: 700; }
-.error { color: var(--mid); margin: 0; }
-.link { color: var(--muted); text-decoration: underline; font-size: .9rem; }

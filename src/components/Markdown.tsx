@@ -1,3 +1,4 @@
+import { diagramUrl } from "../diagrams.ts";
 import { parseBlocks, parseInline } from "../lib/markdown.ts";
 
 function InlineText({ text }: { text: string }) {
@@ -22,6 +23,12 @@ export default function Markdown({ source }: { source: string }) {
       case "list": {
         const L = b.ordered ? "ol" : "ul";
         return <L key={i}>{b.items.map((it, j) => <li key={j}><InlineText text={it} /></li>)}</L>;
+      }
+      case "diagram": {
+        const url = diagramUrl(b.name);
+        return url
+          ? <figure key={i} className="diagram"><img src={url} alt={b.alt} />{b.alt && <figcaption>{b.alt}</figcaption>}</figure>
+          : <p key={i} className="missing">Brak grafiki: {b.name}</p>;
       }
       case "code":
         return <pre key={i} data-lang={b.lang || undefined}><code>{b.code}</code></pre>;

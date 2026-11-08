@@ -1,10 +1,14 @@
 // Prosty parser Markdown do bloków. Obsługuje tylko to, czego używają lekcje:
-// nagłówki (#, ##, ###), akapity, listy (- i 1.), bloki kodu (```), a w tekście **pogrubienie**, `kod` i [link](url).
+// nagłówki (#, ##, ###), akapity, listy (- i 1.), bloki kodu (```), grafiki `![opis](diagram:nazwa)`
+// (w osobnej linii, plik src/diagrams/<nazwa>.svg), a w tekście **pogrubienie**, `kod` i [link](url).
 export type Block =
   | { kind: "heading"; level: 1 | 2 | 3; text: string }
   | { kind: "paragraph"; text: string }
   | { kind: "list"; ordered: boolean; items: string[] }
-  | { kind: "code"; lang: string; code: string };
+  | { kind: "code"; lang: string; code: string }
+  | { kind: "diagram"; name: string; alt: string };
+
+const DIAGRAM = /^!\[([^\]]*)\]\(diagram:([a-z0-9-]+)\)\s*$/;
 
 export function parseBlocks(md: string): Block[] {
   const blocks: Block[] = [];
@@ -19,6 +23,12 @@ export function parseBlocks(md: string): Block[] {
       while (i < lines.length && !lines[i].startsWith("```")) code.push(lines[i++]);
       blocks.push({ kind: "code", lang, code: code.join("\n") });
       i++; // zamykające ```
+      continue;
+    }
+    const diagram = DIAGRAM.exec(line);
+    if (diagram) {
+      blocks.push({ kind: "diagram", name: diagram[2], alt: diagram[1] });
+      i++;
       continue;
     }
     const heading = /^(#{1,3}) (.*)$/.exec(line);
@@ -37,7 +47,7 @@ export function parseBlocks(md: string): Block[] {
     }
     if (line.trim() === "") { i++; continue; }
     const para: string[] = [];
-    while (i < lines.length && lines[i].trim() !== "" && !/^(```|#{1,3} |- |\d+\. )/.test(lines[i])) para.push(lines[i++]);
+    while (i < lines.length && lines[i].trim() !== "" && !/^(```|#{1,3} |- |\d+\. )/.test(lines[i]) && !DIAGRAM.test(lines[i])) para.push(lines[i++]);
     blocks.push({ kind: "paragraph", text: para.join(" ") });
   }
   return blocks;

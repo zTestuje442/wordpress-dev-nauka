@@ -14,3 +14,4 @@
 7. Markdown parsujemy sami (`src/lib/markdown.ts`): nagłówki `#`–`###`, akapity, listy `-` i `1.`, bloki kodu ```` ``` ````, w tekście `**pogrubienie**`, `` `kod` `` i `[link](https://…)`. Renderujemy elementy React, bez `innerHTML`; linki tylko `http(s)`.
 8. Kolory poziomów: podstawy zielony, junior niebieski, mid czerwony.
 9. Pierwsza lekcja „Jak działa strona internetowa” (t1, order 1) jest wzorem dla kolejnych.
+10. Grafiki w lekcjach: linia `![opis](diagram:nazwa)` wstawia plik `src/diagrams/<nazwa>.svg`. Animacje są w środku SVG (CSS), z jasnym i ciemnym motywem (`prefers-color-scheme`) i wersją bez ruchu (`prefers-reduced-motion`). Test pilnuje, że każda grafika użyta w lekcji istnieje.

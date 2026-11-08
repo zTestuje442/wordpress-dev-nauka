@@ -20,6 +20,16 @@ describe("parseBlocks", () => {
   });
 });
 
+describe("grafiki", () => {
+  test("![opis](diagram:nazwa) w osobnej linii to grafika, także zaraz po akapicie", () => {
+    expect(parseBlocks("Tekst przed.\n![Droga żądania](diagram:droga-zadania)\nTekst po.")).toEqual([
+      { kind: "paragraph", text: "Tekst przed." },
+      { kind: "diagram", name: "droga-zadania", alt: "Droga żądania" },
+      { kind: "paragraph", text: "Tekst po." },
+    ]);
+  });
+});
+
 describe("parseInline", () => {
   test("pogrubienie, kod i link", () => {
     expect(parseInline("Rekord **A** to `IPv4`, zobacz [MDN](https://developer.mozilla.org).")).toEqual([

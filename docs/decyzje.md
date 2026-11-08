@@ -7,3 +7,11 @@
 3. Inaczej niż w angielskim: jeden temat trzyma lekcję, pytania i zadanie w jednym obiekcie (`Topic`), bez osobnych plików zestawów. Prościej na start; rozdzielimy, gdy plik urośnie.
 4. Pytanie ma `difficulty` (1–3) i opcjonalne `tricky`. Typy na start: `choice`, `error` (znajdź błąd w kodzie), `cloze` (jedna luka `___`).
 5. Id tematu = `t<tydzień>-<slug>` (np. `t1-dns-records`), id pytania = `<topicId>-NN` (01, 02…), pilnuje tego test.
+
+## Faza 1 (2026-11-08)
+
+6. Ekrany bez routera: stan w `App.tsx` (otwarty tydzień, otwarta lekcja). Na ścieżce otwarty jest jeden tydzień naraz, na start Tydzień 1.
+7. Markdown parsujemy sami (`src/lib/markdown.ts`): nagłówki `#`–`###`, akapity, listy `-` i `1.`, bloki kodu ```` ``` ````, w tekście `**pogrubienie**`, `` `kod` `` i `[link](https://…)`. Renderujemy elementy React, bez `innerHTML`; linki tylko `http(s)`.
+8. Kolory poziomów: podstawy zielony, junior niebieski, mid czerwony.
+9. Pierwsza lekcja „Jak działa strona internetowa” (t1, order 1) jest wzorem dla kolejnych.
+10. Grafiki w lekcjach: linia `![opis](diagram:nazwa)` wstawia plik `src/diagrams/<nazwa>.svg`. Animacje są w środku SVG (CSS), z jasnym i ciemnym motywem (`prefers-color-scheme`) i wersją bez ruchu (`prefers-reduced-motion`). Test pilnuje, że każda grafika użyta w lekcji istnieje.

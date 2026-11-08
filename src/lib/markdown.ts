@@ -4,7 +4,7 @@
 export type Block =
   | { kind: "heading"; level: 1 | 2 | 3; text: string }
   | { kind: "paragraph"; text: string }
-  | { kind: "list"; ordered: boolean; items: string[] }
+  | { kind: "list"; ordered: boolean; start: number; items: string[] } // start: numer pierwszego punktu (1., 2. …)
   | { kind: "code"; lang: string; code: string }
   | { kind: "diagram"; name: string; alt: string };
 
@@ -40,9 +40,10 @@ export function parseBlocks(md: string): Block[] {
     const listItem = /^(- |\d+\. )/;
     if (listItem.test(line)) {
       const ordered = !line.startsWith("- ");
+      const start = ordered ? parseInt(line, 10) : 1; // lista może zaczynać się od 2., np. po bloku kodu
       const items: string[] = [];
       while (i < lines.length && listItem.test(lines[i])) items.push(lines[i++].replace(listItem, ""));
-      blocks.push({ kind: "list", ordered, items });
+      blocks.push({ kind: "list", ordered, start, items });
       continue;
     }
     if (line.trim() === "") { i++; continue; }

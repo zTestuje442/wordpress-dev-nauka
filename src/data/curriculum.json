@@ -130,6 +130,21 @@
         ],
         "explanation": "Kod 404 to odpowiedź serwera, więc kroki 1–3 zadziałały. Brak jakiejkolwiek odpowiedzi oznacza, że droga urwała się wcześniej."
       }
-    ]
+    ],
+    "task": {
+      "task": "Prześledź drogę zapytania na prawdziwych stronach.\n\n1. Sprawdź adres IP trzech domen, np. `wordpress.org`, `google.pl` i strony Twojego hostingu:\n\n```bash\nnslookup wordpress.org\n```\n\n2. Otwórz `https://wordpress.org` w przeglądarce, naciśnij **F12** (narzędzia deweloperskie), wejdź w zakładkę **Sieć** (Network) i odśwież stronę. Sprawdź **kod statusu** pierwszego zapytania na liście.\n3. Wejdź na nieistniejącą podstronę, np. `https://wordpress.org/nie-ma-takiej-strony`, i znów sprawdź kod statusu.\n4. Wpisz wyniki w polu poniżej.",
+      "checklist": [
+        "Znasz adresy IP trzech domen",
+        "Wiesz, jaki kod statusu ma strona główna",
+        "Wiesz, jaki kod ma nieistniejąca podstrona",
+        "Umiesz powiedzieć, który krok z lekcji sprawdza `nslookup`, a który kod statusu"
+      ],
+      "hints": [
+        "Windows: menu Start → wpisz `cmd` → Enter. Mac: aplikacja Terminal.",
+        "W zakładce Sieć kod statusu jest w kolumnie **Status** (albo **Stan**). Jeśli lista jest pusta, odśwież stronę przy otwartych narzędziach.",
+        "`nslookup` sprawdza krok 1 (DNS). Kod statusu to krok 4: odpowiedź serwera."
+      ],
+      "solution": "- `nslookup` pokazuje linię `Address:` z adresem IP. Adresy mogą się różnić w zależności od miejsca i czasu, bo duże strony mają wiele serwerów.\n- Strona główna `wordpress.org` zwraca **200** (wszystko w porządku).\n- Nieistniejąca podstrona zwraca **404** (nie ma takiej strony). Serwer działa i odpowiada, tylko nie ma tej podstrony.\n- `nslookup` sprawdza **krok 1** (DNS: nazwa → adres IP). Kod statusu w DevTools to **krok 4** (odpowiedź serwera do przeglądarki)."
+    }
   }
 ]

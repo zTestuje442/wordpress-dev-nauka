@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 250" role="img" aria-labelledby="title">
+<title id="title">Wtyczka SEO od zera: kreator ustawień, szablony tytułów, decyzje o indeksowaniu, a przy każdej stronie własny title, opis i fraza</title>
+<style>
+svg{--fg:#1d1d1b;--muted:#6b6b66;--box:#ffffff;--line:#c9c9c1;--accent:#2b6cb0;--site:#2f8f4e;--bad:#c0392b;font-family:system-ui,sans-serif}
+@media (prefers-color-scheme:dark){svg{--fg:#ecece6;--muted:#a0a09a;--box:#1f1f1d;--line:#4a4a44;--accent:#63a4ec;--site:#5cbf7d;--bad:#ec7f72}}
+.box{fill:var(--box);stroke:var(--line);stroke-width:1.5}
+.box.good{stroke:var(--site);stroke-width:2}
+.box.bad{stroke:var(--bad);stroke-width:2}
+.t{fill:var(--fg);font-size:16px;font-weight:700}
+.s{fill:var(--muted);font-size:13px}
+.ar{stroke:var(--line);stroke-width:2}
+#m path{fill:var(--line)}
+.tag{fill:var(--accent);font-size:14px;font-weight:700}
+.tag.good{fill:var(--site)}
+.tag.bad{fill:var(--bad)}
+.hl{fill:none;stroke:var(--accent);stroke-width:3;opacity:0}
+.cap{fill:var(--fg);font-size:15px;opacity:0}
+.static{fill:var(--muted);font-size:14px;opacity:0}
+</style>
+
+<rect class="box " x="20" y="20" width="168" height="210" rx="12"/>
+<text class="t" x="104" y="52" text-anchor="middle">Kreator</text>
+<text class="s" x="104" y="84" text-anchor="middle">typ strony</text>
+<text class="s" x="104" y="104" text-anchor="middle">firma lub osoba</text>
+<text class="s" x="104" y="124" text-anchor="middle">logo, nazwa</text>
+<text class="s" x="104" y="144" text-anchor="middle">konta społeczne</text>
+<text class="s" x="104" y="164" text-anchor="middle"></text>
+<text class="tag " x="104" y="212" text-anchor="middle">start</text>
+<rect class="box good" x="204" y="20" width="168" height="210" rx="12"/>
+<text class="t" x="288" y="52" text-anchor="middle">Szablony</text>
+<text class="s" x="288" y="84" text-anchor="middle">%%title%% |</text>
+<text class="s" x="288" y="104" text-anchor="middle">%%sitename%%</text>
+<text class="s" x="288" y="124" text-anchor="middle">dla wpisów,</text>
+<text class="s" x="288" y="144" text-anchor="middle">stron, produktów,</text>
+<text class="s" x="288" y="164" text-anchor="middle">kategorii</text>
+<text class="tag good" x="288" y="212" text-anchor="middle">tytuły</text>
+<rect class="box " x="388" y="20" width="168" height="210" rx="12"/>
+<text class="t" x="472" y="52" text-anchor="middle">Indeksowanie</text>
+<text class="s" x="472" y="84" text-anchor="middle">noindex:</text>
+<text class="s" x="472" y="104" text-anchor="middle">tagi?, autorzy,</text>
+<text class="s" x="472" y="124" text-anchor="middle">daty, załączniki</text>
+<text class="s" x="472" y="144" text-anchor="middle">mapa witryny</text>
+<text class="s" x="472" y="164" text-anchor="middle">włączona</text>
+<text class="tag " x="472" y="212" text-anchor="middle">decyzje</text>
+<rect class="box good" x="572" y="20" width="168" height="210" rx="12"/>
+<text class="t" x="656" y="52" text-anchor="middle">Przy stronie</text>
+<text class="s" x="656" y="84" text-anchor="middle">fraza główna</text>
+<text class="s" x="656" y="104" text-anchor="middle">własny title</text>
+<text class="s" x="656" y="124" text-anchor="middle">meta description</text>
+<text class="s" x="656" y="144" text-anchor="middle">slug, canonical</text>
+<text class="s" x="656" y="164" text-anchor="middle">podgląd w Google</text>
+<text class="tag good" x="656" y="212" text-anchor="middle">każda strona</text>
+</svg>

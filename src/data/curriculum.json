@@ -8340,5 +8340,790 @@
       ],
       "solution": "Struktura:\n\n- Strona główna\n- Oferta: Remont łazienki (filar), Remont kuchni, Malowanie, Układanie płytek\n- Realizacje (z podziałem na łazienki, kuchnie)\n- Blog\n- O nas, Kontakt\n\nKlaster „Remont łazienki”: „Ile kosztuje remont łazienki w 2026”, „Jak dobrać płytki do małej łazienki”, „Prysznic walk-in: wady i zalety”.\n\nLinki we wpisie o płytkach: „Zobacz, jak wygląda kompleksowy remont łazienki” (anchor „jak wygląda kompleksowy remont łazienki”, link do `/oferta/remont-lazienki/`) i „Przed zakupem płytek sprawdź, ile kosztuje remont łazienki” (link do `/blog/ile-kosztuje-remont-lazienki/`)."
     }
+  },
+  {
+    "id": "t8-teksty-seo",
+    "week": 8,
+    "order": 1,
+    "title": "Jak pisać teksty SEO",
+    "lesson": "Dobry tekst SEO to przede wszystkim **dobry tekst**: odpowiada na pytanie, z którym ktoś przyszedł z Google, lepiej niż konkurencja. Kolejne aktualizacje algorytmu (core update, także w 2026 roku) coraz mocniej nagradzają **oryginalność i prawdziwe doświadczenie**, a obniżają strony z tekstami pisanymi masowo pod frazy.\n\n![Od frazy do gotowego tekstu](diagram:tekst-seo)\n\n## Zacznij od intencji\n\nFraza i intencja (z tygodnia 4) decydują o formie tekstu:\n\n- „ile kosztuje remont łazienki”: poradnik z widełkami cen i tym, od czego zależą,\n- „remont łazienki kraków”: strona usługi z ofertą, realizacjami i kontaktem,\n- „płytki matowe czy błyszczące”: porównanie z zaletami i wadami.\n\nSprawdź **top 10 w Google**: jaką formę mają wyniki, jakie tematy poruszają, **czego brakuje**. Twój tekst ma dać więcej, a nie to samo innymi słowami.\n\n## E-E-A-T: doświadczenie i wiarygodność\n\nGoogle opisuje jakość treści skrótem **E-E-A-T**: Experience (doświadczenie), Expertise (wiedza), Authoritativeness (autorytet), Trust (zaufanie). W praktyce:\n\n- **własne zdjęcia** z realizacji zamiast zdjęć z banku,\n- **konkretne liczby i przykłady**: „łazienka 4 m² kosztowała w 2026 roku od 28 do 35 tys. zł”,\n- **kto pisze**: podpis autora, krótkie bio, doświadczenie,\n- **aktualność**: data aktualizacji, ceny z tego roku.\n\n## Struktura\n\n- **H1** z główną frazą, w pierwszym akapicie krótka odpowiedź.\n- **H2 i H3** jako pytania i podtematy (tydzień 4), żeby dało się przeskanować tekst.\n- Krótkie akapity, listy, tabele zamienione na listy tam, gdzie to wygodniejsze, zdjęcia.\n- **Wezwanie do działania** (CTA) na stronach usług: telefon, formularz.\n\n## Kanibalizacja\n\n**Kanibalizacja** to kilka stron tej samej witryny walczących o tę samą frazę i intencję, np. wpis „Remont łazienki Kraków” i strona usługi „Remont łazienki w Krakowie”. Google nie wie, którą pokazać, i obie stoją niżej. Rozwiązanie: **jedna fraza = jedna strona**. Duplikujące się strony połącz (treść do jednej, 301 z drugiej) albo zmień jednej temat.\n\n## Pillar page\n\n**Strona filarowa** (z tygodnia 7) to długi, wyczerpujący tekst o szerokim temacie, z linkami do artykułów szczegółowych. Pisz ją, gdy temat ma wiele podtematów.\n\n## AI w pisaniu\n\nAI dobrze pomaga w planie, pytaniach, poprawie stylu. Tekst wygenerowany w całości bez własnych informacji jest jednak **taki sam jak u wszystkich**. Dodaj to, czego AI nie wie: doświadczenie firmy, ceny, zdjęcia, opinie klientów.\n\n## Czytaj dalej\n\n- [Google: tworzenie przydatnych, wiarygodnych treści](https://developers.google.com/search/docs/fundamentals/creating-helpful-content?hl=pl)\n- [toponline.pl: kurs SEO Samodzielni](https://toponline.pl/seo-samodzielni/)",
+    "questions": [
+      {
+        "id": "t8-teksty-seo-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Od czego zacząć pisanie tekstu SEO?",
+        "answer": "Od frazy, intencji i sprawdzenia, co jest w top 10 Google",
+        "distractors": [
+          "Od wpisania frazy 20 razy w tekst",
+          "Od wyboru koloru nagłówków"
+        ],
+        "explanation": "Intencja decyduje o formie tekstu, a top 10 pokazuje, co trzeba przebić."
+      },
+      {
+        "id": "t8-teksty-seo-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Sytuacja, w której kilka stron jednej witryny walczy o tę samą frazę, to ___.",
+        "answer": "kanibalizacja",
+        "explanation": "Zasada: jedna fraza i intencja = jedna strona."
+      },
+      {
+        "id": "t8-teksty-seo-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Co z E-E-A-T najłatwiej pokazać małej firmie remontowej?",
+        "answer": "Doświadczenie: własne zdjęcia realizacji, konkretne ceny i przykłady",
+        "distractors": [
+          "Cytaty z Wikipedii",
+          "Długi tekst z frazą w każdym zdaniu"
+        ],
+        "explanation": "Prawdziwe doświadczenie jest trudne do skopiowania i cenione przez Google."
+      },
+      {
+        "id": "t8-teksty-seo-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Plan tekstu „Ile kosztuje remont łazienki”: `H1 z frazą i krótka odpowiedź na początku`, `widełki cen z 2026 roku`, `zdjęcia z banku zdjęć zamiast z realizacji, bo ładniejsze`, `link do strony usługi`. Co osłabia tekst?",
+        "answer": "`zdjęcia z banku zdjęć zamiast z realizacji, bo ładniejsze`",
+        "distractors": [
+          "`H1 z frazą i krótka odpowiedź na początku`",
+          "`widełki cen z 2026 roku`",
+          "`link do strony usługi`"
+        ],
+        "explanation": "Własne zdjęcia pokazują doświadczenie, a zdjęcia z banku ma każdy."
+      },
+      {
+        "id": "t8-teksty-seo-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Na stronie są wpis „Remont łazienki Kraków – poradnik” i strona usługi „Remont łazienki w Krakowie”. Obie są na 2. stronie Google. Co zrobić?",
+        "answer": "Połączyć: przydatną treść przenieść na stronę usługi, a wpis przekierować 301 albo zmienić jego temat",
+        "distractors": [
+          "Dopisać trzecią stronę na tę samą frazę",
+          "Usunąć obie strony"
+        ],
+        "explanation": "To kanibalizacja. Jedna mocna strona zwykle zajmuje lepszą pozycję niż dwie słabe."
+      },
+      {
+        "id": "t8-teksty-seo-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Jak dopasujesz formę tekstu do intencji? Podaj przykłady.",
+        "answer": "Sprawdzam, czego szuka człowiek i co pokazuje Google w top 10. Fraza informacyjna, np. „ile kosztuje remont łazienki”, to poradnik z odpowiedzią i widełkami. Fraza transakcyjna lokalna, np. „remont łazienki kraków”, to strona usługi z ofertą, realizacjami i kontaktem. Fraza porównawcza, np. „płytki matowe czy błyszczące”, to zestawienie zalet i wad.",
+        "keyPoints": [
+          "intencja i top 10",
+          "informacyjna: poradnik",
+          "transakcyjna: strona usługi",
+          "porównawcza: zestawienie"
+        ],
+        "explanation": "Forma niezgodna z intencją nie wejdzie wysoko nawet przy świetnej treści."
+      },
+      {
+        "id": "t8-teksty-seo-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Czym jest E-E-A-T i jak pokazać je na stronie firmy?",
+        "answer": "To kryteria jakości Google: doświadczenie, wiedza, autorytet i zaufanie. Na stronie firmy pokazuję je przez własne zdjęcia realizacji, konkretne ceny i przykłady, podpis autora z doświadczeniem, opinie klientów, dane firmy i kontakt, certyfikaty oraz aktualne treści z datą.",
+        "keyPoints": [
+          "doświadczenie, wiedza, autorytet, zaufanie",
+          "własne zdjęcia i konkrety",
+          "autor z bio",
+          "opinie, dane firmy",
+          "aktualność"
+        ],
+        "explanation": "Szczególnie ważne przy tematach zdrowia i pieniędzy (YMYL)."
+      },
+      {
+        "id": "t8-teksty-seo-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak sprawdzisz, czy na stronie jest kanibalizacja, i co z nią zrobisz?",
+        "answer": "W Search Console w raporcie Skuteczność wybieram frazę i patrzę na zakładkę Strony: jeśli na tę samą frazę pokazuje się kilka adresów na zmianę, to sygnał kanibalizacji. Mogę też wpisać w Google site:domena.pl fraza. Potem wybieram jedną główną stronę, przenoszę do niej najlepszą treść, a pozostałe przekierowuję 301 albo zmieniam im temat i linkuję do głównej.",
+        "keyPoints": [
+          "GSC: fraza → kilka stron",
+          "site:domena.pl fraza",
+          "wybór jednej strony",
+          "połączenie treści i 301",
+          "lub zmiana tematu i link"
+        ],
+        "explanation": "Nie każda strona pokazująca się na frazę to kanibalizacja. Ważna jest ta sama intencja."
+      },
+      {
+        "id": "t8-teksty-seo-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak używać AI przy pisaniu tekstów SEO, żeby tekst nie był taki sam jak u konkurencji?",
+        "answer": "AI używam do planu, listy pytań, poprawy stylu i skracania. Do tekstu dodaję to, czego AI nie wie: doświadczenie firmy, aktualne ceny, przykłady z realizacji, własne zdjęcia, opinie klientów, lokalne szczegóły. Sprawdzam fakty, bo AI może się mylić, i redaguję, żeby tekst brzmiał jak firma.",
+        "keyPoints": [
+          "AI do planu, pytań, stylu",
+          "dodanie własnego doświadczenia i cen",
+          "własne zdjęcia i opinie",
+          "sprawdzanie faktów",
+          "redakcja w głosie firmy"
+        ],
+        "explanation": "Google nie karze za AI, tylko za brak wartości."
+      },
+      {
+        "id": "t8-teksty-seo-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Klient chce 30 tekstów „remont łazienki [miasto]” z podmienioną nazwą miasta. Co doradzisz?",
+        "answer": "Że takie strony to prawie duplikaty bez wartości, które Google zwykle ignoruje albo traktuje jako spam, i mogą zaszkodzić całej stronie. Lepiej zrobić strony tylko dla miast, gdzie firma naprawdę działa, z unikalną treścią: realizacje z tego miasta, opinie lokalnych klientów, dojazd, ceny. Resztę obsłuży wizytówka Google z obszarem działania i jedna strona usługi z listą obsługiwanych miejscowości.",
+        "keyPoints": [
+          "podmienione miasta to prawie duplikaty",
+          "ryzyko spamu i słabych wyników",
+          "strony tylko dla realnych miast",
+          "unikalna treść lokalna",
+          "wizytówka i lista miejscowości"
+        ],
+        "explanation": "To tzw. doorway pages, opisane w zasadach Google dotyczących spamu."
+      }
+    ],
+    "task": {
+      "task": "Napisz tekst na podstronę usługi.\n\n1. Wybierz usługę (np. „remont łazienki Kraków”) i sprawdź w Google top 10: jaka forma, jakie tematy, czego brakuje.\n2. Zaplanuj H1, 4–6 nagłówków H2 i 3 pytania klientów.\n3. Napisz tekst (min. 600 słów) z konkretami: zakres, etapy, czas, widełki cen, gwarancja.\n4. Dodaj miejsce na własne zdjęcia, opinie i CTA (telefon, formularz).\n5. Ustaw title, meta description i 2 linki wewnętrzne. Wklej tekst do Claude z prośbą o ocenę według E-E-A-T.",
+      "checklist": [
+        "Analiza top 10 zapisana",
+        "Plan nagłówków i pytań",
+        "Tekst min. 600 słów z konkretami",
+        "Zdjęcia, opinie i CTA zaplanowane",
+        "Title, opis i linki ustawione"
+      ],
+      "hints": [
+        "Zanotuj, czego brakuje w top 10, np. cen, zdjęć, etapów. To Twoja przewaga.",
+        "Pytania klientów znajdziesz w sekcji „Podobne pytania” w Google.",
+        "Jeśli nie masz firmy, użyj wymyślonych, ale realistycznych danych."
+      ],
+      "solution": "Plan:\n\n- H1: Remont łazienki w Krakowie – kompleksowo, z gwarancją\n- H2: Co obejmuje remont łazienki\n- H2: Ile kosztuje remont łazienki w Krakowie (widełki dla 4 m² i 6 m²)\n- H2: Jak wygląda remont krok po kroku i ile trwa\n- H2: Nasze realizacje (zdjęcia przed i po)\n- H2: Najczęstsze pytania (ile trwa, czy trzeba się wyprowadzić, czy kupujecie materiały)\n- CTA: „Umów bezpłatną wycenę: 600 100 200”\n\nTitle: „Remont łazienki Kraków – kompleksowo, gwarancja 3 lata | Remonty Kowalski”. Linki: do wpisu o kosztach i do realizacji."
+    }
+  },
+  {
+    "id": "t8-opisy-produktow",
+    "week": 8,
+    "order": 2,
+    "title": "Opisy kategorii i produktów",
+    "lesson": "W sklepie najwięcej ruchu z Google przychodzi zwykle na **strony kategorii** (np. „płytki łazienkowe matowe”) i **produktów** (np. „płytka Cerrad Masterstone 60×120”). Ich opisy decydują, czy Google uzna je za wartościowe, i czy klient kupi.\n\n![Co pisać na stronach sklepu](diagram:opisy-produktow)\n\n## Opis kategorii\n\nKategoria to często strona na frazę ogólną, np. „płytki do łazienki”. Opis dzielimy na dwie części:\n\n- **na górze**: 2–3 zdania, co tu jest i dla kogo. Nie może zepchnąć produktów poza ekran,\n- **na dole** (pod listą produktów): dłuższy poradnik, np. „Jak wybrać płytki do łazienki”, z nagłówkami H2, odpowiedziami na pytania i linkami do podkategorii.\n\nW WooCommerce opis kategorii wpisujesz w **Produkty → Kategorie**. Podział na górę i dół zależy od motywu. Wiele motywów i wtyczek ma pole na drugi opis, a w Elementorze lub edytorze witryny zrobisz to w szablonie archiwum.\n\n## Opis produktu\n\n- **unikalny**: własny tekst, nie opis producenta (z tygodnia 7: duplikaty),\n- **korzyści** przed parametrami: „nie widać na niej zacieków” zamiast tylko „powierzchnia matowa”,\n- **parametry jako lista**: wymiary, materiał, kolor, zastosowanie,\n- **odpowiedzi na pytania**: do jakiego pomieszczenia, jak czyścić, co z czym łączyć,\n- **własne zdjęcia** i opinie klientów.\n\nWooCommerce ma **krótki opis** (obok zdjęcia i ceny, kilka punktów) i **długi opis** (w zakładce poniżej).\n\n## Dynamiczne nazwy i duże sklepy\n\nGdy produktów są tysiące, nie da się ręcznie pisać każdego opisu. Pomaga:\n\n- **szablon tytułu** we wtyczce SEO, np. `%%title%% – %%ct_pa_kolor%% | Sklep` (atrybut koloru),\n- **zmienne w opisie** (Rank Math, Yoast), np. kategoria, cena,\n- **AI do pierwszych wersji** opisów na podstawie parametrów, z obowiązkową redakcją i dodaniem własnych informacji,\n- **priorytet**: najpierw opisy bestsellerów i produktów z ruchem w Search Console.\n\n## Czytaj dalej\n\n- [Google: sprawdzone metody dla sklepów](https://developers.google.com/search/docs/specialty/ecommerce?hl=pl)\n- [WooCommerce: dodawanie produktów (po angielsku)](https://woocommerce.com/document/managing-products/)",
+    "questions": [
+      {
+        "id": "t8-opisy-produktow-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Gdzie umieścić dłuższy poradnik w kategorii sklepu?",
+        "answer": "Pod listą produktów, a na górze tylko krótki wstęp",
+        "distractors": [
+          "Na górze, nad produktami, cały tekst",
+          "W osobnym wpisie bez linku do kategorii"
+        ],
+        "explanation": "Długi tekst nad produktami spycha je w dół i utrudnia zakupy."
+      },
+      {
+        "id": "t8-opisy-produktow-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "W WooCommerce obok ceny i zdjęcia wyświetla się ___ opis produktu.",
+        "answer": "krótki",
+        "explanation": "Krótki opis to kilka punktów przy cenie, długi jest w zakładce poniżej."
+      },
+      {
+        "id": "t8-opisy-produktow-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Dlaczego nie warto kopiować opisów od producenta?",
+        "answer": "Ten sam tekst jest w wielu sklepach, więc strona nie ma unikalnej wartości",
+        "distractors": [
+          "Bo producent może pozwać sklep za każdy opis",
+          "Bo Google nie czyta opisów produktów"
+        ],
+        "explanation": "Duplikat opisu nie daje Google powodu, żeby pokazać właśnie Twój sklep."
+      },
+      {
+        "id": "t8-opisy-produktow-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Opis produktu: `korzyści na początku`, `parametry jako lista`, `opis skopiowany ze strony producenta`, `odpowiedź: jak czyścić płytki`. Co osłabia stronę?",
+        "answer": "`opis skopiowany ze strony producenta`",
+        "distractors": [
+          "`korzyści na początku`",
+          "`parametry jako lista`",
+          "`odpowiedź: jak czyścić płytki`"
+        ],
+        "explanation": "Skopiowany opis to duplikat. Resztę elementów warto zostawić."
+      },
+      {
+        "id": "t8-opisy-produktow-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Sklep ma 4000 produktów i mało czasu. Od czego zacząć pisanie opisów?",
+        "answer": "Od bestsellerów i produktów z ruchem w Search Console",
+        "distractors": [
+          "Od produktów alfabetycznie",
+          "Od produktów, których nikt nie kupuje"
+        ],
+        "explanation": "Priorytet daje najszybszy efekt. Reszta może korzystać z szablonów."
+      },
+      {
+        "id": "t8-opisy-produktow-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Jak powinna wyglądać strona kategorii w sklepie pod SEO i dla klienta?",
+        "answer": "Na górze krótki wstęp 2–3 zdania, który nie spycha produktów, potem lista produktów z filtrami, a pod nią dłuższy poradnik z nagłówkami H2, odpowiedziami na pytania i linkami do podkategorii. Do tego unikalny title i meta description oraz okruszki.",
+        "keyPoints": [
+          "krótki wstęp na górze",
+          "produkty widoczne od razu",
+          "poradnik pod produktami",
+          "H2 i pytania, linki do podkategorii",
+          "title, opis, okruszki"
+        ],
+        "explanation": "Kategoria to często najważniejsza strona sklepu w Google."
+      },
+      {
+        "id": "t8-opisy-produktow-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Co powinien zawierać dobry opis produktu?",
+        "answer": "Unikalny tekst z korzyściami dla klienta, parametry w formie listy (wymiary, materiał, kolor), zastosowanie i odpowiedzi na typowe pytania, np. jak czyścić i z czym łączyć, własne zdjęcia i opinie. Krótki opis przy cenie streszcza najważniejsze punkty.",
+        "keyPoints": [
+          "unikalny tekst",
+          "korzyści",
+          "parametry jako lista",
+          "zastosowanie i pytania",
+          "zdjęcia i opinie"
+        ],
+        "explanation": "Pisz tak, jak sprzedawca w sklepie odpowiada klientowi."
+      },
+      {
+        "id": "t8-opisy-produktow-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak zamienić parametr na korzyść? Podaj 2 przykłady.",
+        "answer": "Parametr mówi, czym produkt jest, a korzyść, co z tego ma klient. Np. „powierzchnia matowa” → „nie widać na niej zacieków i odcisków stóp”, „klasa ścieralności PEI 4” → „wytrzyma intensywne użytkowanie w przedpokoju i kuchni”.",
+        "keyPoints": [
+          "parametr = cecha, korzyść = efekt dla klienta",
+          "przykład 1 z przekształceniem",
+          "przykład 2 z przekształceniem"
+        ],
+        "explanation": "Parametry i tak zostaw w liście, bo część klientów ich szuka."
+      },
+      {
+        "id": "t8-opisy-produktow-09",
+        "type": "open",
+        "difficulty": 3,
+        "prompt": "Jak użyć AI do opisów setek produktów, żeby nie stworzyć masowych, słabych treści?",
+        "answer": "Dam AI parametry produktu, wskazówki o stylu i strukturze, przykłady dobrych opisów i prośbę o korzyści. Wygenerowane opisy zredaguję, dodam informacje, których AI nie zna: zastosowania z doświadczenia, pytania klientów, zdjęcia. Zacznę od najważniejszych produktów i będę sprawdzać fakty, bo AI może zmyślić parametr.",
+        "keyPoints": [
+          "parametry i wzorzec dla AI",
+          "redakcja opisów",
+          "dodanie własnych informacji",
+          "priorytet ważnych produktów",
+          "sprawdzanie faktów"
+        ],
+        "explanation": "Masowo publikowane, niesprawdzone opisy AI mogą zaszkodzić całemu sklepowi."
+      },
+      {
+        "id": "t8-opisy-produktow-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Strona kategorii ma 1500 słów tekstu nad produktami i duże wyjście z niej. Co zmienisz?",
+        "answer": "Tekst nad produktami spycha je pod ekran, więc klient nie widzi, co może kupić, i wychodzi. Zostawię na górze 2–3 zdania, a resztę przeniosę pod listę produktów jako poradnik. Sprawdzę, czy treść jest naprawdę przydatna, a nie pisana tylko pod frazy, i porównam zachowanie odwiedzających po zmianie w analityce.",
+        "keyPoints": [
+          "tekst spycha produkty",
+          "2–3 zdania na górze",
+          "reszta pod produktami",
+          "ocena przydatności tekstu",
+          "porównanie w analityce"
+        ],
+        "explanation": "SEO nie może psuć sprzedaży. Strona ma działać dla człowieka."
+      }
+    ],
+    "task": {
+      "task": "Opisz kategorię i 3 produkty.\n\n1. Wybierz kategorię sklepu (np. „Płytki łazienkowe matowe”) i sprawdź top 5 w Google na tę frazę.\n2. Napisz krótki wstęp (2–3 zdania) i poradnik pod produkty (min. 300 słów z 2–3 H2).\n3. Dla 3 produktów napisz: krótki opis (3–4 punkty) i długi opis (korzyści, parametry jako lista, zastosowanie, 2 pytania).\n4. Zamień co najmniej 3 parametry na korzyści.\n5. Ustaw szablon tytułu dla produktów we wtyczce SEO.",
+      "checklist": [
+        "Wstęp kategorii",
+        "Poradnik pod produktami",
+        "3 opisy produktów (krótki i długi)",
+        "3 parametry zamienione na korzyści",
+        "Szablon tytułu produktów"
+      ],
+      "hints": [
+        "Na stronie lokalnej zainstaluj WooCommerce i dodaj przykładowe produkty, jeśli jeszcze ich nie masz.",
+        "Opis kategorii: **Produkty → Kategorie → Edytuj**.",
+        "Poproś Claude o pierwszą wersję, ale dopisz własne zastosowania i pytania."
+      ],
+      "solution": "Wstęp kategorii: „Matowe płytki łazienkowe nie błyszczą się i lepiej ukrywają zacieki. Znajdziesz tu płytki ścienne i podłogowe w formatach od 30×60 do 120×120.”\n\nPoradnik (H2): Matowe czy błyszczące? Jaki format do małej łazienki? Jak dbać o płytki matowe?\n\nProdukt „Płytka Grafit Mat 60×120”:\n\n- Krótki opis: matowa, antypoślizgowa (R10), rektyfikowana, na ścianę i podłogę.\n- Korzyści: „nie widać zacieków” (mat), „bezpieczna pod prysznicem” (R10), „wąskie fugi, efekt jednolitej powierzchni” (rektyfikacja).\n- Szablon tytułu: `%%title%% – płytki do łazienki | %%sitename%%`."
+    }
+  },
+  {
+    "id": "t8-acf-pola",
+    "week": 8,
+    "order": 3,
+    "title": "ACF: pola własne",
+    "lesson": "Strony usług w firmie wyglądają podobnie: opis, cena, czas realizacji, zdjęcia. Zamiast wpisywać te dane w treść każdej strony (i pilnować, żeby układ był taki sam), możesz dodać **pola własne**. Najpopularniejsza wtyczka do tego to [ACF](https://wordpress.org/plugins/advanced-custom-fields/) (Advanced Custom Fields).\n\n![Jak działają pola ACF](diagram:acf-pola)\n\n## Po co pola własne\n\n- **porządek**: cena zawsze w tym samym polu, nie gdzieś w tekście,\n- **jednolity wygląd**: szablon wyświetla pola zawsze w tym samym miejscu,\n- **łatwa edycja dla klienta**: wypełnia formularz, zamiast walczyć z układem strony,\n- **dane do wykorzystania**: filtrowanie, sortowanie, dane strukturalne.\n\n## Krok 1: grupa pól\n\nW **ACF → Grupy pól → Dodaj nową**:\n\n- nazwa grupy: „Dane usługi”,\n- pola: **Cena usługi** (typ Tekst lub Liczba), **Czas realizacji** (Tekst), **Galeria** (Galeria, w wersji Pro), **Gwarancja** (Wybór: 1, 2, 3 lata).\n\nKażde pole ma **etykietę** (dla człowieka) i **nazwę** (dla systemu, np. `cena_uslugi`).\n\n## Krok 2: reguła lokalizacji\n\n„Pokaż tę grupę pól, jeśli”: **Strona** → rodzic → **Oferta**, albo **Typ treści** → Usługa (własne typy treści w tygodniu 11). Pola pojawią się pod edytorem tylko przy tych stronach.\n\n## Krok 3: wyświetlanie\n\n- **Elementor Pro**: w widżecie Nagłówek lub Tekst kliknij ikonę **tagów dynamicznych** → ACF Field → wybierz pole. Najlepiej w **szablonie** (Theme Builder, tydzień 11), żeby jeden układ działał dla wszystkich usług.\n- **Edytor blokowy**: blok Akapit z **powiązaniem** z polem (Block Bindings, w nowszych wersjach WordPressa i ACF) albo blok ACF.\n- **Kod od AI**: shortcode lub funkcja `get_field( 'cena_uslugi' )` w szablonie motywu potomnego.\n\n## Dobre praktyki\n\n- nazwy pól małymi literami z podkreślnikami (`czas_realizacji`),\n- **instrukcje** przy polach dla klienta („wpisz np. od 25 000 zł”),\n- pola wymagane tam, gdzie brak wartości zepsułby stronę,\n- grupy pól można **eksportować** (JSON) i przenieść na inną stronę.\n\n## Czytaj dalej\n\n- [ACF: dokumentacja (po angielsku)](https://www.advancedcustomfields.com/resources/)\n- [Elementor: tagi dynamiczne (po angielsku)](https://elementor.com/help/dynamic-content/)",
+    "questions": [
+      {
+        "id": "t8-acf-pola-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Do czego służy wtyczka ACF?",
+        "answer": "Do dodawania własnych pól, np. ceny i czasu realizacji, do stron i wpisów",
+        "distractors": [
+          "Do tworzenia kopii zapasowych",
+          "Do kompresji obrazów"
+        ],
+        "explanation": "ACF = Advanced Custom Fields."
+      },
+      {
+        "id": "t8-acf-pola-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "W ACF warunek, przy jakich stronach pokazują się pola, to reguła ___.",
+        "answer": "lokalizacji",
+        "explanation": "Np. „Strona → rodzic → Oferta” albo „Typ treści → Usługa”."
+      },
+      {
+        "id": "t8-acf-pola-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Jak w Elementorze Pro wyświetlić wartość pola ACF?",
+        "answer": "Przez tag dynamiczny w widżecie (ACF Field)",
+        "distractors": [
+          "Wpisując ręcznie tę samą wartość w każdym widżecie",
+          "Przez Dodatkowy CSS"
+        ],
+        "explanation": "Tag dynamiczny pobiera wartość z pola danej strony."
+      },
+      {
+        "id": "t8-acf-pola-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Grupa pól „Dane usługi”: `pole Cena usługi, nazwa cena_uslugi`, `pole Czas realizacji, nazwa Czas Realizacji!`, `reguła: Strona → rodzic → Oferta`, `instrukcja: wpisz np. od 25 000 zł`. Co poprawić?",
+        "answer": "`pole Czas realizacji, nazwa Czas Realizacji!`",
+        "distractors": [
+          "`pole Cena usługi, nazwa cena_uslugi`",
+          "`reguła: Strona → rodzic → Oferta`",
+          "`instrukcja: wpisz np. od 25 000 zł`"
+        ],
+        "explanation": "Nazwa pola dla systemu: małe litery, bez spacji i znaków specjalnych, np. czas_realizacji."
+      },
+      {
+        "id": "t8-acf-pola-05",
+        "type": "choice",
+        "difficulty": 2,
+        "tricky": true,
+        "prompt": "Klient zmienia ceny wszystkich usług co pół roku. Jak ACF to ułatwia?",
+        "answer": "Cena jest w jednym polu przy usłudze, więc klient zmienia ją w formularzu bez szukania w treści",
+        "distractors": [
+          "ACF zmienia ceny automatycznie",
+          "Nie ułatwia, i tak trzeba edytować każdą stronę w builderze"
+        ],
+        "explanation": "Pole to jedno, przewidywalne miejsce. Szablon wyświetla je zawsze tak samo."
+      },
+      {
+        "id": "t8-acf-pola-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Wyjaśnij, czym są pola własne i dlaczego warto ich używać na stronach usług.",
+        "answer": "To dodatkowe pola przy stronie lub wpisie, np. cena, czas realizacji, gwarancja, wypełniane jak formularz. Dzięki nim dane są uporządkowane, każda usługa wygląda tak samo, bo szablon wyświetla pola w tych samych miejscach, a klient łatwo je edytuje. Dane można też filtrować i wykorzystać w danych strukturalnych.",
+        "keyPoints": [
+          "dodatkowe pola jak formularz",
+          "uporządkowane dane",
+          "jednolity wygląd przez szablon",
+          "łatwa edycja dla klienta",
+          "filtrowanie, dane strukturalne"
+        ],
+        "explanation": "Pola własne to podstawa bardziej rozbudowanych stron (tydzień 11)."
+      },
+      {
+        "id": "t8-acf-pola-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Opisz kroki dodania pól „Cena usługi” i „Czas realizacji” z ACF i ich wyświetlenia.",
+        "answer": "W ACF tworzę grupę pól, dodaję pole Cena usługi i Czas realizacji z nazwami cena_uslugi i czas_realizacji, ustawiam regułę lokalizacji, np. strony z rodzicem Oferta, zapisuję. Przy każdej usłudze wpisuję wartości. Potem w Elementorze Pro w szablonie lub na stronie wstawiam widżet z tagiem dynamicznym ACF Field, albo w edytorze blokowym blok powiązany z polem.",
+        "keyPoints": [
+          "grupa pól i dwa pola z nazwami",
+          "reguła lokalizacji",
+          "wypełnienie przy usługach",
+          "wyświetlenie tagiem dynamicznym lub blokiem"
+        ],
+        "explanation": "Sprawdź na dwóch usługach, czy każda pokazuje swoje wartości."
+      },
+      {
+        "id": "t8-acf-pola-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Dlaczego wyświetlanie pól najlepiej robić w szablonie, a nie na każdej stronie osobno?",
+        "answer": "Bo jeden szablon działa dla wszystkich usług: układ jest wszędzie taki sam, a zmiana wyglądu w jednym miejscu zmienia go na wszystkich stronach. Nowa usługa od razu wygląda dobrze, wystarczy wypełnić pola. Ręczne wstawianie na każdej stronie to więcej pracy i ryzyko niespójności.",
+        "keyPoints": [
+          "jeden szablon dla wszystkich",
+          "jednolity układ",
+          "zmiana w jednym miejscu",
+          "nowa usługa = tylko wypełnienie pól"
+        ],
+        "explanation": "Szablony w Elementorze i edytorze witryny poznasz w tygodniu 11."
+      },
+      {
+        "id": "t8-acf-pola-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak ułatwisz klientowi wypełnianie pól ACF?",
+        "answer": "Dodam czytelne etykiety i instrukcje przy polach z przykładem, np. „wpisz np. od 25 000 zł”, użyję typów pól pasujących do danych, np. wybór dla gwarancji zamiast tekstu, ustawię pola wymagane tam, gdzie brak wartości zepsułby stronę, i ułożę pola w logicznej kolejności. Pokażę też klientowi raz, jak to działa.",
+        "keyPoints": [
+          "etykiety i instrukcje z przykładem",
+          "właściwe typy pól (wybór, liczba)",
+          "pola wymagane",
+          "logiczna kolejność",
+          "krótkie szkolenie"
+        ],
+        "explanation": "Dobrze ustawione pola to mniej telefonów od klienta."
+      },
+      {
+        "id": "t8-acf-pola-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Na stronie usługi pole ceny jest puste i w układzie pojawia się „Cena: ” bez wartości. Jak to naprawić?",
+        "answer": "Najpierw uzupełnić pole przy tej usłudze. Na przyszłość: ustawić pole jako wymagane albo w Elementorze użyć ustawienia Fallback (tekst zastępczy) lub warunku wyświetlania, żeby etykieta „Cena:” pokazywała się tylko, gdy pole ma wartość. Etykietę lepiej umieścić w ustawieniu Before tagu dynamicznego, wtedy znika razem z pustą wartością.",
+        "keyPoints": [
+          "uzupełnienie pola",
+          "pole wymagane",
+          "fallback lub warunek wyświetlania",
+          "etykieta w Before tagu dynamicznego"
+        ],
+        "explanation": "Tag dynamiczny w Elementorze ma pola Before, After i Fallback."
+      }
+    ],
+    "task": {
+      "task": "Dodaj pola „Cena usługi” i „Czas realizacji”.\n\n1. Zainstaluj ACF na stronie lokalnej.\n2. Utwórz grupę pól „Dane usługi” z polami: Cena usługi (`cena_uslugi`), Czas realizacji (`czas_realizacji`), Gwarancja (`gwarancja`, Wybór: 1, 2, 3 lata).\n3. Ustaw regułę: strony z rodzicem „Oferta” (utwórz 2 usługi jako podstrony Oferty).\n4. Wypełnij pola przy obu usługach.\n5. Wyświetl pola na stronach: tagiem dynamicznym w Elementorze (Pro) albo blokiem z powiązaniem lub shortcode od AI.",
+      "checklist": [
+        "ACF zainstalowany",
+        "Grupa pól z 3 polami",
+        "Reguła lokalizacji ustawiona",
+        "Pola wypełnione przy 2 usługach",
+        "Wartości widoczne na stronach"
+      ],
+      "hints": [
+        "Pole typu Wybór: w ustawieniach wpisz opcje w osobnych liniach.",
+        "Bez Elementora Pro poproś AI o shortcode, np. `[pole_acf nazwa=\"cena_uslugi\"]`, i dodaj go przez Code Snippets.",
+        "Sprawdź obie usługi: każda powinna pokazywać swoje wartości."
+      ],
+      "solution": "- Grupa „Dane usługi”, reguła: Rodzic strony = Oferta.\n- Remont łazienki: od 25 000 zł, 3–4 tygodnie, 3 lata. Remont kuchni: od 18 000 zł, 2–3 tygodnie, 2 lata.\n- Shortcode (Code Snippets):\n\n```php\nadd_shortcode( 'pole_acf', function ( $atts ) {\n    $nazwa = sanitize_key( $atts['nazwa'] ?? '' );\n    return esc_html( (string) get_field( $nazwa ) );\n} );\n```\n\nNa stronie: „Cena: [pole_acf nazwa=\"cena_uslugi\"]”, „Czas realizacji: [pole_acf nazwa=\"czas_realizacji\"]”."
+    }
+  },
+  {
+    "id": "t8-portfolio",
+    "week": 8,
+    "order": 4,
+    "title": "Portfolio i podstawy GitHuba",
+    "lesson": "Klient lub pracodawca nie sprawdzi Twojej wiedzy testem. Sprawdzi **portfolio**: co już zrobiono, dla kogo i z jakim efektem. Nawet 3 dobrze opisane realizacje (także ćwiczeniowe) wystarczą na start.\n\n![Z czego składa się dobry opis realizacji](diagram:portfolio)\n\n## Co pokazać\n\n- **strony z tego kursu**: strona firmy usługowej, sklep WooCommerce, blog z SEO,\n- **realizacje dla znajomych** lub organizacji (np. fundacja, klub sportowy), także za darmo,\n- **przed i po**: przebudowa istniejącej, słabej strony to świetny materiał.\n\n## Studium przypadku zamiast samego zrzutu ekranu\n\nDo każdej realizacji napisz krótki opis:\n\n1. **Problem**: kim jest klient i co nie działało (wolna strona, brak zapytań, strona nie na telefon).\n2. **Rozwiązanie**: co zrobiono i jakimi narzędziami (WordPress, motyw, Elementor, WooCommerce, wtyczka SEO, Cloudflare).\n3. **Wynik w liczbach**: PageSpeed przed i po, liczba zapytań, pozycje w Google, ruch z Search Console, czas ładowania.\n4. **Dowody**: zrzuty ekranu, link do strony, opinia klienta.\n\nLiczby przekonują bardziej niż przymiotniki. „PageSpeed z 41 na 88 i 2× więcej zapytań w 3 miesiące” mówi więcej niż „nowoczesna, szybka strona”.\n\n## Gdzie trzymać portfolio\n\nNa **własnej stronie WordPress** (to też dowód umiejętności): strona główna, Realizacje (każda jako osobny wpis lub własny typ treści z polami ACF: klient, branża, zakres, wynik), O mnie, Kontakt. Do tego profil na LinkedIn z linkami.\n\n## GitHub w pigułce\n\n[GitHub](https://github.com/) to serwis do przechowywania kodu z historią zmian. Dla osoby budującej strony z AI przydaje się do:\n\n- trzymania **motywu potomnego** i **fragmentów kodu** (Code Snippets można eksportować) w jednym miejscu,\n- **historii zmian**: każda zmiana to commit z opisem, można wrócić do poprzedniej wersji,\n- pokazania warsztatu: porządne repozytorium z plikiem **README** (opis projektu) jest częścią portfolio.\n\nPodstawowe pojęcia:\n\n- **repozytorium** (repo): folder projektu na GitHubie,\n- **commit**: zapisana zmiana z opisem („Zmiana koloru przycisków”),\n- **README.md**: plik z opisem projektu, wyświetlany na stronie repo,\n- **branch** (gałąź): równoległa wersja do testów, później łączona z główną (pull request).\n\nNa start wystarczy **GitHub Desktop** (program z przyciskami) albo wgrywanie plików przez przeglądarkę. Ta aplikacja do nauki też jest na GitHubie.\n\n## Czytaj dalej\n\n- [GitHub Docs: pierwsze kroki (po angielsku)](https://docs.github.com/en/get-started/start-your-journey/hello-world)\n- [GitHub Desktop (po angielsku)](https://desktop.github.com/)",
+    "questions": [
+      {
+        "id": "t8-portfolio-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Co najbardziej przekonuje w opisie realizacji?",
+        "answer": "Wynik w liczbach, np. PageSpeed przed i po, liczba zapytań",
+        "distractors": [
+          "Przymiotniki: nowoczesna, piękna, szybka",
+          "Lista wszystkich zainstalowanych wtyczek"
+        ],
+        "explanation": "Liczby pokazują efekt, który obchodzi klienta."
+      },
+      {
+        "id": "t8-portfolio-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Zapisana zmiana w repozytorium z opisem to ___.",
+        "answer": "commit",
+        "explanation": "Każdy commit to punkt w historii, do którego można wrócić."
+      },
+      {
+        "id": "t8-portfolio-03",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Nie masz jeszcze klientów. Co pokazać w portfolio?",
+        "answer": "Strony z kursu i realizacje dla znajomych lub organizacji, opisane jak studium przypadku",
+        "distractors": [
+          "Nic, portfolio robi się dopiero po 10 klientach",
+          "Cudze strony podpisane jako własne"
+        ],
+        "explanation": "Ćwiczeniowe i bezpłatne realizacje są w porządku, jeśli są uczciwie opisane."
+      },
+      {
+        "id": "t8-portfolio-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Opis realizacji: `Problem: strona fundacji nie działała na telefonie`, `Rozwiązanie: nowy motyw, Elementor, optymalizacja obrazów`, `Wynik: strona jest teraz super i nowoczesna`, `Dowód: link i zrzuty przed i po`. Co poprawić?",
+        "answer": "`Wynik: strona jest teraz super i nowoczesna`",
+        "distractors": [
+          "`Problem: strona fundacji nie działała na telefonie`",
+          "`Rozwiązanie: nowy motyw, Elementor, optymalizacja obrazów`",
+          "`Dowód: link i zrzuty przed i po`"
+        ],
+        "explanation": "Wynik powinien mieć liczby, np. PageSpeed 35 → 82 na telefonie, czas ładowania 6 s → 2 s."
+      },
+      {
+        "id": "t8-portfolio-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Czy w publicznym repozytorium z motywem potomnym można trzymać plik `wp-config.php` z hasłem do bazy?",
+        "answer": "Nie, hasła i klucze nigdy nie trafiają do repozytorium",
+        "distractors": [
+          "Tak, jeśli repozytorium ma opis",
+          "Tak, GitHub sam ukrywa hasła"
+        ],
+        "explanation": "Publiczne repo widzi każdy. Boty skanują GitHuba w poszukiwaniu haseł."
+      },
+      {
+        "id": "t8-portfolio-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Opisz, jak napisać studium przypadku do portfolio.",
+        "answer": "Krótko opisuję problem: kim jest klient i co nie działało. Potem rozwiązanie: co zrobiono, jakie narzędzia, ile trwało. Najważniejszy jest wynik w liczbach, np. PageSpeed przed i po, zapytania, pozycje, ruch. Na koniec dowody: zrzuty przed i po, link, opinia klienta.",
+        "keyPoints": [
+          "problem klienta",
+          "rozwiązanie i narzędzia",
+          "wynik w liczbach",
+          "dowody: zrzuty, link, opinia"
+        ],
+        "explanation": "Ten sam schemat sprawdza się w rozmowie z klientem."
+      },
+      {
+        "id": "t8-portfolio-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Do czego przyda się GitHub osobie, która buduje strony WordPress z pomocą AI?",
+        "answer": "Do trzymania motywu potomnego i fragmentów kodu w jednym miejscu, z historią zmian, żeby móc wrócić do poprzedniej wersji, i do pokazania warsztatu w portfolio przez porządne repozytorium z README. Można też współpracować z innymi przez gałęzie i pull requesty.",
+        "keyPoints": [
+          "przechowywanie kodu (motyw potomny, fragmenty)",
+          "historia zmian i powrót",
+          "portfolio: repo z README",
+          "współpraca: gałęzie, pull requesty"
+        ],
+        "explanation": "Bez znajomości wiersza poleceń wystarczy GitHub Desktop."
+      },
+      {
+        "id": "t8-portfolio-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Wyjaśnij pojęcia: repozytorium, commit, README, branch.",
+        "answer": "Repozytorium to folder projektu na GitHubie z całą historią. Commit to zapisana zmiana z opisem. README to plik z opisem projektu wyświetlany na stronie repozytorium. Branch, czyli gałąź, to równoległa wersja projektu do testowania zmian, którą potem łączy się z główną przez pull request.",
+        "keyPoints": [
+          "repozytorium: folder projektu z historią",
+          "commit: zmiana z opisem",
+          "README: opis projektu",
+          "branch: równoległa wersja, łączona przez pull request"
+        ],
+        "explanation": "Te same pojęcia spotkasz w każdej firmie programistycznej."
+      },
+      {
+        "id": "t8-portfolio-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak zbudować własną stronę portfolio na WordPressie?",
+        "answer": "Strona główna z krótkim opisem, co robię i dla kogo, i najlepszymi realizacjami. Sekcja Realizacje, gdzie każda realizacja to osobny wpis lub własny typ treści z polami ACF: klient, branża, zakres, wynik, link. Strona O mnie z doświadczeniem i narzędziami, Kontakt z formularzem. Dbam o szybkość i SEO, bo sama strona też jest dowodem umiejętności.",
+        "keyPoints": [
+          "strona główna z ofertą i najlepszymi realizacjami",
+          "Realizacje jako wpisy/typ treści z polami ACF",
+          "O mnie",
+          "Kontakt",
+          "szybkość i SEO jako dowód"
+        ],
+        "explanation": "Własne typy treści poznasz w tygodniu 11."
+      },
+      {
+        "id": "t8-portfolio-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Klient nie zgadza się na pokazanie swojej strony w portfolio. Co możesz zrobić?",
+        "answer": "Uszanować to i nie publikować nazwy ani linku. Mogę zapytać, czy zgodzi się na anonimowy opis, np. „sklep z płytkami z Małopolski”, z wynikami w liczbach i zrzutami bez logo i danych. Na przyszłość warto dopisać w umowie zgodę na pokazanie realizacji w portfolio.",
+        "keyPoints": [
+          "uszanować decyzję",
+          "propozycja anonimowego opisu",
+          "zrzuty bez danych identyfikujących",
+          "zgoda na portfolio w umowie"
+        ],
+        "explanation": "Uczciwość buduje zaufanie, a polecenia są w tej branży kluczowe."
+      }
+    ],
+    "task": {
+      "task": "Opisz 3 swoje realizacje.\n\n1. Wybierz 3 projekty: strony z kursu, strony dla znajomych lub przebudowę istniejącej strony.\n2. Dla każdego napisz studium przypadku: problem, rozwiązanie, wynik w liczbach, dowody.\n3. Zmierz brakujące liczby (PageSpeed, czas ładowania) i zrób zrzuty ekranu.\n4. Załóż konto na GitHubie i utwórz repozytorium z motywem potomnym lub eksportem fragmentów kodu i plikiem README.\n5. Wklej opisy do Claude z prośbą o ocenę, czy przekonałyby klienta.",
+      "checklist": [
+        "3 projekty wybrane",
+        "3 studia przypadku",
+        "Liczby i zrzuty zebrane",
+        "Repozytorium na GitHubie z README",
+        "Opinia AI o opisach"
+      ],
+      "hints": [
+        "Jeśli nie masz liczb „przed”, zmierz podobną stronę konkurencji albo opisz wynik inaczej: czas wdrożenia, liczba produktów.",
+        "README może zawierać: co to jest, jak zainstalować, co zmienia, zrzut ekranu.",
+        "Nie wgrywaj do repozytorium `wp-config.php` ani plików z hasłami."
+      ],
+      "solution": "Przykład:\n\n- **Problem**: strona klubu tenisowego z 2015 roku, niedziałająca na telefonie, rezerwacje przez telefon.\n- **Rozwiązanie**: nowa strona na WordPressie (Kadence, bloki), wtyczka rezerwacji kortów, Yoast, Cloudflare. 2 tygodnie.\n- **Wynik**: PageSpeed na telefonie 29 → 86, 40% rezerwacji przez stronę w pierwszym miesiącu, pozycja 3 na „korty tenisowe [miasto]”.\n- **Dowody**: zrzuty przed i po, link, cytat prezesa klubu.\n\nRepozytorium `motyw-potomny-klub` z plikami `style.css`, `functions.php` i README z opisem zmian."
+    }
+  },
+  {
+    "id": "t8-staging",
+    "week": 8,
+    "order": 5,
+    "title": "Staging i bezpieczne aktualizacje",
+    "lesson": "**Staging** to kopia żywej strony do testów. Sprawdzasz na niej aktualizacje, nowe wtyczki, kod od AI i zmiany wyglądu, a klienci w tym czasie korzystają z działającej strony. Lekcję o aktualizacjach znasz z tygodnia 2, a sprawdzanie kodu na stagingu z tygodnia 6. Tu cały proces krok po kroku.\n\n![Proces pracy ze stagingiem](diagram:staging)\n\n## Jak zrobić staging\n\n- **W panelu hostingu**: wiele firm (np. z panelem z WordPress Toolkit lub własnym) tworzy staging jednym kliknięciem, zwykle pod adresem `staging.firma.pl`, i ma przycisk **wypchnij na produkcję** (push to live).\n- **Wtyczka** [WP Staging](https://wordpress.org/plugins/wp-staging/): tworzy kopię w podfolderze tej samej strony. Wypychanie zmian w wersji płatnej.\n- **Lokalnie**: kopia przez wtyczkę do migracji (tydzień 11) do Local.\n\nStaging musi być **niewidoczny dla Google** (noindex, najlepiej z hasłem), inaczej powstanie duplikat strony. Przy wypychaniu na żywą stronę sprawdź, czy to ustawienie **nie przeszło** razem ze zmianami (pamiętasz robots.txt z tygodnia 7).\n\n## Proces aktualizacji\n\n1. **Świeży staging**: kopia z dzisiaj, nie sprzed miesiąca.\n2. **Aktualizacje** na stagingu: najpierw duże pojedynczo (WooCommerce, builder, motyw), potem reszta.\n3. **Testy**: strona główna, kilka podstron, telefon, formularz kontaktowy, w sklepie **cała ścieżka zakupu** (koszyk, zamówienie, mail z potwierdzeniem), panel, `debug.log`.\n4. **Kopia żywej strony**.\n5. **Te same aktualizacje na żywej stronie** albo wypchnięcie plików ze stagingu.\n6. **Testy na żywej stronie**.\n\n## Baza danych: największa pułapka\n\nŻywa strona żyje dalej, gdy pracujesz na stagingu: przychodzą **zamówienia, komentarze, zgłoszenia, nowi użytkownicy**. Jeśli wypchniesz ze stagingu **całą bazę danych**, nadpiszesz te nowe dane. Dlatego:\n\n- **zwykle wypychasz tylko pliki** (wtyczki, motyw), a zmiany w ustawieniach powtarzasz ręcznie na żywej stronie,\n- bazę wypychasz tylko na stronie bez nowych danych (np. wizytówka bez formularzy zapisywanych w bazie) albo w trybie konserwacji, zaraz po zrobieniu stagingu,\n- w sklepach często najprościej: **testy na stagingu, a te same aktualizacje ręcznie na żywej stronie** po kopii.\n\n## Kiedy staging jest konieczny\n\n- sklepy i strony z płatnościami lub rezerwacjami,\n- duże aktualizacje (nowa wersja WooCommerce, PHP, buildera),\n- zmiana motywu, przebudowa wyglądu,\n- kod od AI.\n\nDla małej wizytówki aktualizacja drobnej wtyczki po kopii na żywej stronie zwykle wystarczy.\n\n## Czytaj dalej\n\n- [WP Staging: dokumentacja (po angielsku)](https://wp-staging.com/docs/)\n- [WPBeginner: jak zrobić staging (po angielsku)](https://www.wpbeginner.com/wp-tutorials/how-to-create-staging-environment-for-a-wordpress-site/)",
+    "questions": [
+      {
+        "id": "t8-staging-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Czym jest staging?",
+        "answer": "Kopią żywej strony do testowania zmian, niewidoczną dla klientów i Google",
+        "distractors": [
+          "Wtyczką do cache",
+          "Drugą domeną z tą samą stroną dla klientów"
+        ],
+        "explanation": "Na stagingu testujesz zmiany, zanim trafią na żywą stronę."
+      },
+      {
+        "id": "t8-staging-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Staging powinien mieć ustawione ___, żeby Google go nie indeksował.",
+        "answer": "noindex",
+        "explanation": "Zindeksowany staging tworzy duplikat żywej strony."
+      },
+      {
+        "id": "t8-staging-03",
+        "type": "choice",
+        "difficulty": 2,
+        "tricky": true,
+        "prompt": "Dlaczego w sklepie nie wypycha się całej bazy danych ze stagingu na żywą stronę?",
+        "answer": "Bo nadpisze zamówienia i dane, które przyszły na żywej stronie w międzyczasie",
+        "distractors": [
+          "Bo baza stagingu jest zawsze uszkodzona",
+          "Bo baza nie zawiera ustawień wtyczek"
+        ],
+        "explanation": "Żywa strona żyje dalej. Nadpisanie bazy kasuje nowe zamówienia, komentarze i użytkowników."
+      },
+      {
+        "id": "t8-staging-04",
+        "type": "error",
+        "difficulty": 3,
+        "prompt": "Proces aktualizacji sklepu: `świeży staging z dzisiaj`, `aktualizacje i test zakupu na stagingu`, `wypchnięcie całej bazy ze stagingu po tygodniu testów`, `kopia żywej strony przed zmianami`. Co jest błędem?",
+        "answer": "`wypchnięcie całej bazy ze stagingu po tygodniu testów`",
+        "distractors": [
+          "`świeży staging z dzisiaj`",
+          "`aktualizacje i test zakupu na stagingu`",
+          "`kopia żywej strony przed zmianami`"
+        ],
+        "explanation": "Przez tydzień przyszły zamówienia. Wypchnięcie bazy je skasuje. Wypycha się pliki albo powtarza zmiany ręcznie."
+      },
+      {
+        "id": "t8-staging-05",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Po wypchnięciu zmian ze stagingu strona zniknęła z Google po kilku dniach. Co prawdopodobnie przeszło razem ze zmianami?",
+        "answer": "Ustawienie noindex lub blokada wyszukiwarek ze stagingu",
+        "distractors": [
+          "Nowa wersja wtyczki SEO",
+          "Certyfikat SSL"
+        ],
+        "explanation": "Po każdym wypchnięciu sprawdź Ustawienia → Czytanie i robots.txt."
+      },
+      {
+        "id": "t8-staging-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Opisz bezpieczny proces aktualizacji sklepu z użyciem stagingu.",
+        "answer": "Tworzę świeży staging z dzisiejszą kopią, aktualizuję na nim najpierw duże elementy pojedynczo, potem resztę, i testuję: stronę, telefon, formularze, całą ścieżkę zakupu z mailem i debug.log. Potem robię kopię żywej strony i powtarzam te same aktualizacje na żywej stronie lub wypycham pliki, bez nadpisywania bazy. Na końcu testuję żywą stronę.",
+        "keyPoints": [
+          "świeży staging",
+          "aktualizacje: duże pojedynczo",
+          "testy: zakup, formularze, telefon, log",
+          "kopia żywej strony",
+          "te same zmiany na żywej / pliki bez bazy",
+          "testy na żywej"
+        ],
+        "explanation": "Aktualizacje rób w godzinach małego ruchu."
+      },
+      {
+        "id": "t8-staging-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jakie są sposoby na zrobienie stagingu i czym się różnią?",
+        "answer": "W panelu hostingu, często jednym kliknięciem, z przyciskiem wypychania na żywą stronę, najwygodniej. Wtyczką WP Staging, która tworzy kopię w podfolderze, a wypychanie ma w wersji płatnej. Lokalnie w Local przez wtyczkę do migracji, co jest darmowe, ale wolniejsze i środowisko serwera może się różnić od hostingu.",
+        "keyPoints": [
+          "hosting: jednym kliknięciem, push to live",
+          "WP Staging: podfolder, push płatny",
+          "lokalnie: Local + migracja",
+          "różnice w wygodzie i zgodności środowiska"
+        ],
+        "explanation": "Najlepszy staging jest na tym samym serwerze co żywa strona, bo ma te same wersje PHP i ustawienia."
+      },
+      {
+        "id": "t8-staging-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Co testujesz na stagingu po aktualizacji WooCommerce?",
+        "answer": "Stronę główną, kategorię i produkt, dodanie do koszyka, koszyk, zamówienie testowe z płatnością testową lub przelewem, maile do klienta i do sklepu, panel zamówień, wygląd na telefonie, formularz kontaktowy i debug.log. Sprawdzam też, czy motyw nie ma przestarzałych szablonów WooCommerce (komunikat w Status systemu).",
+        "keyPoints": [
+          "strona, kategoria, produkt",
+          "koszyk i zamówienie testowe",
+          "maile",
+          "panel zamówień",
+          "telefon i debug.log",
+          "przestarzałe szablony motywu"
+        ],
+        "explanation": "Komunikat o przestarzałych szablonach jest w WooCommerce → Status."
+      },
+      {
+        "id": "t8-staging-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Kiedy staging jest konieczny, a kiedy wystarczy kopia i aktualizacja na żywej stronie?",
+        "answer": "Staging jest konieczny w sklepach i przy płatnościach lub rezerwacjach, przy dużych aktualizacjach, np. WooCommerce, buildera, PHP, przy zmianie motywu lub przebudowie wyglądu i przy kodzie od AI. Dla małej wizytówki aktualizacja drobnej wtyczki po zrobieniu kopii na żywej stronie zwykle wystarczy.",
+        "keyPoints": [
+          "konieczny: sklepy, płatności, rezerwacje",
+          "konieczny: duże aktualizacje, zmiana motywu",
+          "konieczny: kod od AI",
+          "wystarczy kopia: mała wizytówka, drobna wtyczka"
+        ],
+        "explanation": "Im więcej strona zarabia, tym więcej ostrożności."
+      },
+      {
+        "id": "t8-staging-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Po wypchnięciu stagingu na żywą stronę klient mówi, że zniknęły zamówienia z ostatnich 3 dni. Co robisz?",
+        "answer": "Natychmiast włączam tryb konserwacji, żeby nie przybywało nowych problemów. Sprawdzam kopię żywej strony sprzed wypchnięcia i odzyskuję z niej zamówienia: najlepiej przywracając bazę z kopii i powtarzając zmiany ze stagingu ręcznie, albo eksportując brakujące zamówienia i importując je. Sprawdzam płatności w bramce, informuję klienta, a na przyszłość wypycham tylko pliki.",
+        "keyPoints": [
+          "tryb konserwacji",
+          "kopia żywej strony sprzed wypchnięcia",
+          "przywrócenie bazy lub eksport/import zamówień",
+          "sprawdzenie płatności w bramce",
+          "na przyszłość: tylko pliki"
+        ],
+        "explanation": "Dlatego kopia żywej strony tuż przed wypchnięciem jest obowiązkowa."
+      }
+    ],
+    "task": {
+      "task": "Zrób staging i zaktualizuj przez niego stronę.\n\n1. Utwórz staging: w panelu hostingu albo wtyczką WP Staging (na stronie lokalnej też zadziała).\n2. Sprawdź, że staging ma noindex (Ustawienia → Czytanie) i inny adres.\n3. Na stagingu zaktualizuj wtyczki i motyw. Zapisz, co zaktualizowano.\n4. Przetestuj: stronę główną, 2 podstrony, formularz, widok na telefonie, a jeśli masz sklep, zamówienie testowe.\n5. Zrób kopię żywej strony i powtórz te same aktualizacje na niej. Sprawdź ją jeszcze raz.",
+      "checklist": [
+        "Staging utworzony",
+        "Staging niewidoczny dla Google",
+        "Aktualizacje na stagingu",
+        "Testy zapisane",
+        "Kopia i aktualizacje na żywej stronie"
+      ],
+      "hints": [
+        "WP Staging: **WP Staging → Create Staging Site**, kopia trafia do podfolderu, np. `/staging/`.",
+        "Jeśli nie ma aktualizacji, zainstaluj na żywej stronie starszą wersję jakiejś wtyczki (np. z zakładki Zaawansowane na wordpress.org) i zaktualizuj ją przez staging.",
+        "Zamówienie testowe: metoda płatności Przelew bankowy lub Za pobraniem."
+      ],
+      "solution": "- Staging: WP Staging → `nauka.local/staging/`, logowanie tylko dla administratora, noindex.\n- Zaktualizowane: Yoast SEO, Code Snippets, motyw Twenty Twenty-Five.\n- Testy: strona główna i podstrony OK, formularz wysłany, telefon OK, zamówienie testowe #105 z mailem, `debug.log` bez nowych błędów.\n- Żywa strona: kopia UpdraftPlus, te same aktualizacje, ponowne testy OK."
+    }
   }
 ]

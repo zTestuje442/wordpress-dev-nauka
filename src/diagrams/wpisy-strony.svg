@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 270" role="img" aria-labelledby="title">
+<title id="title">Wpisy a strony: wpisy mają datę, kategorie i tagi i tworzą bloga; strony są stałe, mają hierarchię i tworzą menu firmy</title>
+<style>
+svg{--fg:#1d1d1b;--muted:#6b6b66;--box:#ffffff;--line:#c9c9c1;--accent:#2b6cb0;--site:#2f8f4e;--bad:#c0392b;font-family:system-ui,sans-serif}
+@media (prefers-color-scheme:dark){svg{--fg:#ecece6;--muted:#a0a09a;--box:#1f1f1d;--line:#4a4a44;--accent:#63a4ec;--site:#5cbf7d;--bad:#ec7f72}}
+.box{fill:var(--box);stroke:var(--line);stroke-width:1.5}
+.box.good{stroke:var(--site);stroke-width:2}
+.box.bad{stroke:var(--bad);stroke-width:2}
+.t{fill:var(--fg);font-size:16px;font-weight:700}
+.s{fill:var(--muted);font-size:13px}
+.ar{stroke:var(--line);stroke-width:2}
+#m path{fill:var(--line)}
+.tag{fill:var(--accent);font-size:14px;font-weight:700}
+.tag.good{fill:var(--site)}
+.tag.bad{fill:var(--bad)}
+.hl{fill:none;stroke:var(--accent);stroke-width:3;opacity:0}
+.cap{fill:var(--fg);font-size:15px;opacity:0}
+.static{fill:var(--muted);font-size:14px;opacity:0}
+</style>
+
+<rect class="box " x="20" y="20" width="229" height="230" rx="12"/>
+<text class="t" x="135" y="52" text-anchor="middle">Wpisy</text>
+<text class="s" x="135" y="84" text-anchor="middle">mają datę i autora</text>
+<text class="s" x="135" y="104" text-anchor="middle">kategorie i tagi</text>
+<text class="s" x="135" y="124" text-anchor="middle">lista na stronie Blog</text>
+<text class="s" x="135" y="144" text-anchor="middle">kanał RSS</text>
+<text class="s" x="135" y="164" text-anchor="middle"></text>
+<text class="s" x="135" y="184" text-anchor="middle">np. porady, aktualności</text>
+<text class="tag " x="135" y="232" text-anchor="middle">treści w czasie</text>
+<rect class="box good" x="265" y="20" width="229" height="230" rx="12"/>
+<text class="t" x="380" y="52" text-anchor="middle">Strony</text>
+<text class="s" x="380" y="84" text-anchor="middle">bez daty</text>
+<text class="s" x="380" y="104" text-anchor="middle">strona nadrzędna</text>
+<text class="s" x="380" y="124" text-anchor="middle">(np. Oferta → Remonty)</text>
+<text class="s" x="380" y="144" text-anchor="middle">zwykle w menu</text>
+<text class="s" x="380" y="164" text-anchor="middle"></text>
+<text class="s" x="380" y="184" text-anchor="middle">np. O nas, Kontakt</text>
+<text class="tag good" x="380" y="232" text-anchor="middle">treści stałe</text>
+<rect class="box " x="511" y="20" width="229" height="230" rx="12"/>
+<text class="t" x="625" y="52" text-anchor="middle">Media</text>
+<text class="s" x="625" y="84" text-anchor="middle">zdjęcia, PDF, filmy</text>
+<text class="s" x="625" y="104" text-anchor="middle">tekst alternatywny</text>
+<text class="s" x="625" y="124" text-anchor="middle">tytuł i opis</text>
+<text class="s" x="625" y="144" text-anchor="middle">jedno zdjęcie</text>
+<text class="s" x="625" y="164" text-anchor="middle">w wielu miejscach</text>
+<text class="s" x="625" y="184" text-anchor="middle"></text>
+<text class="tag " x="625" y="232" text-anchor="middle">biblioteka mediów</text>
+</svg>

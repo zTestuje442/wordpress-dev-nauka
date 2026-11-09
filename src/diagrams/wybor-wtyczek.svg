@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 270" role="img" aria-labelledby="title">
+<title id="title">Jak ocenić wtyczkę: zielone sygnały to świeże aktualizacje, dużo instalacji, dobre oceny i zgodność z WordPressem; czerwone to porzucona wtyczka, nulled i dublowanie funkcji</title>
+<style>
+svg{--fg:#1d1d1b;--muted:#6b6b66;--box:#ffffff;--line:#c9c9c1;--accent:#2b6cb0;--site:#2f8f4e;--bad:#c0392b;font-family:system-ui,sans-serif}
+@media (prefers-color-scheme:dark){svg{--fg:#ecece6;--muted:#a0a09a;--box:#1f1f1d;--line:#4a4a44;--accent:#63a4ec;--site:#5cbf7d;--bad:#ec7f72}}
+.box{fill:var(--box);stroke:var(--line);stroke-width:1.5}
+.box.good{stroke:var(--site);stroke-width:2}
+.box.bad{stroke:var(--bad);stroke-width:2}
+.t{fill:var(--fg);font-size:16px;font-weight:700}
+.s{fill:var(--muted);font-size:13px}
+.ar{stroke:var(--line);stroke-width:2}
+#m path{fill:var(--line)}
+.tag{fill:var(--accent);font-size:14px;font-weight:700}
+.tag.good{fill:var(--site)}
+.tag.bad{fill:var(--bad)}
+.hl{fill:none;stroke:var(--accent);stroke-width:3;opacity:0}
+.cap{fill:var(--fg);font-size:15px;opacity:0}
+.static{fill:var(--muted);font-size:14px;opacity:0}
+</style>
+
+<rect class="box good" x="20" y="20" width="229" height="230" rx="12"/>
+<text class="t" x="135" y="52" text-anchor="middle">Dobre sygnały</text>
+<text class="s" x="135" y="84" text-anchor="middle">aktualizacja: miesiące</text>
+<text class="s" x="135" y="104" text-anchor="middle">dużo instalacji</text>
+<text class="s" x="135" y="124" text-anchor="middle">ocena 4+ i opinie</text>
+<text class="s" x="135" y="144" text-anchor="middle">testowana z Twoją</text>
+<text class="s" x="135" y="164" text-anchor="middle">wersją WordPressa</text>
+<text class="s" x="135" y="184" text-anchor="middle">odpowiedzi na forum</text>
+<text class="tag good" x="135" y="232" text-anchor="middle">instaluj</text>
+<rect class="box " x="265" y="20" width="229" height="230" rx="12"/>
+<text class="t" x="380" y="52" text-anchor="middle">Podstawowy zestaw</text>
+<text class="s" x="380" y="84" text-anchor="middle">SEO</text>
+<text class="s" x="380" y="104" text-anchor="middle">kopie zapasowe</text>
+<text class="s" x="380" y="124" text-anchor="middle">bezpieczeństwo</text>
+<text class="s" x="380" y="144" text-anchor="middle">formularz</text>
+<text class="s" x="380" y="164" text-anchor="middle">cache (zależy od</text>
+<text class="s" x="380" y="184" text-anchor="middle">hostingu)</text>
+<text class="tag " x="380" y="232" text-anchor="middle">5 funkcji</text>
+<rect class="box bad" x="511" y="20" width="229" height="230" rx="12"/>
+<text class="t" x="625" y="52" text-anchor="middle">Złe sygnały</text>
+<text class="s" x="625" y="84" text-anchor="middle">brak aktualizacji</text>
+<text class="s" x="625" y="104" text-anchor="middle">od roku lub dłużej</text>
+<text class="s" x="625" y="124" text-anchor="middle">„nulled”</text>
+<text class="s" x="625" y="144" text-anchor="middle">dwie wtyczki do</text>
+<text class="s" x="625" y="164" text-anchor="middle">tej samej funkcji</text>
+<text class="s" x="625" y="184" text-anchor="middle">mało instalacji</text>
+<text class="tag bad" x="625" y="232" text-anchor="middle">omijaj</text>
+</svg>

@@ -10070,5 +10070,953 @@
       ],
       "solution": "Pierwszy ekran na telefonie: galeria (1 duże zdjęcie z miniaturami), nazwa, gwiazdki, cena (z informacją Omnibus), wybór koloru i rozmiaru, przycisk „Dodaj do koszyka” w kolorze akcentu, linia „Wysyłka w 24 h · Darmowa dostawa od 300 zł · Zwrot 14 dni”.\n\nNiżej: zakładki Opis, Parametry, Opinie; sekcja „Kupowane razem” (klej i fuga do płytek).\n\nSzablon sprawdzony na produkcie prostym (Klej) i zmiennym (Płytka Mat Stone). Na telefonie przycisk widoczny bez przewijania."
     }
+  },
+  {
+    "id": "t10-ga4",
+    "week": 10,
+    "order": 1,
+    "title": "Google Analytics 4",
+    "lesson": "**Google Analytics 4** (GA4) mówi, **kto, skąd i co robi** na stronie: ile osób weszło z Google, a ile z Facebooka, które strony czytają i ilu z nich wysłało formularz. Bez tego nie wiesz, czy SEO i reklamy przynoszą klientów.\n\n![Jak GA4 zbiera i pokazuje dane](diagram:ga4)\n\n## Konfiguracja\n\n1. Na [analytics.google.com](https://analytics.google.com/) tworzysz **konto** (firma) i **usługę** (strona), strefa czasowa Polska, waluta PLN.\n2. Dodajesz **strumień danych** Sieć z adresem strony i dostajesz **identyfikator pomiaru** `G-XXXXXXX`.\n3. Instalujesz tag na stronie: Site Kit, GTM (lekcja 2) lub wtyczka nagłówka (tydzień 6). Z banerem zgód i Consent Mode (tydzień 3).\n4. W **Administracja → Ustawienia danych → Przechowywanie danych** ustaw **14 miesięcy** (domyślnie 2).\n5. **Filtr ruchu wewnętrznego**: wyklucz swoje wizyty i wizyty firmy (adres IP biura).\n6. Połącz GA4 z **Search Console** i **Google Ads**, jeśli są.\n\n## Zdarzenia\n\nW GA4 wszystko jest **zdarzeniem** (event): `page_view` (wyświetlenie strony), `scroll` (przewinięcie), `click` (kliknięcie linku wychodzącego), `file_download`. Te i kilka innych zbiera **pomiar zaawansowany** (Enhanced measurement), włączony domyślnie.\n\n**Zdarzenia kluczowe** (dawniej konwersje) to działania, które mają wartość dla biznesu:\n\n- wysłany formularz (`generate_lead`),\n- kliknięcie numeru telefonu lub adresu e-mail,\n- zakup (`purchase`) w sklepie.\n\nZdarzenie oznaczasz jako kluczowe gwiazdką w **Administracja → Zdarzenia**.\n\n## Raporty\n\n- **Pozyskiwanie ruchu**: kanały (Organic Search, Direct, Paid Search, Organic Social, Referral) i źródła,\n- **Zaangażowanie → Strony i ekrany**: najczęściej oglądane strony,\n- **Zdarzenia kluczowe** według kanału: z czego są klienci,\n- **Czas rzeczywisty**: do testów.\n\n**Eksploracje** to własne analizy: lejek (np. produkt → koszyk → kasa → zakup) i ścieżki.\n\n## Na co uważać\n\nCzęść osób odrzuca zgodę na cookies albo blokuje skrypty, więc GA4 **nie widzi wszystkich**. Patrz na trendy i proporcje, a nie na pojedyncze liczby. Dane z GA4 i Search Console będą się różnić i to normalne.\n\n## Czytaj dalej\n\n- [Google: konfiguracja GA4](https://support.google.com/analytics/answer/9304153?hl=pl)\n- [Google: zdarzenia kluczowe w GA4](https://support.google.com/analytics/answer/13128484?hl=pl)",
+    "questions": [
+      {
+        "id": "t10-ga4-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Jak w GA4 nazywają się działania o wartości dla biznesu, np. wysłany formularz?",
+        "answer": "Zdarzenia kluczowe",
+        "distractors": [
+          "Wyświetlenia strony",
+          "Sesje bezpośrednie"
+        ],
+        "explanation": "Wcześniej nazywały się konwersjami."
+      },
+      {
+        "id": "t10-ga4-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Identyfikator pomiaru GA4 zaczyna się od litery ___.",
+        "answer": "G",
+        "explanation": "Np. G-ABC123XYZ. Wklejasz go w tag lub wtyczkę."
+      },
+      {
+        "id": "t10-ga4-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Domyślnie GA4 przechowuje szczegółowe dane przez 2 miesiące. Co ustawić?",
+        "answer": "14 miesięcy w ustawieniach przechowywania danych",
+        "distractors": [
+          "Nic, nie da się tego zmienić",
+          "1 miesiąc dla szybkości"
+        ],
+        "explanation": "Dłuższe przechowywanie pozwala robić eksploracje i porównania rok do roku."
+      },
+      {
+        "id": "t10-ga4-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Konfiguracja GA4: `strefa czasowa Polska, waluta PLN`, `przechowywanie danych 14 miesięcy`, `wizyty pracowników firmy liczone jak klientów`, `GA4 połączone z Search Console`. Co zniekształca dane?",
+        "answer": "`wizyty pracowników firmy liczone jak klientów`",
+        "distractors": [
+          "`strefa czasowa Polska, waluta PLN`",
+          "`przechowywanie danych 14 miesięcy`",
+          "`GA4 połączone z Search Console`"
+        ],
+        "explanation": "Ruch wewnętrzny trzeba wykluczyć filtrem, inaczej zawyża liczby i psuje wnioski."
+      },
+      {
+        "id": "t10-ga4-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "GA4 pokazuje 800 użytkowników, a Search Console 1200 kliknięć z Google w tym samym okresie. Co to oznacza?",
+        "answer": "To normalne: narzędzia liczą inaczej, a GA4 nie widzi osób bez zgody na cookies",
+        "distractors": [
+          "GA4 jest źle zainstalowany na pewno",
+          "Search Console liczy też roboty jako kliknięcia"
+        ],
+        "explanation": "Różnice wynikają z zgód, blokad i innego sposobu liczenia. Patrz na trendy."
+      },
+      {
+        "id": "t10-ga4-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Opisz kroki konfiguracji GA4 dla nowej strony.",
+        "answer": "Tworzę konto i usługę z polską strefą czasową i walutą PLN, dodaję strumień danych Sieć i biorę identyfikator G-. Instaluję tag przez Site Kit, GTM lub wtyczkę, razem z banerem zgód i Consent Mode. Ustawiam przechowywanie danych na 14 miesięcy, filtr ruchu wewnętrznego, łączę z Search Console i oznaczam zdarzenia kluczowe. Sprawdzam w raporcie Czas rzeczywisty.",
+        "keyPoints": [
+          "konto, usługa, PLN i strefa czasowa",
+          "strumień danych i identyfikator G-",
+          "instalacja tagu z zgodami",
+          "14 miesięcy i filtr ruchu wewnętrznego",
+          "Search Console, zdarzenia kluczowe, test"
+        ],
+        "explanation": "Pomiar zaawansowany jest włączony domyślnie."
+      },
+      {
+        "id": "t10-ga4-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jakie zdarzenia kluczowe ustawisz dla firmy usługowej, a jakie dla sklepu?",
+        "answer": "Dla firmy usługowej: wysłany formularz kontaktowy lub wyceny, kliknięcie numeru telefonu, kliknięcie adresu e-mail, ewentualnie umówienie wizyty w kalendarzu. Dla sklepu: zakup (purchase), a pomocniczo dodanie do koszyka i rozpoczęcie płatności, choć tych zwykle nie oznacza się jako kluczowe.",
+        "keyPoints": [
+          "usługi: formularz",
+          "usługi: kliknięcie telefonu i e-maila",
+          "sklep: purchase",
+          "pomocnicze: koszyk, rozpoczęcie płatności"
+        ],
+        "explanation": "Zdarzeń kluczowych powinno być mało i powinny naprawdę coś znaczyć."
+      },
+      {
+        "id": "t10-ga4-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak sprawdzisz w GA4, czy SEO przynosi klientów?",
+        "answer": "W raporcie pozyskiwania ruchu sprawdzam kanał Organic Search: liczbę użytkowników i zdarzeń kluczowych, np. formularzy, porównuję z poprzednim okresem lub rokiem. W raporcie stron docelowych widzę, które strony z ruchu organicznego dają zdarzenia kluczowe. Połączenie z Search Console dodaje frazy i pozycje.",
+        "keyPoints": [
+          "kanał Organic Search",
+          "zdarzenia kluczowe z tego kanału",
+          "porównanie okresów",
+          "strony docelowe",
+          "połączenie z Search Console"
+        ],
+        "explanation": "Sam ruch to nie sukces. Liczą się zdarzenia kluczowe."
+      },
+      {
+        "id": "t10-ga4-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Po co są eksploracje w GA4? Podaj przykład.",
+        "answer": "To własne analizy, gdy standardowe raporty nie wystarczają. Przykład: eksploracja lejka produkt → koszyk → kasa → zakup pokazuje, na którym kroku najwięcej osób rezygnuje, np. 60% odpada w kasie, więc tam szukam problemu. Można też podzielić lejek na telefony i komputery.",
+        "keyPoints": [
+          "własne analizy",
+          "lejek kroków",
+          "gdzie ludzie odpadają",
+          "podział na urządzenia"
+        ],
+        "explanation": "Eksploracje działają na danych z okresu przechowywania, stąd 14 miesięcy."
+      },
+      {
+        "id": "t10-ga4-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Klient mówi, że GA4 „pokazuje bzdury”, bo formularzy w GA4 jest 3, a maili z formularza 12. Co sprawdzisz?",
+        "answer": "Jak mierzone jest zdarzenie formularza: czy to pomiar zaawansowany, który bywa zawodny przy formularzach ajax, czy zdarzenie ze strony podziękowania lub komunikatu sukcesu. Sprawdzę, czy zdarzenie jest wysyłane po zgodzie na cookies (ludzie bez zgody nie są liczeni), czy tag działa na stronie z formularzem i czy nie ma spamu w mailach. Potem ustawię pewne zdarzenie generate_lead, np. przez GTM.",
+        "keyPoints": [
+          "sposób mierzenia formularza",
+          "pomiar zaawansowany bywa zawodny",
+          "zgody na cookies",
+          "tag na stronie formularza, spam w mailach",
+          "pewne zdarzenie przez GTM"
+        ],
+        "explanation": "GA4 nigdy nie policzy 100%, ale różnica 3 do 12 sugeruje błąd pomiaru."
+      }
+    ],
+    "task": {
+      "task": "Ustaw zdarzenie kluczowe z formularza.\n\n1. Jeśli masz stronę na żywo: utwórz usługę GA4 i strumień danych. Jeśli nie, użyj [konta demonstracyjnego GA4](https://support.google.com/analytics/answer/6367342?hl=pl) do części z raportami.\n2. Zainstaluj tag (Site Kit lub GTM).\n3. Ustaw formularz kontaktowy tak, żeby po wysłaniu przekierowywał na stronę `/dziekujemy/`.\n4. W GA4 utwórz zdarzenie `generate_lead` na podstawie `page_view` ze stroną zawierającą `/dziekujemy/` (Administracja → Zdarzenia → Utwórz zdarzenie) i oznacz je jako kluczowe.\n5. Wyślij formularz i sprawdź zdarzenie w raporcie Czas rzeczywisty.",
+      "checklist": [
+        "Usługa GA4 lub konto demo",
+        "Tag zainstalowany",
+        "Formularz przekierowuje na stronę podziękowania",
+        "Zdarzenie generate_lead oznaczone jako kluczowe",
+        "Zdarzenie widoczne w Czasie rzeczywistym"
+      ],
+      "hints": [
+        "Strona podziękowania powinna mieć noindex (tydzień 4).",
+        "Warunek: `event_name` równa się `page_view` i `page_location` zawiera `/dziekujemy/`.",
+        "Zdarzenia kluczowe pojawiają się w raportach po kilku godzinach, w Czasie rzeczywistym od razu."
+      ],
+      "solution": "- Formularz (np. Contact Form 7 lub WPForms): przekierowanie na `/dziekujemy/` po wysłaniu.\n- GA4: Utwórz zdarzenie `generate_lead`, warunki: `event_name = page_view`, `page_location zawiera /dziekujemy/`. W Zdarzeniach kluczowych gwiazdka przy `generate_lead`.\n- Test: po wysłaniu formularza w Czasie rzeczywistym widać `page_view` i `generate_lead`."
+    }
+  },
+  {
+    "id": "t10-gtm-ecommerce",
+    "week": 10,
+    "order": 2,
+    "title": "Google Tag Manager i e-commerce",
+    "lesson": "**Google Tag Manager** (GTM) to „pojemnik” na skrypty śledzące (tydzień 6). Wklejasz na stronę raz kod GTM, a potem dodajesz i zmieniasz tagi w panelu Google, bez ruszania strony. W sklepie GTM pozwala mierzyć całą ścieżkę zakupu z wartością zamówień.\n\n![Jak zakup trafia do GA4](diagram:gtm-ecommerce)\n\n## Trzy pojęcia\n\n- **Tag**: co wysłać i dokąd, np. „Zdarzenie GA4: purchase”, „Pixel Meta”, „konwersja Google Ads”.\n- **Wyzwalacz** (trigger): kiedy, np. „każda strona”, „kliknięcie linku tel:”, „zdarzenie purchase”.\n- **Zmienna**: wartość do użycia, np. wartość zamówienia, identyfikator pomiaru.\n\n## Warstwa danych (dataLayer)\n\nTo miejsce, w którym strona **zostawia informacje dla GTM**. W sklepie, po zakupie, wtyczka zapisuje np.:\n\n```js\ndataLayer.push({\n  event: 'purchase',\n  ecommerce: {\n    transaction_id: '1052',\n    value: 239.00,\n    currency: 'PLN',\n    items: [{ item_name: 'Płytka Mat Stone', price: 119.50, quantity: 2 }]\n  }\n});\n```\n\nNie piszesz tego sam. Wtyczka [GTM4WP](https://wordpress.org/plugins/duracelltomi-google-tag-manager/) (GTM for WordPress) lub wtyczka sklepu do GA4 dodaje warstwę danych WooCommerce.\n\n## Zdarzenia zakupowe GA4\n\n- `view_item`: wyświetlenie produktu,\n- `add_to_cart`: dodanie do koszyka,\n- `begin_checkout`: rozpoczęcie płatności,\n- `purchase`: zakup (oznacz jako kluczowe).\n\nDzięki nim GA4 pokazuje raport **Zakupy e-commerce**: przychód, najlepiej sprzedające się produkty, lejek.\n\n## Konfiguracja w skrócie\n\n1. Konto GTM i kontener Sieć, kod kontenera na stronie (np. przez GTM4WP).\n2. W GTM4WP włącz integrację WooCommerce (warstwa danych e-commerce GA4).\n3. W GTM: tag **Tag Google** (konfiguracja GA4) na wszystkich stronach i tag **Zdarzenie GA4** z nazwą `{{Event}}`, włączonym „Wyślij dane e-commerce” i wyzwalaczem niestandardowym na zdarzenia `view_item|add_to_cart|begin_checkout|purchase`.\n4. **Zgody**: ustawienia zgody w tagach i Consent Mode v2 z banerem cookies.\n5. **Podgląd** (Preview / Tag Assistant): przechodzisz zakup i widzisz, które tagi się uruchomiły. W GA4 **DebugView**.\n6. **Opublikuj** wersję kontenera z opisem.\n\n## Najczęstsze błędy\n\n- zakup liczony **dwa razy** (np. odświeżenie strony podziękowania, podwójny tag z wtyczki i GTM),\n- brak `transaction_id`, waluty lub wartości,\n- zapomniana publikacja kontenera po zmianach.\n\n## Czytaj dalej\n\n- [Google: pomiar e-commerce w GA4 (po angielsku)](https://developers.google.com/analytics/devguides/collection/ga4/ecommerce)\n- [Google Tag Manager: pomoc](https://support.google.com/tagmanager/?hl=pl)",
+    "questions": [
+      {
+        "id": "t10-gtm-ecommerce-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Co w GTM decyduje o tym, KIEDY tag się uruchomi?",
+        "answer": "Wyzwalacz",
+        "distractors": [
+          "Zmienna",
+          "Kontener"
+        ],
+        "explanation": "Tag mówi co, wyzwalacz kiedy, zmienna dostarcza wartości."
+      },
+      {
+        "id": "t10-gtm-ecommerce-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Miejsce, w którym strona zostawia informacje dla GTM, to warstwa ___ (dataLayer).",
+        "answer": "danych",
+        "explanation": "W sklepie warstwa danych zawiera np. wartość zamówienia i produkty."
+      },
+      {
+        "id": "t10-gtm-ecommerce-03",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Które zdarzenie GA4 oznacza zakup?",
+        "answer": "`purchase`",
+        "distractors": [
+          "`add_to_cart`",
+          "`begin_checkout`"
+        ],
+        "explanation": "purchase z wartością i transaction_id oznacza się jako zdarzenie kluczowe."
+      },
+      {
+        "id": "t10-gtm-ecommerce-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Konfiguracja GTM w sklepie: `GTM4WP z integracją WooCommerce`, `tag Zdarzenie GA4 na purchase`, `wtyczka GA4 sklepu też wysyła purchase`, `zmiany opublikowane`. Co spowoduje błędne dane?",
+        "answer": "`wtyczka GA4 sklepu też wysyła purchase`",
+        "distractors": [
+          "`GTM4WP z integracją WooCommerce`",
+          "`tag Zdarzenie GA4 na purchase`",
+          "`zmiany opublikowane`"
+        ],
+        "explanation": "Dwa źródła tego samego zdarzenia liczą zakup podwójnie. Jedno źródło na zdarzenie."
+      },
+      {
+        "id": "t10-gtm-ecommerce-05",
+        "type": "choice",
+        "difficulty": 2,
+        "tricky": true,
+        "prompt": "Po zmianach w GTM nic się nie zmieniło na stronie. Co najczęściej jest przyczyną?",
+        "answer": "Kontener nie został opublikowany",
+        "distractors": [
+          "GTM działa tylko w Chrome",
+          "Trzeba zmienić hosting"
+        ],
+        "explanation": "Zmiany w GTM działają w podglądzie, a na stronie dopiero po publikacji wersji."
+      },
+      {
+        "id": "t10-gtm-ecommerce-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Wyjaśnij, czym są tag, wyzwalacz i zmienna w GTM.",
+        "answer": "Tag to kod, który coś wysyła, np. zdarzenie do GA4 lub Pixel Meta. Wyzwalacz określa, kiedy tag się uruchamia, np. na każdej stronie, przy kliknięciu linku tel: albo przy zdarzeniu purchase. Zmienna to wartość używana przez tagi i wyzwalacze, np. wartość zamówienia lub adres strony.",
+        "keyPoints": [
+          "tag: co i dokąd wysłać",
+          "wyzwalacz: kiedy",
+          "zmienna: wartości",
+          "przykład do każdego"
+        ],
+        "explanation": "Ta sama logika działa dla GA4, Google Ads i Meta."
+      },
+      {
+        "id": "t10-gtm-ecommerce-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak zmierzysz zakupy w sklepie WooCommerce przez GTM?",
+        "answer": "Instaluję GTM4WP z kodem kontenera i włączam integrację WooCommerce, która wypełnia warstwę danych zdarzeniami view_item, add_to_cart, begin_checkout i purchase. W GTM dodaję Tag Google GA4 i tag Zdarzenie GA4 z nazwą z warstwy danych, wysyłaniem danych e-commerce i wyzwalaczem na te zdarzenia. Ustawiam zgody, testuję zakup w podglądzie i DebugView, publikuję i oznaczam purchase jako kluczowe.",
+        "keyPoints": [
+          "GTM4WP i integracja WooCommerce",
+          "warstwa danych ze zdarzeniami",
+          "tag Google i tag Zdarzenie GA4",
+          "wyzwalacz na zdarzenia e-commerce",
+          "zgody, podgląd, publikacja, purchase kluczowe"
+        ],
+        "explanation": "Sprawdź, czy wartość i waluta zgadzają się z zamówieniem."
+      },
+      {
+        "id": "t10-gtm-ecommerce-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak przetestujesz konfigurację GTM przed publikacją?",
+        "answer": "Uruchamiam tryb podglądu (Tag Assistant), przechodzę na stronie ścieżkę: produkt, koszyk, kasa, zakup testowy. W podglądzie sprawdzam, które tagi się uruchomiły przy każdym zdarzeniu i jakie dane są w warstwie danych. W GA4 otwieram DebugView i sprawdzam zdarzenia z parametrami. Dopiero wtedy publikuję wersję z opisem.",
+        "keyPoints": [
+          "tryb podglądu",
+          "przejście całej ścieżki zakupu",
+          "uruchomione tagi i warstwa danych",
+          "DebugView w GA4",
+          "publikacja z opisem"
+        ],
+        "explanation": "Opis wersji pomaga później znaleźć, co i kiedy zmieniono."
+      },
+      {
+        "id": "t10-gtm-ecommerce-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak połączyć GTM ze zgodami na cookies?",
+        "answer": "Baner cookies (tydzień 3) przekazuje zgody do GTM przez Consent Mode v2. W tagach ustawiam wymagane zgody, np. analytics_storage dla GA4 i ad_storage dla reklam. Bez zgody tagi nie zapisują cookies, a Google może modelować dane. Testuję w podglądzie z odrzuconą i zaakceptowaną zgodą.",
+        "keyPoints": [
+          "baner przekazuje zgody (Consent Mode v2)",
+          "wymagane zgody w tagach",
+          "bez zgody brak cookies",
+          "test z odrzuconą i zaakceptowaną zgodą"
+        ],
+        "explanation": "Wiele banerów ma gotowy szablon dla GTM w Galerii szablonów."
+      },
+      {
+        "id": "t10-gtm-ecommerce-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "GA4 pokazuje przychód o 30% wyższy niż w WooCommerce. Co sprawdzisz?",
+        "answer": "Czy zakupy nie są liczone podwójnie: dwa źródła purchase (wtyczka i GTM) albo ponowne wysłanie przy odświeżeniu strony podziękowania. Sprawdzę w eksploracji, czy transaction_id się powtarzają. Sprawdzę, czy wartość nie zawiera wysyłki lub podatku inaczej niż raport sklepu, czy waluta jest PLN i czy anulowane i zwrócone zamówienia nie są różnie liczone.",
+        "keyPoints": [
+          "podwójne źródła purchase",
+          "odświeżanie strony podziękowania",
+          "powtarzające się transaction_id",
+          "wysyłka i podatek w wartości",
+          "waluta, anulowane i zwroty"
+        ],
+        "explanation": "Mniejszy przychód w GA4 jest normalny (zgody), większy oznacza błąd."
+      }
+    ],
+    "task": {
+      "task": "Zmierz zakupy w sklepie testowym.\n\n1. Załóż konto GTM i kontener Sieć (darmowe, wystarczy konto Google).\n2. Na stronie lokalnej zainstaluj GTM4WP, wpisz identyfikator kontenera `GTM-XXXX` i włącz integrację WooCommerce (GA4).\n3. W GTM dodaj Tag Google z identyfikatorem GA4 (może być testowy) i tag Zdarzenie GA4 na zdarzenia e-commerce.\n4. Włącz podgląd w GTM, przejdź zakup testowy i sprawdź, czy tag uruchomił się przy `purchase` z właściwą wartością.\n5. Zrób zrzut ekranu warstwy danych przy `purchase`.",
+      "checklist": [
+        "Kontener GTM",
+        "GTM4WP z integracją WooCommerce",
+        "Tagi GA4 w GTM",
+        "Zakup widoczny w podglądzie",
+        "Zrzut warstwy danych"
+      ],
+      "hints": [
+        "GTM4WP: **Ustawienia → Google Tag Manager → Integration → WooCommerce** → „Track e-commerce (GA4)”.",
+        "Wyzwalacz: Zdarzenie niestandardowe, nazwa `view_item|add_to_cart|begin_checkout|purchase`, zaznacz „Użyj dopasowania wyrażenia regularnego”.",
+        "Podgląd GTM może mieć problem z adresem `.local`. Wtedy obejrzyj warstwę danych w konsoli: wpisz `dataLayer`."
+      ],
+      "solution": "- Tagi: „GA4 – konfiguracja” (Tag Google, G-TEST123, wszystkie strony) i „GA4 – e-commerce” (Zdarzenie GA4, nazwa `{{Event}}`, wysyłanie danych e-commerce z warstwy danych, wyzwalacz e-commerce).\n- Podgląd: przy `purchase` uruchomił się tag „GA4 – e-commerce”.\n- Warstwa danych: `event: \"purchase\"`, `transaction_id: \"107\"`, `value: 139`, `currency: \"PLN\"`, `items` z 1 produktem."
+    }
+  },
+  {
+    "id": "t10-audyt-seo",
+    "week": 10,
+    "order": 3,
+    "title": "Audyt SEO",
+    "lesson": "**Audyt SEO** to przegląd strony, który odpowiada na pytanie: co blokuje widoczność w Google i co poprawić najpierw. To częsta pierwsza usługa dla nowego klienta. Wszystko, czego uczysz się od tygodnia 4, składa się tu w jedną listę kontrolną.\n\n![Jak przebiega audyt](diagram:audyt-seo)\n\n## Narzędzia\n\n- **Crawler**: [Screaming Frog SEO Spider](https://www.screamingfrog.co.uk/seo-spider/) (za darmo do 500 adresów) przechodzi stronę jak Googlebot i pokazuje każdy adres: kod odpowiedzi, title, description, H1, canonical, noindex, wagę obrazów, linki.\n- **Search Console**: indeksowanie, skuteczność, Core Web Vitals, problemy z bezpieczeństwem, ręczne działania.\n- **GA4**: ruch, strony docelowe, zdarzenia kluczowe.\n- **PageSpeed Insights**: szybkość kluczowych szablonów (strona główna, kategoria, produkt, wpis).\n- Opcjonalnie: Ahrefs, Semrush (linki, konkurencja), **logi serwera** (które strony naprawdę odwiedza Googlebot).\n\n## Lista kontrolna\n\n**Technika**\n\n- indeksowanie: blokady (Ustawienia → Czytanie, robots.txt, noindex), raport Strony w GSC,\n- kody: 404, łańcuchy przekierowań, 5xx,\n- duplikaty i canonical, filtry w sklepie,\n- mapa witryny, HTTPS, wersja z www i bez,\n- szybkość i Core Web Vitals, telefon,\n- dane strukturalne.\n\n**Treść**\n\n- title i description: brakujące, zduplikowane, za długie,\n- H1: brak lub kilka,\n- cienkie strony (mało treści), kanibalizacja, przestarzałe treści,\n- obrazy bez alt, za ciężkie.\n\n**Linki**\n\n- strony osierocone i głęboko schowane,\n- linki do 404 (wewnętrzne i zewnętrzne),\n- profil linków przychodzących (lekcja 5).\n\n**Lokalne i sklep**: wizytówka i NAP, kategorie, produkty niedostępne.\n\n## Logi serwera\n\nLogi to zapis każdego zapytania do serwera, także od Googlebota. Pokazują, które adresy robot odwiedza najczęściej i czy marnuje czas na parametry. Przy małych stronach zwykle wystarczy raport **Statystyki indeksowania** w Search Console.\n\n## Raport\n\nDobry raport to **lista zadań z priorytetami**, a nie 80 stron wykresów:\n\n- **problem** (np. „120 produktów ma zduplikowany title”),\n- **wpływ** (dlaczego to ważne),\n- **rozwiązanie** (co dokładnie zrobić),\n- **priorytet**: krytyczny (np. noindex na całej stronie), wysoki, średni, niski,\n- **szacowany nakład** pracy.\n\nNa początku krótkie podsumowanie dla klienta: 3–5 najważniejszych rzeczy.\n\n## Czytaj dalej\n\n- [Screaming Frog: przewodnik (po angielsku)](https://www.screamingfrog.co.uk/seo-spider/user-guide/)\n- [Google: przewodnik SEO dla początkujących](https://developers.google.com/search/docs/fundamentals/seo-starter-guide?hl=pl)",
+    "questions": [
+      {
+        "id": "t10-audyt-seo-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Co robi crawler, np. Screaming Frog?",
+        "answer": "Przechodzi stronę jak robot i zbiera dane o każdym adresie",
+        "distractors": [
+          "Kupuje linki do strony",
+          "Zmienia title stron automatycznie"
+        ],
+        "explanation": "Crawler pokazuje kody odpowiedzi, title, H1, canonical, noindex i linki."
+      },
+      {
+        "id": "t10-audyt-seo-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Darmowa wersja Screaming Frog przeszuka do ___ adresów.",
+        "answer": "500",
+        "explanation": "Dla większych stron potrzebna jest licencja."
+      },
+      {
+        "id": "t10-audyt-seo-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Co jest najważniejsze w raporcie z audytu dla klienta?",
+        "answer": "Lista zadań z priorytetami i krótkie podsumowanie najważniejszych problemów",
+        "distractors": [
+          "Jak najwięcej wykresów",
+          "Pełna lista wszystkich adresów strony"
+        ],
+        "explanation": "Klient ma wiedzieć, co zrobić najpierw i dlaczego."
+      },
+      {
+        "id": "t10-audyt-seo-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Priorytety w raporcie audytu: `noindex na całej stronie → niski`, `brak alt w 15 obrazach → średni`, `zduplikowane title produktów → wysoki`, `łańcuchy przekierowań → średni`. Co jest źle ocenione?",
+        "answer": "`noindex na całej stronie → niski`",
+        "distractors": [
+          "`brak alt w 15 obrazach → średni`",
+          "`zduplikowane title produktów → wysoki`",
+          "`łańcuchy przekierowań → średni`"
+        ],
+        "explanation": "noindex na całej stronie odcina ją od Google. To problem krytyczny."
+      },
+      {
+        "id": "t10-audyt-seo-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Kiedy warto analizować logi serwera?",
+        "answer": "Przy dużych stronach i sklepach, żeby zobaczyć, gdzie Googlebot naprawdę spędza czas",
+        "distractors": [
+          "Zawsze, nawet przy 10 podstronach",
+          "Nigdy, logi nie mają związku z SEO"
+        ],
+        "explanation": "Małym stronom zwykle wystarczy raport Statystyki indeksowania w GSC."
+      },
+      {
+        "id": "t10-audyt-seo-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Wymień narzędzia potrzebne do audytu SEO i do czego służy każde.",
+        "answer": "Crawler, np. Screaming Frog: kody, title, H1, canonical, noindex, linki. Search Console: indeksowanie, skuteczność, Core Web Vitals, bezpieczeństwo. GA4: ruch i zdarzenia kluczowe. PageSpeed Insights: szybkość szablonów. Opcjonalnie Ahrefs lub Semrush do linków i konkurencji oraz logi serwera.",
+        "keyPoints": [
+          "crawler: dane o adresach",
+          "Search Console: indeksowanie, skuteczność",
+          "GA4: ruch i zdarzenia",
+          "PageSpeed: szybkość",
+          "Ahrefs/Semrush, logi"
+        ],
+        "explanation": "Darmowe narzędzia wystarczą do audytu małej strony."
+      },
+      {
+        "id": "t10-audyt-seo-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Co sprawdzasz w części technicznej audytu?",
+        "answer": "Indeksowanie i blokady (Ustawienia → Czytanie, robots.txt, noindex), raport Strony w GSC, kody odpowiedzi (404, łańcuchy przekierowań, błędy 5xx), duplikaty i canonical, mapę witryny, HTTPS i wersję domeny, szybkość i Core Web Vitals na telefonie oraz dane strukturalne.",
+        "keyPoints": [
+          "indeksowanie i blokady",
+          "kody odpowiedzi i przekierowania",
+          "duplikaty i canonical",
+          "mapa, HTTPS, wersja domeny",
+          "szybkość, CWV, dane strukturalne"
+        ],
+        "explanation": "Technika to fundament: bez indeksowania treść nie pomoże."
+      },
+      {
+        "id": "t10-audyt-seo-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak napisać jedno zalecenie w raporcie z audytu? Podaj przykład.",
+        "answer": "Zalecenie ma problem, wpływ, rozwiązanie, priorytet i nakład. Przykład: Problem: 120 produktów ma ten sam title „Sklep Płytki24”. Wpływ: Google nie rozróżnia stron, niska klikalność. Rozwiązanie: szablon title w Yoast %%title%% – %%primary_category%% | %%sitename%%. Priorytet: wysoki. Nakład: 30 minut.",
+        "keyPoints": [
+          "problem z liczbą",
+          "wpływ",
+          "konkretne rozwiązanie",
+          "priorytet",
+          "nakład pracy"
+        ],
+        "explanation": "Konkretne rozwiązanie sprawia, że klient lub programista może je od razu wykonać."
+      },
+      {
+        "id": "t10-audyt-seo-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak ustalisz priorytety zaleceń w audycie?",
+        "answer": "Patrzę na wpływ na widoczność i sprzedaż oraz nakład pracy. Krytyczne: wszystko, co blokuje indeksowanie lub psuje stronę, np. noindex, Disallow: /, problemy z bezpieczeństwem. Wysokie: sprawy dotyczące wielu ważnych stron, np. duplikaty title, kanibalizacja ważnych fraz, wolny szablon produktu. Średnie i niskie: drobne, pojedyncze błędy. Szybkie zwycięstwa (duży wpływ, mały nakład) idą na początek.",
+        "keyPoints": [
+          "wpływ vs nakład",
+          "krytyczne: blokady indeksowania, bezpieczeństwo",
+          "wysokie: problemy na wielu ważnych stronach",
+          "niskie: pojedyncze drobiazgi",
+          "szybkie zwycięstwa najpierw"
+        ],
+        "explanation": "Macierz wpływ × nakład dobrze sprawdza się w rozmowie z klientem."
+      },
+      {
+        "id": "t10-audyt-seo-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Klient prosi o audyt, ale nie daje dostępu do Search Console ani GA4. Co możesz zrobić i jakie są ograniczenia?",
+        "answer": "Mogę zrobić crawl Screaming Frogiem, PageSpeed, sprawdzić site: w Google, dane strukturalne, robots.txt i mapę, a z narzędzi typu Ahrefs lub Semrush oszacować ruch, frazy i linki. Ograniczenia: nie widzę realnego indeksowania, błędów i danych o ruchu, kliknięciach i konwersjach, więc część wniosków to przypuszczenia. Zaznaczę to w raporcie i poproszę o dostęp jako użytkownik z uprawnieniami tylko do odczytu.",
+        "keyPoints": [
+          "crawl, PageSpeed, site:, robots, mapa",
+          "szacunki z Ahrefs/Semrush",
+          "brak danych o indeksowaniu i ruchu",
+          "wnioski oznaczone jako przypuszczenia",
+          "prośba o dostęp tylko do odczytu"
+        ],
+        "explanation": "Dostęp tylko do odczytu jest bezpieczny dla klienta."
+      }
+    ],
+    "task": {
+      "task": "Zrób audyt istniejącej strony.\n\n1. Wybierz stronę: własną, znajomej firmy (za zgodą) albo stronę z tego kursu na żywym hostingu.\n2. Przeskanuj ją Screaming Frogiem (darmowa wersja). Zapisz: liczbę 404, przekierowań, brakujących i zduplikowanych title, H1, obrazów bez alt.\n3. Sprawdź robots.txt, mapę witryny, `site:domena`, PageSpeed dla strony głównej i jednej podstrony.\n4. Jeśli masz dostęp: raporty Strony i Podstawowe wskaźniki w Search Console.\n5. Napisz raport: podsumowanie (3–5 punktów) i min. 8 zaleceń z problemem, wpływem, rozwiązaniem i priorytetem.",
+      "checklist": [
+        "Strona wybrana",
+        "Crawl i liczby zapisane",
+        "robots, mapa, site:, PageSpeed",
+        "Dane z Search Console (jeśli dostęp)",
+        "Raport z min. 8 zaleceniami i priorytetami"
+      ],
+      "hints": [
+        "W Screaming Frog zakładki: **Response Codes**, **Page Titles**, **H1**, **Images** (filtr Missing Alt Text).",
+        "Na stronie lokalnej Screaming Frog też zadziała: wpisz adres `.local`.",
+        "Poproś Claude o uporządkowanie zaleceń według priorytetów, a wnioski sprawdź w danych."
+      ],
+      "solution": "Podsumowanie (przykład):\n\n1. Krytyczne: 34 produkty z noindex po imporcie (blokują sprzedaż z Google).\n2. Wysokie: 120 zduplikowanych title produktów, kategorie bez opisów.\n3. Wysokie: LCP 4,8 s na telefonie na stronie produktu (zdjęcia 2–3 MB).\n4. Średnie: 18 linków wewnętrznych do 404, 6 łańcuchów przekierowań.\n5. Niskie: 140 obrazów bez alt.\n\nPrzykładowe zalecenie: „Problem: 34 produkty mają noindex. Wpływ: nie pojawiają się w Google. Rozwiązanie: w Yoast zmienić „Pozwól wyszukiwarkom” na Tak (edycja zbiorcza). Priorytet: krytyczny. Nakład: 15 minut.”"
+    }
+  },
+  {
+    "id": "t10-migracja-seo",
+    "week": 10,
+    "order": 4,
+    "title": "Migracja bez utraty SEO",
+    "lesson": "**Migracja** to każda duża zmiana: nowa domena, przejście z HTTP na HTTPS, nowa struktura adresów, przejście z innego systemu na WordPress, połączenie dwóch stron. Źle zrobiona potrafi zabrać połowę ruchu z Google na miesiące. Dobrze zrobiona przechodzi prawie bez strat.\n\n![Etapy migracji](diagram:migracja-seo)\n\n## Przed migracją\n\n1. **Lista wszystkich starych adresów**: crawl Screaming Frogiem, eksport z Search Console (Skuteczność → Strony, raport Strony), mapa witryny, strony z linkami przychodzącymi (Search Console → Linki).\n2. **Pomiar stanu**: ruch z Google, najważniejsze frazy i pozycje, liczba zaindeksowanych stron. Bez tego nie ocenisz wyniku.\n3. **Mapa przekierowań** (arkusz): kolumna „stary adres” i „nowy adres”. Zasada **1:1**: każdy stary adres na **najbardziej pasujący** nowy, a nie wszystko na stronę główną. **Bez łańcuchów**: stary → nowy w jednym kroku. Usunięte treści → najbliższa kategoria lub 410, gdy nie ma odpowiednika.\n4. **Staging** z nową stroną, test przekierowań na liście adresów.\n\n## Dzień migracji\n\n- przekierowania **301** działają od pierwszej minuty (Redirection, Rank Math lub reguły na serwerze),\n- przy zmianie domeny: stara domena zostaje opłacona i przekierowuje **jeszcze co najmniej rok**, najlepiej na zawsze,\n- noindex i blokady ze stagingu **wyłączone** (tydzień 7),\n- canonical, linki wewnętrzne i mapa witryny wskazują **nowe** adresy.\n\n## Search Console\n\n- dodaj i zweryfikuj nową domenę,\n- przy zmianie domeny: w starej usłudze **Ustawienia → Zmiana adresu** i wskaż nową,\n- wyślij nową mapę witryny.\n\n## Po migracji\n\n- crawl listy starych adresów: każdy daje 301 na właściwy adres, a nowy 200,\n- Search Console: raport Strony (404, przekierowania), skuteczność starej i nowej usługi,\n- GA4: ruch organiczny dzień po dniu,\n- przez **4–8 tygodni** wahania pozycji są normalne. Duży spadek po tym czasie oznacza błędy.\n\n## Czytaj dalej\n\n- [Google: przenoszenie witryny ze zmianą adresów URL](https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes?hl=pl)\n- [Google: narzędzie do zmiany adresu](https://support.google.com/webmasters/answer/9370220?hl=pl)",
+    "questions": [
+      {
+        "id": "t10-migracja-seo-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Jak przekierować stare adresy przy migracji?",
+        "answer": "Kodem 301, każdy stary adres na najbardziej pasujący nowy",
+        "distractors": [
+          "Wszystkie na stronę główną",
+          "Kodem 302 na kilka miesięcy"
+        ],
+        "explanation": "Przekierowania 1:1 przenoszą ruch i siłę linków na odpowiednie strony."
+      },
+      {
+        "id": "t10-migracja-seo-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Przy zmianie domeny w Search Console używasz narzędzia Zmiana ___.",
+        "answer": "adresu",
+        "explanation": "Narzędzie informuje Google, że cała strona przeniosła się na nową domenę."
+      },
+      {
+        "id": "t10-migracja-seo-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Jak długo utrzymywać przekierowania ze starej domeny?",
+        "answer": "Co najmniej rok, najlepiej na zawsze",
+        "distractors": [
+          "Tydzień, aż Google zauważy zmianę",
+          "Miesiąc, potem domenę można sprzedać"
+        ],
+        "explanation": "Linki do starej domeny zostają w internecie latami."
+      },
+      {
+        "id": "t10-migracja-seo-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Plan migracji: `lista adresów z crawla i Search Console`, `mapa 301 stary → nowy 1:1`, `wszystkie wpisy bloga przekierowane na stronę główną dla uproszczenia`, `pomiar ruchu przed migracją`. Co jest błędem?",
+        "answer": "`wszystkie wpisy bloga przekierowane na stronę główną dla uproszczenia`",
+        "distractors": [
+          "`lista adresów z crawla i Search Console`",
+          "`mapa 301 stary → nowy 1:1`",
+          "`pomiar ruchu przed migracją`"
+        ],
+        "explanation": "Masowe przekierowanie na stronę główną Google traktuje jak błąd 404 (soft 404). Ruch wpisów przepada."
+      },
+      {
+        "id": "t10-migracja-seo-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Tydzień po migracji pozycje się wahają. Co to zwykle oznacza?",
+        "answer": "To normalne w pierwszych tygodniach, ale warto sprawdzać 404 i przekierowania",
+        "distractors": [
+          "Migracja na pewno się nie udała",
+          "Trzeba cofnąć migrację od razu"
+        ],
+        "explanation": "Google potrzebuje czasu na przetworzenie zmian. Niepokojący jest duży spadek po kilku tygodniach."
+      },
+      {
+        "id": "t10-migracja-seo-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Opisz, jak przygotujesz mapę przekierowań do migracji.",
+        "answer": "Zbieram wszystkie stare adresy z crawla, Search Console (strony z kliknięciami i linkami), mapy witryny i narzędzi do linków. W arkuszu przypisuję każdemu staremu adresowi najbardziej pasujący nowy adres, 1:1, bez łańcuchów. Treści usunięte kieruję do najbliższej kategorii albo zostawiam 410, jeśli nie ma odpowiednika. Testuję listę na stagingu.",
+        "keyPoints": [
+          "źródła starych adresów",
+          "arkusz stary → nowy",
+          "1:1, bez łańcuchów",
+          "usunięte: kategoria lub 410",
+          "test na stagingu"
+        ],
+        "explanation": "Najważniejsze są strony z ruchem i linkami."
+      },
+      {
+        "id": "t10-migracja-seo-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Co sprawdzisz w dniu migracji, zaraz po przeniesieniu strony?",
+        "answer": "Czy przekierowania 301 działają na liście starych adresów, czy nowe adresy dają 200, czy wyłączone są noindex i blokady ze stagingu (Ustawienia → Czytanie, robots.txt), czy canonical, linki wewnętrzne i mapa witryny wskazują nowe adresy, czy działa HTTPS, formularze i zakupy, i czy analityka zbiera dane.",
+        "keyPoints": [
+          "301 na liście starych adresów",
+          "nowe adresy 200",
+          "brak noindex i blokad",
+          "canonical, linki, mapa na nowe adresy",
+          "HTTPS, formularze, analityka"
+        ],
+        "explanation": "Lista kontrolna przygotowana przed migracją oszczędza stres."
+      },
+      {
+        "id": "t10-migracja-seo-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jakie kroki wykonasz w Search Console przy zmianie domeny?",
+        "answer": "Dodaję i weryfikuję nową domenę jako usługę, w starej usłudze w ustawieniach używam narzędzia Zmiana adresu i wskazuję nową domenę (wymaga działających przekierowań 301), wysyłam nową mapę witryny w nowej usłudze i obserwuję raporty obu usług: spadek w starej, wzrost w nowej.",
+        "keyPoints": [
+          "dodanie i weryfikacja nowej domeny",
+          "Zmiana adresu w starej usłudze",
+          "warunek: działające 301",
+          "nowa mapa witryny",
+          "obserwacja obu usług"
+        ],
+        "explanation": "Starej usługi nie usuwaj, przyda się do porównań."
+      },
+      {
+        "id": "t10-migracja-seo-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak ocenisz, czy migracja się udała?",
+        "answer": "Porównam stan sprzed migracji z sytuacją po 4–8 tygodniach: ruch organiczny w GA4 i kliknięcia w Search Console, pozycje najważniejszych fraz, liczbę zaindeksowanych stron, błędy 404 i przekierowania w raporcie Strony oraz zdarzenia kluczowe. Krótkie wahania są normalne, trwały spadek oznacza błędy do znalezienia.",
+        "keyPoints": [
+          "porównanie z pomiarem sprzed migracji",
+          "ruch i kliknięcia",
+          "pozycje fraz",
+          "indeksowanie i 404",
+          "zdarzenia kluczowe po 4–8 tygodniach"
+        ],
+        "explanation": "Bez pomiaru przed migracją nie da się rzetelnie ocenić wyniku."
+      },
+      {
+        "id": "t10-migracja-seo-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Miesiąc po przeniesieniu sklepu na nowy system ruch z Google spadł o 50%. Jak będziesz szukać przyczyny?",
+        "answer": "Sprawdzę, czy stare adresy z największym ruchem przekierowują 301 na właściwe nowe (crawl listy sprzed migracji), czy nie ma masowych 404 lub przekierowań na stronę główną, czy nowe strony nie mają noindex lub błędnego canonical, czy title, opisy i treści kategorii zostały przeniesione, czy zmieniło się linkowanie wewnętrzne i szybkość. W Search Console porównam, które strony i frazy straciły najwięcej.",
+        "keyPoints": [
+          "crawl starych adresów z ruchem",
+          "404 i przekierowania na stronę główną",
+          "noindex i canonical",
+          "przeniesione title, opisy, treści",
+          "linkowanie, szybkość, porównanie w GSC"
+        ],
+        "explanation": "Najczęstsza przyczyna to brakujące lub złe przekierowania i utracone treści kategorii."
+      }
+    ],
+    "task": {
+      "task": "Przenieś stronę na nową domenę (na stronach testowych).\n\n1. Na stronie lokalnej zrób listę wszystkich adresów (Screaming Frog albo mapa witryny).\n2. Przygotuj arkusz mapy przekierowań. Zmień przy okazji strukturę 3 adresów (np. `/uslugi/` → `/oferta/`).\n3. Sklonuj stronę w Local pod nową nazwą domeny (np. `nowa-firma.local`) albo przenieś ją wtyczką do migracji (tydzień 11).\n4. Na starej stronie ustaw przekierowanie całej domeny na nową, a dla 3 zmienionych adresów przekierowania 1:1.\n5. Przejdź listę starych adresów i sprawdź kody (301 na właściwy adres, potem 200).",
+      "checklist": [
+        "Lista starych adresów",
+        "Mapa przekierowań w arkuszu",
+        "Strona na nowej domenie",
+        "Przekierowania domeny i zmienionych adresów",
+        "Sprawdzone kody na liście"
+      ],
+      "hints": [
+        "Screaming Frog ma tryb **List**: wklejasz listę adresów i sprawdzasz ich kody.",
+        "W Local: prawy przycisk na stronie → **Clone site**, potem zmiana domeny w ustawieniach.",
+        "Przekierowanie całej domeny ustawisz wtyczką Redirection (wyrażenie regularne) albo w `.htaccess`."
+      ],
+      "solution": "Mapa (fragment):\n\n- `https://nauka.local/` → `https://nowa-firma.local/`\n- `https://nauka.local/uslugi/remont-lazienki/` → `https://nowa-firma.local/oferta/remont-lazienki/`\n- `https://nauka.local/blog/jak-dobrac-plytki/` → `https://nowa-firma.local/blog/jak-dobrac-plytki/`\n\nPrzekierowanie całej domeny (Redirection, regex): źródło `^/(.*)` → `https://nowa-firma.local/$1`, plus wcześniejsze reguły dla zmienionych adresów.\n\nTest w trybie List: wszystkie stare adresy dają 301, nowe 200, brak łańcuchów."
+    }
+  },
+  {
+    "id": "t10-link-building",
+    "week": 10,
+    "order": 5,
+    "title": "Link building",
+    "lesson": "**Linki z innych stron** (backlinki) to dla Google sygnał, że strona jest wartościowa i godna zaufania. Nadal są ważnym czynnikiem rankingu, szczególnie przy konkurencyjnych frazach. Liczy się jednak **jakość**, a nie liczba.\n\n![Dobre i złe linki](diagram:link-building)\n\n## Jaki link jest wartościowy\n\n- ze strony **tematycznie powiązanej** (portal budowlany dla firmy remontowej) lub **lokalnej** (miejski portal, lokalna gazeta),\n- ze strony, która **sama ma ruch** i dobrą reputację,\n- **w treści**, w naturalnym kontekście, a nie w stopce wśród 200 innych,\n- prowadzący do strony, której dotyczy (np. do konkretnej usługi).\n\n## Atrybuty rel\n\n- zwykły link: przekazuje wartość,\n- `rel=\"nofollow\"`: „nie ręczę za ten link”, dla Google wskazówka,\n- `rel=\"sponsored\"`: link **płatny** (artykuł sponsorowany, reklama). Płatne linki **muszą** być tak oznaczone,\n- `rel=\"ugc\"`: treści użytkowników (komentarze, fora).\n\nLinki nofollow i sponsored też mają sens: dają ruch i rozpoznawalność.\n\n## Anchory\n\nNaturalny profil linków to przeważnie **nazwa firmy**, **adres strony** i ogólne lub opisowe anchory. Dużo linków z identycznym anchorem typu „remont łazienki kraków” wygląda na manipulację.\n\n## Skąd brać linki (bezpiecznie)\n\n- **wizytówki i katalogi firm** (tydzień 4): Google, Panorama Firm, branżowe katalogi; spójny NAP,\n- **partnerzy i dostawcy**: producent płytek z listą wykonawców, hurtownia z realizacjami,\n- **lokalne media i organizacje**: sponsoring drużyny, akcja charytatywna, wydarzenie,\n- **treści warte linkowania**: raport cen remontów w mieście, poradnik, kalkulator,\n- **wypowiedzi eksperckie**: komentarze dla dziennikarzy i portali,\n- **wzmianki bez linku**: poproś autora o dodanie linku.\n\n## Czego unikać\n\nKupowania setek linków z farm, systemów wymiany linków, spamu w komentarzach, ukrytych linków. Google może za to nałożyć **ręczne działanie** (Search Console → Bezpieczeństwo i ręczne działania) albo po prostu zignorować takie linki.\n\n## Analiza linków\n\n- **Search Console → Linki**: kto linkuje i do których stron,\n- **Ahrefs**, **Semrush**, **Majestic** (płatne, z darmowymi wersjami ograniczonymi): profil linków swój i konkurencji,\n- **analiza konkurencji**: skąd linki mają strony z top 3 i które z tych źródeł są dostępne także dla Ciebie.\n\n## Czytaj dalej\n\n- [Google: oznaczanie linków wychodzących](https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links?hl=pl)\n- [Google: zasady dotyczące spamu (linki)](https://developers.google.com/search/docs/essentials/spam-policies?hl=pl#link-spam)",
+    "questions": [
+      {
+        "id": "t10-link-building-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Który link jest zwykle najbardziej wartościowy dla firmy remontowej z Krakowa?",
+        "answer": "Link w artykule na krakowskim portalu lub w branżowym serwisie budowlanym",
+        "distractors": [
+          "Link w stopce katalogu z 5000 firm z całego świata",
+          "Link z komentarza pod przypadkowym blogiem"
+        ],
+        "explanation": "Liczy się powiązanie tematyczne lub lokalne, ruch i kontekst."
+      },
+      {
+        "id": "t10-link-building-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Płatny link, np. w artykule sponsorowanym, oznacza się atrybutem rel=\"___\".",
+        "answer": "sponsored",
+        "explanation": "Nieoznaczone płatne linki łamią zasady Google."
+      },
+      {
+        "id": "t10-link-building-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Jak wygląda naturalny profil anchorów?",
+        "answer": "Przeważnie nazwa firmy, adres strony i opisowe teksty, rzadko dokładna fraza",
+        "distractors": [
+          "90% linków z anchorem „remont łazienki kraków”",
+          "Same anchory „kliknij tutaj”"
+        ],
+        "explanation": "Dużo identycznych anchorów z frazą to sygnał manipulacji."
+      },
+      {
+        "id": "t10-link-building-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Plan link buildingu: `wpis w katalogach firm ze spójnym NAP`, `artykuł ekspercki na portalu budowlanym`, `pakiet 500 linków z zagranicznych katalogów za 99 zł`, `sponsoring lokalnej drużyny z linkiem`. Co jest ryzykowne?",
+        "answer": "`pakiet 500 linków z zagranicznych katalogów za 99 zł`",
+        "distractors": [
+          "`wpis w katalogach firm ze spójnym NAP`",
+          "`artykuł ekspercki na portalu budowlanym`",
+          "`sponsoring lokalnej drużyny z linkiem`"
+        ],
+        "explanation": "Masowe, tanie linki to spam, który Google ignoruje albo karze."
+      },
+      {
+        "id": "t10-link-building-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Czy link z atrybutem nofollow jest bezwartościowy?",
+        "answer": "Nie, może dać ruch, rozpoznawalność, a Google traktuje nofollow jako wskazówkę",
+        "distractors": [
+          "Tak, zawsze jest bezwartościowy",
+          "Tak, i szkodzi stronie"
+        ],
+        "explanation": "Linki nofollow z popularnych miejsc przyprowadzają klientów i wzmacniają markę."
+      },
+      {
+        "id": "t10-link-building-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Co sprawia, że link z innej strony jest wartościowy?",
+        "answer": "Pochodzi ze strony tematycznie lub lokalnie powiązanej, która sama ma ruch i dobrą reputację, stoi w treści w naturalnym kontekście, a nie w stopce wśród setek innych, i prowadzi do strony, której dotyczy. Ma naturalny anchor.",
+        "keyPoints": [
+          "powiązanie tematyczne lub lokalne",
+          "strona z ruchem i reputacją",
+          "link w treści, w kontekście",
+          "do właściwej podstrony",
+          "naturalny anchor"
+        ],
+        "explanation": "Jeden dobry link bywa wart więcej niż sto słabych."
+      },
+      {
+        "id": "t10-link-building-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Wymień bezpieczne sposoby zdobywania linków dla lokalnej firmy.",
+        "answer": "Katalogi firm i wizytówki ze spójnym NAP, partnerzy i dostawcy (np. lista wykonawców producenta), lokalne media i organizacje (sponsoring, wydarzenia, akcje), wypowiedzi eksperckie dla dziennikarzy, treści warte linkowania jak raport cen czy kalkulator i prośby o link przy wzmiankach bez linku.",
+        "keyPoints": [
+          "katalogi i wizytówki",
+          "partnerzy i dostawcy",
+          "lokalne media i sponsoring",
+          "wypowiedzi eksperckie",
+          "treści warte linkowania, wzmianki"
+        ],
+        "explanation": "Link building dla lokalnej firmy to w dużej mierze dobre relacje w okolicy."
+      },
+      {
+        "id": "t10-link-building-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Wyjaśnij atrybuty nofollow, sponsored i ugc.",
+        "answer": "nofollow oznacza, że strona nie ręczy za link, a Google traktuje to jako wskazówkę. sponsored oznacza link płatny, np. w artykule sponsorowanym lub reklamie, i jest obowiązkowy dla płatnych linków. ugc oznacza linki z treści użytkowników, np. komentarzy i forów. Zwykły link bez atrybutu przekazuje wartość.",
+        "keyPoints": [
+          "nofollow: brak poręczenia, wskazówka",
+          "sponsored: płatne, obowiązkowe",
+          "ugc: treści użytkowników",
+          "zwykły link przekazuje wartość"
+        ],
+        "explanation": "Na swojej stronie oznaczaj linki afiliacyjne jako sponsored."
+      },
+      {
+        "id": "t10-link-building-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak przeanalizujesz linki konkurenta?",
+        "answer": "W narzędziu typu Ahrefs lub Semrush wpisuję domenę konkurenta z top 3 i przeglądam domeny, które do niego linkują, z ruchem i tematyką. Szukam źródeł, które są dostępne także dla mnie: katalogi branżowe, lokalne media, partnerzy, artykuły eksperckie. Patrzę też, do których stron konkurenta prowadzą linki i jakie anchory dominują. Wynik to lista celów z priorytetem.",
+        "keyPoints": [
+          "narzędzie do linków i domena konkurenta",
+          "domeny linkujące z ruchem i tematyką",
+          "źródła dostępne także dla mnie",
+          "do których stron i jakie anchory",
+          "lista celów z priorytetem"
+        ],
+        "explanation": "Darmowe wersje narzędzi pokazują część danych, ale wystarczą na start."
+      },
+      {
+        "id": "t10-link-building-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Klient dostał w Search Console ręczne działanie za nienaturalne linki przychodzące. Co robisz?",
+        "answer": "Sprawdzam szczegóły ręcznego działania i pobieram listę linków z Search Console i narzędzi do linków. Wyszukuję linki kupione i spamowe, proszę właścicieli stron o ich usunięcie lub oznaczenie, a tych, których nie da się usunąć, zrzekam się w narzędziu Disavow. Dokumentuję wszystko i wysyłam prośbę o ponowne rozpatrzenie z opisem działań. Klientowi wyjaśniam, że kupowanie takich linków musi się skończyć.",
+        "keyPoints": [
+          "szczegóły ręcznego działania",
+          "lista linków i wybór spamowych",
+          "prośby o usunięcie",
+          "disavow dla reszty",
+          "prośba o ponowne rozpatrzenie z dokumentacją"
+        ],
+        "explanation": "Narzędzie disavow stosuje się tylko w takich sytuacjach, nie profilaktycznie."
+      }
+    ],
+    "task": {
+      "task": "Przeanalizuj linki konkurenta.\n\n1. Wybierz frazę lokalną (np. „remont łazienki [miasto]”) i konkurenta z top 3.\n2. Sprawdź jego linki w darmowej wersji narzędzia (np. Ahrefs Backlink Checker, Semrush z kontem darmowym).\n3. Wypisz 10 domen linkujących: typ (katalog, media, partner, blog), tematyka, czy link jest w treści.\n4. Zaznacz, które z tych źródeł są dostępne także dla Twojej (lub wymyślonej) firmy.\n5. Przygotuj plan 5 działań link buildingowych na 3 miesiące.",
+      "checklist": [
+        "Konkurent wybrany",
+        "Linki sprawdzone w narzędziu",
+        "10 domen opisanych",
+        "Dostępne źródła zaznaczone",
+        "Plan 5 działań"
+      ],
+      "hints": [
+        "Darmowy Ahrefs Backlink Checker pokazuje top 100 linków dla domeny.",
+        "Zwróć uwagę na katalogi branżowe i lokalne, to zwykle najprostsze źródła.",
+        "Plan: co, gdzie, kto robi, kiedy, oczekiwany typ linku."
+      ],
+      "solution": "Przykładowe domeny konkurenta: Panorama Firm (katalog, profil), portal miejski (artykuł o remontach, link w treści), producent płytek (lista autoryzowanych wykonawców), forum budowlane (ugc), lokalny klub piłkarski (sponsor).\n\nPlan na 3 miesiące:\n\n1. Uzupełnić 5 katalogów firm ze spójnym NAP.\n2. Zgłosić się do programu wykonawców 2 producentów.\n3. Przygotować „Raport cen remontów w [mieście] 2026” i wysłać do 3 lokalnych portali.\n4. Sponsoring lokalnego wydarzenia z linkiem na stronie organizatora.\n5. Raz w miesiącu odpowiedź na pytanie dziennikarza jako ekspert."
+    }
+  },
+  {
+    "id": "t10-strategia-tresci-ai",
+    "week": 10,
+    "order": 6,
+    "title": "Strategia treści i widoczność w AI",
+    "lesson": "Pojedyncze teksty to taktyka. **Strategia treści** odpowiada na pytania: o czym pisać, w jakiej kolejności i po co. Do tego dochodzi nowa sytuacja: coraz więcej osób dostaje odpowiedź od **AI**, czyli w **AI Overviews** w Google, w trybie AI Mode, w ChatGPT czy Claude, zamiast klikać w wyniki.\n\n![Od planu do cytowania w AI](diagram:strategia-tresci-ai)\n\n## Content gap: luka w treściach\n\n**Content gap** to tematy, na które konkurencja ma ruch, a Twoja strona nie ma treści. Szukasz ich:\n\n- w narzędziach (Ahrefs, Semrush: porównanie domen),\n- w Search Console: frazy z wyświetleniami, ale słabą pozycją (masz treść, ale za słabą),\n- w pytaniach klientów: telefon, maile, „Podobne pytania” w Google, fora.\n\n## Autorytet tematyczny\n\nGoogle chętniej pokazuje strony, które **wyczerpująco** omawiają temat, a nie jeden tekst. Budujesz to **klastrami** (tydzień 7): strona filarowa + artykuły szczegółowe, dobrze połączone linkami. Lepiej 15 tekstów o remontach łazienek i kuchni niż 15 tekstów o wszystkim.\n\n## Plan treści\n\nDla każdego tematu: fraza, intencja, typ treści (poradnik, porównanie, strona usługi), strona filarowa, do której należy, priorytet (ruch × szansa × wartość dla biznesu), termin, autor. Arkusz wystarczy.\n\n## Widoczność w odpowiedziach AI\n\nAI Overviews i asystenci AI tworzą odpowiedź z kilku źródeł i często je **cytują linkiem**. Nie ma tu tajnych sztuczek. Szanse zwiększa to samo, co dobre SEO, ale wyraźniej:\n\n- **jasna, krótka odpowiedź** na początku sekcji („Remont łazienki 4 m² kosztuje w 2026 roku zwykle 25–35 tys. zł”), a potem szczegóły,\n- **konkretne fakty i liczby**, własne dane, aktualna data,\n- **struktura**: nagłówki jako pytania, listy, kroki,\n- **autor i firma** wyraźnie opisani (E-E-A-T z tygodnia 8), dane strukturalne,\n- **wzmianki o marce** w innych miejscach: portale, opinie, fora. AI uczy się z całego internetu,\n- strona **dostępna dla robotów** (nie blokuj ważnych botów w robots.txt bez przemyślenia).\n\n## Pomiar\n\n- Search Console: wyświetlenia i kliknięcia (AI Overviews są wliczane do wyników),\n- GA4: ruch z odsyłaczy typu chatgpt.com, perplexity.ai, claude.ai,\n- ręczne sprawdzanie kilku ważnych pytań w AI i notowanie, czy firma jest cytowana.\n\nMniej kliknięć przy pytaniach informacyjnych to realny trend. Tym ważniejsze są treści, które prowadzą do kontaktu i zakupu.\n\n## Czytaj dalej\n\n- [Google: funkcje AI a Twoja witryna](https://developers.google.com/search/docs/appearance/ai-features?hl=pl)\n- [toponline.pl: kurs SEO Samodzielni](https://toponline.pl/seo-samodzielni/)",
+    "questions": [
+      {
+        "id": "t10-strategia-tresci-ai-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Czym jest content gap?",
+        "answer": "Tematy, na które konkurencja ma ruch, a Twoja strona nie ma treści",
+        "distractors": [
+          "Odstęp między akapitami w tekście",
+          "Brak obrazków w artykule"
+        ],
+        "explanation": "Luka w treściach to gotowa lista pomysłów na nowe teksty."
+      },
+      {
+        "id": "t10-strategia-tresci-ai-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Wyczerpujące omówienie tematu przez wiele połączonych treści buduje autorytet ___.",
+        "answer": "tematyczny",
+        "explanation": "Topical authority buduje się klastrami treści."
+      },
+      {
+        "id": "t10-strategia-tresci-ai-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Co zwiększa szansę na cytowanie strony w odpowiedziach AI?",
+        "answer": "Jasna odpowiedź na początku sekcji, konkretne fakty, struktura i opisany autor",
+        "distractors": [
+          "Ukryty tekst z frazami dla robotów",
+          "Jak najdłuższy wstęp przed odpowiedzią"
+        ],
+        "explanation": "AI szuka źródeł, z których łatwo wyciągnąć jasną, wiarygodną odpowiedź."
+      },
+      {
+        "id": "t10-strategia-tresci-ai-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Plan treści firmy remontowej: `klaster: remont łazienki (filar + 6 artykułów)`, `klaster: remont kuchni (filar + 4 artykuły)`, `10 tekstów o modzie i podróżach dla ruchu`, `aktualizacja cen co rok`. Co osłabia strategię?",
+        "answer": "`10 tekstów o modzie i podróżach dla ruchu`",
+        "distractors": [
+          "`klaster: remont łazienki (filar + 6 artykułów)`",
+          "`klaster: remont kuchni (filar + 4 artykuły)`",
+          "`aktualizacja cen co rok`"
+        ],
+        "explanation": "Teksty niezwiązane z firmą rozmywają autorytet tematyczny i nie przyprowadzają klientów."
+      },
+      {
+        "id": "t10-strategia-tresci-ai-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Liczba kliknięć z Google na poradniki spadła, a wyświetlenia rosną. Co może być przyczyną?",
+        "answer": "Część osób dostaje odpowiedź w AI Overviews bez klikania",
+        "distractors": [
+          "Strona na pewno ma karę od Google",
+          "Search Console liczy wyświetlenia błędnie"
+        ],
+        "explanation": "To realny trend przy pytaniach informacyjnych. Warto sprawdzić, czy strona jest cytowana jako źródło."
+      },
+      {
+        "id": "t10-strategia-tresci-ai-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Jak znajdziesz tematy do strategii treści?",
+        "answer": "Przez content gap w narzędziach typu Ahrefs lub Semrush (porównanie z konkurencją), frazy w Search Console z wyświetleniami, ale słabą pozycją, pytania klientów z telefonów i maili, sekcję Podobne pytania w Google, fora i grupy branżowe oraz badanie słów kluczowych z tygodnia 4.",
+        "keyPoints": [
+          "content gap w narzędziach",
+          "frazy z GSC ze słabą pozycją",
+          "pytania klientów",
+          "Podobne pytania i fora",
+          "badanie słów kluczowych"
+        ],
+        "explanation": "Pytania klientów to często najlepsze, a pomijane źródło tematów."
+      },
+      {
+        "id": "t10-strategia-tresci-ai-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak zbudujesz plan 10 artykułów na bloga firmy?",
+        "answer": "Wybiorę 1–2 klastry zgodne z usługami, np. remont łazienki. Dla każdego tematu zapiszę frazę, intencję, typ treści, stronę filarową, do której należy, priorytet według ruchu, szansy i wartości dla biznesu, termin i autora. Ustawię kolejność: najpierw filar i teksty bliskie zakupowi, potem poradniki. Zaplanuję linki wewnętrzne i aktualizacje.",
+        "keyPoints": [
+          "1–2 klastry zgodne z usługami",
+          "fraza, intencja, typ treści",
+          "priorytet: ruch × szansa × wartość",
+          "kolejność: filar i teksty bliskie zakupowi",
+          "terminy, autor, linki"
+        ],
+        "explanation": "Arkusz z kolumnami wystarczy jako narzędzie."
+      },
+      {
+        "id": "t10-strategia-tresci-ai-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak pisać, żeby treść mogła być cytowana przez AI Overviews i asystentów AI?",
+        "answer": "Zaczynam sekcję od krótkiej, jasnej odpowiedzi, potem rozwijam szczegóły. Podaję konkretne fakty, liczby, własne dane i aktualną datę. Używam nagłówków jako pytań, list i kroków. Opisuję autora i firmę, dodaję dane strukturalne. Dbam o wzmianki o marce w innych miejscach i o to, żeby strona była dostępna dla robotów.",
+        "keyPoints": [
+          "krótka odpowiedź na początku sekcji",
+          "fakty, liczby, aktualność",
+          "nagłówki-pytania, listy",
+          "autor, firma, dane strukturalne",
+          "wzmianki o marce, dostęp dla robotów"
+        ],
+        "explanation": "To w dużej mierze dobre SEO zrobione staranniej."
+      },
+      {
+        "id": "t10-strategia-tresci-ai-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak zmierzysz widoczność firmy w odpowiedziach AI?",
+        "answer": "W Search Console patrzę na wyświetlenia i kliknięcia, bo AI Overviews są w nich ujęte. W GA4 sprawdzam ruch z odsyłaczy typu chatgpt.com, perplexity.ai, claude.ai. Raz w miesiącu zadaję w kilku asystentach AI ważne pytania klientów i notuję, czy firma jest wymieniona lub cytowana. Do tego obserwuję wzmianki o marce.",
+        "keyPoints": [
+          "Search Console: wyświetlenia i kliknięcia",
+          "GA4: ruch z odsyłaczy AI",
+          "ręczne sprawdzanie pytań w AI",
+          "notowanie cytowań i wzmianek"
+        ],
+        "explanation": "Są też płatne narzędzia do monitorowania widoczności w AI."
+      },
+      {
+        "id": "t10-strategia-tresci-ai-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Klient pyta, czy SEO ma jeszcze sens, skoro „wszyscy pytają AI”. Co odpowiesz?",
+        "answer": "Że ma, ale się zmienia. AI tworzy odpowiedzi na podstawie stron, które dobrze rankują i są wiarygodne, więc dobre SEO zwiększa szansę na cytowanie. Przy zapytaniach lokalnych i zakupowych ludzie nadal klikają, dzwonią i porównują oferty. Zmieniamy akcent: mniej masowych poradników dla ruchu, więcej treści z doświadczeniem, odpowiedziami i ścieżką do kontaktu, plus wizytówka, opinie i wzmianki o marce.",
+        "keyPoints": [
+          "SEO ma sens, ale się zmienia",
+          "AI korzysta z dobrze ocenianych stron",
+          "lokalne i zakupowe zapytania nadal dają kliknięcia",
+          "treści z doświadczeniem i ścieżką do kontaktu",
+          "wizytówka, opinie, wzmianki"
+        ],
+        "explanation": "Rzetelna odpowiedź buduje zaufanie bardziej niż obietnice."
+      }
+    ],
+    "task": {
+      "task": "Zaplanuj 10 artykułów na bloga.\n\n1. Wybierz firmę (np. remontową) i 1–2 klastry zgodne z jej usługami.\n2. Znajdź tematy: content gap u 2 konkurentów, Podobne pytania w Google, 5 pytań klientów (wymyślonych lub prawdziwych).\n3. Zrób arkusz: temat, fraza, intencja, typ treści, filar, priorytet, termin.\n4. Dla 2 najważniejszych tematów napisz pierwszy akapit z jasną, krótką odpowiedzią i liczbami.\n5. Zadaj 3 pytania z planu w asystencie AI i zapisz, jakie źródła są cytowane.",
+      "checklist": [
+        "Klastry wybrane",
+        "Tematy z 3 źródeł",
+        "Arkusz 10 tematów z priorytetami",
+        "2 akapity z jasną odpowiedzią",
+        "Źródła cytowane przez AI zapisane"
+      ],
+      "hints": [
+        "Priorytet: wysoki dla tematów blisko zakupu i z ruchem, niski dla ogólnych ciekawostek.",
+        "Akapit-odpowiedź: 2–3 zdania, liczba, zakres, od czego zależy.",
+        "Sprawdź, jakie strony AI cytuje: to często wskazówka, jak powinien wyglądać Twój tekst."
+      ],
+      "solution": "Klaster „Remont łazienki” (fragment planu):\n\n1. Ile kosztuje remont łazienki w 2026 (informacyjna, poradnik, priorytet wysoki).\n2. Remont łazienki krok po kroku: ile trwa (informacyjna, poradnik, wysoki).\n3. Płytki matowe czy błyszczące (porównawcza, porównanie, średni).\n4. Prysznic walk-in: wady i zalety (porównawcza, średni).\n5. Mała łazienka: 10 pomysłów na aranżację (informacyjna, niski).\n\nAkapit: „Remont łazienki 4 m² w Krakowie kosztuje w 2026 roku zwykle 25–35 tys. zł z materiałami średniej klasy. Cena zależy głównie od zakresu prac hydraulicznych, formatu płytek i wyposażenia.”"
+    }
   }
 ]

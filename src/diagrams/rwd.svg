@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 250" role="img" aria-labelledby="title">
+<title id="title">Strona responsywna: na komputerze kolumny obok siebie, na tablecie mniej kolumn, na telefonie wszystko pod sobą i menu w ikonie</title>
+<style>
+svg{--fg:#1d1d1b;--muted:#6b6b66;--box:#ffffff;--line:#c9c9c1;--accent:#2b6cb0;--site:#2f8f4e;--bad:#c0392b;font-family:system-ui,sans-serif}
+@media (prefers-color-scheme:dark){svg{--fg:#ecece6;--muted:#a0a09a;--box:#1f1f1d;--line:#4a4a44;--accent:#63a4ec;--site:#5cbf7d;--bad:#ec7f72}}
+.box{fill:var(--box);stroke:var(--line);stroke-width:1.5}
+.box.good{stroke:var(--site);stroke-width:2}
+.box.bad{stroke:var(--bad);stroke-width:2}
+.t{fill:var(--fg);font-size:16px;font-weight:700}
+.s{fill:var(--muted);font-size:13px}
+.ar{stroke:var(--line);stroke-width:2}
+#m path{fill:var(--line)}
+.tag{fill:var(--accent);font-size:14px;font-weight:700}
+.tag.good{fill:var(--site)}
+.tag.bad{fill:var(--bad)}
+.hl{fill:none;stroke:var(--accent);stroke-width:3;opacity:0}
+.cap{fill:var(--fg);font-size:15px;opacity:0}
+.static{fill:var(--muted);font-size:14px;opacity:0}
+</style>
+
+<rect class="box " x="20" y="20" width="229" height="210" rx="12"/>
+<text class="t" x="135" y="52" text-anchor="middle">Komputer</text>
+<text class="s" x="135" y="84" text-anchor="middle">3 kolumny obok</text>
+<text class="s" x="135" y="104" text-anchor="middle">siebie</text>
+<text class="s" x="135" y="124" text-anchor="middle">pełne menu</text>
+<text class="s" x="135" y="144" text-anchor="middle">w nagłówku</text>
+<text class="s" x="135" y="164" text-anchor="middle">duże zdjęcia</text>
+<text class="tag " x="135" y="212" text-anchor="middle">od ok. 1024 px</text>
+<rect class="box " x="265" y="20" width="229" height="210" rx="12"/>
+<text class="t" x="380" y="52" text-anchor="middle">Tablet</text>
+<text class="s" x="380" y="84" text-anchor="middle">2 kolumny</text>
+<text class="s" x="380" y="104" text-anchor="middle">menu może się</text>
+<text class="s" x="380" y="124" text-anchor="middle">zwinąć</text>
+<text class="s" x="380" y="144" text-anchor="middle">mniejsze odstępy</text>
+<text class="s" x="380" y="164" text-anchor="middle"></text>
+<text class="tag " x="380" y="212" text-anchor="middle">ok. 768–1024 px</text>
+<rect class="box good" x="511" y="20" width="229" height="210" rx="12"/>
+<text class="t" x="625" y="52" text-anchor="middle">Telefon</text>
+<text class="s" x="625" y="84" text-anchor="middle">1 kolumna,</text>
+<text class="s" x="625" y="104" text-anchor="middle">wszystko pod sobą</text>
+<text class="s" x="625" y="124" text-anchor="middle">menu w ikonie ☰</text>
+<text class="s" x="625" y="144" text-anchor="middle">tekst min. 16 px</text>
+<text class="s" x="625" y="164" text-anchor="middle">duże przyciski</text>
+<text class="tag good" x="625" y="212" text-anchor="middle">do ok. 767 px</text>
+</svg>

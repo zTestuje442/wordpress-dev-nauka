@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 270" role="img" aria-labelledby="title">
+<title id="title">HTML to struktura strony, CSS to jej wygląd, a model pudełkowy opisuje odstępy: margin, border, padding i treść</title>
+<style>
+svg{--fg:#1d1d1b;--muted:#6b6b66;--box:#ffffff;--line:#c9c9c1;--accent:#2b6cb0;--site:#2f8f4e;--bad:#c0392b;font-family:system-ui,sans-serif}
+@media (prefers-color-scheme:dark){svg{--fg:#ecece6;--muted:#a0a09a;--box:#1f1f1d;--line:#4a4a44;--accent:#63a4ec;--site:#5cbf7d;--bad:#ec7f72}}
+.box{fill:var(--box);stroke:var(--line);stroke-width:1.5}
+.box.good{stroke:var(--site);stroke-width:2}
+.box.bad{stroke:var(--bad);stroke-width:2}
+.t{fill:var(--fg);font-size:16px;font-weight:700}
+.s{fill:var(--muted);font-size:13px}
+.ar{stroke:var(--line);stroke-width:2}
+#m path{fill:var(--line)}
+.tag{fill:var(--accent);font-size:14px;font-weight:700}
+.tag.good{fill:var(--site)}
+.tag.bad{fill:var(--bad)}
+.hl{fill:none;stroke:var(--accent);stroke-width:3;opacity:0}
+.cap{fill:var(--fg);font-size:15px;opacity:0}
+.static{fill:var(--muted);font-size:14px;opacity:0}
+</style>
+
+<rect class="box " x="20" y="20" width="229" height="230" rx="12"/>
+<text class="t" x="135" y="52" text-anchor="middle">HTML = struktura</text>
+<text class="s" x="135" y="84" text-anchor="middle">&lt;h1&gt; nagłówek</text>
+<text class="s" x="135" y="104" text-anchor="middle">&lt;p&gt; akapit</text>
+<text class="s" x="135" y="124" text-anchor="middle">&lt;a href&gt; link</text>
+<text class="s" x="135" y="144" text-anchor="middle">&lt;img&gt; obrazek</text>
+<text class="s" x="135" y="164" text-anchor="middle">&lt;div class=&quot;oferta&quot;&gt;</text>
+<text class="s" x="135" y="184" text-anchor="middle">pudełko z klasą</text>
+<text class="tag " x="135" y="232" text-anchor="middle">co jest na stronie</text>
+<rect class="box good" x="265" y="20" width="229" height="230" rx="12"/>
+<text class="t" x="380" y="52" text-anchor="middle">CSS = wygląd</text>
+<text class="s" x="380" y="84" text-anchor="middle">.oferta {</text>
+<text class="s" x="380" y="104" text-anchor="middle">  color: #1d4ed8;</text>
+<text class="s" x="380" y="124" text-anchor="middle">  padding: 24px;</text>
+<text class="s" x="380" y="144" text-anchor="middle">}</text>
+<text class="s" x="380" y="164" text-anchor="middle">selektor + właściwość</text>
+<text class="s" x="380" y="184" text-anchor="middle">+ wartość</text>
+<text class="tag good" x="380" y="232" text-anchor="middle">jak to wygląda</text>
+<rect class="box " x="511" y="20" width="229" height="230" rx="12"/>
+<text class="t" x="625" y="52" text-anchor="middle">Model pudełkowy</text>
+<text class="s" x="625" y="84" text-anchor="middle">margin: odstęp na</text>
+<text class="s" x="625" y="104" text-anchor="middle">zewnątrz pudełka</text>
+<text class="s" x="625" y="124" text-anchor="middle">border: ramka</text>
+<text class="s" x="625" y="144" text-anchor="middle">padding: odstęp</text>
+<text class="s" x="625" y="164" text-anchor="middle">w środku</text>
+<text class="s" x="625" y="184" text-anchor="middle">content: treść</text>
+<text class="tag " x="625" y="232" text-anchor="middle">odstępy</text>
+</svg>

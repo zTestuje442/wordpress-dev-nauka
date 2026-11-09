@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 350" role="img" aria-labelledby="title">
+<title id="title">Trzy rodzaje hostingu: współdzielony (wiele stron na jednym serwerze), VPS (zasoby tylko dla Ciebie) i managed WordPress (serwer z obsługą: kopie, cache, aktualizacje)</title>
+<style>
+svg{--fg:#1d1d1b;--muted:#6b6b66;--box:#ffffff;--line:#c9c9c1;--accent:#2b6cb0;--site:#2f8f4e;font-family:system-ui,sans-serif}
+@media (prefers-color-scheme:dark){svg{--fg:#ecece6;--muted:#a0a09a;--box:#1f1f1d;--line:#4a4a44;--accent:#63a4ec;--site:#5cbf7d}}
+.box{fill:var(--box);stroke:var(--line);stroke-width:1.5}
+.t{fill:var(--fg);font-size:16px;font-weight:700}
+.s{fill:var(--muted);font-size:13px}
+.srv{fill:none;stroke:var(--line);stroke-width:1.5;stroke-dasharray:5 4}
+.site.mine{fill:var(--site)}
+.site.other{fill:var(--line)}
+.tag{fill:var(--accent);font-size:14px;font-weight:700}
+.badge{fill:var(--box);stroke:var(--accent);stroke-width:1.2}
+.b{fill:var(--accent);font-size:11px;font-weight:700}
+</style>
+<rect class="box" x="20" y="20" width="230" height="290" rx="12"/>
+<text class="t" x="135" y="50" text-anchor="middle">Hosting współdzielony</text>
+<rect class="srv" x="55" y="70" width="160" height="140" rx="8"/>
+<text class="s" x="135" y="88" text-anchor="middle">jeden serwer</text>
+<rect class="site other" x="70" y="100" width="28" height="38" rx="4"/>
+<rect class="site other" x="105" y="100" width="28" height="38" rx="4"/>
+<rect class="site other" x="140" y="100" width="28" height="38" rx="4"/>
+<rect class="site other" x="175" y="100" width="28" height="38" rx="4"/>
+<rect class="site other" x="70" y="150" width="28" height="38" rx="4"/>
+<rect class="site other" x="105" y="150" width="28" height="38" rx="4"/>
+<rect class="site other" x="140" y="150" width="28" height="38" rx="4"/>
+<rect class="site other" x="175" y="150" width="28" height="38" rx="4"/>
+<rect class="site mine" x="70" y="100" width="28" height="38" rx="4"/>
+<text class="s" x="135" y="236" text-anchor="middle">jak blok: wiele stron,</text>
+<text class="s" x="135" y="254" text-anchor="middle">wspólne zasoby</text>
+<text class="tag" x="135" y="290" text-anchor="middle">tani, na start</text>
+<rect class="box" x="270" y="20" width="230" height="290" rx="12"/>
+<text class="t" x="385" y="50" text-anchor="middle">VPS</text>
+<rect class="srv" x="305" y="70" width="160" height="140" rx="8"/>
+<text class="s" x="385" y="88" text-anchor="middle">jeden serwer</text>
+<rect class="site mine" x="335" y="105" width="100" height="85" rx="6"/>
+<text class="s" x="385" y="236" text-anchor="middle">jak własne mieszkanie:</text>
+<text class="s" x="385" y="254" text-anchor="middle">zasoby tylko Twoje</text>
+<text class="tag" x="385" y="290" text-anchor="middle">więcej mocy, więcej obsługi</text>
+<rect class="box" x="520" y="20" width="230" height="290" rx="12"/>
+<text class="t" x="635" y="50" text-anchor="middle">Managed WordPress</text>
+<rect class="srv" x="555" y="70" width="160" height="140" rx="8"/>
+<text class="s" x="635" y="88" text-anchor="middle">jeden serwer</text>
+<rect class="site mine" x="585" y="105" width="100" height="85" rx="6"/>
+<text class="s" x="635" y="236" text-anchor="middle">mieszkanie z obsługą:</text>
+<text class="s" x="635" y="254" text-anchor="middle">kopie, cache, aktualizacje</text>
+<text class="tag" x="635" y="290" text-anchor="middle">wygodny, droższy</text>
+<rect class="badge" x="590" y="113" width="90" height="18" rx="9"/><text class="b" x="635" y="126" text-anchor="middle">kopie</text>
+<rect class="badge" x="590" y="137" width="90" height="18" rx="9"/><text class="b" x="635" y="150" text-anchor="middle">cache</text>
+<rect class="badge" x="590" y="161" width="90" height="18" rx="9"/><text class="b" x="635" y="174" text-anchor="middle">aktualizacje</text>
+<rect class="site mine" x="20" y="326" width="14" height="14" rx="3"/><text class="s" x="40" y="338">Twoja strona</text><rect class="site other" x="140" y="326" width="14" height="14" rx="3"/><text class="s" x="160" y="338">strony innych klientów</text>
+</svg>

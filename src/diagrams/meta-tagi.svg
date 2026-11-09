@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 250" role="img" aria-labelledby="title">
+<title id="title">Meta tagi: title i meta description tworzą wynik w Google, meta robots mówi robotom, czy indeksować, a Open Graph decyduje o wyglądzie linku w social media</title>
+<style>
+svg{--fg:#1d1d1b;--muted:#6b6b66;--box:#ffffff;--line:#c9c9c1;--accent:#2b6cb0;--site:#2f8f4e;--bad:#c0392b;font-family:system-ui,sans-serif}
+@media (prefers-color-scheme:dark){svg{--fg:#ecece6;--muted:#a0a09a;--box:#1f1f1d;--line:#4a4a44;--accent:#63a4ec;--site:#5cbf7d;--bad:#ec7f72}}
+.box{fill:var(--box);stroke:var(--line);stroke-width:1.5}
+.box.good{stroke:var(--site);stroke-width:2}
+.box.bad{stroke:var(--bad);stroke-width:2}
+.t{fill:var(--fg);font-size:16px;font-weight:700}
+.s{fill:var(--muted);font-size:13px}
+.ar{stroke:var(--line);stroke-width:2}
+#m path{fill:var(--line)}
+.tag{fill:var(--accent);font-size:14px;font-weight:700}
+.tag.good{fill:var(--site)}
+.tag.bad{fill:var(--bad)}
+.hl{fill:none;stroke:var(--accent);stroke-width:3;opacity:0}
+.cap{fill:var(--fg);font-size:15px;opacity:0}
+.static{fill:var(--muted);font-size:14px;opacity:0}
+</style>
+
+<rect class="box good" x="20" y="20" width="168" height="210" rx="12"/>
+<text class="t" x="104" y="52" text-anchor="middle">Title</text>
+<text class="s" x="104" y="84" text-anchor="middle">niebieski nagłówek</text>
+<text class="s" x="104" y="104" text-anchor="middle">w wynikach</text>
+<text class="s" x="104" y="124" text-anchor="middle">ok. 50–60 znaków</text>
+<text class="s" x="104" y="144" text-anchor="middle">fraza na początku</text>
+<text class="s" x="104" y="164" text-anchor="middle">unikalny</text>
+<text class="tag good" x="104" y="212" text-anchor="middle">ranking + CTR</text>
+<rect class="box " x="204" y="20" width="168" height="210" rx="12"/>
+<text class="t" x="288" y="52" text-anchor="middle">Meta description</text>
+<text class="s" x="288" y="84" text-anchor="middle">opis pod tytułem</text>
+<text class="s" x="288" y="104" text-anchor="middle">ok. 150–160 znaków</text>
+<text class="s" x="288" y="124" text-anchor="middle">zachęta do kliknięcia</text>
+<text class="s" x="288" y="144" text-anchor="middle">Google może</text>
+<text class="s" x="288" y="164" text-anchor="middle">zmienić</text>
+<text class="tag " x="288" y="212" text-anchor="middle">CTR</text>
+<rect class="box " x="388" y="20" width="168" height="210" rx="12"/>
+<text class="t" x="472" y="52" text-anchor="middle">Meta robots</text>
+<text class="s" x="472" y="84" text-anchor="middle">index / noindex</text>
+<text class="s" x="472" y="104" text-anchor="middle">follow / nofollow</text>
+<text class="s" x="472" y="124" text-anchor="middle">noindex: strona</text>
+<text class="s" x="472" y="144" text-anchor="middle">podziękowania,</text>
+<text class="s" x="472" y="164" text-anchor="middle">wyniki wyszukiwania</text>
+<text class="tag " x="472" y="212" text-anchor="middle">dla robotów</text>
+<rect class="box " x="572" y="20" width="168" height="210" rx="12"/>
+<text class="t" x="656" y="52" text-anchor="middle">Open Graph</text>
+<text class="s" x="656" y="84" text-anchor="middle">og:title</text>
+<text class="s" x="656" y="104" text-anchor="middle">og:description</text>
+<text class="s" x="656" y="124" text-anchor="middle">og:image</text>
+<text class="s" x="656" y="144" text-anchor="middle">1200 × 630 px</text>
+<text class="s" x="656" y="164" text-anchor="middle">Facebook, LinkedIn</text>
+<text class="tag " x="656" y="212" text-anchor="middle">udostępnienia</text>
+</svg>

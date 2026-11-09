@@ -3992,5 +3992,1083 @@
       ],
       "solution": "Przykładowy szkielet:\n\n1. **Administrator**: Moja Firma Sp. z o.o., ul. Długa 1, Kraków, kontakt: biuro@mojafirma.pl.\n2. **Dane**: z formularza (imię, e-mail, treść), z cookies (po zgodzie), logi serwera (IP).\n3. **Cele i podstawy**: odpowiedź na wiadomość (uzasadniony interes), analityka (zgoda), bezpieczeństwo (uzasadniony interes).\n4. **Czas**: wiadomości do 12 miesięcy, logi zgodnie z ustawieniami hostingu, cookies według polityki cookies.\n5. **Odbiorcy**: hosting, dostawca poczty, Google (Analytics) – w tym transfer poza UE na podstawie odpowiednich zabezpieczeń.\n6. **Prawa**: dostęp, sprostowanie, usunięcie, ograniczenie, przeniesienie, sprzeciw, wycofanie zgody, skarga do Prezesa UODO.\n7. **Cookies**: odesłanie do banera i polityki cookies."
     }
+  },
+  {
+    "id": "t4-jak-dziala-google",
+    "week": 4,
+    "order": 1,
+    "title": "Co to jest SEO i jak działa Google",
+    "lesson": "**SEO** (Search Engine Optimization) to działania, dzięki którym strona pojawia się wyżej w bezpłatnych wynikach wyszukiwania. Żeby je rozumieć, trzeba wiedzieć, jak Google w ogóle znajduje i ocenia strony.\n\n![Od robota do wyników](diagram:jak-dziala-google)\n\n## Trzy etapy\n\n1. **Crawling (skanowanie)**: robot Google, **Googlebot**, odwiedza strony i pobiera ich zawartość. Nowe adresy znajduje przez **linki** z innych stron i przez **mapę witryny** (sitemap).\n2. **Indeksowanie**: Google analizuje treść, obrazki, nagłówki i zapisuje stronę w ogromnej bazie, czyli **indeksie**. Nie każda strona trafia do indeksu: słabe, zduplikowane albo zablokowane (`noindex`) zostają pominięte.\n3. **Ranking (pozycjonowanie)**: gdy ktoś wpisuje zapytanie, algorytm wybiera z indeksu najlepsze strony i ustala kolejność. Liczą się m.in. dopasowanie do zapytania, jakość i przydatność treści, wiarygodność strony (linki, opinie), szybkość i wygoda na telefonie.\n\n## Core updates\n\nKilka razy w roku Google wprowadza **core updates**, czyli duże zmiany w ocenie stron. Pozycje mogą wtedy wzrosnąć lub spaść, choć na stronie nic się nie zmieniło. Ostatnie aktualizacje coraz mocniej nagradzają **oryginalne treści z doświadczeniem i wiedzą** autora, a karzą masowo produkowane, powtarzalne teksty.\n\n## Odpowiedzi AI w wynikach\n\nNad zwykłymi linkami Google coraz częściej pokazuje **AI Overviews**, czyli podsumowanie wygenerowane przez AI, z linkami do źródeł. Jest też **AI Mode**, osobny tryb rozmowy z wyszukiwarką. Część ludzi dostaje odpowiedź bez klikania. Dlatego warto pisać treści tak, żeby AI chciało je **cytować**: konkretne odpowiedzi, jasna struktura, własne dane i doświadczenie (więcej w tygodniu 10).\n\n## Sprawdź, co Google ma w indeksie\n\nWpisz w Google:\n\n```\nsite:wordpress.org\n```\n\nOperator `site:` pokazuje strony z danej domeny, które są w indeksie. Liczba jest orientacyjna, a dokładne dane daje Google Search Console (lekcja 3).\n\n## Czytaj dalej\n\n- [Google: jak działa wyszukiwarka (po angielsku)](https://developers.google.com/search/docs/fundamentals/how-search-works)\n- [Google: SEO Starter Guide (po angielsku)](https://developers.google.com/search/docs/fundamentals/seo-starter-guide)\n- [toponline.pl: kurs SEO Samodzielni](https://toponline.pl/seo-samodzielni/)",
+    "questions": [
+      {
+        "id": "t4-jak-dziala-google-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Jak nazywa się robot, który odwiedza i pobiera strony dla Google?",
+        "answer": "Googlebot",
+        "distractors": [
+          "Google Analytics",
+          "Search Console"
+        ],
+        "explanation": "Googlebot skanuje strony. Analytics mierzy ruch, a Search Console pokazuje, jak Google widzi stronę."
+      },
+      {
+        "id": "t4-jak-dziala-google-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Operator `___:mojafirma.pl` pokazuje strony domeny, które są w indeksie Google.",
+        "answer": "site",
+        "explanation": "`site:` to szybki, orientacyjny sposób na sprawdzenie indeksacji. Dokładne dane są w Search Console."
+      },
+      {
+        "id": "t4-jak-dziala-google-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Jaka jest kolejność etapów pracy wyszukiwarki?",
+        "answer": "Crawling → indeksowanie → ranking",
+        "distractors": [
+          "Ranking → crawling → indeksowanie",
+          "Indeksowanie → ranking → crawling"
+        ],
+        "explanation": "Najpierw robot pobiera stronę, potem Google zapisuje ją w indeksie, a na końcu ustala jej pozycję dla zapytań."
+      },
+      {
+        "id": "t4-jak-dziala-google-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Opis SEO od klienta: `Googlebot znajduje strony przez linki`, `strona w indeksie może pojawić się w wynikach`, `każda opublikowana strona trafia do indeksu`, `pozycje mogą się zmienić po core update`. Które zdanie jest nieprawdziwe?",
+        "answer": "`każda opublikowana strona trafia do indeksu`",
+        "distractors": [
+          "`Googlebot znajduje strony przez linki`",
+          "`strona w indeksie może pojawić się w wynikach`",
+          "`pozycje mogą się zmienić po core update`"
+        ],
+        "explanation": "Google pomija strony słabe, zduplikowane, zablokowane noindex albo po prostu ich nie znajduje. Publikacja nie gwarantuje indeksacji."
+      },
+      {
+        "id": "t4-jak-dziala-google-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Po core update strona klienta spadła o 10 pozycji, choć nikt jej nie zmieniał. Co jest najbardziej prawdopodobne?",
+        "answer": "Google zmienił sposób oceny stron i inne strony uznał za bardziej przydatne",
+        "distractors": [
+          "Ktoś włamał się na stronę",
+          "Google ukarał stronę ręcznie za brak SSL"
+        ],
+        "explanation": "Core update zmienia algorytm, a nie Twoją stronę. Reakcja: ocenić jakość treści względem konkurencji, a nie panikować."
+      },
+      {
+        "id": "t4-jak-dziala-google-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Wyjaśnij własnymi słowami trzy etapy działania Google.",
+        "answer": "Crawling: Googlebot odwiedza strony, znajdując je przez linki i mapę witryny, i pobiera ich zawartość. Indeksowanie: Google analizuje treść i zapisuje stronę w indeksie, albo ją pomija. Ranking: gdy ktoś szuka, algorytm wybiera z indeksu najlepsze strony i ustala kolejność.",
+        "keyPoints": [
+          "crawling: Googlebot pobiera strony (linki, sitemap)",
+          "indeksowanie: zapis w indeksie lub pominięcie",
+          "ranking: wybór i kolejność przy zapytaniu"
+        ],
+        "explanation": "Na każdym etapie coś może pójść źle. To pomaga szukać przyczyn, gdy strony nie ma w Google."
+      },
+      {
+        "id": "t4-jak-dziala-google-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Dlaczego strona może nie trafić do indeksu Google? Podaj trzy przyczyny.",
+        "answer": "Bo jest zablokowana: noindex albo zaznaczone nieindeksowanie w WordPressie. Bo Google jej nie znalazł: brak linków i mapy witryny. Bo jest słaba lub zduplikowana: mało treści, kopia innej strony. Także błędy serwera lub blokada w robots.txt.",
+        "keyPoints": [
+          "noindex / ustawienie nieindeksowania",
+          "brak linków i mapy witryny",
+          "słaba lub zduplikowana treść",
+          "błędy serwera lub robots.txt"
+        ],
+        "explanation": "W Search Console raport Strony podaje dokładny powód dla każdego adresu."
+      },
+      {
+        "id": "t4-jak-dziala-google-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Czym są AI Overviews i co oznaczają dla twórcy treści?",
+        "answer": "To podsumowania wygenerowane przez AI, które Google pokazuje nad zwykłymi wynikami, z linkami do źródeł. Część osób dostaje odpowiedź bez klikania, więc ruch na niektóre zapytania spada. Warto pisać konkretnie, z jasną strukturą i własnym doświadczeniem, żeby AI cytowało moją stronę jako źródło.",
+        "keyPoints": [
+          "podsumowanie AI nad wynikami z linkami",
+          "mniej kliknięć na część zapytań",
+          "treść konkretna i dobrze ułożona",
+          "własne doświadczenie i dane, żeby być cytowanym"
+        ],
+        "explanation": "Do widoczności w AI wrócisz w tygodniu 10."
+      },
+      {
+        "id": "t4-jak-dziala-google-09",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Klient pyta: „Ile czasu zajmie, zanim nowa strona będzie wysoko w Google?”. Co odpowiesz?",
+        "answer": "Nie da się podać dokładnego terminu. Indeksacja nowej strony to zwykle dni lub tygodnie, a dobre pozycje na konkurencyjne frazy to miesiące. Zależy to od konkurencji, jakości treści, linków i techniki strony. Mogę przyspieszyć start: Search Console, mapa witryny, dobre treści i linki, a efekty mierzyć co miesiąc.",
+        "keyPoints": [
+          "brak gwarantowanego terminu",
+          "indeksacja: dni–tygodnie",
+          "pozycje: miesiące",
+          "zależy od konkurencji, treści, linków",
+          "co można zrobić na start"
+        ],
+        "explanation": "Unikaj obietnic typu „pierwsza strona w miesiąc”."
+      },
+      {
+        "id": "t4-jak-dziala-google-10",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jakie grupy czynników wpływają na pozycję strony w Google?",
+        "answer": "Dopasowanie treści do zapytania i intencji, jakość i przydatność treści (doświadczenie, wiedza), wiarygodność strony (linki z innych stron, opinie, marka), technika (szybkość, wersja mobilna, HTTPS, brak błędów) oraz wygoda dla użytkownika.",
+        "keyPoints": [
+          "dopasowanie do zapytania",
+          "jakość i przydatność treści",
+          "wiarygodność: linki, opinie",
+          "technika: szybkość, mobile, HTTPS"
+        ],
+        "explanation": "Każdemu z tych obszarów poświęcone są osobne lekcje w tygodniach 4, 7, 8 i 10."
+      }
+    ],
+    "task": {
+      "task": "Sprawdź, jak Google widzi prawdziwe strony.\n\n1. Wpisz w Google `site:` i domenę dowolnej lokalnej firmy (np. warsztatu z Twojej okolicy). Zapisz przybliżoną liczbę wyników.\n2. Zrób to samo dla dużej strony, np. `site:wordpress.org`.\n3. Wpisz pytanie, np. „jak wybrać hosting dla wordpressa”, i sprawdź, czy pojawia się podsumowanie AI. Zapisz, które strony są w nim cytowane.\n4. Porównaj wyniki: czy wysoko są duże portale, czy małe strony? Zapisz jedno spostrzeżenie.",
+      "checklist": [
+        "Liczba wyników site: dla małej firmy",
+        "Liczba wyników site: dla dużej strony",
+        "Sprawdzone podsumowanie AI i jego źródła",
+        "Jedno spostrzeżenie zapisane"
+      ],
+      "hints": [
+        "Operator wpisujesz bez spacji po dwukropku: `site:mojafirma.pl`.",
+        "Podsumowanie AI nie pojawia się przy każdym zapytaniu. Spróbuj pytania zaczynającego się od „jak” albo „co to”.",
+        "Wyniki zależą od lokalizacji i historii. Do testów możesz użyć okna prywatnego."
+      ],
+      "solution": "- Mała firma: zwykle od kilku do kilkudziesięciu wyników. Jeśli 0, strona może mieć włączone nieindeksowanie albo być bardzo nowa.\n- `site:wordpress.org`: setki tysięcy lub miliony wyników (liczba orientacyjna).\n- Podsumowanie AI cytuje zwykle kilka stron: poradniki, dokumentację, czasem fora.\n- Przykładowe spostrzeżenie: „Na pytania poradnikowe wysoko są duże serwisy, ale w podsumowaniu AI pojawił się też mały blog z konkretną listą kroków”."
+    }
+  },
+  {
+    "id": "t4-slowa-kluczowe",
+    "week": 4,
+    "order": 2,
+    "title": "Słowa kluczowe i intencja",
+    "lesson": "**Słowo kluczowe** (fraza) to to, co ludzie wpisują w Google. Dobór fraz decyduje, o czym są podstrony i jakie treści warto pisać. Najważniejsze jest jednak nie samo słowo, a **intencja**: czego ta osoba naprawdę chce.\n\n![Cztery intencje wyszukiwania](diagram:intencja-wyszukiwania)\n\n## Rodzaje fraz\n\n- **Ogólne (short tail)**: „remont”, „łazienka”. Ogromne wyszukiwania, ogromna konkurencja, niejasna intencja.\n- **Długi ogon (long tail)**: „remont małej łazienki w bloku kraków cena”. Mniej wyszukiwań, ale łatwiej wypozycjonować i ludzie wiedzą, czego chcą. Dla małej firmy to najlepsze frazy.\n- **Lokalne**: z nazwą miasta lub „w pobliżu”.\n- **Brandowe**: z nazwą firmy.\n\n## Intencja wyszukiwania\n\n1. **Informacyjna**: „jak…”, „co to…”. Odpowiedź: poradnik na blogu.\n2. **Nawigacyjna**: nazwa firmy lub strony. Odpowiedź: strona główna, kontakt.\n3. **Porównawcza (komercyjna)**: „najlepszy…”, „opinie”, „ranking”. Odpowiedź: porównanie, realizacje, opinie.\n4. **Transakcyjna**: „cena”, „kup”, „zamów”, „usługa + miasto”. Odpowiedź: strona usługi lub produktu.\n\nJak sprawdzić intencję? **Wpisz frazę w Google i zobacz, co jest na górze.** Jeśli same poradniki, strona usługi się tam nie przebije, i odwrotnie.\n\n## Gdzie szukać fraz\n\n- **Podpowiedzi Google** podczas wpisywania i sekcje „Podobne pytania” oraz „Podobne wyszukiwania”.\n- **Google Search Console**: frazy, na które strona już się wyświetla (lekcja 3).\n- **Planer słów kluczowych Google Ads**: przybliżone liczby wyszukiwań (darmowy, wymaga konta Ads).\n- Narzędzia płatne: Senuto (polski rynek), Ahrefs, Semrush.\n- **Klient**: jak jego klienci mówią o usługach przez telefon?\n\n## Jedna strona = jedna główna fraza (plus podobne)\n\nKażda podstrona ma **jedną główną frazę** i kilka pokrewnych. Dwie podstrony na tę samą frazę konkurują ze sobą (**kanibalizacja**, temat w tygodniu 8). Przykładowa mapa:\n\n- `/oferta/remonty-lazienek/` → „remont łazienki kraków”\n- `/oferta/remonty-kuchni/` → „remont kuchni kraków”\n- `/blog/ile-kosztuje-remont-lazienki/` → „ile kosztuje remont łazienki”\n\n## Czytaj dalej\n\n- [toponline.pl: kurs SEO Samodzielni](https://toponline.pl/seo-samodzielni/)\n- [Google: planer słów kluczowych](https://ads.google.com/intl/pl_pl/home/tools/keyword-planner/)",
+    "questions": [
+      {
+        "id": "t4-slowa-kluczowe-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Fraza „remont łazienki kraków cena” ma intencję:",
+        "answer": "Transakcyjną",
+        "distractors": [
+          "Informacyjną",
+          "Nawigacyjną"
+        ],
+        "explanation": "Słowa „cena” i miasto pokazują, że ktoś szuka wykonawcy. Odpowiedzią jest strona usługi."
+      },
+      {
+        "id": "t4-slowa-kluczowe-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Długie, precyzyjne frazy z mniejszą liczbą wyszukiwań to tzw. długi ___ (long tail).",
+        "answer": "ogon",
+        "explanation": "Long tail: mniej wyszukiwań, mniejsza konkurencja, jasna intencja. Dobre dla małych firm."
+      },
+      {
+        "id": "t4-slowa-kluczowe-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Jak najprościej sprawdzić intencję frazy?",
+        "answer": "Wpisać ją w Google i zobaczyć, jakie strony są na górze",
+        "distractors": [
+          "Policzyć litery w frazie",
+          "Sprawdzić w Ustawieniach WordPressa"
+        ],
+        "explanation": "Google pokazuje strony, które najlepiej odpowiadają intencji. To najlepsza wskazówka, jaką treść przygotować."
+      },
+      {
+        "id": "t4-slowa-kluczowe-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Mapa fraz: `/oferta/remonty-lazienek/ → remont łazienki kraków`, `/oferta/remonty-kuchni/ → remont kuchni kraków`, `/blog/remont-lazienki-krakow/ → remont łazienki kraków`, `/kontakt/ → nazwa firmy`. Co jest problemem?",
+        "answer": "`/blog/remont-lazienki-krakow/ → remont łazienki kraków`",
+        "distractors": [
+          "`/oferta/remonty-lazienek/ → remont łazienki kraków`",
+          "`/oferta/remonty-kuchni/ → remont kuchni kraków`",
+          "`/kontakt/ → nazwa firmy`"
+        ],
+        "explanation": "Dwie strony na tę samą frazę konkurują ze sobą (kanibalizacja). Wpis na blogu powinien celować w inną frazę, np. informacyjną."
+      },
+      {
+        "id": "t4-slowa-kluczowe-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Klient chce być pierwszy na frazę „remont”. Co mu doradzisz?",
+        "answer": "Skupić się na frazach z miastem i usługą, bo „remont” ma ogromną konkurencję i niejasną intencję",
+        "distractors": [
+          "To dobra fraza, wystarczy ją często powtarzać",
+          "Kupić domenę remont.pl"
+        ],
+        "explanation": "Ogólna fraza przyciąga ludzi z całej Polski, szukających poradników, sklepów i inspiracji. Frazy lokalne i usługowe dają klientów."
+      },
+      {
+        "id": "t4-slowa-kluczowe-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Opisz cztery rodzaje intencji wyszukiwania z przykładami.",
+        "answer": "Informacyjna: ktoś chce wiedzy, np. „jak fugować płytki”. Nawigacyjna: szuka konkretnej strony, np. „castorama godziny”. Porównawcza: porównuje opcje, np. „najlepsza firma remontowa opinie”. Transakcyjna: chce kupić lub zamówić, np. „remont łazienki kraków cena”.",
+        "keyPoints": [
+          "informacyjna + przykład",
+          "nawigacyjna + przykład",
+          "porównawcza + przykład",
+          "transakcyjna + przykład"
+        ],
+        "explanation": "Do każdej intencji pasuje inny rodzaj strony."
+      },
+      {
+        "id": "t4-slowa-kluczowe-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Dlaczego mała firma powinna celować w frazy z długiego ogona?",
+        "answer": "Bo ogólne frazy mają ogromną konkurencję dużych serwisów i niejasną intencję. Długi ogon ma mniejszą konkurencję, łatwiej się tam przebić, a ludzie wpisujący konkretne frazy, np. z miastem i ceną, częściej zostają klientami.",
+        "keyPoints": [
+          "ogólne frazy: duża konkurencja",
+          "ogólne: niejasna intencja",
+          "long tail: łatwiej się przebić",
+          "long tail: wyższa szansa na klienta"
+        ],
+        "explanation": "Suma wielu fraz z długiego ogona daje często więcej ruchu niż jedna ogólna."
+      },
+      {
+        "id": "t4-slowa-kluczowe-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Gdzie znajdziesz pomysły na frazy dla strony firmy remontowej?",
+        "answer": "W podpowiedziach Google i sekcjach Podobne pytania i Podobne wyszukiwania, w Search Console (frazy, na które strona już się wyświetla), w planerze słów kluczowych Google Ads, w płatnych narzędziach jak Senuto i od klienta: jak jego klienci opisują potrzeby.",
+        "keyPoints": [
+          "podpowiedzi i Podobne pytania",
+          "Search Console",
+          "planer słów kluczowych",
+          "narzędzia płatne (Senuto)",
+          "rozmowa z klientem"
+        ],
+        "explanation": "Rozmowa z klientem często daje frazy, których nie pokazują narzędzia."
+      },
+      {
+        "id": "t4-slowa-kluczowe-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Przygotuj mapę fraz dla 3 podstron firmy fryzjerskiej w Poznaniu.",
+        "answer": "Strona główna: „fryzjer poznań”. Strona usługi koloryzacji: „koloryzacja włosów poznań”. Wpis na blogu: „jak dbać o włosy po koloryzacji”. Każda strona ma jedną główną frazę i kilka podobnych, a frazy się nie powtarzają.",
+        "keyPoints": [
+          "po jednej głównej frazie na stronę",
+          "frazy usługowe z miastem na strony oferty",
+          "fraza informacyjna na blog",
+          "brak powtórzeń między stronami"
+        ],
+        "explanation": "Twoje frazy mogą być inne. Ważne: jedna strona = jedna główna fraza i pasująca intencja."
+      },
+      {
+        "id": "t4-slowa-kluczowe-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Strona usługi „Remont łazienki” nie wybija się na frazę „jak wyremontować łazienkę”, choć tekst jest długi. Dlaczego?",
+        "answer": "Bo ta fraza ma intencję informacyjną: ludzie chcą poradnika, więc Google pokazuje wpisy i filmy, a nie strony usług. Strona usługi nie pasuje do intencji. Lepiej napisać poradnik na blogu, który linkuje do strony usługi, a stronę usługi pozycjonować na frazy transakcyjne, np. z miastem i ceną.",
+        "keyPoints": [
+          "fraza ma intencję informacyjną",
+          "Google pokazuje poradniki",
+          "strona usługi nie pasuje do intencji",
+          "rozwiązanie: poradnik z linkiem do usługi"
+        ],
+        "explanation": "Niedopasowanie intencji to jeden z najczęstszych powodów, dla których dobra strona nie rośnie."
+      }
+    ],
+    "task": {
+      "task": "Dobierz frazy do 5 podstron.\n\n1. Wybierz firmę (np. tę z tygodnia 2) i wypisz 5 podstron: strona główna, 2 usługi, 1 wpis na blogu, kontakt.\n2. Dla każdej znajdź w podpowiedziach Google i „Podobnych pytaniach” 3 kandydatki na frazę.\n3. Wpisz każdą kandydatkę w Google i oceń intencję po wynikach na górze.\n4. Wybierz po jednej głównej frazie dla każdej podstrony, tak żeby się nie powtarzały.\n5. Zapisz mapę: adres → fraza → intencja.",
+      "checklist": [
+        "5 podstron wypisanych",
+        "Po 3 kandydatki na frazę",
+        "Intencja sprawdzona w Google",
+        "Mapa adres → fraza → intencja bez powtórzeń"
+      ],
+      "hints": [
+        "Podpowiedzi zobaczysz, wpisując początek frazy w Google i czekając na listę.",
+        "Do wpisu na blogu szukaj pytań („jak”, „ile kosztuje”, „czy warto”).",
+        "Strona kontaktu zwykle celuje w nazwę firmy + „kontakt” (intencja nawigacyjna)."
+      ],
+      "solution": "Przykład dla firmy remontowej w Krakowie:\n\n- `/` → „firma remontowa kraków” → porównawcza/transakcyjna\n- `/oferta/remonty-lazienek/` → „remont łazienki kraków” → transakcyjna\n- `/oferta/remonty-kuchni/` → „remont kuchni kraków” → transakcyjna\n- `/blog/ile-kosztuje-remont-lazienki/` → „ile kosztuje remont łazienki” → informacyjna\n- `/kontakt/` → „[nazwa firmy] kontakt” → nawigacyjna"
+    }
+  },
+  {
+    "id": "t4-gsc",
+    "week": 4,
+    "order": 3,
+    "title": "Google Search Console",
+    "lesson": "**Google Search Console** (GSC) to darmowe narzędzie od Google, które pokazuje, jak Google widzi Twoją stronę: na jakie frazy się wyświetla, ile osób klika, które strony są w indeksie i jakie są błędy. To podstawowe narzędzie każdego, kto robi SEO.\n\n![Najważniejsze miejsca w Search Console](diagram:search-console)\n\n## Dodanie strony i weryfikacja\n\nNa [search.google.com/search-console](https://search.google.com/search-console) dodajesz **usługę**:\n\n- **Domena** (zalecana): obejmuje wszystkie wersje (http, https, www, subdomeny). Weryfikacja przez rekord **TXT w DNS** (lekcja o DNS z tygodnia 1).\n- **Prefiks URL**: tylko jeden adres, np. `https://mojafirma.pl/`. Weryfikacja np. plikiem HTML, tagiem w kodzie strony albo przez wtyczkę SEO lub Site Kit.\n\nDane zaczynają się zbierać od dodania usługi, więc dodaj ją od razu przy starcie strony.\n\n## Skuteczność\n\n- **Kliknięcia**: ile osób weszło z Google.\n- **Wyświetlenia**: ile razy strona pokazała się w wynikach.\n- **CTR**: procent wyświetleń zakończonych kliknięciem.\n- **Średnia pozycja**.\n\nZakładki **Zapytania** i **Strony** pokazują, na jakie frazy i które podstrony się wyświetlają. Frazy z dużą liczbą wyświetleń i pozycją 8–20 to najlepsze okazje do poprawy.\n\n## Strony (indeksowanie)\n\nLista zaindeksowanych i **niezaindeksowanych** adresów z powodem, np. „Nie znaleziono (404)”, „Wykluczono za pomocą tagu noindex”, „Strona zeskanowana, ale obecnie nie zindeksowana”, „Duplikat”. Nie każdy niezaindeksowany adres to błąd: np. strony z noindex mają tam być.\n\n## Sprawdzenie adresu URL\n\nPole na górze. Wpisujesz adres i widzisz, czy jest w indeksie, kiedy był skanowany i czy są problemy. Po ważnej zmianie możesz kliknąć **Poproś o zindeksowanie**.\n\n## Mapy witryn\n\nPodajesz adres mapy witryny, np. `sitemap_index.xml` (Yoast) albo `wp-sitemap.xml` (WordPress bez wtyczki). Więcej w tygodniu 7.\n\n## Czytaj dalej\n\n- [Search Console: pomoc](https://support.google.com/webmasters/?hl=pl)\n- [Google: pierwsze kroki z Search Console (po angielsku)](https://developers.google.com/search/docs/monitor-debug/search-console-start)",
+    "questions": [
+      {
+        "id": "t4-gsc-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Który typ usługi w Search Console obejmuje wszystkie wersje adresu (http, https, www)?",
+        "answer": "Domena",
+        "distractors": [
+          "Prefiks URL",
+          "Mapa witryny"
+        ],
+        "explanation": "Usługa Domena obejmuje wszystkie protokoły i subdomeny. Weryfikuje się ją rekordem TXT w DNS."
+      },
+      {
+        "id": "t4-gsc-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Procent wyświetleń, które zakończyły się kliknięciem, to ___.",
+        "answer": "CTR",
+        "explanation": "CTR (Click-Through Rate) = kliknięcia / wyświetlenia. Na CTR wpływa m.in. title i opis w wynikach."
+      },
+      {
+        "id": "t4-gsc-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Fraza ma 2000 wyświetleń, średnią pozycję 11 i 15 kliknięć. Co to oznacza?",
+        "answer": "Duża okazja: strona jest tuż za pierwszą stroną wyników i warto ją wzmocnić",
+        "distractors": [
+          "Fraza jest bez znaczenia",
+          "Strona jest na pierwszym miejscu"
+        ],
+        "explanation": "Pozycja 11 to początek drugiej strony wyników. Lepsza treść i linkowanie mogą przesunąć ją na pierwszą stronę i dać dużo kliknięć."
+      },
+      {
+        "id": "t4-gsc-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Plan konfiguracji GSC: `usługa Domena`, `weryfikacja rekordem TXT w DNS`, `dodanie GSC pół roku po starcie strony`, `wysłanie mapy witryny`. Co jest złym pomysłem?",
+        "answer": "`dodanie GSC pół roku po starcie strony`",
+        "distractors": [
+          "`usługa Domena`",
+          "`weryfikacja rekordem TXT w DNS`",
+          "`wysłanie mapy witryny`"
+        ],
+        "explanation": "Dane zbierają się od dodania usługi. Późne dodanie oznacza brak historii z pierwszych miesięcy."
+      },
+      {
+        "id": "t4-gsc-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "W raporcie Strony jest 40 adresów „Wykluczono za pomocą tagu noindex”. To strony tagów i strona podziękowania. Co robisz?",
+        "answer": "Nic, jeśli te strony celowo mają noindex",
+        "distractors": [
+          "Usuwasz te strony",
+          "Klikasz Poproś o zindeksowanie dla każdej"
+        ],
+        "explanation": "Niezaindeksowany nie znaczy błędny. Jeśli noindex jest zamierzony, raport po prostu to potwierdza."
+      },
+      {
+        "id": "t4-gsc-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Opisz, jak dodasz stronę do Search Console usługą Domena.",
+        "answer": "Wchodzę do Search Console, wybieram typ usługi Domena i wpisuję domenę bez https. Google podaje rekord TXT. Dodaję go w DNS domeny u rejestratora lub w hostingu. Po chwili (do kilku godzin) klikam Zweryfikuj.",
+        "keyPoints": [
+          "typ usługi Domena",
+          "rekord TXT od Google",
+          "dodanie TXT w DNS",
+          "weryfikacja"
+        ],
+        "explanation": "Rekordu TXT nie usuwaj po weryfikacji, bo Google sprawdza go okresowo."
+      },
+      {
+        "id": "t4-gsc-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Wyjaśnij cztery wskaźniki z raportu Skuteczność.",
+        "answer": "Kliknięcia: ile osób weszło z wyników. Wyświetlenia: ile razy strona pojawiła się w wynikach. CTR: procent wyświetleń zakończonych kliknięciem. Średnia pozycja: średnie miejsce w wynikach dla wybranych fraz lub stron.",
+        "keyPoints": [
+          "kliknięcia",
+          "wyświetlenia",
+          "CTR = kliknięcia / wyświetlenia",
+          "średnia pozycja"
+        ],
+        "explanation": "Patrz na wskaźniki razem: dużo wyświetleń i niski CTR to sygnał, żeby poprawić title i opis."
+      },
+      {
+        "id": "t4-gsc-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak użyjesz Search Console, żeby znaleźć szybkie okazje SEO?",
+        "answer": "W Skuteczności włączę wszystkie cztery wskaźniki, w zakładce Zapytania posortuję po wyświetleniach i poszukam fraz z pozycją ok. 8–20 albo z niskim CTR. Dla nich poprawię treść strony, title i opis albo dodam linki wewnętrzne. Po kilku tygodniach porównam wyniki.",
+        "keyPoints": [
+          "Skuteczność → Zapytania",
+          "dużo wyświetleń, pozycja 8–20",
+          "niski CTR",
+          "poprawa treści, title, linków",
+          "porównanie po kilku tygodniach"
+        ],
+        "explanation": "W GSC jest porównanie dat, które łatwo pokazuje efekt zmian."
+      },
+      {
+        "id": "t4-gsc-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Klient opublikował ważną stronę usługi tydzień temu i nie ma jej w Google. Co zrobisz w Search Console?",
+        "answer": "Wpiszę adres w Sprawdzenie adresu URL i zobaczę status. Jeśli strony nie ma w indeksie i nie ma blokad (noindex, robots.txt), kliknę Poproś o zindeksowanie. Sprawdzę, czy strona jest w mapie witryny i czy linkują do niej inne strony, np. menu. Jeśli są błędy, poprawię je i poproszę ponownie.",
+        "keyPoints": [
+          "Sprawdzenie adresu URL",
+          "sprawdzenie blokad (noindex, robots.txt)",
+          "Poproś o zindeksowanie",
+          "mapa witryny i linki wewnętrzne"
+        ],
+        "explanation": "Prośba nie gwarantuje indeksacji, ale przyspiesza wizytę robota."
+      },
+      {
+        "id": "t4-gsc-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Dlaczego usługa Domena jest lepsza niż Prefiks URL dla większości stron?",
+        "answer": "Bo obejmuje wszystkie wersje adresu: http i https, z www i bez, wszystkie subdomeny. Przy prefiksie dane z innych wersji, np. po przejściu na https albo dla sklepu na subdomenie, nie są widoczne w jednej usłudze. Domena daje pełny obraz w jednym miejscu.",
+        "keyPoints": [
+          "obejmuje http/https, www, subdomeny",
+          "prefiks pokazuje tylko jedną wersję",
+          "zmiana wersji (np. https) nie gubi danych",
+          "pełny obraz w jednym miejscu"
+        ],
+        "explanation": "Prefiks URL bywa przydatny dodatkowo, np. do jednej sekcji strony."
+      }
+    ],
+    "task": {
+      "task": "Dodaj stronę do Google Search Console.\n\n1. Dodaj usługę **Domena** dla strony na hostingu i zweryfikuj ją rekordem TXT. Jeśli nie masz jeszcze własnej strony, poproś znajomą firmę o dostęp do jej Search Console (wystarczy uprawnienie „ograniczone”).\n2. Sprawdź raport **Skuteczność**: zapisz kliknięcia, wyświetlenia, CTR i pozycję z ostatnich 3 miesięcy.\n3. W zakładce **Zapytania** znajdź frazę z najwięcej wyświetleniami.\n4. Otwórz raport **Strony** i zapisz 2 powody niezaindeksowania.\n5. Sprawdź stronę główną w **Sprawdzeniu adresu URL**.",
+      "checklist": [
+        "Usługa dodana i zweryfikowana (albo kroki opisane)",
+        "Zapisane 4 wskaźniki",
+        "Fraza z największą liczbą wyświetleń",
+        "2 powody niezaindeksowania",
+        "Strona główna sprawdzona"
+      ],
+      "hints": [
+        "Rekord TXT w DNS dodajesz tak jak w lekcji o rekordach DNS: typ TXT, nazwa `@` (sama domena), wartość od Google.",
+        "Nowa strona ma mało danych. Wtedy zapisz, co jest, i wróć do raportów za 2–3 tygodnie.",
+        "Powody niezaindeksowania są w tabeli pod wykresem w raporcie Strony."
+      ],
+      "solution": "- Weryfikacja: rekord TXT `google-site-verification=...` na domenie, potem zielony komunikat „Potwierdzono własność”.\n- Skuteczność (przykład małej firmy, 3 miesiące): 320 kliknięć, 12 400 wyświetleń, CTR 2,6%, pozycja 18,4.\n- Typowe powody niezaindeksowania: „Strona z przekierowaniem”, „Wykluczono za pomocą tagu noindex”, „Nie znaleziono (404)”, „Strona zeskanowana, ale obecnie nie zindeksowana”.\n- Sprawdzenie adresu: „Adres URL jest w Google” i data ostatniego skanowania."
+    }
+  },
+  {
+    "id": "t4-seo-lokalne",
+    "week": 4,
+    "order": 4,
+    "title": "SEO lokalne i Profil Firmy w Google",
+    "lesson": "Gdy ktoś szuka „fryzjer kraków” albo „hydraulik w pobliżu”, Google pokazuje nad zwykłymi wynikami **mapę z trzema firmami** (tzw. local pack). Wizytówki w tej mapie pochodzą z **Profilu Firmy w Google** (dawniej Google Moja Firma). Dla lokalnej firmy to często ważniejsze niż sama strona.\n\n![Jak Google ocenia firmy lokalne](diagram:seo-lokalne)\n\n## Założenie i weryfikacja wizytówki\n\nNa [business.google.com](https://business.google.com/) dodajesz firmę: nazwę, kategorię, adres (albo obszar działania, jeśli firma jeździ do klientów), telefon, stronę WWW i godziny. Google musi **zweryfikować** firmę, np. nagraniem wideo, telefonem lub pocztą. Bez weryfikacji wizytówka się nie pokaże.\n\n## Co wpływa na pozycję w mapie\n\nGoogle podaje trzy grupy czynników:\n\n1. **Trafność**: czy wizytówka pasuje do zapytania. Najważniejsza jest **kategoria główna** (np. „Firma remontowa”), dodatkowe kategorie, usługi i opis.\n2. **Odległość**: jak daleko firma jest od szukającej osoby lub wpisanego miasta. Na to nie masz wpływu.\n3. **Popularność**: liczba i ocena **opinii**, odpowiedzi na opinie, wzmianki i linki w internecie, strona WWW.\n\n## Dobre praktyki\n\n- **NAP** (Name, Address, Phone): nazwa, adres i telefon identyczne w wizytówce, na stronie (stopka, kontakt) i w katalogach firm.\n- Prawdziwa nazwa firmy, bez dopisywania fraz („Remonty Kraków Tanio Kowalski”). Za to wizytówka może zostać zawieszona.\n- Zdjęcia: siedziba, zespół, realizacje. Aktualne godziny, także świąteczne.\n- **Opinie**: proś zadowolonych klientów o opinię (link z wizytówki), odpowiadaj na każdą, także negatywną, spokojnie i rzeczowo. Nie kupuj opinii.\n- **Posty**: aktualności, promocje.\n- Na stronie: osobna podstrona dla każdej lokalizacji, mapa Google na stronie kontaktu, dane firmy w schema LocalBusiness (tydzień 7).\n\n## Czytaj dalej\n\n- [Google: jak poprawić pozycję w wynikach lokalnych](https://support.google.com/business/answer/7091?hl=pl)\n- [toponline.pl: kurs SEO Samodzielni](https://toponline.pl/seo-samodzielni/)",
+    "questions": [
+      {
+        "id": "t4-seo-lokalne-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Skąd Google bierze firmy pokazywane w mapie nad wynikami?",
+        "answer": "Z Profili Firmy w Google",
+        "distractors": [
+          "Tylko ze stron firm",
+          "Z reklam na Facebooku"
+        ],
+        "explanation": "Mapa z firmami (local pack) pokazuje zweryfikowane wizytówki z Profilu Firmy w Google."
+      },
+      {
+        "id": "t4-seo-lokalne-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Spójne dane firmy: nazwa, adres i telefon, to skrót ___.",
+        "answer": "NAP",
+        "explanation": "NAP = Name, Address, Phone. Muszą być identyczne w wizytówce, na stronie i w katalogach."
+      },
+      {
+        "id": "t4-seo-lokalne-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Który czynnik pozycji w mapie jest poza Twoją kontrolą?",
+        "answer": "Odległość od szukającej osoby",
+        "distractors": [
+          "Kategoria główna wizytówki",
+          "Liczba opinii"
+        ],
+        "explanation": "Odległość zależy od tego, gdzie ktoś jest. Na trafność i popularność masz wpływ."
+      },
+      {
+        "id": "t4-seo-lokalne-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Wizytówka: `nazwa: Remonty Kowalski Kraków Tanio Szybko`, `kategoria główna: Firma remontowa`, `godziny otwarcia aktualne`, `odpowiedzi na opinie`. Co jest problemem?",
+        "answer": "`nazwa: Remonty Kowalski Kraków Tanio Szybko`",
+        "distractors": [
+          "`kategoria główna: Firma remontowa`",
+          "`godziny otwarcia aktualne`",
+          "`odpowiedzi na opinie`"
+        ],
+        "explanation": "Nazwa musi być prawdziwą nazwą firmy. Dopisywanie fraz łamie zasady Google i może skończyć się zawieszeniem wizytówki."
+      },
+      {
+        "id": "t4-seo-lokalne-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Firma dostała negatywną opinię, która jest częściowo prawdziwa. Co zrobić?",
+        "answer": "Odpowiedzieć spokojnie i rzeczowo, przeprosić za to, co nie zagrało, i zaproponować rozwiązanie",
+        "distractors": [
+          "Zignorować, bo odpowiedź tylko pogorszy sprawę",
+          "Kupić 20 pozytywnych opinii, żeby ją przykryć"
+        ],
+        "explanation": "Odpowiedź czytają przyszli klienci. Kupowanie opinii łamie zasady Google i prawo konsumenckie."
+      },
+      {
+        "id": "t4-seo-lokalne-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Opisz trzy grupy czynników, które decydują o pozycji wizytówki w mapie Google.",
+        "answer": "Trafność: czy wizytówka pasuje do zapytania, głównie przez kategorię, usługi i opis. Odległość: jak blisko jest firma od szukającego lub wpisanego miasta. Popularność: opinie i oceny, odpowiedzi, wzmianki i linki w internecie, strona WWW.",
+        "keyPoints": [
+          "trafność: kategoria, usługi, opis",
+          "odległość: lokalizacja szukającego",
+          "popularność: opinie, wzmianki, linki"
+        ],
+        "explanation": "Te trzy grupy podaje sam Google w swojej pomocy."
+      },
+      {
+        "id": "t4-seo-lokalne-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak poprawić popularność wizytówki lokalnej firmy?",
+        "answer": "Prosić zadowolonych klientów o opinie, np. linkiem lub kodem QR po wykonanej usłudze, odpowiadać na wszystkie opinie, dodawać zdjęcia i posty, mieć spójne dane w katalogach firm i zdobywać wzmianki lokalne, np. w mediach czy na stronach partnerów.",
+        "keyPoints": [
+          "prośby o opinie (link, QR)",
+          "odpowiadanie na opinie",
+          "zdjęcia i posty",
+          "spójne katalogi i lokalne wzmianki"
+        ],
+        "explanation": "Nie kupuj opinii. To łamie zasady i prawo."
+      },
+      {
+        "id": "t4-seo-lokalne-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Co na stronie WWW pomaga w SEO lokalnym?",
+        "answer": "Dane NAP identyczne jak w wizytówce, w stopce i na stronie kontaktu, mapa Google na stronie kontaktu, osobne podstrony dla usług z nazwą miasta, a przy kilku lokalizacjach osobna podstrona dla każdej, oraz dane strukturalne LocalBusiness.",
+        "keyPoints": [
+          "NAP jak w wizytówce",
+          "mapa na stronie kontaktu",
+          "podstrony usług z miastem",
+          "podstrona dla każdej lokalizacji",
+          "schema LocalBusiness"
+        ],
+        "explanation": "Wizytówka powinna linkować do najlepiej pasującej strony, często do strony głównej lub lokalizacji."
+      },
+      {
+        "id": "t4-seo-lokalne-09",
+        "type": "open",
+        "difficulty": 3,
+        "prompt": "Firma remontowa jeździ do klientów i nie ma biura dla klientów. Jak ustawić wizytówkę?",
+        "answer": "Jako firmę działającą na obszarze (usługi u klienta): ukryć adres i wpisać obszar działania, np. Kraków i okoliczne gminy. Adres i tak trzeba podać do weryfikacji, ale nie będzie publiczny. Reszta jak zwykle: kategoria, usługi, telefon, godziny, zdjęcia.",
+        "keyPoints": [
+          "firma działająca na obszarze",
+          "adres ukryty, obszar działania widoczny",
+          "adres potrzebny do weryfikacji",
+          "reszta danych jak zwykle"
+        ],
+        "explanation": "Nie podawaj fikcyjnego adresu „biura”, którego nie ma. To łamie zasady Google."
+      },
+      {
+        "id": "t4-seo-lokalne-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Klient ma w wizytówce stary numer telefonu, a na stronie nowy. Co zrobisz i dlaczego to ważne?",
+        "answer": "Poprawię numer w wizytówce, na stronie i w katalogach firm, żeby wszędzie był ten sam. Rozbieżne dane NAP osłabiają zaufanie Google do informacji o firmie i mogą obniżyć pozycję w mapie. Do tego klienci dzwonią pod stary numer i firma traci zlecenia.",
+        "keyPoints": [
+          "poprawić numer wszędzie",
+          "spójność NAP buduje zaufanie Google",
+          "rozbieżności obniżają pozycję",
+          "klienci dzwonią pod zły numer"
+        ],
+        "explanation": "Warto co jakiś czas sprawdzić dane firmy w katalogach, np. Panorama Firm, Yelp, Facebook."
+      }
+    ],
+    "task": {
+      "task": "Przygotuj wizytówkę testowej firmy (bez publikowania, jeśli nie masz prawdziwej firmy).\n\n1. Wymyśl firmę albo weź prawdziwą, którą znasz. Wypisz: nazwę, kategorię główną i 2 dodatkowe, adres lub obszar, telefon, stronę, godziny.\n2. Znajdź w Google 3 konkurencyjne wizytówki w mapie dla frazy „[usługa] [miasto]”. Zapisz ich kategorie, liczbę opinii i średnią ocenę.\n3. Napisz opis firmy do wizytówki (do 750 znaków), bez dopisywania fraz w nazwie.\n4. Napisz wzór odpowiedzi na negatywną opinię.\n5. Jeśli to Twoja prawdziwa firma, załóż wizytówkę na [business.google.com](https://business.google.com/).",
+      "checklist": [
+        "Dane NAP i kategorie wypisane",
+        "3 konkurencyjne wizytówki przeanalizowane",
+        "Opis firmy napisany",
+        "Wzór odpowiedzi na negatywną opinię"
+      ],
+      "hints": [
+        "Kategorię konkurencji zobaczysz pod nazwą firmy w wizytówce, np. „Firma remontowa”.",
+        "Opis: czym się zajmujesz, gdzie, dla kogo, co Cię wyróżnia. Bez linków i wielkich liter.",
+        "Odpowiedź na negatywną opinię: podziękowanie, przeprosiny lub wyjaśnienie, propozycja kontaktu."
+      ],
+      "solution": "- Kategorie: główna „Firma remontowa”, dodatkowe „Glazurnik”, „Malarz pokojowy”.\n- Konkurencja: np. 45 opinii (4,8), 120 opinii (4,6), 12 opinii (5,0). Liczba i świeżość opinii mocno różnicuje wyniki.\n- Opis: „Remontujemy łazienki i kuchnie w Krakowie i okolicach od 2010 roku. Robimy kompleksowo: od projektu i zakupów po sprzątanie. Dajemy 3 lata gwarancji i stałą cenę w umowie.”\n- Odpowiedź: „Dziękujemy za opinię i przepraszamy za opóźnienie. Wiemy, że termin jest ważny. Prosimy o kontakt pod numerem ..., chcemy to wyjaśnić.”"
+    }
+  },
+  {
+    "id": "t4-adresy-url",
+    "week": 4,
+    "order": 5,
+    "title": "Adresy URL",
+    "lesson": "Adres URL to pierwsza informacja o stronie, jaką widzi człowiek i Google. Dobry adres mówi, co jest na stronie, zanim ktoś ją otworzy.\n\n![Dobre i złe adresy](diagram:adresy-url)\n\n## Zasady dobrego adresu\n\n- **Krótki i czytelny**: `/oferta/remont-lazienki/` zamiast `/?page_id=482`.\n- **Słowa oddzielone myślnikami** (`-`), nie podkreślnikami.\n- **Małe litery**, bez spacji.\n- **Bez polskich znaków**: WordPress sam zamienia „ł” na „l”, „ą” na „a” w nowo tworzonych adresach, ale sprawdź to po imporcie treści.\n- **Główna fraza** strony w adresie, bez upychania (`/remont-lazienki-krakow/`, a nie `/remont-lazienki-remonty-lazienek-krakow-tanio/`).\n- **Bez dat** w adresach wpisów, jeśli treść ma być długo aktualna.\n- **Logiczna struktura**: podstrony usług pod `/oferta/`, wpisy pod `/blog/` (opcjonalnie).\n\n## Bezpośrednie odnośniki w WordPressie\n\nUstawienie **Nazwa wpisu** (`/%postname%/`) znasz z tygodnia 2. Adres pojedynczej strony lub wpisu (tzw. **slug**) zmienisz w edytorze: panel po prawej → **Bezpośredni odnośnik** (lub URL). Domyślnie WordPress robi go z tytułu, który bywa za długi: „Ile kosztuje remont łazienki w 2026 roku? Sprawdź ceny” → skróć do `ile-kosztuje-remont-lazienki`.\n\n## Ukośnik na końcu (trailing slash)\n\n`/kontakt/` i `/kontakt` to dla Google dwa różne adresy. WordPress używa wersji **z ukośnikiem** i sam przekierowuje drugą wersję. Ważne, żeby w linkach, mapie witryny i kanonicznych adresach była **jedna, ta sama** wersja.\n\n## Zmiana adresu działającej strony\n\nKażda zmiana adresu = **przekierowanie 301** ze starego na nowy (lekcja z tygodnia 1) i poprawienie linków wewnętrznych. WordPress przekierowuje automatycznie część zmienionych slugów wpisów, ale nie licz na to przy ważnych stronach. Zmieniaj adresy tylko wtedy, gdy zysk jest wyraźny.\n\n## Czytaj dalej\n\n- [Google: struktura adresów URL (po angielsku)](https://developers.google.com/search/docs/crawling-indexing/url-structure)",
+    "questions": [
+      {
+        "id": "t4-adresy-url-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Który adres jest najlepszy dla strony usługi?",
+        "answer": "`/oferta/remont-lazienki/`",
+        "distractors": [
+          "`/?page_id=482`",
+          "`/Oferta/Remont_Łazienki/`"
+        ],
+        "explanation": "Krótki, czytelny, małe litery, myślniki, bez polskich znaków i z frazą."
+      },
+      {
+        "id": "t4-adresy-url-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Słowa w adresie URL oddziela się ___, a nie podkreślnikami.",
+        "answer": "myślnikami",
+        "explanation": "Google traktuje myślnik jako odstęp między słowami. Podkreślnik łączy słowa w jedno."
+      },
+      {
+        "id": "t4-adresy-url-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Dla Google `/kontakt` i `/kontakt/` to:",
+        "answer": "Dwa różne adresy, dlatego trzeba trzymać się jednej wersji",
+        "distractors": [
+          "Zawsze ten sam adres",
+          "Adres strony i adres jej obrazka"
+        ],
+        "explanation": "Ukośnik na końcu tworzy osobny adres. WordPress przekierowuje na wersję z ukośnikiem, a linki powinny używać jednej wersji."
+      },
+      {
+        "id": "t4-adresy-url-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Adresy na stronie: `/oferta/remont-lazienki/`, `/oferta/remont-kuchni/`, `/blog/jak-dobrac-plytki/`, `/blog/2026/11/09/promocja-listopad-2026/` dla stałego poradnika. Co poprawić?",
+        "answer": "`/blog/2026/11/09/promocja-listopad-2026/` dla stałego poradnika",
+        "distractors": [
+          "`/oferta/remont-lazienki/`",
+          "`/oferta/remont-kuchni/`",
+          "`/blog/jak-dobrac-plytki/`"
+        ],
+        "explanation": "Data w adresie postarza treść i jest długa. Stały poradnik powinien mieć krótki adres bez daty."
+      },
+      {
+        "id": "t4-adresy-url-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Klient chce zmienić adres najlepiej odwiedzanej podstrony z `/remonty/` na `/remonty-krakow/` „dla SEO”. Co doradzisz?",
+        "answer": "Zmiana ma sens tylko z 301 i poprawą linków, a zysk z dodania miasta w adresie jest mały, więc zwykle lepiej zostawić",
+        "distractors": [
+          "Zmienić bez przekierowania, Google sam znajdzie",
+          "Zmieniać adresy co miesiąc, żeby Google częściej odwiedzał"
+        ],
+        "explanation": "Słowo w adresie to drobny sygnał. Zmiana działającego adresu ma ryzyko i koszt. Lepiej poprawić treść i title."
+      },
+      {
+        "id": "t4-adresy-url-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Wymień zasady tworzenia dobrych adresów URL.",
+        "answer": "Krótkie i czytelne, słowa oddzielone myślnikami, małe litery, bez polskich znaków i spacji, z główną frazą bez upychania, bez dat dla stałych treści i w logicznej strukturze, np. usługi pod /oferta/.",
+        "keyPoints": [
+          "krótkie i czytelne",
+          "myślniki, małe litery",
+          "bez polskich znaków",
+          "fraza bez upychania",
+          "bez dat, logiczna struktura"
+        ],
+        "explanation": "Adres jest też widoczny w wynikach i w udostępnianych linkach."
+      },
+      {
+        "id": "t4-adresy-url-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak zmienisz slug wpisu w WordPressie i kiedy warto go skrócić?",
+        "answer": "W edytorze wpisu w panelu po prawej otwieram Bezpośredni odnośnik (URL) i wpisuję nowy slug, np. ile-kosztuje-remont-lazienki. Skracam go od razu przy tworzeniu, gdy tytuł jest długi albo zawiera rok czy zbędne słowa. Po publikacji zmieniam tylko z przekierowaniem 301.",
+        "keyPoints": [
+          "panel po prawej → Bezpośredni odnośnik/URL",
+          "wpisanie krótszego sluga",
+          "skracać przy tworzeniu (długi tytuł, rok)",
+          "po publikacji tylko z 301"
+        ],
+        "explanation": "Najlepiej ustalić slug przed pierwszą publikacją."
+      },
+      {
+        "id": "t4-adresy-url-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Co musisz zrobić, gdy zmieniasz adres opublikowanej strony?",
+        "answer": "Ustawić przekierowanie 301 ze starego adresu na nowy, poprawić linki wewnętrzne (menu, treści) na nowy adres, sprawdzić, że stary daje 301, a nowy 200, i obserwować w Search Console, czy nie pojawiają się błędy 404.",
+        "keyPoints": [
+          "przekierowanie 301",
+          "poprawa linków wewnętrznych",
+          "sprawdzenie kodów 301 i 200",
+          "obserwacja w Search Console"
+        ],
+        "explanation": "To ta sama procedura co przy kodach HTTP w tygodniu 1."
+      },
+      {
+        "id": "t4-adresy-url-09",
+        "type": "open",
+        "difficulty": 3,
+        "prompt": "Dlaczego ukośnik na końcu adresu ma znaczenie i jak WordPress sobie z tym radzi?",
+        "answer": "Bo adres z ukośnikiem i bez to dla Google dwa adresy, które mogą być traktowane jak duplikaty. WordPress używa wersji z ukośnikiem i przekierowuje wersję bez niego. Ja pilnuję, żeby linki w menu, treściach i mapie witryny miały tę samą wersję.",
+        "keyPoints": [
+          "z ukośnikiem i bez to dwa adresy",
+          "ryzyko duplikatów",
+          "WordPress przekierowuje na wersję z ukośnikiem",
+          "spójna wersja w linkach i mapie"
+        ],
+        "explanation": "Problem pojawia się zwykle po migracji z innego systemu."
+      },
+      {
+        "id": "t4-adresy-url-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Po imporcie treści z innego systemu adresy wyglądają jak `/oferta/remont-łazienki/`. Co z tym zrobisz?",
+        "answer": "Zmienię slugi na wersje bez polskich znaków, np. remont-lazienki, bo znaki narodowe w adresie zamieniają się w długie kody (%C5%82) przy kopiowaniu i bywają źle obsługiwane. Jeśli strona już działała pod starymi adresami, ustawię 301 ze starych na nowe.",
+        "keyPoints": [
+          "zmiana slugów na bez polskich znaków",
+          "znaki narodowe kodują się jako %C5%82",
+          "problemy przy kopiowaniu i obsłudze",
+          "301 jeśli stare adresy działały"
+        ],
+        "explanation": "WordPress usuwa polskie znaki przy tworzeniu nowych slugów, ale import może je zostawić."
+      }
+    ],
+    "task": {
+      "task": "Ustaw i popraw adresy na stronie lokalnej.\n\n1. Sprawdź w **Ustawienia → Bezpośrednie odnośniki**, że jest wybrana **Nazwa wpisu**.\n2. Utwórz wpis o długim tytule, np. „Ile kosztuje remont łazienki w 2026 roku? Sprawdź aktualne ceny”, i zobacz domyślny slug.\n3. Skróć slug do 3–5 słów z główną frazą.\n4. Zmień slug innej, opublikowanej strony i ustaw w Redirection 301 ze starego adresu na nowy.\n5. Sprawdź, że `/kontakt` (bez ukośnika) przekierowuje na `/kontakt/`.",
+      "checklist": [
+        "Struktura Nazwa wpisu włączona",
+        "Długi slug skrócony",
+        "Zmiana adresu z przekierowaniem 301",
+        "Sprawdzone przekierowanie na wersję z ukośnikiem"
+      ],
+      "hints": [
+        "Slug edytujesz w panelu po prawej, w polu **Bezpośredni odnośnik** albo **URL**.",
+        "Sprawdź w zakładce Sieć (F12), że stary adres daje 301, a nowy 200.",
+        "Wpisz w pasku adresu `nauka.local/kontakt` i zobacz, na jaki adres trafisz."
+      ],
+      "solution": "- Domyślny slug: `ile-kosztuje-remont-lazienki-w-2026-roku-sprawdz-aktualne-ceny`. Po skróceniu: `ile-kosztuje-remont-lazienki`.\n- Zmiana adresu: np. `/o-firmie/` → `/o-nas/` i w Redirection 301 `/o-firmie/` → `/o-nas/`.\n- `/kontakt` przekierowuje kodem 301 na `/kontakt/`."
+    }
+  },
+  {
+    "id": "t4-meta-tagi",
+    "week": 4,
+    "order": 6,
+    "title": "Meta tagi",
+    "lesson": "**Meta tagi** to informacje w kodzie strony (w sekcji `<head>`), których nie widać na samej stronie, ale widzą je Google i serwisy społecznościowe. Najważniejsze z nich tworzą Twój **wynik w Google**, czyli pierwsze wrażenie przed kliknięciem.\n\n![Cztery rodzaje meta tagów](diagram:meta-tagi)\n\n## Title (tytuł strony)\n\n```html\n<title>Remont łazienki Kraków – cena i realizacje | Moja Firma</title>\n```\n\n- Niebieski nagłówek w wynikach i nazwa karty w przeglądarce.\n- Jeden z najważniejszych sygnałów SEO na stronie.\n- Ok. **50–60 znaków** (Google ucina dłuższe, liczy się szerokość w pikselach).\n- **Główna fraza na początku**, potem korzyść lub wyróżnik, na końcu marka.\n- **Unikalny** dla każdej podstrony.\n\n## Meta description (opis)\n\n- Tekst pod tytułem w wynikach. Nie wpływa bezpośrednio na pozycję, ale wpływa na **CTR**.\n- Ok. **150–160 znaków**, zachęta do kliknięcia, np. konkret, korzyść, wezwanie do działania.\n- Google często pokazuje inny fragment strony, jeśli uzna go za lepiej pasujący do zapytania. To normalne.\n\n## Meta robots\n\n```html\n<meta name=\"robots\" content=\"noindex, follow\">\n```\n\n- `noindex`: nie pokazuj tej strony w wynikach (np. strona podziękowania, koszyk, wyniki wyszukiwarki wewnętrznej).\n- `nofollow`: nie idź za linkami z tej strony (rzadko potrzebne).\n- Domyślnie strona jest `index, follow` i nie trzeba tego wpisywać.\n\n## Open Graph\n\nTagi `og:title`, `og:description` i `og:image` decydują, jak wygląda link udostępniony na Facebooku, LinkedInie czy w komunikatorach. Obrazek: **1200 × 630 px**.\n\n## Jak ustawić w WordPressie\n\nWtyczka SEO (Yoast SEO albo Rank Math, tydzień 7) dodaje pod edytorem pola: **tytuł SEO**, **opis meta** i podgląd wyniku w Google, a także ustawienia noindex i Open Graph. Ustawia też szablony, np. `%%title%% | %%sitename%%`, dla stron, których nie uzupełnisz ręcznie.\n\n## Czytaj dalej\n\n- [Google: linki tytułowe w wynikach (po angielsku)](https://developers.google.com/search/docs/appearance/title-link)\n- [Google: opisy w wynikach (po angielsku)](https://developers.google.com/search/docs/appearance/snippet)",
+    "questions": [
+      {
+        "id": "t4-meta-tagi-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Który meta tag tworzy niebieski nagłówek wyniku w Google?",
+        "answer": "`title`",
+        "distractors": [
+          "`meta description`",
+          "`og:image`"
+        ],
+        "explanation": "Title to tytuł wyniku i nazwa karty przeglądarki. Description to opis pod nim."
+      },
+      {
+        "id": "t4-meta-tagi-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Strona podziękowania po wysłaniu formularza powinna mieć meta robots ___.",
+        "answer": "noindex",
+        "explanation": "Strona podziękowania nie ma wartości w wynikach wyszukiwania, a jej indeksacja zaburza też pomiar konwersji."
+      },
+      {
+        "id": "t4-meta-tagi-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Czy meta description wpływa bezpośrednio na pozycję strony?",
+        "answer": "Nie, ale wpływa na to, czy ludzie klikną (CTR)",
+        "distractors": [
+          "Tak, to najważniejszy czynnik rankingowy",
+          "Tak, ale tylko na telefonach"
+        ],
+        "explanation": "Opis nie jest czynnikiem rankingowym, ale dobry opis zwiększa kliknięcia z wyników."
+      },
+      {
+        "id": "t4-meta-tagi-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Tytuły podstron: `Remont łazienki Kraków – cena | Moja Firma`, `Remont kuchni Kraków – realizacje | Moja Firma`, `Strona główna`, `Kontakt – Moja Firma Kraków`. Który tytuł jest słaby?",
+        "answer": "`Strona główna`",
+        "distractors": [
+          "`Remont łazienki Kraków – cena | Moja Firma`",
+          "`Remont kuchni Kraków – realizacje | Moja Firma`",
+          "`Kontakt – Moja Firma Kraków`"
+        ],
+        "explanation": "„Strona główna” nic nie mówi ani Google, ani ludziom. Lepiej np. „Firma remontowa Kraków – łazienki i kuchnie | Moja Firma”."
+      },
+      {
+        "id": "t4-meta-tagi-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Ustawiono piękny meta description, ale Google w wynikach pokazuje inny tekst ze strony. Co się dzieje?",
+        "answer": "Google czasem wybiera fragment strony, który lepiej pasuje do zapytania; to normalne",
+        "distractors": [
+          "Wtyczka SEO jest zepsuta",
+          "Strona dostała karę od Google"
+        ],
+        "explanation": "Google może przepisać opis, zwłaszcza dla zapytań, do których opis słabo pasuje. Nie oznacza to błędu."
+      },
+      {
+        "id": "t4-meta-tagi-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Jak napisać dobry title dla strony usługi?",
+        "answer": "Ok. 50–60 znaków, główna fraza na początku, potem korzyść lub wyróżnik, na końcu nazwa firmy, i unikalny dla tej podstrony. Na przykład: Remont łazienki Kraków – cena i realizacje | Moja Firma.",
+        "keyPoints": [
+          "50–60 znaków",
+          "fraza na początku",
+          "korzyść lub wyróżnik",
+          "marka na końcu",
+          "unikalny"
+        ],
+        "explanation": "Title to też obietnica: musi zgadzać się z treścią strony."
+      },
+      {
+        "id": "t4-meta-tagi-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Czym różni się meta description od title i jak napisać dobry opis?",
+        "answer": "Title to tytuł wyniku i ważny sygnał rankingowy. Description to opis pod tytułem, który nie wpływa na pozycję, ale zachęca do kliknięcia. Dobry opis ma ok. 150–160 znaków, mówi konkretnie, co znajdę na stronie, podaje korzyść i zachęca do działania.",
+        "keyPoints": [
+          "title: tytuł, sygnał rankingowy",
+          "description: opis, wpływa na CTR",
+          "150–160 znaków",
+          "konkret, korzyść, wezwanie do działania"
+        ],
+        "explanation": "Przykład: „Remontujemy łazienki w Krakowie od 2010 r. Stała cena w umowie i 3 lata gwarancji. Sprawdź realizacje i umów bezpłatną wycenę.”"
+      },
+      {
+        "id": "t4-meta-tagi-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Które strony na stronie firmowej lub w sklepie powinny mieć noindex i dlaczego?",
+        "answer": "Strona podziękowania, koszyk, kasa i moje konto w sklepie, wyniki wewnętrznej wyszukiwarki, strony testowe i czasem cienkie archiwa, np. tagów. Nie mają wartości w wynikach Google, a ich indeksacja daje słabe lub zduplikowane strony.",
+        "keyPoints": [
+          "strona podziękowania",
+          "koszyk, kasa, konto",
+          "wyniki wyszukiwarki wewnętrznej",
+          "strony testowe i cienkie archiwa",
+          "brak wartości w Google"
+        ],
+        "explanation": "Wtyczki SEO i WooCommerce część z nich oznaczają automatycznie."
+      },
+      {
+        "id": "t4-meta-tagi-09",
+        "type": "open",
+        "difficulty": 3,
+        "prompt": "Link do bloga udostępniony na Facebooku pokazuje losowy obrazek ze stopki. Jak to naprawić?",
+        "answer": "Ustawię obrazek Open Graph (og:image) we wtyczce SEO dla tego wpisu albo jako obrazek wyróżniający, w rozmiarze 1200 × 630 px. Dodam też domyślny obrazek OG dla całej strony. Potem odświeżę podgląd w narzędziu Facebooka do debugowania udostępnień.",
+        "keyPoints": [
+          "ustawić og:image we wtyczce SEO",
+          "rozmiar 1200 × 630 px",
+          "domyślny obrazek OG dla strony",
+          "odświeżyć podgląd w narzędziu Facebooka"
+        ],
+        "explanation": "Facebook zapamiętuje podgląd, dlatego trzeba go odświeżyć po zmianie."
+      },
+      {
+        "id": "t4-meta-tagi-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Strona ma 30 podstron i wszystkie mają ten sam title „Moja Firma”. Jakie to ma skutki i jak to naprawić?",
+        "answer": "Google nie wie, czym różnią się podstrony, wyniki wyglądają tak samo i nikt nie wie, w co kliknąć. Strony słabiej pozycjonują się na swoje frazy. Naprawa: wtyczka SEO z szablonem %%title%% | %%sitename%% jako minimum, a dla ważnych stron ręcznie napisane, unikalne tytuły z frazą.",
+        "keyPoints": [
+          "Google nie rozróżnia podstron",
+          "wyniki wyglądają identycznie, niski CTR",
+          "słabsze pozycje",
+          "szablon tytułów we wtyczce",
+          "ręczne tytuły dla ważnych stron"
+        ],
+        "explanation": "Takie błędy łatwo znaleźć crawlerem, np. Screaming Frog (tydzień 10)."
+      }
+    ],
+    "task": {
+      "task": "Napisz title i description dla 5 podstron.\n\n1. Zainstaluj na stronie lokalnej wtyczkę SEO (Yoast SEO albo Rank Math), jeśli jeszcze jej nie masz.\n2. Weź 5 podstron z mapy fraz z lekcji o słowach kluczowych.\n3. Dla każdej napisz title (50–60 znaków, fraza na początku, marka na końcu) i description (150–160 znaków, korzyść i wezwanie do działania).\n4. Wpisz je we wtyczce i sprawdź podgląd wyniku.\n5. Ustaw noindex dla strony podziękowania (jeśli ją masz) i dodaj domyślny obrazek Open Graph 1200 × 630 px.",
+      "checklist": [
+        "Wtyczka SEO zainstalowana",
+        "5 tytułów w normie długości",
+        "5 opisów z korzyścią",
+        "Podgląd wyników sprawdzony",
+        "noindex i obrazek OG ustawione"
+      ],
+      "hints": [
+        "W Yoast pola są pod edytorem w sekcji **Yoast SEO → Wygląd w Google**. W Rank Math: ikona z liczbą u góry edytora → **Edytuj snippet**.",
+        "Pasek długości we wtyczce zmienia kolor na zielony, gdy długość jest dobra.",
+        "Domyślny obrazek OG: Yoast → **Ustawienia → Ustawienia witryny**; Rank Math → **Tytuły i meta → Globalne meta**."
+      ],
+      "solution": "Przykład:\n\n- **Strona główna**: „Firma remontowa Kraków – łazienki i kuchnie | Moja Firma” / „Remontujemy łazienki i kuchnie w Krakowie od 2010 r. Stała cena w umowie i 3 lata gwarancji. Zobacz realizacje i umów wycenę.”\n- **Remont łazienki**: „Remont łazienki Kraków – cena i realizacje | Moja Firma” / „Kompleksowy remont łazienki w Krakowie: projekt, materiały, wykonanie. Sprawdź ceny i zdjęcia realizacji. Bezpłatna wycena w 48 h.”\n- **Poradnik**: „Ile kosztuje remont łazienki? Ceny 2026 | Moja Firma” / „Sprawdź, od czego zależy cena remontu łazienki i ile kosztują materiały i robocizna. Przykładowe kosztorysy dla 4 i 6 m².”\n- Strona podziękowania: noindex. Obrazek OG: logo na tle w kolorze firmy, 1200 × 630 px."
+    }
+  },
+  {
+    "id": "t4-naglowki",
+    "week": 4,
+    "order": 7,
+    "title": "Nagłówki H1–H6",
+    "lesson": "Nagłówki tworzą **spis treści** strony. Pomagają czytelnikom szybko przejrzeć tekst, czytnikom ekranu poruszać się po stronie, a Google zrozumieć, o czym są poszczególne części.\n\n![Hierarchia nagłówków](diagram:naglowki-h)\n\n## Zasady\n\n- **Jeden H1** na stronę: temat całej strony z główną frazą. W WordPressie motyw zwykle zamienia **tytuł strony lub wpisu w H1**, więc w treści zaczynasz od H2.\n- **H2** dla głównych sekcji, **H3** dla podsekcji wewnątrz H2. H4–H6 rzadko są potrzebne.\n- **Bez skoków**: po H2 nie przeskakuj od razu do H4.\n- **Nagłówek opisuje treść** pod nim. „Ile kosztuje remont łazienki?” jest lepsze niż „Ceny”.\n- Frazy pokrewne w H2 naturalnie, bez upychania.\n- **Nagłówki nie służą do stylu.** Jeśli chcesz dużego tekstu, który nie jest nagłówkiem, zmień rozmiar zwykłego akapitu. I odwrotnie: jeśli tekst jest nagłówkiem sekcji, oznacz go jako nagłówek, nawet gdy ma wyglądać skromnie.\n\n## Częste błędy w WordPressie\n\n- **Brak H1**: motyw ukrywa tytuł strony głównej, a w treści nie ma H1.\n- **Dwa H1**: tytuł strony jest H1 i w treści dodano drugi H1, np. w sekcji hero.\n- **Logo jako H1** na każdej stronie (stare motywy).\n- **Nagłówki w stopce i pasku bocznym** (np. „Kontakt”, „Ostatnie wpisy”) jako H2, przez co struktura się rozmywa. Lepiej oznaczyć je jako zwykły tekst albo niższe nagłówki.\n- W builderach nagłówek widżetu domyślnie bywa H2. Zmieniaj poziom w ustawieniach widżetu.\n\n## Jak sprawdzić\n\n- **Widok listy** w edytorze blokowym i panel **Szczegóły** (ikona „i”) pokazują strukturę nagłówków.\n- W DevTools szukaj `<h1` (Ctrl+F w zakładce Elementy).\n- Rozszerzenia przeglądarki do SEO (np. „Detailed SEO Extension”) pokazują strukturę nagłówków każdej strony.\n\n## Czytaj dalej\n\n- [Google: SEO Starter Guide – nagłówki (po angielsku)](https://developers.google.com/search/docs/fundamentals/seo-starter-guide)\n- [MDN: elementy nagłówków (po angielsku)](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/Heading_Elements)",
+    "questions": [
+      {
+        "id": "t4-naglowki-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Ile nagłówków H1 powinna mieć strona?",
+        "answer": "Jeden",
+        "distractors": [
+          "Zero",
+          "Tyle, ile sekcji"
+        ],
+        "explanation": "Jeden H1 mówi, o czym jest cała strona. Sekcje dostają H2."
+      },
+      {
+        "id": "t4-naglowki-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Główne sekcje strony oznacza się nagłówkami ___.",
+        "answer": "H2",
+        "explanation": "H1 to temat strony, H2 główne sekcje, H3 podsekcje w H2."
+      },
+      {
+        "id": "t4-naglowki-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "W WordPressie tytuł strony zwykle wyświetla się jako H1. Od jakiego poziomu zaczynasz nagłówki w treści?",
+        "answer": "Od H2",
+        "distractors": [
+          "Od H1",
+          "Od H4"
+        ],
+        "explanation": "Skoro tytuł jest H1, w treści zaczynasz od H2. Inaczej strona ma dwa H1."
+      },
+      {
+        "id": "t4-naglowki-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Struktura strony: `H1 Remont łazienki w Krakowie`, `H2 Co obejmuje remont`, `H4 Ceny dla łazienki 4 m²`, `H2 Nasze realizacje`. Co jest błędem?",
+        "answer": "`H4 Ceny dla łazienki 4 m²`",
+        "distractors": [
+          "`H1 Remont łazienki w Krakowie`",
+          "`H2 Co obejmuje remont`",
+          "`H2 Nasze realizacje`"
+        ],
+        "explanation": "Po H2 przeskoczono do H4. Podsekcja H2 to H3. Skoki rozbijają logiczną strukturę."
+      },
+      {
+        "id": "t4-naglowki-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Grafik chce, żeby zdanie „Ponad 500 zadowolonych klientów” było duże i pogrubione. Jak je oznaczyć?",
+        "answer": "Jako akapit z większą czcionką, bo to nie jest nagłówek sekcji",
+        "distractors": [
+          "Jako H1, bo jest duże",
+          "Jako H2, bo każdy duży tekst to nagłówek"
+        ],
+        "explanation": "Poziom nagłówka wynika ze struktury treści, a nie z wyglądu. Wygląd ustawia się stylem."
+      },
+      {
+        "id": "t4-naglowki-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Opisz zasady poprawnej struktury nagłówków na stronie.",
+        "answer": "Jeden H1 z tematem strony i główną frazą, potem H2 dla głównych sekcji i H3 dla podsekcji, bez przeskakiwania poziomów. Nagłówki opisują treść pod nimi i nie służą do ozdabiania tekstu. Frazy pokrewne naturalnie w H2.",
+        "keyPoints": [
+          "jeden H1 z frazą",
+          "H2 sekcje, H3 podsekcje",
+          "bez skoków poziomów",
+          "nagłówki opisują treść, nie styl"
+        ],
+        "explanation": "Dobra struktura nagłówków to też szansa na cytowanie w AI Overviews."
+      },
+      {
+        "id": "t4-naglowki-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak sprawdzisz strukturę nagłówków na stronie w WordPressie?",
+        "answer": "W edytorze blokowym otworzę Widok listy albo panel Szczegóły, który pokazuje strukturę dokumentu. Na gotowej stronie użyję DevTools (Ctrl+F i <h1, <h2) albo rozszerzenia przeglądarki do SEO, które pokazuje listę nagłówków. Sprawdzę też nagłówki z motywu: logo, stopkę, pasek boczny.",
+        "keyPoints": [
+          "Widok listy / Szczegóły w edytorze",
+          "DevTools: wyszukanie <h1",
+          "rozszerzenie SEO",
+          "nagłówki z motywu (stopka, sidebar)"
+        ],
+        "explanation": "Edytor nie widzi nagłówków z motywu, dlatego sprawdź też gotową stronę."
+      },
+      {
+        "id": "t4-naglowki-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Zaproponuj strukturę nagłówków dla strony „Remont łazienki w Krakowie”.",
+        "answer": "H1: Remont łazienki w Krakowie. H2: Co obejmuje remont łazienki. H2: Ile kosztuje remont łazienki, z H3: Łazienka 4 m², Łazienka 6 m², Materiały. H2: Nasze realizacje. H2: Jak pracujemy. H2: Najczęstsze pytania, z H3 dla każdego pytania. H2: Umów wycenę.",
+        "keyPoints": [
+          "H1 z frazą i miastem",
+          "kilka H2 dla sekcji",
+          "H3 w sekcji cen lub FAQ",
+          "logiczna kolejność"
+        ],
+        "explanation": "Twoja struktura może być inna. Ważne: jeden H1, H2 jako sekcje, H3 wewnątrz."
+      },
+      {
+        "id": "t4-naglowki-09",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "W sekcji hero zbudowanej w Elementorze jest nagłówek H1, a motyw też wyświetla tytuł strony jako H1. Co zrobisz?",
+        "answer": "Zostawię tylko jeden H1. Albo ukryję tytuł strony motywu (opcja w ustawieniach strony lub motywu) i zostawię H1 w hero, albo zmienię nagłówek hero na H2. Lepiej zostawić H1 w hero, jeśli lepiej opisuje temat, i ukryć tytuł motywu. Sprawdzę wynik w DevTools.",
+        "keyPoints": [
+          "dwa H1 to błąd",
+          "ukryć tytuł motywu albo zmienić hero na H2",
+          "zostawić H1, który lepiej opisuje temat",
+          "sprawdzić w DevTools"
+        ],
+        "explanation": "W Elementorze tytuł motywu ukryjesz w ustawieniach strony: Ukryj tytuł."
+      },
+      {
+        "id": "t4-naglowki-10",
+        "type": "open",
+        "difficulty": 3,
+        "prompt": "Dlaczego nagłówki są ważne dla dostępności, a nie tylko dla SEO?",
+        "answer": "Osoby korzystające z czytników ekranu poruszają się po stronie, skacząc między nagłówkami, tak jak wzrokowo przeglądamy tekst. Dobra hierarchia pozwala im szybko znaleźć potrzebną sekcję. Nagłówki użyte tylko do stylu albo ze skokami poziomów wprowadzają chaos.",
+        "keyPoints": [
+          "czytniki ekranu nawigują po nagłówkach",
+          "hierarchia pozwala szybko znaleźć sekcję",
+          "nagłówki dla stylu wprowadzają chaos"
+        ],
+        "explanation": "Dostępność i SEO często idą w parze."
+      }
+    ],
+    "task": {
+      "task": "Popraw nagłówki strony głównej na stronie lokalnej.\n\n1. Otwórz stronę główną i sprawdź w DevTools (Ctrl+F `<h1`), ile ma H1.\n2. Wypisz wszystkie nagłówki strony (z motywem: nagłówek, stopka) z ich poziomami.\n3. Popraw strukturę: jeden H1 z główną frazą, H2 dla sekcji, H3 dla podsekcji, bez skoków.\n4. Zamień na zwykły tekst nagłówki, które służą tylko do stylu.\n5. Sprawdź wynik jeszcze raz w DevTools i w Widoku listy.",
+      "checklist": [
+        "Liczba H1 sprawdzona",
+        "Lista nagłówków z poziomami",
+        "Jeden H1 i logiczne H2/H3",
+        "Nagłówki dla stylu zamienione na tekst"
+      ],
+      "hints": [
+        "W bloku Nagłówek poziom zmienisz na pasku narzędzi (ikona H2/H3).",
+        "W szablonie strony głównej motywu blokowego tytuł może być ukryty. Sprawdź w Wygląd → Edytor.",
+        "Nagłówki w stopce motywu blokowego zmienisz w części szablonu Stopka."
+      ],
+      "solution": "Przed: dwa H1 (tytuł strony „Strona główna” i nagłówek w okładce), sekcje jako H4, w stopce trzy H2.\n\nPo:\n\n- H1: „Firma remontowa w Krakowie” (w okładce, tytuł strony ukryty)\n- H2: „Nasze usługi” → H3: „Remont łazienki”, „Remont kuchni”, „Malowanie”\n- H2: „Realizacje”\n- H2: „Dlaczego my”\n- H2: „Kontakt”\n- Stopka: „Kontakt” i „Na skróty” jako pogrubiony akapit zamiast H2."
+    }
   }
 ]

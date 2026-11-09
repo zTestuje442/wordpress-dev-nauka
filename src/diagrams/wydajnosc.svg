@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 250" role="img" aria-labelledby="title">
+<title id="title">Cztery warstwy przyspieszania strony bez kodu: cache stron, optymalizacja plików, obrazy z CDN i porządki w bazie danych</title>
+<style>
+svg{--fg:#1d1d1b;--muted:#6b6b66;--box:#ffffff;--line:#c9c9c1;--accent:#2b6cb0;--site:#2f8f4e;--bad:#c0392b;font-family:system-ui,sans-serif}
+@media (prefers-color-scheme:dark){svg{--fg:#ecece6;--muted:#a0a09a;--box:#1f1f1d;--line:#4a4a44;--accent:#63a4ec;--site:#5cbf7d;--bad:#ec7f72}}
+.box{fill:var(--box);stroke:var(--line);stroke-width:1.5}
+.box.good{stroke:var(--site);stroke-width:2}
+.box.bad{stroke:var(--bad);stroke-width:2}
+.t{fill:var(--fg);font-size:16px;font-weight:700}
+.s{fill:var(--muted);font-size:13px}
+.ar{stroke:var(--line);stroke-width:2}
+#m path{fill:var(--line)}
+.tag{fill:var(--accent);font-size:14px;font-weight:700}
+.tag.good{fill:var(--site)}
+.tag.bad{fill:var(--bad)}
+.hl{fill:none;stroke:var(--accent);stroke-width:3;opacity:0}
+.cap{fill:var(--fg);font-size:15px;opacity:0}
+.static{fill:var(--muted);font-size:14px;opacity:0}
+</style>
+
+<rect class="box " x="20" y="20" width="168" height="210" rx="12"/>
+<text class="t" x="104" y="52" text-anchor="middle">Cache strony</text>
+<text class="s" x="104" y="84" text-anchor="middle">gotowy HTML</text>
+<text class="s" x="104" y="104" text-anchor="middle">zamiast PHP</text>
+<text class="s" x="104" y="124" text-anchor="middle">LiteSpeed Cache</text>
+<text class="s" x="104" y="144" text-anchor="middle">lub WP Rocket</text>
+<text class="s" x="104" y="164" text-anchor="middle">bez koszyka</text>
+<text class="tag " x="104" y="212" text-anchor="middle">najwięcej</text>
+<rect class="box " x="204" y="20" width="168" height="210" rx="12"/>
+<text class="t" x="288" y="52" text-anchor="middle">Pliki CSS i JS</text>
+<text class="s" x="288" y="84" text-anchor="middle">łączenie</text>
+<text class="s" x="288" y="104" text-anchor="middle">minifikacja</text>
+<text class="s" x="288" y="124" text-anchor="middle">opóźnienie JS</text>
+<text class="s" x="288" y="144" text-anchor="middle">testuj formularze</text>
+<text class="s" x="288" y="164" text-anchor="middle"></text>
+<text class="tag " x="288" y="212" text-anchor="middle">ostrożnie</text>
+<rect class="box good" x="388" y="20" width="168" height="210" rx="12"/>
+<text class="t" x="472" y="52" text-anchor="middle">Obrazy i CDN</text>
+<text class="s" x="472" y="84" text-anchor="middle">WebP, AVIF</text>
+<text class="s" x="472" y="104" text-anchor="middle">lazy load</text>
+<text class="s" x="472" y="124" text-anchor="middle">wymiary</text>
+<text class="s" x="472" y="144" text-anchor="middle">Cloudflare</text>
+<text class="s" x="472" y="164" text-anchor="middle">QUIC.cloud</text>
+<text class="tag good" x="472" y="212" text-anchor="middle">duży zysk</text>
+<rect class="box good" x="572" y="20" width="168" height="210" rx="12"/>
+<text class="t" x="656" y="52" text-anchor="middle">Baza danych</text>
+<text class="s" x="656" y="84" text-anchor="middle">rewizje</text>
+<text class="s" x="656" y="104" text-anchor="middle">spam, kosz</text>
+<text class="s" x="656" y="124" text-anchor="middle">stare transienty</text>
+<text class="s" x="656" y="144" text-anchor="middle">WP-Optimize</text>
+<text class="s" x="656" y="164" text-anchor="middle">kopia przed</text>
+<text class="tag good" x="656" y="212" text-anchor="middle">porządki</text>
+</svg>

@@ -11650,5 +11650,808 @@
       ],
       "solution": "Lista kontrolna (fragment):\n\n- Dzień wcześniej: kopia, TTL rekordu A na 300 s, sprawdzenie wersji PHP na nowym serwerze.\n- W dniu przenosin: tryb konserwacji (sklep), eksport, import, test przez plik hosts (`203.0.113.10 firma.pl`), zmiana rekordu A, wyłączenie trybu konserwacji.\n- Po zmianie: SSL, strony, panel, formularz i SMTP, poczta, płatności, cron, cache i Cloudflare, Search Console (błędy).\n- Po tygodniu: wyłączenie starego hostingu, przywrócenie TTL."
     }
+  },
+  {
+    "id": "t12-integracje-sklepu",
+    "week": 12,
+    "order": 1,
+    "title": "Integracje sklepu: faktury, kurierzy, porównywarki",
+    "lesson": "Mały sklep można obsługiwać ręcznie: przepisać adres do panelu kuriera, wystawić fakturę w osobnym programie. Przy 10 zamówieniach dziennie to godzina klikania i pomyłki w adresach. **Integracje** łączą WooCommerce z innymi usługami, żeby dane przechodziły same.\n\n![Droga zamówienia przez integracje](diagram:integracje)\n\n## Faktury\n\nPolskie programy do faktur, np. **Fakturownia**, **inFakt**, **wFirma**, mają wtyczki do WooCommerce. Po opłaceniu zamówienia faktura wystawia się sama i trafia do klienta mailem.\n\n- Od 2026 roku faktury firmowe w Polsce przechodzą przez **KSeF** (Krajowy System e-Faktur). Programy do faktur same wysyłają je do KSeF, więc to kolejny powód, żeby nie wystawiać ich ręcznie.\n- Dodaj w kasie pole **NIP** (wtyczka do faktur zwykle je dodaje), bo firma kupująca chce fakturę na firmę.\n- Ustaw, kiedy powstaje faktura: po opłaceniu, a przy płatności przy odbiorze po zmianie statusu na „Zrealizowane”.\n\n## Kurierzy\n\n- **InPost** ma oficjalną wtyczkę: wybór paczkomatu na mapie w kasie i etykiety z panelu WooCommerce.\n- **Brokerzy** (np. Apaczka, Furgonetka, Sendit) dają jedną wtyczkę do wielu kurierów i często tańsze stawki.\n- Numer przesyłki powinien trafiać do maila „Zamówienie wysłane”, żeby klient nie pisał z pytaniem „gdzie moja paczka?”.\n\n## Systemy do obsługi zamówień\n\n**BaseLinker** (dziś działa pod marką **Base**) zbiera zamówienia z WooCommerce, Allegro i innych kanałów w jednym miejscu. Z niego wystawiasz faktury, etykiety i pilnujesz stanów magazynowych we wszystkich kanałach naraz. Opłaca się, gdy sklep sprzedaje w kilku miejscach albo ma dużo zamówień.\n\n## Porównywarki i Google\n\n- **Google Merchant Center**: produkty pokazują się w zakładce Zakupy i w reklamach produktowych. Bezpłatne wyświetlenia są możliwe bez reklam. Wtyczka **Google for WooCommerce** wysyła produkty automatycznie.\n- **Ceneo**: największa polska porównywarka cen, płatna za kliknięcia. Wymaga **feedu XML**, czyli pliku z listą produktów, który robi wtyczka do feedów (np. Product Feed PRO, CTX Feed).\n- W feedzie liczą się: dokładny tytuł, cena zgodna ze stroną, dostępność, zdjęcie bez napisów, kod EAN (GTIN), jeśli produkt go ma.\n\n## Zasady\n\n- jedna wtyczka na jedno zadanie, bez dublowania (np. dwie wtyczki do faktur),\n- test na stagingu i jedno próbne zamówienie po każdej nowej integracji,\n- zapisz klientowi, które usługi są połączone i kto ma do nich dostęp.\n\n## Czytaj dalej\n\n- [Google Merchant Center: pierwsze kroki](https://support.google.com/merchants/answer/12159157?hl=pl)\n- [Google for WooCommerce (po angielsku)](https://woocommerce.com/products/google-listings-and-ads/)\n- [Base (BaseLinker)](https://base.com/pl-PL/)",
+    "questions": [
+      {
+        "id": "t12-integracje-sklepu-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Po co łączyć WooCommerce z programem do faktur?",
+        "answer": "Żeby faktura wystawiała się sama po opłaceniu zamówienia",
+        "distractors": [
+          "Żeby przyspieszyć ładowanie strony",
+          "Żeby poprawić pozycje w Google"
+        ],
+        "explanation": "Automatyczne faktury oszczędzają czas i eliminują pomyłki przy przepisywaniu danych."
+      },
+      {
+        "id": "t12-integracje-sklepu-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Plik z listą produktów, którego wymagają porównywarki i Merchant Center, to ___.",
+        "answer": "feed",
+        "explanation": "Feed (najczęściej XML) zawiera tytuły, ceny, dostępność, zdjęcia i kody produktów."
+      },
+      {
+        "id": "t12-integracje-sklepu-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Sklep sprzedaje w WooCommerce i na Allegro, a stany magazynowe ciągle się rozjeżdżają. Co pomoże najbardziej?",
+        "answer": "System do obsługi zamówień, np. BaseLinker, który pilnuje stanów we wszystkich kanałach",
+        "distractors": [
+          "Druga wtyczka do faktur",
+          "Ręczne poprawianie stanów co wieczór"
+        ],
+        "explanation": "Jedno miejsce na zamówienia i stany z kilku kanałów to główne zadanie takich systemów."
+      },
+      {
+        "id": "t12-integracje-sklepu-04",
+        "type": "error",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Ustawienia feedu dla Ceneo: `tytuł: Wiertarka Bosch PSB 500 RE`, `cena: z kwoty promocyjnej`, `zdjęcie: z napisem -20% i logo sklepu`, `EAN: 3165140580898`. Które ustawienie to błąd?",
+        "answer": "`zdjęcie: z napisem -20% i logo sklepu`",
+        "distractors": [
+          "`tytuł: Wiertarka Bosch PSB 500 RE`",
+          "`cena: z kwoty promocyjnej`",
+          "`EAN: 3165140580898`"
+        ],
+        "explanation": "Porównywarki i Google wymagają zdjęć produktu bez napisów promocyjnych i znaków wodnych. Cena promocyjna jest poprawna, jeśli taka sama jest na stronie."
+      },
+      {
+        "id": "t12-integracje-sklepu-05",
+        "type": "choice",
+        "difficulty": 2,
+        "tricky": true,
+        "prompt": "Klient płaci przy odbiorze. Kiedy powinna powstać faktura?",
+        "answer": "Po zmianie statusu na Zrealizowane, gdy pieniądze faktycznie wpłyną",
+        "distractors": [
+          "Od razu po złożeniu zamówienia",
+          "Nigdy, przy pobraniu faktur się nie wystawia"
+        ],
+        "explanation": "Przy płatności przy odbiorze zamówienie może nie dojść do skutku, więc fakturę warto wystawić później."
+      },
+      {
+        "id": "t12-integracje-sklepu-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Opisz drogę zamówienia w sklepie z dobrze ustawionymi integracjami.",
+        "answer": "Klient płaci, w WooCommerce powstaje zamówienie. Program do faktur sam wystawia fakturę i wysyła ją do KSeF oraz klientowi. Wtyczka kuriera lub system zamówień tworzy etykietę z adresu z zamówienia. Numer przesyłki trafia do maila o wysyłce. Stany magazynowe zmieniają się same we wszystkich kanałach.",
+        "keyPoints": [
+          "zamówienie w WooCommerce",
+          "automatyczna faktura i KSeF",
+          "etykieta bez przepisywania",
+          "numer przesyłki w mailu",
+          "stany magazynowe"
+        ],
+        "explanation": "Każdy krok bez ręcznego przepisywania to mniej pomyłek i mniej pracy."
+      },
+      {
+        "id": "t12-integracje-sklepu-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak podłączysz sklep do Google Merchant Center?",
+        "answer": "Zakładam konto Merchant Center i potwierdzam własność strony. Instaluję Google for WooCommerce i łączę konta. Uzupełniam w produktach dane: tytuły, zdjęcia bez napisów, ceny, dostępność, EAN, ustawiam dostawę i zwroty. Po synchronizacji sprawdzam w Merchant Center odrzucone produkty i poprawiam błędy.",
+        "keyPoints": [
+          "konto i potwierdzenie strony",
+          "wtyczka Google for WooCommerce",
+          "pełne dane produktów",
+          "dostawa i zwroty",
+          "kontrola odrzuconych produktów"
+        ],
+        "explanation": "Bezpłatne wyświetlenia w zakładce Zakupy działają bez wydawania na reklamy."
+      },
+      {
+        "id": "t12-integracje-sklepu-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Klient pyta, czy potrzebuje BaseLinkera. Jak mu doradzisz?",
+        "answer": "Pytam o liczbę zamówień i kanały sprzedaży. Jeśli sprzedaje tylko w WooCommerce i ma kilka zamówień dziennie, wystarczą wtyczki do faktur i kuriera. Jeśli sprzedaje też na Allegro lub w innych sklepach albo ma dużo zamówień, BaseLinker zbierze wszystko w jednym miejscu i będzie pilnował stanów. Porównuję koszt abonamentu z czasem, który zaoszczędzi.",
+        "keyPoints": [
+          "liczba zamówień",
+          "liczba kanałów sprzedaży",
+          "jeden kanał: wtyczki wystarczą",
+          "wiele kanałów: system zamówień",
+          "koszt kontra zaoszczędzony czas"
+        ],
+        "explanation": "Dobra rada to czasem „jeszcze nie teraz”."
+      },
+      {
+        "id": "t12-integracje-sklepu-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jakie dane w feedzie produktów mają największe znaczenie i dlaczego?",
+        "answer": "Tytuł z marką, modelem i najważniejszą cechą, bo po nim porównywarka dopasowuje produkt do wyszukiwania. Cena i dostępność zgodne ze stroną, bo niezgodność kończy się odrzuceniem. Zdjęcie bez napisów. Kod EAN, bo po nim produkt łączy się z ofertami innych sklepów. Kategoria i koszt dostawy.",
+        "keyPoints": [
+          "tytuł z marką i modelem",
+          "cena i dostępność zgodne ze stroną",
+          "zdjęcie bez napisów",
+          "EAN",
+          "kategoria i dostawa"
+        ],
+        "explanation": "Feed to w praktyce SEO dla porównywarek."
+      },
+      {
+        "id": "t12-integracje-sklepu-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Po zainstalowaniu wtyczki Fakturowni klienci dostają po dwie faktury do jednego zamówienia. Jak znajdziesz przyczynę?",
+        "answer": "Sprawdzam, czy nie działa druga wtyczka do faktur albo stara integracja w BaseLinkerze, która też wystawia faktury. Sprawdzam ustawienia wtyczki: czy faktura nie powstaje przy dwóch statusach, np. Przetwarzane i Zrealizowane. Zostawiam jedno źródło faktur, robię próbne zamówienie na stagingu, a zdublowane faktury koryguję w programie do faktur.",
+        "keyPoints": [
+          "druga wtyczka lub integracja",
+          "dwa statusy wyzwalające fakturę",
+          "jedno źródło faktur",
+          "test próbnym zamówieniem",
+          "korekta zdublowanych faktur"
+        ],
+        "explanation": "Zasada: jedno zadanie, jedna integracja."
+      }
+    ],
+    "task": {
+      "task": "Zaplanuj i przetestuj integracje sklepu.\n\n1. Na stronie testowej z WooCommerce dodaj w kasie pole NIP (wtyczka programu do faktur albo wtyczka do pól faktury).\n2. Załóż darmowe konto testowe w programie do faktur (np. Fakturownia lub inFakt) i połącz je wtyczką z WooCommerce.\n3. Złóż próbne zamówienie i sprawdź, czy faktura powstała po zmianie statusu.\n4. Zainstaluj wtyczkę do feedów i wygeneruj feed XML dla 3 produktów. Otwórz go i sprawdź tytuły, ceny, zdjęcia.\n5. Zapisz schemat integracji dla klienta: jakie usługi, co robią, przy jakim statusie.",
+      "checklist": [
+        "Pole NIP w kasie",
+        "Program do faktur połączony",
+        "Faktura z próbnego zamówienia",
+        "Feed XML sprawdzony",
+        "Schemat integracji"
+      ],
+      "hints": [
+        "Programy do faktur mają tryb testowy lub darmowy okres, wystarczy na ćwiczenie.",
+        "Feed otworzysz w przeglądarce, wklejając jego adres. To zwykły tekst z listą produktów.",
+        "Schemat może być prostą listą: Usługa, Co robi, Kiedy, Kto ma dostęp."
+      ],
+      "solution": "Schemat integracji (przykład):\n\n- Fakturownia: faktura po statusie Zrealizowane, mail do klienta, wysyłka do KSeF. Dostęp: właściciel i księgowa.\n- InPost: wybór paczkomatu w kasie, etykieta z panelu zamówienia, numer przesyłki w mailu o wysyłce.\n- Google for WooCommerce: synchronizacja produktów co dobę, bezpłatne wyświetlenia.\n- Feed dla Ceneo: `/feed/ceneo.xml`, odświeżany co 6 godzin.\n- Test: zamówienie #1042, faktura FV 3/11/2026 wystawiona po zmianie statusu."
+    }
+  },
+  {
+    "id": "t12-wydajnosc",
+    "week": 12,
+    "order": 2,
+    "title": "Wydajność bez kodu: cache, CDN, baza",
+    "lesson": "W tygodniu 7 była mowa o tym, jak mierzyć szybkość i co znaczą Core Web Vitals. Teraz praktyka: jak przyspieszyć stronę wtyczkami i ustawieniami, bez pisania kodu.\n\n![Cztery warstwy przyspieszania](diagram:wydajnosc)\n\n## 1. Cache strony\n\nBez cache przy każdej wizycie serwer uruchamia PHP i pyta bazę danych. **Cache** zapisuje gotową stronę HTML i podaje ją od razu. To zwykle największy zysk.\n\n- **LiteSpeed Cache**: darmowa, najlepsza na serwerach **LiteSpeed** (ma je wiele polskich hostingów; sprawdź w panelu lub zapytaj hosting).\n- **WP Rocket**: płatna, działa na każdym serwerze, prosta w ustawieniu.\n- Tylko **jedna** wtyczka cache naraz. Dwie potrafią się kłócić i psuć stronę.\n- W sklepie koszyk, kasa i Moje konto nie mogą być cache'owane. Dobre wtyczki wyłączają je same, ale sprawdź.\n\n## 2. Pliki CSS i JS\n\n- **Minifikacja**: usuwa zbędne spacje z plików, bezpieczna.\n- **Opóźnienie JS** (delay JavaScript): skrypty ładują się dopiero po ruchu użytkownika. Duży zysk w PageSpeed, ale może zepsuć baner cookies, formularz, slider lub koszyk.\n- **Usuwanie nieużywanego CSS**: duży zysk, ale też ryzyko rozjechania wyglądu.\n\nWłączaj opcje po jednej i po każdej sprawdzaj stronę główną, formularz, koszyk i widok na telefonie.\n\n## 3. Obrazy i CDN\n\n- format **WebP** lub **AVIF**, kompresja przy wgrywaniu (np. wbudowana w LiteSpeed lub wtyczka typu Converter for Media),\n- **lazy load** dla obrazów poniżej pierwszego ekranu, ale **nie** dla głównego obrazka na górze (to element LCP),\n- **CDN** (Content Delivery Network) podaje pliki z serwera blisko odwiedzającego. **Cloudflare** ma darmowy plan, **QUIC.cloud** współpracuje z LiteSpeed Cache.\n\n## 4. Baza danych\n\nZ czasem w bazie zbierają się rewizje wpisów, spam, kosz i stare dane tymczasowe (transienty). **WP-Optimize** albo zakładka bazy w LiteSpeed Cache czyści to przyciskiem. Zawsze z **kopią zapasową** przed czyszczeniem.\n\n## Kolejność pracy\n\n1. kopia i pomiar PageSpeed Insights (zapisz wyniki),\n2. hosting: aktualna wersja PHP (8.2 lub nowsza),\n3. cache strony,\n4. obrazy,\n5. pliki CSS i JS, ostrożnie,\n6. porządki w bazie i wtyczkach (każda zbędna wtyczka to mniej kodu),\n7. ponowny pomiar i porównanie.\n\n## Czytaj dalej\n\n- [WPBeginner: jak przyspieszyć WordPressa (po angielsku)](https://www.wpbeginner.com/wordpress-performance-speed/)\n- [LiteSpeed Cache: dokumentacja (po angielsku)](https://docs.litespeedtech.com/lscache/lscwp/)\n- [PageSpeed Insights](https://pagespeed.web.dev/)",
+    "questions": [
+      {
+        "id": "t12-wydajnosc-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Która zmiana zwykle daje największe przyspieszenie zwykłej strony WordPress?",
+        "answer": "Włączenie cache strony",
+        "distractors": [
+          "Zmiana koloru motywu",
+          "Dodanie większej liczby wtyczek"
+        ],
+        "explanation": "Cache podaje gotowy HTML zamiast uruchamiać PHP i bazę przy każdej wizycie."
+      },
+      {
+        "id": "t12-wydajnosc-02",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Hosting działa na serwerze LiteSpeed. Którą wtyczkę cache wybrać na start?",
+        "answer": "LiteSpeed Cache",
+        "distractors": [
+          "Dwie wtyczki cache dla pewności",
+          "Żadnej, LiteSpeed nie obsługuje cache"
+        ],
+        "explanation": "LiteSpeed Cache jest darmowa i korzysta z cache na poziomie serwera."
+      },
+      {
+        "id": "t12-wydajnosc-03",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Sieć serwerów, która podaje pliki strony z miejsca blisko odwiedzającego, to ___.",
+        "answer": "CDN",
+        "explanation": "Darmowy plan ma np. Cloudflare."
+      },
+      {
+        "id": "t12-wydajnosc-04",
+        "type": "error",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Ustawienia wydajności w sklepie: `cache strony: włączony`, `lazy load: wszystkie obrazy, także główny baner`, `WebP: włączony`, `wykluczenia cache: koszyk, kasa, moje konto`. Które ustawienie pogorszy wynik LCP?",
+        "answer": "`lazy load: wszystkie obrazy, także główny baner`",
+        "distractors": [
+          "`cache strony: włączony`",
+          "`WebP: włączony`",
+          "`wykluczenia cache: koszyk, kasa, moje konto`"
+        ],
+        "explanation": "Główny obraz na górze to zwykle element LCP. Leniwe ładowanie go opóźnia."
+      },
+      {
+        "id": "t12-wydajnosc-05",
+        "type": "choice",
+        "difficulty": 2,
+        "tricky": true,
+        "prompt": "Po włączeniu opóźnienia JS formularz kontaktowy przestał wysyłać wiadomości. Co zrobić?",
+        "answer": "Wykluczyć skrypty formularza z opóźnienia albo wyłączyć tę opcję i sprawdzić ponownie",
+        "distractors": [
+          "Zostawić, bo wynik PageSpeed jest wyższy",
+          "Usunąć formularz ze strony"
+        ],
+        "explanation": "Działająca strona jest ważniejsza niż kilka punktów w PageSpeed."
+      },
+      {
+        "id": "t12-wydajnosc-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Wyjaśnij, czym jest cache strony i dlaczego tak przyspiesza WordPressa.",
+        "answer": "Bez cache serwer przy każdej wizycie uruchamia PHP, pyta bazę danych i składa stronę od nowa. Cache zapisuje gotowy HTML i przy kolejnych wizytach podaje go od razu, bez tej pracy. Strona ładuje się szybciej, a serwer wytrzymuje więcej odwiedzin.",
+        "keyPoints": [
+          "bez cache: PHP i baza przy każdej wizycie",
+          "cache: gotowy HTML",
+          "szybsza odpowiedź serwera",
+          "mniejsze obciążenie"
+        ],
+        "explanation": "Dlatego cache to pierwszy krok, a nie ostatni."
+      },
+      {
+        "id": "t12-wydajnosc-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Dlaczego w sklepie koszyk i kasa nie mogą być cache'owane?",
+        "answer": "Koszyk i kasa są inne dla każdego klienta: inne produkty, adres, kwota. Gdyby były cache'owane, klient mógłby zobaczyć cudzy koszyk albo nieaktualne dane, a zamówienie mogłoby się nie udać. Dlatego wtyczki cache wykluczają koszyk, kasę i Moje konto.",
+        "keyPoints": [
+          "treść inna dla każdego klienta",
+          "ryzyko cudzego koszyka lub złych danych",
+          "błędy zamówień",
+          "wykluczenia w wtyczce"
+        ],
+        "explanation": "Po włączeniu cache zawsze zrób próbne zamówienie."
+      },
+      {
+        "id": "t12-wydajnosc-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Opisz bezpieczną kolejność przyspieszania strony klienta.",
+        "answer": "Robię kopię i zapisuję wyniki PageSpeed. Sprawdzam wersję PHP na hostingu. Włączam jedną wtyczkę cache. Optymalizuję obrazy: WebP, kompresja, lazy load bez głównego obrazka. Ostrożnie włączam minifikację i opóźnienie JS, po każdej opcji sprawdzając formularz, koszyk i telefon. Czyszczę bazę po kopii i usuwam zbędne wtyczki. Mierzę ponownie i porównuję.",
+        "keyPoints": [
+          "kopia i pomiar",
+          "PHP",
+          "jedna wtyczka cache",
+          "obrazy",
+          "CSS i JS po jednej opcji z testem",
+          "baza i wtyczki",
+          "ponowny pomiar"
+        ],
+        "explanation": "Zmiana po zmianie pozwala od razu znaleźć tę, która coś psuje."
+      },
+      {
+        "id": "t12-wydajnosc-09",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Klient ma zainstalowane naraz WP Rocket, W3 Total Cache i Autoptimize, a strona czasem pokazuje stary wygląd. Co zrobisz?",
+        "answer": "Robię kopię. Zostawiam jedną wtyczkę cache, np. WP Rocket, a pozostałe dezaktywuję i usuwam razem z ich ustawieniami. Czyszczę cache wtyczki, serwera i Cloudflare, jeśli jest. Sprawdzam stronę w oknie prywatnym. Potem ustawiam optymalizacje od nowa w jednej wtyczce i mierzę wyniki.",
+        "keyPoints": [
+          "kopia",
+          "jedna wtyczka cache",
+          "usunięcie pozostałych",
+          "czyszczenie wszystkich warstw cache",
+          "test w oknie prywatnym i pomiar"
+        ],
+        "explanation": "Kilka wtyczek cache naraz to częsta przyczyna dziwnych błędów."
+      },
+      {
+        "id": "t12-wydajnosc-10",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Czym jest CDN i kiedy pomaga najbardziej?",
+        "answer": "CDN to sieć serwerów na świecie, które przechowują kopie plików strony (obrazy, CSS, JS, czasem całe strony) i podają je z miejsca najbliżej odwiedzającego. Pomaga najbardziej, gdy odwiedzający są daleko od serwera, np. z kilku krajów, oraz przy wielu obrazach. Często daje też ochronę przed atakami.",
+        "keyPoints": [
+          "sieć serwerów z kopiami plików",
+          "podaje z najbliższego miejsca",
+          "odwiedzający z różnych krajów",
+          "dużo obrazów",
+          "dodatkowa ochrona"
+        ],
+        "explanation": "Dla strony z odwiedzającymi tylko z Polski i polskim hostingiem zysk jest mniejszy, ale ochrona nadal się przydaje."
+      }
+    ],
+    "task": {
+      "task": "Przyspiesz stronę testową i zmierz efekt.\n\n1. Zrób kopię i zmierz stronę główną w PageSpeed Insights (telefon). Zapisz wynik i LCP. Jeśli strona jest w Local, wystaw ją na chwilę przez Live Link albo użyj zakładki Lighthouse w Chrome.\n2. Zainstaluj jedną wtyczkę cache (LiteSpeed Cache lub WP Rocket) i włącz cache strony.\n3. Włącz WebP i lazy load, wyłącz lazy load dla głównego obrazka.\n4. Włącz minifikację CSS i JS, potem opóźnienie JS. Po każdej zmianie sprawdź formularz i widok na telefonie.\n5. Wyczyść bazę (rewizje, spam, kosz) i zmierz ponownie. Zapisz porównanie przed i po.",
+      "checklist": [
+        "Kopia i pomiar przed",
+        "Jedna wtyczka cache",
+        "Obrazy",
+        "CSS i JS z testami",
+        "Baza i pomiar po"
+      ],
+      "hints": [
+        "Lighthouse: w Chrome kliknij prawym, Zbadaj, zakładka Lighthouse, tryb Mobile.",
+        "W LiteSpeed Cache wykluczenie obrazów z lazy load jest w Page Optimization, zakładka Media Excludes.",
+        "Wynik PageSpeed zmienia się między pomiarami. Zmierz 2 lub 3 razy i weź środkowy."
+      ],
+      "solution": "Porównanie (przykład):\n\n- Przed: wynik 54, LCP 4,1 s, 38 żądań.\n- Po cache: wynik 68, LCP 2,9 s.\n- Po obrazach (WebP, bez lazy load na banerze): wynik 79, LCP 2,2 s.\n- Po minifikacji i opóźnieniu JS: wynik 91, LCP 1,8 s. Formularz działał dopiero po wykluczeniu jego skryptu z opóźnienia.\n- Baza: usunięto 1200 rewizji i 300 komentarzy spamowych."
+    }
+  },
+  {
+    "id": "t12-automatyzacja",
+    "week": 12,
+    "order": 3,
+    "title": "Automatyzacja: n8n i Make",
+    "lesson": "Wiele pracy przy stronie to przepisywanie: zapytanie z formularza do arkusza, nowe zamówienie do grupy na komunikatorze, klient do newslettera. **Automatyzacja** robi to sama, według zasady: **gdy stanie się X, zrób Y**.\n\n![Od formularza do CRM](diagram:automatyzacja)\n\n## Pojęcia\n\n- **Wyzwalacz** (trigger): zdarzenie, które uruchamia automatyzację, np. wysłany formularz, nowe zamówienie.\n- **Akcja**: to, co ma się stać, np. dodaj wiersz do arkusza, wyślij wiadomość.\n- **Webhook**: adres, pod który strona wysyła dane w tle, gdy coś się wydarzy. Scenariusz „nasłuchuje” pod tym adresem.\n- **Scenariusz** lub **workflow**: ciąg kroków od wyzwalacza do akcji.\n\n## Narzędzia\n\n- **Make**: wizualne scenariusze z klocków, darmowy plan z limitem operacji w miesiącu. Dobry na start.\n- **n8n**: podobny edytor, wersja w chmurze albo instalacja na własnym serwerze (wtedy bez limitu operacji, ale trzeba o serwer dbać).\n- **Zapier**: najprostszy, najwięcej gotowych połączeń, najdroższy przy większej liczbie zadań.\n- **Uncanny Automator**: wtyczka, która robi proste automatyzacje wewnątrz WordPressa.\n\n## Skąd WordPress wysyła dane\n\n- **Formularze**: WPForms, Fluent Forms, Gravity Forms mają dodatki z webhookami lub gotowe integracje. Do Contact Form 7 jest osobna wtyczka webhooków.\n- **WooCommerce** ma wbudowane webhooki: **WooCommerce → Ustawienia → Zaawansowane → Webhooki**, temat np. „Zamówienie utworzone” i adres z Make lub n8n.\n\n## Przykłady\n\n1. Formularz → nowy kontakt w CRM (np. HubSpot, Pipedrive) → wiadomość do handlowca.\n2. Nowe zamówienie → wiadomość na Slacku lub mailem do magazynu.\n3. Zamówienie zrealizowane → po 7 dniach mail z prośbą o opinię.\n4. Nowy wpis na blogu → post w mediach społecznościowych.\n\n## Na co uważać\n\n- **RODO**: dane osobowe przechodzą przez kolejną firmę. Przesyłaj tylko potrzebne pola, sprawdź, gdzie usługa przechowuje dane, i dopisz ją w polityce prywatności.\n- **Błędy**: włącz powiadomienie, gdy scenariusz się nie wykona, inaczej zapytania mogą ginąć bez śladu.\n- **Test**: najpierw próbne dane, potem prawdziwe.\n- Opisz klientowi, co jest zautomatyzowane i na czyim koncie.\n\n## Czytaj dalej\n\n- [Make: centrum pomocy (po angielsku)](https://help.make.com/)\n- [n8n: dokumentacja (po angielsku)](https://docs.n8n.io/)\n- [WooCommerce: webhooki (po angielsku)](https://woocommerce.com/document/webhooks/)",
+    "questions": [
+      {
+        "id": "t12-automatyzacja-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Czym jest wyzwalacz w automatyzacji?",
+        "answer": "Zdarzeniem, które uruchamia scenariusz, np. wysłany formularz",
+        "distractors": [
+          "Ostatnim krokiem scenariusza",
+          "Rodzajem wtyczki cache"
+        ],
+        "explanation": "Wzór: gdy stanie się X (wyzwalacz), zrób Y (akcja)."
+      },
+      {
+        "id": "t12-automatyzacja-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Adres, pod który strona wysyła dane w tle, gdy coś się wydarzy, to ___.",
+        "answer": "webhook",
+        "explanation": "Scenariusz w Make lub n8n nasłuchuje pod tym adresem."
+      },
+      {
+        "id": "t12-automatyzacja-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Gdzie w WooCommerce ustawisz webhook dla nowych zamówień?",
+        "answer": "WooCommerce → Ustawienia → Zaawansowane → Webhooki",
+        "distractors": [
+          "Wygląd → Edytor",
+          "Narzędzia → Eksport"
+        ],
+        "explanation": "Wybierasz temat, np. Zamówienie utworzone, i wklejasz adres scenariusza."
+      },
+      {
+        "id": "t12-automatyzacja-04",
+        "type": "error",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Scenariusz: `wyzwalacz: formularz kontaktowy`, `akcja 1: dodaj kontakt do CRM`, `akcja 2: wyślij wszystkie pola, także PESEL z formularza, do arkusza dostępnego przez link dla każdego`, `powiadomienie o błędzie: włączone`. Który krok jest problemem?",
+        "answer": "`akcja 2: wyślij wszystkie pola, także PESEL z formularza, do arkusza dostępnego przez link dla każdego`",
+        "distractors": [
+          "`wyzwalacz: formularz kontaktowy`",
+          "`akcja 1: dodaj kontakt do CRM`",
+          "`powiadomienie o błędzie: włączone`"
+        ],
+        "explanation": "Zbędne dane osobowe w publicznie dostępnym arkuszu to naruszenie RODO. Przesyłaj tylko potrzebne pola, do zabezpieczonych miejsc."
+      },
+      {
+        "id": "t12-automatyzacja-05",
+        "type": "choice",
+        "difficulty": 2,
+        "tricky": true,
+        "prompt": "Automatyzacja działała miesiąc, potem klient zauważył, że od tygodnia nie ma nowych zapytań w CRM. Czego zabrakło?",
+        "answer": "Powiadomienia o błędzie scenariusza",
+        "distractors": [
+          "Drugiej wtyczki formularzy",
+          "Większego limitu znaków w formularzu"
+        ],
+        "explanation": "Bez powiadomień błąd (np. wygasłe połączenie z CRM) może trwać tygodniami."
+      },
+      {
+        "id": "t12-automatyzacja-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Wyjaśnij na przykładzie, jak działa automatyzacja formularz → CRM.",
+        "answer": "Ktoś wysyła formularz na stronie. Wtyczka formularza wysyła dane webhookiem pod adres scenariusza w Make lub n8n. Scenariusz dostaje imię, mail i treść, dodaje kontakt w CRM i wysyła handlowcowi wiadomość z linkiem do kontaktu. Nikt nic nie przepisuje.",
+        "keyPoints": [
+          "wyzwalacz: formularz",
+          "webhook z danymi",
+          "scenariusz w Make lub n8n",
+          "kontakt w CRM",
+          "powiadomienie handlowca"
+        ],
+        "explanation": "Ten sam wzór działa dla zamówień, opinii i newslettera."
+      },
+      {
+        "id": "t12-automatyzacja-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Czym różnią się Make, n8n i Zapier i co polecisz małej firmie na start?",
+        "answer": "Wszystkie łączą aplikacje scenariuszami. Make ma wizualny edytor i darmowy plan z limitem operacji. n8n działa w chmurze albo na własnym serwerze, wtedy bez limitu, ale trzeba o serwer dbać. Zapier jest najprostszy i ma najwięcej połączeń, ale jest najdroższy przy większej liczbie zadań. Małej firmie na start polecam Make na darmowym planie.",
+        "keyPoints": [
+          "Make: wizualny, darmowy plan z limitem",
+          "n8n: chmura lub własny serwer",
+          "Zapier: najprostszy, najdroższy",
+          "rekomendacja z uzasadnieniem"
+        ],
+        "explanation": "Wybór zależy też od tego, czy po stronie klienta ktoś zadba o serwer."
+      },
+      {
+        "id": "t12-automatyzacja-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Zaplanuj automatyzację dla sklepu: prośba o opinię po zakupie.",
+        "answer": "Wyzwalacz: webhook WooCommerce przy zmianie zamówienia, w scenariuszu filtr na status Zrealizowane. Krok czekania 7 dni. Potem mail do klienta z podziękowaniem i linkiem do opinii w Google lub przy produkcie. Przesyłam tylko imię, mail i numer zamówienia. Włączam powiadomienie o błędach i testuję na swoim zamówieniu.",
+        "keyPoints": [
+          "webhook i filtr statusu",
+          "czekanie 7 dni",
+          "mail z linkiem do opinii",
+          "minimum danych",
+          "powiadomienie o błędach i test"
+        ],
+        "explanation": "Zgoda klienta na taki mail zależy od podstawy prawnej, warto to sprawdzić w regulaminie i polityce prywatności."
+      },
+      {
+        "id": "t12-automatyzacja-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jakie zasady RODO trzeba wziąć pod uwagę przy automatyzacjach?",
+        "answer": "Dane osobowe trafiają do kolejnej firmy, np. Make, CRM, Slacka. Przesyłam tylko potrzebne pola. Sprawdzam, gdzie usługa przechowuje dane i czy ma umowę powierzenia. Dopisuję usługi w polityce prywatności. Nie wysyłam danych do miejsc dostępnych dla wszystkich. Ustalam, kto ma dostęp do kont.",
+        "keyPoints": [
+          "dane w kolejnej firmie",
+          "minimum danych",
+          "miejsce przechowywania i umowa powierzenia",
+          "polityka prywatności",
+          "dostęp do kont"
+        ],
+        "explanation": "To samo dotyczy wtyczek, które wysyłają dane poza stronę."
+      },
+      {
+        "id": "t12-automatyzacja-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Klient chce, żeby każde zamówienie trafiało na Slacka, ale wiadomości przychodzą po 3 razy. Jak to zbadasz?",
+        "answer": "Sprawdzam w WooCommerce, ile jest webhooków z tematem zamówień, bo często są zdublowane albo ustawione na Zamówienie zaktualizowane, które odpala się przy każdej zmianie. Sprawdzam w historii scenariusza, ile razy przyszły dane. Zostawiam jeden webhook na Zamówienie utworzone albo dodaję filtr na status. Testuję próbnym zamówieniem.",
+        "keyPoints": [
+          "liczba webhooków",
+          "temat Zamówienie zaktualizowane odpala się wielokrotnie",
+          "historia wykonań scenariusza",
+          "jeden webhook lub filtr statusu",
+          "test"
+        ],
+        "explanation": "Historia wykonań w Make i n8n pokazuje dokładnie, co przyszło i kiedy."
+      }
+    ],
+    "task": {
+      "task": "Zbuduj pierwszą automatyzację: formularz → arkusz → powiadomienie.\n\n1. Załóż darmowe konto w Make (lub n8n w chmurze).\n2. Utwórz scenariusz z wyzwalaczem **Webhooks → Custom webhook** i skopiuj jego adres.\n3. Na stronie testowej ustaw w formularzu wysyłanie webhookiem pod ten adres (dodatek do formularzy lub wtyczka webhooków do Contact Form 7). Wyślij formularz, żeby scenariusz poznał pola.\n4. Dodaj akcje: nowy wiersz w Arkuszu Google (imię, mail, treść, data) i mail do siebie z treścią zapytania.\n5. Włącz powiadomienia o błędach, wyślij 2 próbne formularze i sprawdź arkusz oraz skrzynkę.",
+      "checklist": [
+        "Konto Make lub n8n",
+        "Webhook w scenariuszu",
+        "Formularz wysyła dane",
+        "Arkusz i mail",
+        "Powiadomienia o błędach i test"
+      ],
+      "hints": [
+        "Strona w Local nie jest widoczna z internetu, ale wysyłanie z niej do Make działa, bo to strona łączy się z Make.",
+        "Przy pierwszym wysłaniu Make pokaże „Successfully determined”, wtedy pola formularza są dostępne w kolejnych krokach.",
+        "Do arkusza przesyłaj tylko potrzebne pola, bez zgód i danych technicznych."
+      ],
+      "solution": "- Scenariusz „Zapytania ze strony”: Custom webhook → Google Sheets: Add a row (Imię, E-mail, Treść, Data) → Email: Send (temat: „Nowe zapytanie: {{imię}}”).\n- Formularz: Fluent Forms z integracją Webhook, metoda POST, wszystkie pola formularza.\n- Test: 2 zgłoszenia, oba w arkuszu i w skrzynce w ciągu minuty.\n- Błędy: w ustawieniach scenariusza włączone powiadomienia mailowe o nieudanym wykonaniu."
+    }
+  },
+  {
+    "id": "t12-ai-wordpress",
+    "week": 12,
+    "order": 4,
+    "title": "AI w WordPressie i w pracy",
+    "lesson": "AI przydaje się przy stronach na trzy sposoby: **w samym WordPressie** (teksty, alty, opisy), **w Twojej pracy** (plan, kod, sprawdzanie) i **jako odwiedzający** (asystenci AI, którzy czytają i polecają strony, o czym była mowa w tygodniu 10).\n\n![Jak AI działa w WordPressie 7.0](diagram:ai-wordpress)\n\n## AI wbudowane w WordPressa\n\nOd wersji 6.9 i 7.0 WordPress ma wspólne „rury” dla AI:\n\n- **Connectors** (Ustawienia → Connectors, WordPress 7.0): jedno miejsce na klucze API dostawców AI. Wklejasz klucz raz, zamiast w każdej wtyczce osobno.\n- **AI Client**: wspólny sposób, w jaki wtyczki rozmawiają z modelem AI, bez względu na dostawcę.\n- **Abilities API** (od 6.9): wtyczki opisują, co potrafią (np. „utwórz wpis”, „pokaż zamówienia”), żeby agenci AI mogli bezpiecznie z tego korzystać.\n\nWordPress **nie ma wbudowanego modelu AI**. Potrzebne są: konto u dostawcy (np. Anthropic, OpenAI, Google), wtyczka tego dostawcy i klucz API. Za użycie płaci się dostawcy według zużycia, więc ustaw **limit wydatków** na koncie.\n\n## Do czego używać w panelu\n\n- **alty obrazów**: AI opisze zdjęcie, Ty poprawiasz pod kontekst strony,\n- **szkice opisów produktów i meta description**: punkt wyjścia, nie gotowy tekst,\n- **streszczenia, tytuły, pomysły** na wpisy,\n- **tłumaczenia** z korektą człowieka.\n\n## AI w Twojej pracy\n\n- planowanie struktury strony i listy kontrolne,\n- kod z asystentem (tydzień 6): opisz cel, miejsce i ograniczenia, sprawdź kod na stagingu,\n- analiza danych z Search Console i GA4 wklejonych jako tabela,\n- szkic oferty i maila do klienta.\n\n## Zasady\n\n- **Człowiek sprawdza wszystko**, co trafia na stronę: fakty, ceny, nazwy, prawo, ton.\n- **Żadnych danych osobowych klientów** ani haseł w rozmowach z AI, chyba że firma ma na to zgodę i umowę.\n- **Klucz API to hasło**: nie wysyłaj go mailem, nie wklejaj w publiczne miejsca, wygeneruj nowy, jeśli wyciekł.\n- Teksty pisane masowo bez wartości to ryzyko dla SEO. AI ma pomagać w treściach z doświadczeniem, nie je zastępować.\n\n## Czytaj dalej\n\n- [WordPress: Connectors API w wersji 7.0 (po angielsku)](https://make.wordpress.org/core/2026/03/18/introducing-the-connectors-api-in-wordpress-7-0/)\n- [Google: treści tworzone z pomocą AI](https://developers.google.com/search/blog/2023/02/google-search-and-ai-content?hl=pl)",
+    "questions": [
+      {
+        "id": "t12-ai-wordpress-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Do czego służy ekran Connectors w WordPressie 7.0?",
+        "answer": "Do zapisania kluczy API dostawców AI w jednym miejscu dla wszystkich wtyczek",
+        "distractors": [
+          "Do łączenia stron w sieć multisite",
+          "Do podłączania drukarki etykiet"
+        ],
+        "explanation": "Klucz wklejasz raz, a wtyczki korzystają z niego przez AI Client."
+      },
+      {
+        "id": "t12-ai-wordpress-02",
+        "type": "choice",
+        "difficulty": 2,
+        "tricky": true,
+        "prompt": "Czy WordPress 7.0 ma wbudowany model AI, który działa bez żadnego konta?",
+        "answer": "Nie, potrzebne jest konto u dostawcy AI, jego wtyczka i klucz API",
+        "distractors": [
+          "Tak, AI działa od razu po aktualizacji",
+          "Tak, ale tylko po polsku"
+        ],
+        "explanation": "WordPress daje wspólne mechanizmy, a model dostarcza zewnętrzny dostawca."
+      },
+      {
+        "id": "t12-ai-wordpress-03",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Tajny ciąg znaków, który pozwala stronie korzystać z usług dostawcy AI na Twoim koncie, to klucz ___.",
+        "answer": "API",
+        "explanation": "Traktuj go jak hasło."
+      },
+      {
+        "id": "t12-ai-wordpress-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Plan pracy z AI w sklepie: `alty: AI proponuje, człowiek poprawia`, `opisy produktów: AI pisze szkic, człowiek dopisuje doświadczenie`, `klucz API: wysłany klientowi zwykłym mailem`, `limit wydatków na koncie: ustawiony`. Który punkt jest błędem?",
+        "answer": "`klucz API: wysłany klientowi zwykłym mailem`",
+        "distractors": [
+          "`alty: AI proponuje, człowiek poprawia`",
+          "`opisy produktów: AI pisze szkic, człowiek dopisuje doświadczenie`",
+          "`limit wydatków na koncie: ustawiony`"
+        ],
+        "explanation": "Klucz API to hasło. Przekazuj go menedżerem haseł albo niech klient sam wklei go w Ustawieniach."
+      },
+      {
+        "id": "t12-ai-wordpress-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "AI napisało 300 opisów produktów w godzinę. Co jest najlepszym następnym krokiem?",
+        "answer": "Sprawdzić fakty i parametry, dopisać konkretne informacje i publikować partiami",
+        "distractors": [
+          "Opublikować wszystko od razu, bo tekst jest poprawny językowo",
+          "Usunąć opisy, bo Google zakazuje tekstów z AI"
+        ],
+        "explanation": "Google ocenia przydatność treści, nie narzędzie. Błędy w parametrach i puste teksty szkodzą sklepowi i SEO."
+      },
+      {
+        "id": "t12-ai-wordpress-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Wyjaśnij, jak w WordPressie 7.0 włączyć funkcje AI we wtyczkach.",
+        "answer": "Zakładam konto u dostawcy AI, tworzę klucz API i ustawiam limit wydatków. Instaluję wtyczkę tego dostawcy. W Ustawienia → Connectors wklejam klucz. Wtyczki, które korzystają z AI Client, mogą wtedy używać modelu, np. do altów czy opisów. Sprawdzam wynik przed publikacją.",
+        "keyPoints": [
+          "konto i klucz API",
+          "limit wydatków",
+          "wtyczka dostawcy",
+          "Ustawienia → Connectors",
+          "sprawdzanie wyników"
+        ],
+        "explanation": "Klucz w jednym miejscu łatwiej też wymienić lub usunąć."
+      },
+      {
+        "id": "t12-ai-wordpress-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Do jakich zadań przy stronie użyjesz AI, a do jakich nie?",
+        "answer": "Używam do szkiców altów, opisów, meta description, pomysłów na wpisy, struktury strony, kodu z asystentem i analizy danych. Nie zostawiam AI decyzji o faktach, cenach, sprawach prawnych i treściach, które wymagają doświadczenia firmy. Nie wklejam danych osobowych ani haseł. Wszystko, co trafia na stronę, sprawdza człowiek.",
+        "keyPoints": [
+          "szkice tekstów i altów",
+          "struktura, kod, analiza",
+          "nie: fakty, ceny, prawo bez sprawdzenia",
+          "bez danych osobowych i haseł",
+          "człowiek sprawdza"
+        ],
+        "explanation": "AI przyspiesza pracę, odpowiedzialność zostaje po Twojej stronie."
+      },
+      {
+        "id": "t12-ai-wordpress-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak napiszesz polecenie dla AI, żeby dostać dobry szkic opisu produktu?",
+        "answer": "Podaję rolę i cel: opis produktu do sklepu z wiertarkami dla majsterkowiczów. Wklejam parametry z karty producenta, frazę i 2 lub 3 pytania klientów z obsługi. Określam formę: akapit korzyści, lista parametrów, sekcja dla kogo. Proszę, żeby nie wymyślało parametrów, a braki oznaczało. Potem sprawdzam i dopisuję doświadczenie sklepu.",
+        "keyPoints": [
+          "rola i cel",
+          "parametry i fraza",
+          "pytania klientów",
+          "forma odpowiedzi",
+          "zakaz wymyślania, oznaczanie braków",
+          "sprawdzenie"
+        ],
+        "explanation": "Im więcej konkretu w poleceniu, tym mniej poprawek."
+      },
+      {
+        "id": "t12-ai-wordpress-09",
+        "type": "open",
+        "difficulty": 3,
+        "prompt": "Czym jest Abilities API i dlaczego może mieć znaczenie dla klientów?",
+        "answer": "To mechanizm, w którym WordPress i wtyczki opisują, co potrafią, np. utworzyć wpis albo pokazać zamówienia, w jednym standardzie. Agenci AI mogą wtedy wykonywać takie zadania na stronie w kontrolowany sposób, z uprawnieniami użytkownika. Dla klienta oznacza to, że w przyszłości część pracy w panelu zrobi asystent AI, ale trzeba pilnować, jakie uprawnienia dostaje.",
+        "keyPoints": [
+          "opis możliwości wtyczek w standardzie",
+          "agenci AI korzystają z nich",
+          "uprawnienia użytkownika",
+          "przyszła praca w panelu",
+          "kontrola uprawnień"
+        ],
+        "explanation": "To nowe rozwiązanie, więc warto śledzić, jak wtyczki je wdrażają."
+      },
+      {
+        "id": "t12-ai-wordpress-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Klient chce, żeby AI odpowiadało na czacie klientom sklepu. Na co zwrócisz uwagę?",
+        "answer": "Sprawdzam, z jakich danych czat korzysta (regulamin, FAQ, dostawa) i czy nie wymyśla odpowiedzi, np. o zwrotach i cenach. Ustawiam przekazanie do człowieka. Informuję klientów, że rozmawiają z AI. Sprawdzam RODO: jakie dane trafiają do dostawcy i polityka prywatności. Ustawiam limit kosztów i testuję trudne pytania przed startem.",
+        "keyPoints": [
+          "źródła odpowiedzi",
+          "ryzyko zmyślania",
+          "przekazanie do człowieka",
+          "informacja o AI",
+          "RODO i koszty",
+          "testy"
+        ],
+        "explanation": "Zła odpowiedź czatu o zwrotach to realny problem prawny i wizerunkowy."
+      }
+    ],
+    "task": {
+      "task": "Użyj AI do pracy nad stroną i sprawdź wynik.\n\n1. Wybierz 5 obrazów bez altów na stronie testowej. Poproś AI (np. w czacie Claude) o propozycje altów, podając kontekst strony.\n2. Popraw propozycje: krótko, konkretnie, z frazą tylko tam, gdzie pasuje.\n3. Napisz polecenie do szkicu opisu jednego produktu lub usługi według wzoru z lekcji (rola, dane, forma, zakaz wymyślania).\n4. Sprawdź szkic: zaznacz fakty do weryfikacji i dopisz jedno zdanie z doświadczenia firmy.\n5. Jeśli masz WordPress 7.0, zajrzyj w Ustawienia → Connectors i zapisz, jakie wtyczki dostawców są dostępne. Klucza nie musisz dodawać.",
+      "checklist": [
+        "5 altów od AI",
+        "Alty poprawione",
+        "Polecenie do opisu",
+        "Opis sprawdzony i uzupełniony",
+        "Ekran Connectors"
+      ],
+      "hints": [
+        "Alt opisuje, co jest na zdjęciu i po co jest na tej stronie. Nie zaczynaj od „zdjęcie przedstawia”.",
+        "Wklej do polecenia prawdziwe parametry, inaczej AI je wymyśli.",
+        "Wersję WordPressa sprawdzisz w Kokpit → Aktualizacje."
+      ],
+      "solution": "- Alt przed: „IMG_2041”. Propozycja AI: „Nowoczesna łazienka z prysznicem walk-in i szarymi płytkami”. Po poprawce: „Łazienka po remoncie na Kazimierzu: prysznic walk-in i płytki 60×120”.\n- Polecenie: „Jesteś copywriterem sklepu z narzędziami. Napisz opis wiertarki z danych poniżej. Forma: akapit korzyści (3 zdania), lista parametrów, dla kogo. Nie dodawaj parametrów spoza danych, braki oznacz [DO UZUPEŁNIENIA]. Dane: …”.\n- Dopisane doświadczenie: „Najczęściej kupują ją klienci do montażu karniszy i półek w betonie.”"
+    }
+  },
+  {
+    "id": "t12-opieka-nad-stronami",
+    "week": 12,
+    "order": 5,
+    "title": "Opieka nad stronami klientów",
+    "lesson": "Oddanie strony to nie koniec. WordPress, motyw i wtyczki dostają aktualizacje co tydzień, hosting czasem pada, a domena wygasa. **Opieka** (abonament serwisowy) to stała usługa, która chroni stronę klienta i daje Ci regularny dochód.\n\n![Co obejmuje opieka](diagram:opieka)\n\n## Co wchodzi w opiekę\n\n- **Aktualizacje** WordPressa, motywu i wtyczek: co tydzień lub dwa, z kopią przed. Duże aktualizacje (nowa główna wersja wtyczki sklepu, motywu, PHP) najpierw na stagingu.\n- **Kopie zapasowe**: codziennie, przechowywane **poza serwerem** (np. w chmurze), kilka wersji wstecz. Raz na kwartał **test odtworzenia**, bo kopia, której nie da się odtworzyć, nie jest kopią.\n- **Monitoring**: czy strona działa (np. UptimeRobot sprawdza co 5 minut za darmo), ważność SSL i domeny, skan bezpieczeństwa.\n- **Kontrola po aktualizacji**: strona główna, formularz, koszyk i płatność w sklepie.\n- **Raport miesięczny**: co zrobiono, szybkość, ruch, błędy z Search Console, zalecenia.\n- **Drobne zmiany**: np. 30 lub 60 minut w miesiącu na teksty i zdjęcia.\n\n## Narzędzia do wielu stron\n\n- **MainWP**: darmowy panel na własnej stronie WordPress, zarządzasz z niego aktualizacjami i kopiami wielu stron.\n- **ManageWP**: panel w chmurze, podstawowe funkcje za darmo, kopie i raporty płatne za stronę.\n- Wiele hostingów ma też własne kopie i aktualizacje, ale sprawdzaj, czy kopia jest poza serwerem.\n\n## Wycena\n\nNajprościej w **pakietach**, np.:\n\n- **Podstawowy**: aktualizacje, kopie, monitoring, raport.\n- **Standard**: to, co wyżej, plus 1 godzina zmian w miesiącu i kontrola SEO.\n- **Sklep**: częstsze kopie, testy zamówień po aktualizacjach, szybsza reakcja.\n\nCena zależy od czasu pracy, kosztu narzędzi i odpowiedzialności. Sklep wymaga więcej uwagi niż strona wizytówka, więc kosztuje więcej. Policz swój czas na jedną stronę w miesiącu i koszty narzędzi, a dopiero potem ustal kwotę.\n\n## Umowa serwisowa\n\nSpisz w umowie:\n\n- zakres: co jest w cenie, a co jest pracą dodatkową (np. nowe podstrony, nowe funkcje),\n- **czas reakcji**: np. awaria do 4 godzin w dni robocze, drobne zmiany do 3 dni,\n- dostępy: kto ma konto administratora, hosting, domenę (domena powinna być **na klienta**),\n- **umowa powierzenia danych** (RODO), bo masz dostęp do danych klientów strony,\n- odpowiedzialność, okres wypowiedzenia i co dzieje się z kopiami po zakończeniu współpracy.\n\n## Czytaj dalej\n\n- [WordPress: aktualizowanie (po angielsku)](https://wordpress.org/documentation/article/updating-wordpress/)\n- [MainWP (po angielsku)](https://mainwp.com/)\n- [UptimeRobot (po angielsku)](https://uptimerobot.com/)",
+    "questions": [
+      {
+        "id": "t12-opieka-nad-stronami-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Dlaczego kopie zapasowe powinny być przechowywane poza serwerem strony?",
+        "answer": "Bo awaria lub włamanie na serwerze może zniszczyć też kopie na nim",
+        "distractors": [
+          "Bo na serwerze kopie zajmują za mało miejsca",
+          "Bo Google tego wymaga"
+        ],
+        "explanation": "Kopia w tym samym miejscu co strona znika razem z nią."
+      },
+      {
+        "id": "t12-opieka-nad-stronami-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Usługa, która co kilka minut sprawdza, czy strona działa, i powiadamia o awarii, to ___.",
+        "answer": "monitoring",
+        "explanation": "Darmowy przykład: UptimeRobot."
+      },
+      {
+        "id": "t12-opieka-nad-stronami-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Wyszła nowa główna wersja WooCommerce. Jak ją wdrożyć w sklepie klienta?",
+        "answer": "Najpierw na stagingu, test zamówienia, potem kopia i aktualizacja na produkcji",
+        "distractors": [
+          "Od razu na produkcji w piątek wieczorem",
+          "Nigdy nie aktualizować sklepu"
+        ],
+        "explanation": "Duże aktualizacje mogą zmienić działanie kasy lub wtyczek. Staging chroni przed awarią sklepu."
+      },
+      {
+        "id": "t12-opieka-nad-stronami-04",
+        "type": "error",
+        "difficulty": 2,
+        "tricky": true,
+        "prompt": "Projekt umowy serwisowej: `zakres: aktualizacje, kopie, monitoring, raport`, `czas reakcji na awarię: do 4 godzin w dni robocze`, `domena: zarejestrowana na wykonawcę, klient jej nie widzi`, `umowa powierzenia danych: tak`. Który punkt jest ryzykowny dla klienta?",
+        "answer": "`domena: zarejestrowana na wykonawcę, klient jej nie widzi`",
+        "distractors": [
+          "`zakres: aktualizacje, kopie, monitoring, raport`",
+          "`czas reakcji na awarię: do 4 godzin w dni robocze`",
+          "`umowa powierzenia danych: tak`"
+        ],
+        "explanation": "Domena powinna należeć do klienta. Inaczej przy zakończeniu współpracy klient może stracić adres strony."
+      },
+      {
+        "id": "t12-opieka-nad-stronami-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Masz codzienne kopie od roku, ale nigdy ich nie odtwarzano. Co z tego wynika?",
+        "answer": "Nie wiadomo, czy kopie działają, trzeba przetestować odtworzenie",
+        "distractors": [
+          "Kopie na pewno działają, skoro się tworzą",
+          "Można wyłączyć kopie, bo strona nigdy nie padła"
+        ],
+        "explanation": "Dopiero test odtworzenia, np. na stagingu, pokazuje, czy kopia jest pełna i działa."
+      },
+      {
+        "id": "t12-opieka-nad-stronami-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Wymień, co wchodzi w podstawową opiekę nad stroną, i krótko uzasadnij każdy punkt.",
+        "answer": "Aktualizacje, bo łatają luki bezpieczeństwa i błędy. Kopie poza serwerem, bo pozwalają wrócić po awarii lub włamaniu. Monitoring, żeby wiedzieć o awarii przed klientem. Kontrola po aktualizacji, bo aktualizacja może coś zepsuć. Raport, bo klient widzi, za co płaci.",
+        "keyPoints": [
+          "aktualizacje: bezpieczeństwo",
+          "kopie: powrót po awarii",
+          "monitoring: szybka reakcja",
+          "kontrola po aktualizacji",
+          "raport: widoczna wartość"
+        ],
+        "explanation": "Raport to często powód, dla którego klient zostaje na kolejny rok."
+      },
+      {
+        "id": "t12-opieka-nad-stronami-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Opisz swoją procedurę cotygodniowych aktualizacji strony klienta.",
+        "answer": "Sprawdzam listę aktualizacji i notatki do większych wersji. Robię kopię. Duże aktualizacje najpierw na stagingu. Aktualizuję wtyczki, motyw i WordPressa. Sprawdzam stronę główną, kilka podstron, formularz, a w sklepie koszyk i próbną płatność. Sprawdzam logi błędów. Zapisuję zmiany do raportu. Gdy coś się psuje, przywracam kopię albo poprzednią wersję wtyczki.",
+        "keyPoints": [
+          "lista i notatki do wersji",
+          "kopia",
+          "staging dla dużych",
+          "test kluczowych funkcji",
+          "zapis do raportu",
+          "plan powrotu"
+        ],
+        "explanation": "Stała procedura oznacza mniej niespodzianek i szybszą pracę."
+      },
+      {
+        "id": "t12-opieka-nad-stronami-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak policzysz cenę abonamentu serwisowego?",
+        "answer": "Liczę czas pracy na jedną stronę w miesiącu: aktualizacje, kontrole, raport, drobne zmiany. Dodaję koszty narzędzi: panel do wielu stron, kopie w chmurze, monitoring. Biorę pod uwagę odpowiedzialność i czas reakcji, sklep wymaga więcej. Ustalam stawkę za godzinę i układam 2 lub 3 pakiety. Prace poza zakresem wyceniam osobno.",
+        "keyPoints": [
+          "czas pracy w miesiącu",
+          "koszty narzędzi",
+          "odpowiedzialność i czas reakcji",
+          "pakiety",
+          "prace dodatkowe osobno"
+        ],
+        "explanation": "Zbyt niska cena kończy się brakiem czasu na rzetelne testy."
+      },
+      {
+        "id": "t12-opieka-nad-stronami-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Co musi być w umowie serwisowej i dlaczego?",
+        "answer": "Zakres w cenie i co jest pracą dodatkową, żeby uniknąć sporów. Czas reakcji na awarie i zmiany. Dostępy i własność: domena, hosting i konta na klienta. Umowa powierzenia danych, bo jest dostęp do danych osobowych. Odpowiedzialność, okres wypowiedzenia i przekazanie kopii po zakończeniu.",
+        "keyPoints": [
+          "zakres i prace dodatkowe",
+          "czas reakcji",
+          "dostępy i własność domeny",
+          "umowa powierzenia",
+          "odpowiedzialność i wypowiedzenie"
+        ],
+        "explanation": "Wzór umowy warto dać do sprawdzenia prawnikowi raz, a potem używać."
+      },
+      {
+        "id": "t12-opieka-nad-stronami-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "W poniedziałek rano klient dzwoni, że sklep pokazuje biały ekran od niedzieli, a monitoring nic nie zgłosił. Co zrobisz teraz i co zmienisz na przyszłość?",
+        "answer": "Teraz: sprawdzam, co się zmieniło (automatyczne aktualizacje, hosting), włączam tryb debugowania lub czytam logi, dezaktywuję winną wtyczkę albo przywracam kopię z soboty, sprawdzam zamówienia. Na przyszłość: monitoring ma sprawdzać treść strony, np. słowo z nagłówka, a nie tylko kod odpowiedzi, bo biały ekran może zwracać 200. Wyłączam automatyczne aktualizacje dużych wtyczek i informuję klienta.",
+        "keyPoints": [
+          "przyczyna: zmiany i logi",
+          "wyłączenie wtyczki lub kopia",
+          "kontrola zamówień",
+          "monitoring słowa kluczowego na stronie",
+          "kontrola automatycznych aktualizacji",
+          "informacja dla klienta"
+        ],
+        "explanation": "Monitoring, który sprawdza tylko kod 200, nie widzi części awarii."
+      }
+    ],
+    "task": {
+      "task": "Przygotuj ofertę opieki dla klienta.\n\n1. Załóż darmowe konto w UptimeRobot i dodaj monitoring strony (typ HTTP lub Keyword, co 5 minut, powiadomienie mailem).\n2. Spisz procedurę cotygodniowych aktualizacji w 6–8 krokach.\n3. Ułóż 2 pakiety opieki (np. Podstawowy i Sklep) z listą tego, co zawierają, i czasem reakcji.\n4. Policz cenę jednego pakietu: Twój czas w miesiącu × stawka + koszty narzędzi.\n5. Wypisz 6 punktów umowy serwisowej i przygotuj szablon raportu miesięcznego.",
+      "checklist": [
+        "Monitoring w UptimeRobot",
+        "Procedura aktualizacji",
+        "2 pakiety",
+        "Wycena pakietu",
+        "Punkty umowy i szablon raportu"
+      ],
+      "hints": [
+        "Strona w Local nie jest widoczna z internetu, więc monitoring ustaw na dowolnej prawdziwej stronie, np. własnej lub demo.",
+        "Monitoring typu Keyword wykrywa też biały ekran, bo sprawdza, czy na stronie jest wybrane słowo.",
+        "Raport: co zrobiono, aktualizacje, kopie, czas działania, szybkość, ruch, zalecenia na kolejny miesiąc."
+      ],
+      "solution": "Pakiety (przykład liczenia, nie cennik):\n\n- Podstawowy: aktualizacje co tydzień, kopie codziennie w chmurze, monitoring, raport. Reakcja na awarię do 8 godzin w dni robocze. Czas: około 1 godziny w miesiącu.\n- Sklep: to samo plus test zamówienia po każdej aktualizacji, kopie co 6 godzin, 1 godzina zmian, reakcja do 4 godzin. Czas: około 3 godzin.\n- Wycena: czas × stawka godzinowa + koszt narzędzi na stronę (kopie w chmurze, panel).\n\nUmowa: zakres, prace dodatkowe, czas reakcji, dostępy i domena na klienta, umowa powierzenia, wypowiedzenie i przekazanie kopii."
+    }
   }
 ]

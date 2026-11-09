@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 290" role="img" aria-labelledby="title">
+<title id="title">Struktura plików WordPressa: rdzeń, którego nie zmieniasz, folder wp-content z Twoimi rzeczami i pliki konfiguracji</title>
+<style>
+svg{--fg:#1d1d1b;--muted:#6b6b66;--box:#ffffff;--line:#c9c9c1;--accent:#2b6cb0;--site:#2f8f4e;--bad:#c0392b;font-family:system-ui,sans-serif}
+@media (prefers-color-scheme:dark){svg{--fg:#ecece6;--muted:#a0a09a;--box:#1f1f1d;--line:#4a4a44;--accent:#63a4ec;--site:#5cbf7d;--bad:#ec7f72}}
+.box{fill:var(--box);stroke:var(--line);stroke-width:1.5}
+.box.good{stroke:var(--site);stroke-width:2}
+.box.bad{stroke:var(--bad);stroke-width:2}
+.t{fill:var(--fg);font-size:16px;font-weight:700}
+.s{fill:var(--muted);font-size:13px}
+.ar{stroke:var(--line);stroke-width:2}
+#m path{fill:var(--line)}
+.tag{fill:var(--accent);font-size:14px;font-weight:700}
+.tag.good{fill:var(--site)}
+.tag.bad{fill:var(--bad)}
+.hl{fill:none;stroke:var(--accent);stroke-width:3;opacity:0}
+.cap{fill:var(--fg);font-size:15px;opacity:0}
+.static{fill:var(--muted);font-size:14px;opacity:0}
+</style>
+
+<rect class="box bad" x="20" y="20" width="229" height="250" rx="12"/>
+<text class="t" x="135" y="52" text-anchor="middle">Rdzeń WordPressa</text>
+<text class="s" x="135" y="84" text-anchor="middle">wp-admin/  (panel)</text>
+<text class="s" x="135" y="104" text-anchor="middle">wp-includes/  (silnik)</text>
+<text class="s" x="135" y="124" text-anchor="middle">wp-login.php, index.php</text>
+<text class="s" x="135" y="144" text-anchor="middle">i inne pliki wp-*.php</text>
+<text class="s" x="135" y="164" text-anchor="middle"></text>
+<text class="s" x="135" y="184" text-anchor="middle">aktualizacja</text>
+<text class="s" x="135" y="204" text-anchor="middle">nadpisuje te pliki</text>
+<text class="tag bad" x="135" y="252" text-anchor="middle">nie zmieniaj</text>
+<rect class="box good" x="265" y="20" width="229" height="250" rx="12"/>
+<text class="t" x="380" y="52" text-anchor="middle">wp-content/</text>
+<text class="s" x="380" y="84" text-anchor="middle">themes/  (motywy)</text>
+<text class="s" x="380" y="104" text-anchor="middle">plugins/  (wtyczki)</text>
+<text class="s" x="380" y="124" text-anchor="middle">uploads/2026/11/</text>
+<text class="s" x="380" y="144" text-anchor="middle">(zdjęcia i pliki)</text>
+<text class="s" x="380" y="164" text-anchor="middle">languages/  (tłumaczenia)</text>
+<text class="s" x="380" y="184" text-anchor="middle"></text>
+<text class="s" x="380" y="204" text-anchor="middle">to są Twoje rzeczy</text>
+<text class="tag good" x="380" y="252" text-anchor="middle">kopia zapasowa!</text>
+<rect class="box " x="511" y="20" width="229" height="250" rx="12"/>
+<text class="t" x="625" y="52" text-anchor="middle">Konfiguracja</text>
+<text class="s" x="625" y="84" text-anchor="middle">wp-config.php</text>
+<text class="s" x="625" y="104" text-anchor="middle">(baza, klucze, ustawienia)</text>
+<text class="s" x="625" y="124" text-anchor="middle">.htaccess</text>
+<text class="s" x="625" y="144" text-anchor="middle">(adresy, przekierowania)</text>
+<text class="s" x="625" y="164" text-anchor="middle"></text>
+<text class="s" x="625" y="184" text-anchor="middle">pliki ukryte lub tajne:</text>
+<text class="s" x="625" y="204" text-anchor="middle">ostrożnie przy zmianach</text>
+<text class="tag " x="625" y="252" text-anchor="middle">kopia przed edycją</text>
+</svg>

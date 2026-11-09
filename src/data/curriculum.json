@@ -148,6 +148,156 @@
     }
   },
   {
+    "id": "t1-dns-records",
+    "week": 1,
+    "order": 2,
+    "title": "Rekordy DNS",
+    "lesson": "Domena to tylko nazwa. Żeby pod tą nazwą otworzyła się strona i działała poczta, w **DNS** domeny muszą być wpisane **rekordy**. Każdy rekord odpowiada na jedno pytanie, np. „pod jakim adresem IP jest strona?” albo „gdzie dostarczać maile?”.\n\n![Jak DNS znajduje adres IP](diagram:dns-rekordy)\n\n## Najważniejsze rekordy\n\n- **A**: nazwa → adres IPv4 serwera, np. `mojafirma.pl → 83.12.45.67`. To on decyduje, gdzie otwiera się strona.\n- **AAAA**: to samo dla nowszych adresów IPv6.\n- **CNAME**: nazwa → inna nazwa (alias), np. `www.mojafirma.pl → mojafirma.pl`.\n- **MX**: serwer, który odbiera pocztę dla domeny. Ma **priorytet**: niższa liczba = ważniejszy serwer.\n- **TXT**: dowolny tekst. Trzyma m.in. rekord SPF dla poczty i kody weryfikacyjne, np. dla Google Search Console.\n- **NS**: które serwery DNS w ogóle odpowiadają za domenę.\n\n## TTL i propagacja\n\nKażdy rekord ma **TTL** (czas życia) w sekundach, np. `3600` = 1 godzina. Tyle czasu resolvery na świecie pamiętają starą odpowiedź. Dlatego po zmianie rekordu część osób widzi nową stronę od razu, a część dopiero po upływie TTL. To nazywa się **propagacja**. Zmiana serwerów NS potrafi trwać do 24–48 godzin.\n\nWskazówka: dzień przed przenosinami strony skróć TTL rekordu A, np. do `300`. Wtedy zmiana rozejdzie się w kilka minut.\n\n## Dwa sposoby, żeby podpiąć domenę pod hosting\n\n1. **Zmiana serwerów NS** u rejestratora domeny na serwery hostingu. Wtedy wszystkimi rekordami zarządzasz w panelu hostingu. Uwaga: rekordy ustawione wcześniej u rejestratora, np. MX dla poczty, przestają działać, dopóki nie przepiszesz ich w nowym miejscu.\n2. **Zmiana tylko rekordu A** (i `www`) na adres IP hostingu. Poczta i reszta rekordów zostają bez zmian.\n\nCNAME nie może stać na samej domenie głównej (`mojafirma.pl`) obok innych rekordów. Używa się go dla subdomen, np. `www` albo `sklep`.\n\n## Sprawdź to w praktyce\n\n```bash\nnslookup -type=MX wordpress.org\n```\n\nWygodniej jest w przeglądarce: [Google Admin Toolbox Dig](https://toolbox.googleapps.com/apps/dig/) pokazuje każdy rekord osobno, razem z TTL.\n\n## Czytaj dalej\n\n- [Cloudflare: czym jest DNS (po angielsku)](https://www.cloudflare.com/learning/dns/what-is-dns/)\n- [Cloudflare: rodzaje rekordów DNS (po angielsku)](https://www.cloudflare.com/learning/dns/dns-records/)",
+    "questions": [
+      {
+        "id": "t1-dns-records-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Który rekord DNS wskazuje adres IPv4 serwera ze stroną?",
+        "answer": "A",
+        "distractors": [
+          "MX",
+          "TXT",
+          "CNAME"
+        ],
+        "explanation": "Rekord A zamienia nazwę na adres IPv4. MX dotyczy poczty, TXT trzyma tekst, a CNAME wskazuje inną nazwę."
+      },
+      {
+        "id": "t1-dns-records-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Rekord ___ mówi, który serwer odbiera pocztę dla domeny.",
+        "answer": "MX",
+        "explanation": "MX (mail exchanger) wskazuje serwery poczty. Niższa liczba priorytetu oznacza ważniejszy serwer."
+      },
+      {
+        "id": "t1-dns-records-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Rekord A ma TTL `3600`. Co to znaczy?",
+        "answer": "Resolvery mogą pamiętać ten rekord przez godzinę",
+        "distractors": [
+          "Strona będzie dostępna przez 3600 dni",
+          "Rekord zmieni się automatycznie za godzinę"
+        ],
+        "explanation": "TTL to czas w sekundach, przez który odpowiedź jest pamiętana. Po zmianie rekordu stara wersja może być widoczna do końca TTL."
+      },
+      {
+        "id": "t1-dns-records-04",
+        "type": "error",
+        "difficulty": 3,
+        "prompt": "Ktoś ustawił rekordy: `mojafirma.pl A 83.12.45.67`, `www CNAME mojafirma.pl`, `mojafirma.pl MX 10 mail.mojafirma.pl`, `mojafirma.pl CNAME hosting.pl`. Który jest błędny?",
+        "answer": "`mojafirma.pl CNAME hosting.pl`",
+        "distractors": [
+          "`mojafirma.pl A 83.12.45.67`",
+          "`www CNAME mojafirma.pl`",
+          "`mojafirma.pl MX 10 mail.mojafirma.pl`"
+        ],
+        "explanation": "CNAME nie może stać na domenie głównej obok innych rekordów (A, MX). Używa się go dla subdomen, np. www."
+      },
+      {
+        "id": "t1-dns-records-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Klientka zmieniła serwery NS domeny na serwery nowego hostingu. Strona działa, ale przestały przychodzić maile. Co się najpewniej stało?",
+        "answer": "W nowym DNS nie ma rekordów MX, bo zostały u starego dostawcy",
+        "distractors": [
+          "Nowy hosting blokuje pocztę",
+          "Trzeba poczekać na nowy certyfikat SSL"
+        ],
+        "explanation": "Zmiana NS przenosi całe zarządzanie DNS. Rekordy MX, TXT i inne trzeba przepisać w nowym miejscu przed zmianą."
+      },
+      {
+        "id": "t1-dns-records-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Wyjaśnij własnymi słowami, do czego służą rekordy A, CNAME i MX.",
+        "answer": "Rekord A wskazuje adres IP serwera, na którym jest strona. CNAME to alias: kieruje jedną nazwę na inną, np. www na domenę główną. MX mówi, który serwer odbiera pocztę dla domeny.",
+        "keyPoints": [
+          "A: nazwa → adres IP serwera strony",
+          "CNAME: alias, nazwa → inna nazwa (np. www)",
+          "MX: serwer odbierający pocztę"
+        ],
+        "explanation": "Te trzy rekordy wystarczą do większości stron firmowych."
+      },
+      {
+        "id": "t1-dns-records-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Czym jest TTL i dlaczego po zmianie rekordu nie wszyscy od razu widzą nową stronę?",
+        "answer": "TTL to czas w sekundach, przez który resolvery pamiętają odpowiedź DNS. Po zmianie rekordu resolvery, które mają starą odpowiedź w pamięci, podają ją dalej, aż TTL minie. Dlatego zmiana rozchodzi się stopniowo (propagacja).",
+        "keyPoints": [
+          "TTL to czas pamiętania odpowiedzi (w sekundach)",
+          "resolvery podają starą odpowiedź do końca TTL",
+          "to się nazywa propagacja"
+        ],
+        "explanation": "Stąd rada: przed przenosinami skróć TTL, a po nich możesz go wydłużyć."
+      },
+      {
+        "id": "t1-dns-records-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Opisz dwa sposoby podpięcia domeny pod nowy hosting i powiedz, kiedy który wybrać.",
+        "answer": "Pierwszy: zmiana serwerów NS u rejestratora na serwery hostingu. Wtedy wszystkim zarządzasz w panelu hostingu, ale trzeba przepisać wszystkie rekordy, np. MX. Drugi: zmiana tylko rekordu A (i www) na IP hostingu. Wybieram go, gdy poczta lub inne usługi mają zostać tam, gdzie są.",
+        "keyPoints": [
+          "zmiana NS: całe DNS w panelu hostingu",
+          "przy zmianie NS trzeba przepisać rekordy (MX, TXT)",
+          "zmiana tylko rekordu A na IP hostingu",
+          "rekord A, gdy poczta ma zostać bez zmian"
+        ],
+        "explanation": "Zawsze zrób zrzut lub listę starych rekordów przed zmianą."
+      },
+      {
+        "id": "t1-dns-records-09",
+        "type": "open",
+        "difficulty": 3,
+        "prompt": "Przenosisz jutro stronę na nowy serwer. Co zrobisz dziś z DNS, żeby zmiana była szybka?",
+        "answer": "Dziś skrócę TTL rekordu A (i www), np. do 300 sekund, i zapiszę listę wszystkich obecnych rekordów. Jutro, gdy stary TTL minie, zmiana adresu IP rozejdzie się w kilka minut. Po przenosinach mogę znów wydłużyć TTL.",
+        "keyPoints": [
+          "skrócić TTL dzień wcześniej (np. 300)",
+          "zapisać listę obecnych rekordów",
+          "zmienić rekord A w dniu przenosin",
+          "potem znów wydłużyć TTL"
+        ],
+        "explanation": "Skrócenie TTL musi być zrobione wcześniej, bo stary, długi TTL wciąż siedzi w pamięci resolverów."
+      },
+      {
+        "id": "t1-dns-records-10",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Do czego służy rekord TXT? Podaj dwa przykłady.",
+        "answer": "Rekord TXT trzyma dowolny tekst przypisany do domeny. Używa się go np. do rekordu SPF (kto może wysyłać pocztę z domeny) i do weryfikacji domeny w Google Search Console albo innych usługach.",
+        "keyPoints": [
+          "TXT trzyma tekst przypisany do domeny",
+          "przykład: SPF dla poczty",
+          "przykład: weryfikacja domeny (np. Search Console)"
+        ],
+        "explanation": "Do SPF, DKIM i DMARC wrócisz w lekcji o poczcie."
+      }
+    ],
+    "task": {
+      "task": "Sprawdź prawdziwe rekordy DNS, tak jak przed podpięciem domeny klienta.\n\n1. Otwórz [Google Admin Toolbox Dig](https://toolbox.googleapps.com/apps/dig/).\n2. Wpisz domenę, np. `wordpress.org` albo domenę swojej firmy, i sprawdź po kolei rekordy **A**, **MX** i **TXT**.\n3. Przy rekordzie A zapisz adres IP i **TTL**.\n4. W rekordach TXT znajdź ten, który zaczyna się od `v=spf1`.\n5. Sprawdź rekord A dla `www.` tej domeny. Czy to rekord A, czy CNAME?",
+      "checklist": [
+        "Masz adres IP i TTL z rekordu A",
+        "Wiesz, który serwer odbiera pocztę (MX)",
+        "Rekord SPF w TXT jest znaleziony",
+        "Wiesz, czy www to A, czy CNAME"
+      ],
+      "hints": [
+        "Wybierz typ rekordu z listy obok pola z domeną, a potem kliknij go jeszcze raz, żeby odświeżyć wynik.",
+        "TTL to liczba przed typem rekordu w wyniku, np. `3600 IN A`.",
+        "Jeśli dla www w odpowiedzi jest `CNAME`, to alias. Jeśli od razu adres IP, to rekord A."
+      ],
+      "solution": "Przykładowe wyniki (mogą się zmieniać):\n\n- **A**: adres IP serwera strony i TTL, np. `300` lub `3600`.\n- **MX**: jeden lub kilka serwerów z priorytetem, np. `10 mx1...`. Mniejsza liczba = ważniejszy serwer.\n- **TXT**: rekord `v=spf1 ... ~all` albo `-all` mówi, kto może wysyłać maile z domeny. Często są też kody weryfikacyjne, np. `google-site-verification=...`.\n- **www**: w wielu domenach to CNAME na domenę główną, ale bywa też osobny rekord A. Oba sposoby są poprawne."
+    }
+  },
+  {
     "id": "t1-hosting",
     "week": 1,
     "order": 3,
@@ -456,6 +606,772 @@
         "Lista ma 8 pozycji: 4 dla bazy i 4 dla SFTP."
       ],
       "solution": "W `wp-config-sample.php` zobaczysz linie podobne do tych:\n\n```php\ndefine( 'DB_NAME', 'database_name_here' );\ndefine( 'DB_USER', 'username_here' );\ndefine( 'DB_PASSWORD', 'password_here' );\ndefine( 'DB_HOST', 'localhost' );\n```\n\nKreator instalacji wpisuje tu Twoje dane i zapisuje plik jako `wp-config.php`.\n\nLista danych:\n\n- **Baza**: nazwa bazy, użytkownik bazy, hasło, host bazy (zwykle `localhost`).\n- **SFTP**: host serwera, użytkownik FTP, hasło FTP, port `22`.\n\nTo dwa różne konta: użytkownik bazy nie jest tym samym co użytkownik FTP."
+    }
+  },
+  {
+    "id": "t1-ssh-wp-cli",
+    "week": 1,
+    "order": 5,
+    "title": "Instalacja przez SSH i WP-CLI",
+    "lesson": "**SSH** to szyfrowane połączenie z terminalem serwera. Wpisujesz polecenia u siebie, a wykonują się na serwerze. **WP-CLI** to narzędzie, które pozwala obsługiwać WordPressa poleceniami `wp ...`, bez klikania w panelu. Na wielu hostingach jest już zainstalowane.\n\nPo co to, skoro jest panel? Jedno polecenie zastępuje kilkanaście kliknięć, polecenia łatwo powtórzyć na kolejnej stronie, a AI chętnie podaje gotowe polecenia WP-CLI.\n\n![Instalacja przez SSH i WP-CLI](diagram:ssh-wp-cli)\n\n## Krok 1. Połącz się przez SSH\n\nWłącz dostęp SSH w panelu hostingu (czasem trzeba o to poprosić wsparcie). Potem w terminalu:\n\n```bash\nssh uzytkownik@serwer123.hosting.pl -p 22\n```\n\nPort bywa inny niż 22, sprawdź go w panelu. Bezpieczniej niż hasłem jest logować się **kluczem SSH**, ale na start hasło wystarczy. Sprawdź, czy WP-CLI działa:\n\n```bash\nwp --info\n```\n\n## Krok 2. Zainstaluj WordPressa trzema poleceniami\n\nNajpierw utwórz bazę danych w panelu hostingu (jak w lekcji o FTP). Potem przejdź do katalogu strony:\n\n```bash\ncd public_html\nwp core download --locale=pl_PL\nwp config create --dbname=firma_wp --dbuser=firma_user --dbpass=TAJNE_HASLO\nwp core install --url=https://mojafirma.pl --title=\"Moja Firma\" --admin_user=anna_admin --admin_password=SILNE_HASLO --admin_email=biuro@mojafirma.pl\n```\n\n## Przydatne polecenia na co dzień\n\n- `wp core version`: która wersja WordPressa jest zainstalowana\n- `wp plugin list`: lista wtyczek, ich stan i dostępne aktualizacje\n- `wp plugin install contact-form-7 --activate`: instaluje i włącza wtyczkę\n- `wp core update` i `wp plugin update --all`: aktualizacje\n- `wp user list`: lista użytkowników\n\n## Uwaga\n\nPolecenia wykonują się od razu i nie ma przycisku „Cofnij”. Przed poleceniami, które coś zmieniają, zrób kopię zapasową. Polecenie od AI najpierw przeczytaj i zrozum, a dopiero potem uruchom.\n\nNie masz hostingu z SSH? Program LocalWP (lekcja w tygodniu 2) ma przycisk **Open site shell**, który otwiera terminal z działającym WP-CLI.\n\n## Czytaj dalej\n\n- [Oficjalna strona WP-CLI (po angielsku)](https://wp-cli.org/)\n- [Lista poleceń WP-CLI (po angielsku)](https://developer.wordpress.org/cli/commands/)",
+    "questions": [
+      {
+        "id": "t1-ssh-wp-cli-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Do czego służy SSH?",
+        "answer": "Do szyfrowanego połączenia z terminalem serwera",
+        "distractors": [
+          "Do wysyłania maili z WordPressa",
+          "Do tworzenia kopii zapasowej w panelu"
+        ],
+        "explanation": "SSH daje dostęp do wiersza poleceń serwera przez szyfrowane połączenie. Domyślnie używa portu 22."
+      },
+      {
+        "id": "t1-ssh-wp-cli-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Polecenie `wp core ___` pobiera pliki WordPressa na serwer.",
+        "answer": "download",
+        "explanation": "`wp core download` pobiera pliki. Potem `wp config create` tworzy wp-config.php, a `wp core install` kończy instalację."
+      },
+      {
+        "id": "t1-ssh-wp-cli-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Które polecenie pokaże wtyczki z dostępnymi aktualizacjami?",
+        "answer": "`wp plugin list`",
+        "distractors": [
+          "`wp core download`",
+          "`wp user list`",
+          "`wp --info`"
+        ],
+        "explanation": "`wp plugin list` pokazuje nazwę, stan (aktywna lub nie) i kolumnę z dostępną aktualizacją."
+      },
+      {
+        "id": "t1-ssh-wp-cli-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Kolejność instalacji: `ssh uzytkownik@serwer`, `cd public_html`, `wp core install ...`, `wp core download`. Który krok jest w złym miejscu?",
+        "answer": "`wp core install ...`",
+        "distractors": [
+          "`ssh uzytkownik@serwer`",
+          "`cd public_html`",
+          "`wp core download`"
+        ],
+        "explanation": "Najpierw trzeba pobrać pliki (`wp core download`) i utworzyć konfigurację (`wp config create`). Instalacja jest ostatnia."
+      },
+      {
+        "id": "t1-ssh-wp-cli-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "AI podało Ci polecenie `wp plugin delete --all`. Co robisz?",
+        "answer": "Nie uruchamiam go bez zrozumienia: usunie wszystkie wtyczki, więc najpierw kopia i sprawdzenie, czy o to chodzi",
+        "distractors": [
+          "Uruchamiam, bo AI wie lepiej",
+          "Uruchamiam, bo zawsze da się to cofnąć w koszu"
+        ],
+        "explanation": "Polecenia WP-CLI działają od razu i nie mają kosza. Zawsze czytaj polecenie i rób kopię przed zmianami."
+      },
+      {
+        "id": "t1-ssh-wp-cli-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Czym jest WP-CLI i co daje w porównaniu z klikaniem w panelu?",
+        "answer": "WP-CLI to narzędzie do obsługi WordPressa poleceniami w terminalu. Jedno polecenie zastępuje wiele kliknięć, łatwo je powtórzyć na kolejnych stronach i działa nawet wtedy, gdy panel się nie otwiera. AI może też podać gotowe polecenia.",
+        "keyPoints": [
+          "obsługa WordPressa poleceniami w terminalu",
+          "szybciej niż klikanie",
+          "łatwo powtórzyć na kolejnych stronach",
+          "działa, gdy panel nie działa"
+        ],
+        "explanation": "Każdy z tych powodów wystarczy. Najważniejsza jest powtarzalność."
+      },
+      {
+        "id": "t1-ssh-wp-cli-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Opisz kroki instalacji WordPressa przez SSH i WP-CLI.",
+        "answer": "Tworzę bazę danych w panelu hostingu. Łączę się przez SSH z serwerem i przechodzę do public_html. Uruchamiam wp core download, potem wp config create z danymi bazy, a na końcu wp core install z adresem strony, tytułem, danymi administratora i e-mailem.",
+        "keyPoints": [
+          "baza danych w panelu",
+          "połączenie SSH i cd public_html",
+          "wp core download",
+          "wp config create z danymi bazy",
+          "wp core install z tytułem i administratorem"
+        ],
+        "explanation": "To te same trzy części co przy FTP: pliki, baza i wp-config.php."
+      },
+      {
+        "id": "t1-ssh-wp-cli-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Dlaczego przed poleceniami WP-CLI, które coś zmieniają, robi się kopię zapasową?",
+        "answer": "Polecenia działają od razu i nie ma przycisku Cofnij ani kosza. Błędne polecenie, np. od AI, może usunąć wtyczki albo zmienić dane w bazie. Kopia pozwala wrócić do stanu sprzed zmiany.",
+        "keyPoints": [
+          "polecenia działają od razu",
+          "nie ma cofania ani kosza",
+          "kopia pozwala wrócić do poprzedniego stanu"
+        ],
+        "explanation": "Ta sama zasada obowiązuje przy aktualizacjach w panelu."
+      },
+      {
+        "id": "t1-ssh-wp-cli-09",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Hosting podaje: host `serwer123.hosting.pl`, użytkownik `firma`, port `2222`. Jak połączysz się przez SSH i co sprawdzisz zaraz po zalogowaniu?",
+        "answer": "Wpiszę ssh firma@serwer123.hosting.pl -p 2222, bo port jest inny niż domyślny 22. Po zalogowaniu sprawdzę wp --info, żeby wiedzieć, czy WP-CLI jest dostępne, i przejdę do katalogu strony, np. cd public_html.",
+        "keyPoints": [
+          "ssh użytkownik@host",
+          "-p 2222, bo port inny niż 22",
+          "wp --info sprawdza WP-CLI",
+          "przejście do katalogu strony"
+        ],
+        "explanation": "Gdy port się nie zgadza, połączenie zwykle kończy się błędem „Connection refused” albo czeka bez końca."
+      },
+      {
+        "id": "t1-ssh-wp-cli-10",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Wymień trzy polecenia WP-CLI, które przydadzą się w codziennej opiece nad stroną, i powiedz, co robią.",
+        "answer": "wp core version pokazuje wersję WordPressa. wp plugin list pokazuje wtyczki i dostępne aktualizacje. wp plugin update --all aktualizuje wtyczki. wp user list pokazuje użytkowników.",
+        "keyPoints": [
+          "wp core version: wersja WordPressa",
+          "wp plugin list: wtyczki i aktualizacje",
+          "wp plugin update --all lub wp core update: aktualizacje",
+          "wp user list: użytkownicy"
+        ],
+        "explanation": "Wystarczą trzy dowolne z listy w lekcji."
+      }
+    ],
+    "task": {
+      "task": "Wykonaj pierwsze polecenia WP-CLI na prawdziwej stronie.\n\n1. Otwórz terminal z WP-CLI: przez SSH na hostingu albo w programie [LocalWP](https://localwp.com/) (kliknij stronę prawym przyciskiem → **Open site shell**).\n2. Sprawdź wersję: `wp core version`.\n3. Wyświetl wtyczki: `wp plugin list`.\n4. Zainstaluj i włącz dowolną darmową wtyczkę, np. `wp plugin install contact-form-7 --activate`.\n5. Sprawdź w panelu WordPressa, czy wtyczka jest aktywna. Wpisz w notatkach polecenia, które zadziałały.",
+      "checklist": [
+        "Masz otwarty terminal z WP-CLI",
+        "Znasz wersję WordPressa",
+        "Widzisz listę wtyczek",
+        "Wtyczka zainstalowana poleceniem jest aktywna w panelu"
+      ],
+      "hints": [
+        "W LocalWP strona musi być uruchomiona (zielony przycisk Start), zanim otworzysz Site shell.",
+        "Nazwa wtyczki w poleceniu to jej adres z wordpress.org, np. `wordpress.org/plugins/contact-form-7/` → `contact-form-7`.",
+        "Błąd „This does not seem to be a WordPress installation” oznacza, że jesteś w złym katalogu. Przejdź `cd` do katalogu strony."
+      ],
+      "solution": "- `wp core version` zwraca numer, np. `7.0`.\n- `wp plugin list` pokazuje tabelę z kolumnami `name`, `status` (active/inactive), `update` (available/none) i `version`.\n- `wp plugin install contact-form-7 --activate` kończy się komunikatem `Success: Installed 1 of 1 plugins.` i `Plugin 'contact-form-7' activated.`\n- W panelu (**Wtyczki**) ta wtyczka jest na liście jako włączona."
+    }
+  },
+  {
+    "id": "t1-struktura-plikow",
+    "week": 1,
+    "order": 6,
+    "title": "Struktura plików WordPressa",
+    "lesson": "Gdy otworzysz katalog strony przez SFTP albo w LocalWP, zobaczysz kilkanaście folderów i plików. Wystarczy rozumieć trzy grupy: **rdzeń** WordPressa, folder **wp-content** i pliki **konfiguracji**.\n\n![Trzy grupy plików WordPressa](diagram:struktura-plikow)\n\n## Rdzeń: wp-admin, wp-includes i pliki wp-*.php\n\n- `wp-admin/`: pliki panelu administracyjnego.\n- `wp-includes/`: silnik WordPressa, z którego korzysta cała strona.\n- `index.php`, `wp-login.php` i inne pliki `wp-*.php` w katalogu głównym.\n\n**Nie zmieniaj tych plików.** Każda aktualizacja WordPressa je nadpisuje, więc Twoje zmiany zniknęłyby.\n\n## wp-content: Twoje rzeczy\n\n- `themes/`: motywy, każdy w osobnym folderze.\n- `plugins/`: wtyczki, każda w osobnym folderze.\n- `uploads/`: zdjęcia i pliki z biblioteki mediów, ułożone w foldery rok/miesiąc, np. `uploads/2026/11/`.\n- `languages/`: tłumaczenia.\n\nTo najważniejszy folder przy kopii zapasowej. Strona = **wp-content + baza danych** (plus `wp-config.php`). Rdzeń zawsze można pobrać od nowa.\n\n## Konfiguracja: wp-config.php i .htaccess\n\n- `wp-config.php`: dane do bazy, klucze bezpieczeństwa i ustawienia, np. tryb debugowania `WP_DEBUG`. Nikomu go nie wysyłaj.\n- `.htaccess`: plik serwera Apache. WordPress zapisuje w nim reguły ładnych adresów (bezpośrednich odnośników) między liniami `# BEGIN WordPress` a `# END WordPress`. Tu dopisuje się też przekierowania.\n\nPlik `.htaccess` zaczyna się od kropki, więc jest **ukryty**. W FileZilli włączysz go w menu **Serwer → Wymuś pokazywanie ukrytych plików**. Na serwerach Nginx tego pliku nie ma, reguły są w konfiguracji serwera.\n\n## Czytaj dalej\n\n- [WPBeginner: struktura plików i folderów WordPressa (po angielsku)](https://www.wpbeginner.com/beginners-guide/beginners-guide-to-wordpress-file-and-directory-structure/)\n- [Opis pliku wp-config.php (po angielsku)](https://developer.wordpress.org/advanced-administration/wordpress/wp-config/)",
+    "questions": [
+      {
+        "id": "t1-struktura-plikow-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "W którym folderze są zdjęcia dodane do biblioteki mediów?",
+        "answer": "`wp-content/uploads/`",
+        "distractors": [
+          "`wp-admin/`",
+          "`wp-includes/`",
+          "`wp-content/plugins/`"
+        ],
+        "explanation": "Pliki z biblioteki mediów lądują w `wp-content/uploads/`, w folderach rok/miesiąc."
+      },
+      {
+        "id": "t1-struktura-plikow-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Motywy leżą w folderze `wp-content/___/`.",
+        "answer": "themes",
+        "explanation": "Każdy motyw ma swój folder w `wp-content/themes/`, a wtyczki w `wp-content/plugins/`."
+      },
+      {
+        "id": "t1-struktura-plikow-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Dlaczego nie warto zmieniać plików w `wp-includes/`?",
+        "answer": "Aktualizacja WordPressa nadpisze te pliki i zmiany znikną",
+        "distractors": [
+          "Bo te pliki są zaszyfrowane",
+          "Bo zmiana od razu usuwa bazę danych"
+        ],
+        "explanation": "Rdzeń jest podmieniany przy każdej aktualizacji. Zmiany robi się w motywie potomnym, wtyczce albo w panelu."
+      },
+      {
+        "id": "t1-struktura-plikow-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Lista do kopii zapasowej: `wp-content/`, `baza danych`, `wp-config.php`, `wp-includes/` jako jedyna kopia strony. Co jest błędem?",
+        "answer": "`wp-includes/` jako jedyna kopia strony",
+        "distractors": [
+          "`wp-content/`",
+          "`baza danych`",
+          "`wp-config.php`"
+        ],
+        "explanation": "wp-includes to rdzeń, który zawsze można pobrać od nowa. Treść i ustawienia są w bazie, a pliki klienta w wp-content."
+      },
+      {
+        "id": "t1-struktura-plikow-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Łączysz się przez FileZillę i nie widzisz pliku `.htaccess`, choć strona ma ładne adresy. Dlaczego?",
+        "answer": "Plik zaczyna się od kropki, więc jest ukryty i trzeba włączyć pokazywanie ukrytych plików",
+        "distractors": [
+          "WordPress nie używa tego pliku",
+          "Plik jest tylko w bazie danych"
+        ],
+        "explanation": "Pliki zaczynające się od kropki są ukryte. W FileZilli: Serwer → Wymuś pokazywanie ukrytych plików. Na Nginx tego pliku po prostu nie ma."
+      },
+      {
+        "id": "t1-struktura-plikow-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Wymień trzy grupy plików WordPressa i powiedz, które wolno zmieniać.",
+        "answer": "Rdzeń (wp-admin, wp-includes, pliki wp-*.php): nie zmieniam, bo nadpisze go aktualizacja. wp-content (motywy, wtyczki, uploads): to rzeczy strony, tu są zmiany, ale motywu rodzica też nie edytuję bezpośrednio. Konfiguracja (wp-config.php, .htaccess): zmieniam ostrożnie, po zrobieniu kopii.",
+        "keyPoints": [
+          "rdzeń: wp-admin, wp-includes, wp-*.php",
+          "rdzenia nie zmieniamy (aktualizacja nadpisuje)",
+          "wp-content: motywy, wtyczki, uploads",
+          "konfiguracja: wp-config.php i .htaccess, ostrożnie i z kopią"
+        ],
+        "explanation": "O motywach potomnych, które chronią zmiany w motywie, jest lekcja w tygodniu 2."
+      },
+      {
+        "id": "t1-struktura-plikow-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Z czego składa się pełna kopia zapasowa strony na WordPressie i dlaczego nie trzeba kopiować rdzenia?",
+        "answer": "Z bazy danych (treść, ustawienia, użytkownicy), folderu wp-content (motywy, wtyczki, zdjęcia) i pliku wp-config.php. Rdzeń, czyli wp-admin i wp-includes, zawsze można pobrać od nowa z wordpress.org w tej samej wersji.",
+        "keyPoints": [
+          "baza danych",
+          "wp-content",
+          "wp-config.php",
+          "rdzeń można pobrać od nowa"
+        ],
+        "explanation": "Wtyczki do kopii, np. UpdraftPlus, robią właśnie to: bazę i wp-content."
+      },
+      {
+        "id": "t1-struktura-plikow-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Co jest w pliku wp-config.php i dlaczego nie wolno go nikomu wysyłać?",
+        "answer": "Są tam dane do bazy danych (nazwa, użytkownik, hasło, host), klucze bezpieczeństwa i ustawienia, np. WP_DEBUG. Kto ma ten plik, zna hasło do bazy i może dostać się do danych strony.",
+        "keyPoints": [
+          "dane do bazy z hasłem",
+          "klucze bezpieczeństwa",
+          "ustawienia (np. WP_DEBUG)",
+          "wyciek daje dostęp do bazy"
+        ],
+        "explanation": "Gdy prosisz AI o pomoc, wklejaj tylko potrzebny fragment i zamieniaj hasła na np. XXX."
+      },
+      {
+        "id": "t1-struktura-plikow-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Klient pyta, gdzie na serwerze jest zdjęcie dodane w listopadzie 2026. Jak je znajdziesz?",
+        "answer": "Wejdę do wp-content/uploads/2026/11/. WordPress układa pliki z biblioteki mediów w folderach rok/miesiąc. Obok oryginału znajdę też pomniejszone wersje z wymiarami w nazwie, np. zdjecie-300x200.jpg.",
+        "keyPoints": [
+          "wp-content/uploads",
+          "folder rok/miesiąc: 2026/11",
+          "obok są pomniejszone kopie z wymiarami w nazwie"
+        ],
+        "explanation": "Pomniejszone kopie WordPress tworzy sam przy każdym wgranym zdjęciu."
+      },
+      {
+        "id": "t1-struktura-plikow-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Czym jest plik .htaccess i co WordPress w nim zapisuje?",
+        "answer": "To plik konfiguracyjny serwera Apache w katalogu strony. WordPress zapisuje w nim reguły ładnych adresów (bezpośrednich odnośników) między # BEGIN WordPress a # END WordPress. Dopisuje się w nim też przekierowania. Na serwerze Nginx go nie ma.",
+        "keyPoints": [
+          "plik konfiguracji serwera Apache",
+          "reguły bezpośrednich odnośników",
+          "blok # BEGIN WordPress / # END WordPress",
+          "przekierowania; na Nginx go nie ma"
+        ],
+        "explanation": "Własnych reguł nie wpisuj między znacznikami WordPressa, bo WordPress może je nadpisać."
+      }
+    ],
+    "task": {
+      "task": "Obejrzyj pliki prawdziwej instalacji WordPressa.\n\n1. Otwórz katalog strony: przez FileZillę na hostingu albo w LocalWP (prawy przycisk na stronie → **Go to site folder**, potem `app/public`).\n2. Znajdź folder aktywnego motywu w `wp-content/themes/`.\n3. Wgraj w panelu WordPressa jedno zdjęcie i znajdź je w `wp-content/uploads/` razem z pomniejszonymi kopiami.\n4. Włącz pokazywanie ukrytych plików i otwórz `.htaccess` (tylko do odczytu). Znajdź blok `# BEGIN WordPress`.\n5. Otwórz `wp-config.php` i znajdź linię z `DB_NAME`. Niczego nie zmieniaj.",
+      "checklist": [
+        "Folder aktywnego motywu jest znaleziony",
+        "Wiesz, gdzie leży wgrane zdjęcie i jego kopie",
+        "Widzisz blok # BEGIN WordPress w .htaccess",
+        "Linia DB_NAME w wp-config.php jest znaleziona"
+      ],
+      "hints": [
+        "Nazwę aktywnego motywu sprawdzisz w panelu: **Wygląd → Motywy**. Folder ma zwykle podobną nazwę.",
+        "W systemie Windows ukryte pliki włączysz w Eksploratorze: **Widok → Pokaż → Ukryte elementy**.",
+        "W LocalWP strona może działać na Nginx. Wtedy pliku `.htaccess` nie ma i to jest poprawny wynik."
+      ],
+      "solution": "- Motyw: np. `wp-content/themes/twentytwentyfive/`.\n- Zdjęcie: `wp-content/uploads/<rok>/<miesiąc>/`, obok oryginału kopie typu `nazwa-150x150.jpg`, `nazwa-300x200.jpg`.\n- `.htaccess` (Apache):\n\n```\n# BEGIN WordPress\nRewriteEngine On\nRewriteRule ^index\\.php$ - [L]\n...\n# END WordPress\n```\n\n- `wp-config.php`: `define( 'DB_NAME', '...' );` z nazwą bazy."
+    }
+  },
+  {
+    "id": "t1-ssl",
+    "week": 1,
+    "order": 7,
+    "title": "Konfiguracja SSL",
+    "lesson": "**Certyfikat SSL** (dokładniej TLS) robi dwie rzeczy: potwierdza, że łączysz się z prawdziwym serwerem tej domeny, i **szyfruje** połączenie. Dzięki niemu adres zaczyna się od `https://`, a przeglądarka pokazuje kłódkę. Bez niego Chrome oznacza stronę jako „Niezabezpieczona”, a formularze kontaktowe wysyłają dane otwartym tekstem.\n\n![Jak działa HTTPS](diagram:ssl-https)\n\n## Krok 1. Włącz certyfikat w panelu hostingu\n\nPrawie każdy hosting daje darmowy certyfikat **Let's Encrypt**. Włączasz go jednym kliknięciem przy domenie. Taki certyfikat jest ważny krótko (kilka tygodni), ale hosting **odnawia go automatycznie**. Płatne certyfikaty szyfrują tak samo, różnią się głównie sprawdzaniem firmy i gwarancją.\n\n## Krok 2. Ustaw adresy w WordPressie\n\nW **Ustawienia → Ogólne** zmień oba pola, **Adres WordPressa** i **Adres witryny**, na `https://...`. Po zapisaniu zaloguj się ponownie.\n\n## Krok 3. Wymuś HTTPS przekierowaniem 301\n\nWejście na `http://` musi przekierować na `https://` kodem **301** (na stałe). Wiele paneli ma przełącznik „Wymuś HTTPS”. Można to też zrobić wtyczką albo regułą w `.htaccess`.\n\n## Krok 4. Napraw mixed content\n\n**Mixed content** (treść mieszana) to sytuacja, gdy strona jest na `https://`, ale wczytuje obrazki, skrypty lub fonty przez `http://`. Przeglądarka je blokuje albo zabiera kłódkę. Najczęściej winne są stare adresy obrazków w treści wpisów.\n\n- Znajdziesz je w DevTools (**F12 → Konsola**): ostrzeżenia „Mixed Content”.\n- Naprawisz je wtyczką do zamiany adresów w bazie (np. Better Search Replace: `http://mojafirma.pl` → `https://mojafirma.pl`) albo poleceniem `wp search-replace`. Przed zamianą zrób kopię bazy.\n\n## SSL a SEO\n\nHTTPS jest jednym z sygnałów rankingowych Google, choć słabym. Ważniejsze, żeby po przejściu na HTTPS każdy stary adres `http://` miał **301** na nowy. Wtedy Google przenosi historię strony na wersje `https://`. W Google Search Console najlepiej dodać **usługę domeny**, która obejmuje obie wersje.\n\n## Czytaj dalej\n\n- [WordPress: HTTPS (po angielsku)](https://developer.wordpress.org/advanced-administration/security/https/)\n- [Let's Encrypt: jak to działa (po angielsku)](https://letsencrypt.org/how-it-works/)",
+    "questions": [
+      {
+        "id": "t1-ssl-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Co robi certyfikat SSL na stronie?",
+        "answer": "Potwierdza tożsamość serwera i szyfruje połączenie",
+        "distractors": [
+          "Przyspiesza ładowanie zdjęć",
+          "Chroni przed spamem w komentarzach"
+        ],
+        "explanation": "Certyfikat pozwala przeglądarce sprawdzić serwer i zaszyfrować dane. Za szybkość i spam odpowiadają inne rzeczy."
+      },
+      {
+        "id": "t1-ssl-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Przejście z `http://` na `https://` ustawia się przekierowaniem z kodem ___.",
+        "answer": "301",
+        "explanation": "301 to przekierowanie stałe. Google przenosi wtedy sygnały ze starego adresu na nowy."
+      },
+      {
+        "id": "t1-ssl-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Strona działa na https, ale w konsoli jest ostrzeżenie „Mixed Content” o obrazku. Co to znaczy?",
+        "answer": "Obrazek jest wczytywany przez http:// na stronie z https://",
+        "distractors": [
+          "Certyfikat wygasł",
+          "Obrazek ma za duży rozmiar"
+        ],
+        "explanation": "Mixed content to plik wczytany przez niezaszyfrowane http na stronie https. Trzeba zmienić adres pliku na https."
+      },
+      {
+        "id": "t1-ssl-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Lista przejścia na HTTPS: `włącz certyfikat w panelu`, `zmień adresy w Ustawienia → Ogólne na https`, `ustaw przekierowanie 302 z http na https`, `napraw mixed content`. Który krok jest zły?",
+        "answer": "`ustaw przekierowanie 302 z http na https`",
+        "distractors": [
+          "`włącz certyfikat w panelu`",
+          "`zmień adresy w Ustawienia → Ogólne na https`",
+          "`napraw mixed content`"
+        ],
+        "explanation": "302 oznacza przekierowanie tymczasowe. Przy przejściu na HTTPS zmiana jest na stałe, więc ustawia się 301."
+      },
+      {
+        "id": "t1-ssl-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Certyfikat Let's Encrypt jest ważny tylko kilka tygodni. Co to oznacza dla strony klienta?",
+        "answer": "Nic złego, jeśli hosting odnawia go automatycznie, ale warto to sprawdzić",
+        "distractors": [
+          "Trzeba co miesiąc kupić nowy certyfikat",
+          "Darmowy certyfikat szyfruje słabiej niż płatny"
+        ],
+        "explanation": "Krótka ważność to cecha Let's Encrypt, a odnawianie robi hosting. Szyfrowanie jest takie samo jak w płatnych certyfikatach."
+      },
+      {
+        "id": "t1-ssl-06",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Opisz kroki przejścia strony WordPress z HTTP na HTTPS.",
+        "answer": "Włączam darmowy certyfikat w panelu hostingu. W Ustawienia → Ogólne zmieniam Adres WordPressa i Adres witryny na https. Ustawiam przekierowanie 301 z http na https. Potem szukam mixed content w konsoli i zamieniam stare adresy http w bazie, po zrobieniu kopii.",
+        "keyPoints": [
+          "certyfikat w panelu hostingu",
+          "adresy w Ustawienia → Ogólne na https",
+          "przekierowanie 301 z http na https",
+          "naprawa mixed content (z kopią bazy)"
+        ],
+        "explanation": "Kolejność ma znaczenie: bez certyfikatu zmiana adresów na https zablokuje dostęp do strony."
+      },
+      {
+        "id": "t1-ssl-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Czym jest mixed content, jak go znaleźć i jak naprawić?",
+        "answer": "To pliki (obrazki, skrypty, fonty) wczytywane przez http na stronie, która działa na https. Znajduję je w konsoli DevTools jako ostrzeżenia Mixed Content. Naprawiam zamianą adresów http na https w bazie, np. wtyczką Better Search Replace albo wp search-replace, po zrobieniu kopii.",
+        "keyPoints": [
+          "pliki przez http na stronie https",
+          "widać je w konsoli DevTools",
+          "zamiana adresów w bazie (wtyczka lub wp search-replace)",
+          "kopia bazy przed zamianą"
+        ],
+        "explanation": "Najczęściej to stare obrazki we wpisach dodanych przed włączeniem SSL."
+      },
+      {
+        "id": "t1-ssl-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Dlaczego przy przejściu na HTTPS przekierowanie 301 jest ważne dla SEO?",
+        "answer": "Bez przekierowania Google widzi dwie wersje każdej strony: http i https. Przekierowanie 301 mówi, że adres zmienił się na stałe, więc Google przenosi historię i pozycje na wersję https i nie dzieli ich na dwie kopie.",
+        "keyPoints": [
+          "bez niego są dwie wersje strony (duplikaty)",
+          "301 = zmiana na stałe",
+          "Google przenosi sygnały i pozycje na https"
+        ],
+        "explanation": "Samo HTTPS daje mały plus w rankingu. Błędy w przekierowaniach mogą zaszkodzić znacznie bardziej."
+      },
+      {
+        "id": "t1-ssl-09",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Klient pyta, czy darmowy certyfikat Let's Encrypt wystarczy, czy kupić płatny za 300 zł rocznie. Co odpowiesz?",
+        "answer": "Dla zwykłej strony firmowej i małego sklepu darmowy wystarczy. Szyfruje tak samo jak płatny, a hosting sam go odnawia. Płatne certyfikaty różnią się głównie sprawdzeniem firmy i gwarancją, co ma znaczenie tylko w szczególnych przypadkach, np. gdy wymaga tego bank lub umowa.",
+        "keyPoints": [
+          "darmowy szyfruje tak samo",
+          "hosting sam go odnawia",
+          "płatny: sprawdzenie firmy i gwarancja",
+          "płatny tylko w szczególnych przypadkach"
+        ],
+        "explanation": "Przeglądarki pokazują kłódkę tak samo dla obu rodzajów."
+      },
+      {
+        "id": "t1-ssl-10",
+        "type": "open",
+        "difficulty": 3,
+        "prompt": "Po zmianie adresów w Ustawienia → Ogólne na https strona przestała się otwierać. Co mogło się stać i jak to naprawić?",
+        "answer": "Najpewniej certyfikat nie był jeszcze włączony albo działał źle, a WordPress kieruje już wszystko na https. Włączam lub poprawiam certyfikat w panelu. Jeśli panel WordPressa jest niedostępny, zmieniam adresy z powrotem na http w bazie (tabela wp_options: siteurl i home), przez phpMyAdmin albo wp option update.",
+        "keyPoints": [
+          "certyfikat nie był włączony lub działa źle",
+          "włączyć certyfikat w panelu hostingu",
+          "albo cofnąć adresy w bazie (siteurl, home)",
+          "przez phpMyAdmin lub WP-CLI"
+        ],
+        "explanation": "Dlatego certyfikat włącza się zawsze przed zmianą adresów."
+      }
+    ],
+    "task": {
+      "task": "Sprawdź HTTPS na prawdziwej stronie, np. stronie swojej firmy albo dowolnej firmy z okolicy.\n\n1. Kliknij ikonę obok adresu w przeglądarce i otwórz szczegóły certyfikatu. Zapisz, kto go wydał i do kiedy jest ważny.\n2. Wpisz adres strony z `http://` (bez s). Otwórz **F12 → Sieć**, odśwież i sprawdź kod pierwszego zapytania. Czy jest 301 na https?\n3. Otwórz **Konsolę** i poszukaj ostrzeżeń „Mixed Content”.\n4. Zapisz wyniki i jedno zdanie: czy ta strona ma poprawnie ustawione HTTPS.",
+      "checklist": [
+        "Wiesz, kto wydał certyfikat i do kiedy jest ważny",
+        "Wiesz, jakim kodem http przekierowuje na https",
+        "Konsola jest sprawdzona pod kątem Mixed Content",
+        "Masz ocenę HTTPS tej strony"
+      ],
+      "hints": [
+        "W Chrome: ikona obok adresu → **Połączenie jest bezpieczne** → **Certyfikat jest ważny**.",
+        "Zaznacz w zakładce Sieć opcję **Zachowaj log** (Preserve log), żeby po przekierowaniu nie zniknęło pierwsze zapytanie.",
+        "Jeśli konsola jest pusta, to dobrze: brak mixed content też jest wynikiem."
+      ],
+      "solution": "- Certyfikat: wydawca to np. **Let's Encrypt** (R10, R11, E5...) albo firma komercyjna. Data ważności Let's Encrypt jest zwykle krótka, kilka tygodni od wydania.\n- Wejście na `http://` powinno zwrócić **301** z nagłówkiem `Location: https://...`, a potem **200** na wersji https.\n- W konsoli nie powinno być ostrzeżeń „Mixed Content”.\n- Strona jest ustawiona dobrze, gdy ma ważny certyfikat, 301 z http na https i brak mixed content. Jeśli jest 302 albo brak przekierowania, to błąd do poprawienia."
+    }
+  },
+  {
+    "id": "t1-poczta",
+    "week": 1,
+    "order": 8,
+    "title": "Poczta: SMTP, SPF, DKIM, DMARC",
+    "lesson": "Klient pisze: „Nie dochodzą maile z formularza”. To jeden z najczęstszych problemów z WordPressem. Domyślnie WordPress wysyła maile funkcją PHP `mail()`, czyli serwer wysyła je **bez logowania** do żadnej skrzynki. Serwery Gmaila czy Onetu nie ufają takim mailom i wrzucają je do spamu albo odrzucają.\n\n![Droga maila z formularza](diagram:poczta-smtp)\n\n## Rozwiązanie: wysyłka przez SMTP\n\n**SMTP** to sposób wysyłania poczty z logowaniem, tak jak robi to program pocztowy. Instalujesz wtyczkę, np. **WP Mail SMTP** albo **FluentSMTP**, i podajesz dane skrzynki:\n\n- serwer SMTP, np. `smtp.mojafirma.pl` albo serwer Google Workspace,\n- port `465` (SSL) lub `587` (TLS),\n- login i hasło skrzynki, np. `formularz@mojafirma.pl`.\n\nPrzy dużej liczbie maili (np. sklep) używa się usług do wysyłki transakcyjnej, np. Brevo, Mailgun czy Amazon SES. Po konfiguracji zawsze wyślij **mail testowy** z wtyczki.\n\n## Trzy rekordy, które budują zaufanie\n\nSerwer odbiorcy sprawdza w DNS domeny nadawcy trzy rekordy TXT:\n\n- **SPF**: lista serwerów, które mogą wysyłać pocztę z tej domeny, np. `v=spf1 include:_spf.hosting.pl ~all`. Domena może mieć **tylko jeden** rekord SPF. Dwa osobne rekordy psują oba.\n- **DKIM**: cyfrowy podpis każdego maila. Klucz publiczny leży w DNS pod nazwą typu `selektor._domainkey.mojafirma.pl`. Podpis dowodzi, że mail nie został zmieniony po drodze.\n- **DMARC**: zasada, co zrobić z mailem, który nie przeszedł SPF ani DKIM: `p=none` (tylko raportuj), `p=quarantine` (do spamu), `p=reject` (odrzuć). Rekord leży pod `_dmarc.mojafirma.pl`.\n\nOd 2024 roku Gmail i Yahoo wymagają tych rekordów od nadawców wysyłających dużo maili, a dobrze ustawione pomagają każdej firmie. Zacznij od DMARC z `p=none` i obserwuj raporty.\n\n## Ważne: adres nadawcy\n\nMail z formularza wysyłaj **z adresu w domenie strony** (np. `formularz@mojafirma.pl`), a adres osoby, która pisze, wstaw w pole **Odpowiedz do**. Wysyłanie „od” adresu klienta z Gmaila łamie SPF i DMARC.\n\n## Czytaj dalej\n\n- [Cloudflare: DMARC, DKIM i SPF (po angielsku)](https://www.cloudflare.com/learning/email-security/dmarc-dkim-spf/)\n- [WPBeginner: WordPress nie wysyła maili (po angielsku)](https://www.wpbeginner.com/wp-tutorials/how-to-fix-wordpress-not-sending-email-issue/)",
+    "questions": [
+      {
+        "id": "t1-poczta-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Dlaczego maile z domyślnego WordPressa często trafiają do spamu?",
+        "answer": "Bo serwer wysyła je funkcją PHP mail() bez logowania do skrzynki",
+        "distractors": [
+          "Bo WordPress dodaje do nich reklamy",
+          "Bo maile z formularzy są zawsze za długie"
+        ],
+        "explanation": "Bez logowania i rekordów SPF/DKIM serwer odbiorcy nie może sprawdzić, czy nadawca jest prawdziwy."
+      },
+      {
+        "id": "t1-poczta-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Rekord ___ zawiera listę serwerów, które mogą wysyłać pocztę z domeny.",
+        "answer": "SPF",
+        "explanation": "SPF to rekord TXT zaczynający się od `v=spf1`. DKIM podpisuje maile, a DMARC mówi, co robić z podejrzanymi."
+      },
+      {
+        "id": "t1-poczta-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Co oznacza rekord DMARC z `p=reject`?",
+        "answer": "Maile, które nie przejdą SPF ani DKIM, mają zostać odrzucone",
+        "distractors": [
+          "Wszystkie maile z domeny są odrzucane",
+          "Raporty DMARC są wyłączone"
+        ],
+        "explanation": "`p=none` tylko zbiera raporty, `p=quarantine` kieruje do spamu, a `p=reject` odrzuca maile, które nie przechodzą sprawdzeń."
+      },
+      {
+        "id": "t1-poczta-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Ustawienia formularza: `Wyślij przez: WP Mail SMTP`, `Od: anna.kowalska@gmail.com (adres klienta)`, `Do: biuro@mojafirma.pl`, `Odpowiedz do: adres klienta`. Co jest błędem?",
+        "answer": "`Od: anna.kowalska@gmail.com (adres klienta)`",
+        "distractors": [
+          "`Wyślij przez: WP Mail SMTP`",
+          "`Do: biuro@mojafirma.pl`",
+          "`Odpowiedz do: adres klienta`"
+        ],
+        "explanation": "Pole Od musi być adresem w domenie strony. Adres klienta wstawia się tylko w Odpowiedz do."
+      },
+      {
+        "id": "t1-poczta-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Domena ma dwa rekordy TXT: `v=spf1 include:_spf.google.com ~all` i `v=spf1 include:_spf.hosting.pl ~all`. Co się dzieje?",
+        "answer": "SPF jest błędny: może być tylko jeden rekord, więc trzeba połączyć oba include w jednym",
+        "distractors": [
+          "Wszystko działa, oba serwery mogą wysyłać",
+          "Działa tylko pierwszy rekord"
+        ],
+        "explanation": "Dwa rekordy SPF dają błąd i żaden nie działa. Poprawnie: `v=spf1 include:_spf.google.com include:_spf.hosting.pl ~all`."
+      },
+      {
+        "id": "t1-poczta-06",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Klient mówi, że maile z formularza nie dochodzą. Co zrobisz po kolei?",
+        "answer": "Sprawdzę folder spam i wyślę testową wiadomość. Zainstaluję wtyczkę SMTP (np. WP Mail SMTP) i ustawię wysyłkę przez prawdziwą skrzynkę w domenie. Sprawdzę, czy adres nadawcy jest w domenie strony. Potem sprawdzę w DNS rekordy SPF, DKIM i DMARC i wyślę test, np. na mail-tester.com.",
+        "keyPoints": [
+          "sprawdzić spam i wysłać test",
+          "wtyczka SMTP z prawdziwą skrzynką",
+          "adres nadawcy w domenie strony",
+          "sprawdzić SPF, DKIM, DMARC",
+          "test po zmianach"
+        ],
+        "explanation": "Najczęściej sama wtyczka SMTP rozwiązuje problem, a rekordy DNS poprawiają dostarczalność."
+      },
+      {
+        "id": "t1-poczta-07",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Wyjaśnij własnymi słowami różnicę między SPF, DKIM i DMARC.",
+        "answer": "SPF to lista serwerów, które mogą wysyłać maile z domeny. DKIM to podpis każdego maila, który dowodzi, że mail jest od tej domeny i nie został zmieniony. DMARC mówi serwerowi odbiorcy, co zrobić z mailem, który nie przeszedł tych sprawdzeń, i wysyła raporty.",
+        "keyPoints": [
+          "SPF: kto może wysyłać",
+          "DKIM: podpis maila",
+          "DMARC: co zrobić z mailami, które nie przeszły (none/quarantine/reject)",
+          "DMARC wysyła raporty"
+        ],
+        "explanation": "Wszystkie trzy to rekordy TXT w DNS domeny."
+      },
+      {
+        "id": "t1-poczta-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Dlaczego mail z formularza nie powinien być wysyłany „od” adresu osoby, która go wypełnia?",
+        "answer": "Bo serwer strony nie ma prawa wysyłać maili z domeny tej osoby, np. gmail.com. SPF i DMARC tej domeny tego nie przepuszczą, więc mail trafi do spamu albo zostanie odrzucony. Poprawnie: Od = adres w domenie strony, a adres klienta w polu Odpowiedz do.",
+        "keyPoints": [
+          "serwer strony nie może wysyłać z cudzej domeny",
+          "SPF/DMARC odrzucą taki mail",
+          "Od: adres w domenie strony",
+          "adres klienta w polu Odpowiedz do"
+        ],
+        "explanation": "To bardzo częsty błąd w ustawieniach Contact Form 7 i innych formularzy."
+      },
+      {
+        "id": "t1-poczta-09",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Domena używa Google Workspace do poczty, a strona wysyła maile przez serwer hostingu. Jak powinien wyglądać rekord SPF?",
+        "answer": "Jeden rekord SPF, który zawiera oba źródła wysyłki, np. v=spf1 include:_spf.google.com include:_spf.hosting.pl ~all. Nie można dodać drugiego, osobnego rekordu SPF, bo wtedy oba przestają działać.",
+        "keyPoints": [
+          "jeden rekord SPF",
+          "include dla Google",
+          "include dla hostingu",
+          "nie dwa osobne rekordy"
+        ],
+        "explanation": "Dokładną wartość include podaje każdy dostawca w swojej instrukcji."
+      },
+      {
+        "id": "t1-poczta-10",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jakie dane podasz we wtyczce SMTP, żeby wysyłała maile przez skrzynkę w hostingu?",
+        "answer": "Adres serwera SMTP (np. smtp.mojafirma.pl), port 465 z SSL albo 587 z TLS, login (pełny adres skrzynki) i hasło do skrzynki. Ustawię też adres nadawcy na tę samą skrzynkę i wyślę mail testowy.",
+        "keyPoints": [
+          "serwer SMTP",
+          "port 465 (SSL) lub 587 (TLS)",
+          "login i hasło skrzynki",
+          "adres nadawcy = ta skrzynka",
+          "mail testowy"
+        ],
+        "explanation": "Dane SMTP znajdziesz w panelu hostingu przy kontach pocztowych."
+      }
+    ],
+    "task": {
+      "task": "Sprawdź, jak wygląda zabezpieczenie poczty prawdziwej domeny.\n\n1. Otwórz [Google Admin Toolbox Dig](https://toolbox.googleapps.com/apps/dig/) i sprawdź rekord **TXT** domeny, np. swojej firmy. Znajdź rekord SPF (`v=spf1`).\n2. Sprawdź **TXT** dla `_dmarc.` + domena (np. `_dmarc.wordpress.org`). Zapisz wartość `p=`.\n3. Wejdź na [mail-tester.com](https://www.mail-tester.com/), skopiuj podany adres i wyślij na niego maila ze swojej skrzynki w domenie (albo z formularza na stronie testowej).\n4. Zapisz wynik w skali 0–10 i jedną rzecz, którą test każe poprawić.",
+      "checklist": [
+        "Masz zapisany rekord SPF domeny",
+        "Znasz politykę DMARC (p=)",
+        "Mail testowy wysłany na mail-tester.com",
+        "Masz wynik i jedną rzecz do poprawy"
+      ],
+      "hints": [
+        "Rekordów TXT może być kilka. SPF to ten, który zaczyna się od `v=spf1`.",
+        "Jeśli `_dmarc.` nie zwraca nic, domena nie ma DMARC. To też jest wynik.",
+        "Mail-tester pozwala na kilka darmowych testów dziennie. Wynik pojawi się po kliknięciu „Następnie sprawdź swój wynik”."
+      ],
+      "solution": "- SPF: np. `v=spf1 include:_spf.google.com ~all`. Końcówka `~all` oznacza „inne serwery traktuj podejrzliwie”, `-all` „odrzucaj”.\n- DMARC: np. `v=DMARC1; p=none; rua=mailto:...`. `p=none` to dopiero obserwacja, `quarantine` i `reject` to ochrona.\n- Mail-tester: wynik 9–10 to bardzo dobrze. Częste uwagi: brak DKIM, brak DMARC, adres nadawcy spoza domeny, link na czarnej liście."
+    }
+  },
+  {
+    "id": "t1-kody-http",
+    "week": 1,
+    "order": 9,
+    "title": "Kody HTTP i przekierowania",
+    "lesson": "Każda odpowiedź serwera ma trzycyfrowy **kod statusu**. Pierwsza cyfra mówi, co się stało:\n\n- **2xx**: wszystko w porządku,\n- **3xx**: przekierowanie, strona jest gdzie indziej,\n- **4xx**: błąd po stronie zapytania, np. nie ma takiej strony,\n- **5xx**: błąd serwera.\n\n![Przekierowanie 301 krok po kroku](diagram:przekierowanie-301)\n\n## Kody, które musisz znać\n\n- **200 OK**: strona działa.\n- **301 Moved Permanently**: adres zmienił się **na stałe**. Google przenosi pozycje i linki na nowy adres.\n- **302 Found**: przekierowanie **tymczasowe**. Google zostawia w wynikach stary adres.\n- **404 Not Found**: nie ma takiej strony.\n- **410 Gone**: strona usunięta celowo i na zawsze. Google szybciej usuwa ją z wyników niż przy 404.\n- **403 Forbidden**: brak dostępu, np. przez uprawnienia plików albo firewall.\n- **500 Internal Server Error**: błąd serwera, np. zły wpis w `.htaccess` albo błąd wtyczki.\n- **503 Service Unavailable**: strona chwilowo niedostępna, np. w trybie konserwacji. Google wróci później.\n\n## Kiedy ustawić przekierowanie 301\n\n- zmieniasz adres podstrony (np. `/oferta-2025` → `/oferta`),\n- usuwasz produkt lub wpis, a jest podobna strona,\n- przenosisz stronę z `http` na `https` albo na nową domenę.\n\nPrzekierowuj na **najbardziej pasującą** stronę. Przekierowanie wszystkiego na stronę główną Google traktuje jak błąd 404 (tzw. soft 404). Jeśli nie ma pasującej strony, zostaw 404 albo ustaw 410.\n\n## Jak ustawić przekierowania w WordPressie\n\n- wtyczka **Redirection** (darmowa): przekierowania i dziennik błędów 404,\n- moduł przekierowań we wtyczce SEO (np. Rank Math),\n- reguły w `.htaccess` (szybkie, ale łatwo o literówkę i błąd 500).\n\nUnikaj **łańcuchów** (A → B → C) i **pętli** (A → B → A). Pętla kończy się błędem „Za dużo przekierowań” (`ERR_TOO_MANY_REDIRECTS`).\n\n## Gdzie znaleźć błędy 404\n\n- Google Search Console → **Strony** → „Nie znaleziono (404)”,\n- dziennik 404 we wtyczce Redirection,\n- crawler, np. Screaming Frog (lekcja o audycie w tygodniu 10).\n\n## Czytaj dalej\n\n- [Google: przekierowania i wyszukiwarka (po angielsku)](https://developers.google.com/search/docs/crawling-indexing/301-redirects)\n- [Wtyczka Redirection](https://wordpress.org/plugins/redirection/)\n- [MDN: kody statusu HTTP (po angielsku)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status)",
+    "questions": [
+      {
+        "id": "t1-kody-http-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Co oznacza kod 404?",
+        "answer": "Nie ma strony pod tym adresem",
+        "distractors": [
+          "Serwer jest wyłączony",
+          "Strona przeniosła się na stałe"
+        ],
+        "explanation": "404 to brak strony. Serwer działa i odpowiada, tylko nie ma takiej podstrony."
+      },
+      {
+        "id": "t1-kody-http-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Przekierowanie stałe ma kod ___, a tymczasowe 302.",
+        "answer": "301",
+        "explanation": "301 przenosi sygnały SEO na nowy adres. 302 mówi, że zmiana jest chwilowa."
+      },
+      {
+        "id": "t1-kody-http-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Sklep na tydzień ukrywa stronę promocji i kieruje ją na stronę główną. Promocja wróci. Jakie przekierowanie?",
+        "answer": "302, bo zmiana jest tymczasowa",
+        "distractors": [
+          "301, bo zawsze używa się 301",
+          "410, bo strony chwilowo nie ma"
+        ],
+        "explanation": "302 zostawia stary adres w Google. Gdy promocja wróci, wystarczy usunąć przekierowanie."
+      },
+      {
+        "id": "t1-kody-http-04",
+        "type": "error",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Plan po zmianie struktury strony: `/oferta-2025 → 301 → /oferta`, `/o-nas-stare → 301 → /o-nas`, `/usuniety-produkt → 301 → / (strona główna)`, `/blog/wpis-1 → 301 → /wpis-1`. Który wpis jest złym pomysłem?",
+        "answer": "`/usuniety-produkt → 301 → / (strona główna)`",
+        "distractors": [
+          "`/oferta-2025 → 301 → /oferta`",
+          "`/o-nas-stare → 301 → /o-nas`",
+          "`/blog/wpis-1 → 301 → /wpis-1`"
+        ],
+        "explanation": "Przekierowanie na stronę główną Google traktuje jak soft 404. Lepiej skierować na podobny produkt lub kategorię, albo zostawić 404/410."
+      },
+      {
+        "id": "t1-kody-http-05",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Po dodaniu przekierowań strona pokazuje „Za dużo przekierowań”. Co jest najczęstszą przyczyną?",
+        "answer": "Pętla przekierowań, np. A → B i B → A",
+        "distractors": [
+          "Brak certyfikatu SSL",
+          "Za dużo wtyczek SEO naraz"
+        ],
+        "explanation": "Przeglądarka przerywa pętlę po kilkunastu skokach. Trzeba znaleźć i usunąć przekierowanie, które wraca do początku."
+      },
+      {
+        "id": "t1-kody-http-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Wyjaśnij różnicę między 301 i 302 i podaj przykład użycia każdego.",
+        "answer": "301 to przekierowanie stałe: Google przenosi pozycje na nowy adres. Używam go np. po zmianie adresu podstrony albo przejściu na https. 302 to przekierowanie tymczasowe: Google zostawia stary adres. Używam go np. gdy strona jest chwilowo wyłączona albo trwa krótka akcja.",
+        "keyPoints": [
+          "301: stałe, Google przenosi sygnały",
+          "przykład 301: zmiana adresu lub https",
+          "302: tymczasowe, stary adres zostaje",
+          "przykład 302: chwilowa zmiana"
+        ],
+        "explanation": "W razie wątpliwości przy zmianie adresu wybieraj 301."
+      },
+      {
+        "id": "t1-kody-http-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Czym różni się 404 od 410 i kiedy warto użyć 410?",
+        "answer": "404 mówi, że strony nie ma, ale może to być pomyłka. 410 mówi, że strona została usunięta celowo i nie wróci. Google szybciej usuwa z wyników adresy z 410. Używam go, gdy usuwam treść na zawsze i nie ma podobnej strony, np. stare, nieaktualne wpisy.",
+        "keyPoints": [
+          "404: nie ma strony (może przypadkiem)",
+          "410: usunięta celowo i na zawsze",
+          "Google szybciej usuwa 410 z wyników",
+          "410 gdy nie ma pasującej strony"
+        ],
+        "explanation": "Ustawisz go np. we wtyczce Redirection, wybierając kod 410 zamiast przekierowania."
+      },
+      {
+        "id": "t1-kody-http-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Klient zmienia adres podstrony z /uslugi-2025 na /uslugi. Co zrobisz, żeby nie stracić pozycji w Google?",
+        "answer": "Ustawię przekierowanie 301 z /uslugi-2025 na /uslugi, np. we wtyczce Redirection. Zmienię linki wewnętrzne w menu i treściach na nowy adres, żeby nie przechodziły przez przekierowanie. Sprawdzę w DevTools, że stary adres daje 301, a nowy 200.",
+        "keyPoints": [
+          "przekierowanie 301 ze starego na nowy",
+          "poprawić linki wewnętrzne na nowy adres",
+          "sprawdzić kody: 301 i potem 200"
+        ],
+        "explanation": "WordPress sam przekierowuje część zmienionych adresów wpisów, ale lepiej nie liczyć na to przy stronach usług."
+      },
+      {
+        "id": "t1-kody-http-09",
+        "type": "open",
+        "difficulty": 3,
+        "prompt": "Strona zwraca błąd 500 zaraz po tym, jak ktoś dopisał przekierowanie w .htaccess. Co sprawdzisz?",
+        "answer": "Najpewniej reguła w .htaccess ma literówkę albo złą składnię. Przez SFTP pobiorę kopię .htaccess, usunę lub zakomentuję nową regułę i sprawdzę, czy strona wraca. Potem dodam przekierowanie poprawnie albo przez wtyczkę Redirection.",
+        "keyPoints": [
+          "błąd składni w .htaccess daje 500",
+          "kopia pliku przed zmianą",
+          "usunąć nową regułę i sprawdzić",
+          "dodać przekierowanie poprawnie lub wtyczką"
+        ],
+        "explanation": "Jeśli .htaccess się popsuł, możesz go też odtworzyć: Ustawienia → Bezpośrednie odnośniki → Zapisz."
+      },
+      {
+        "id": "t1-kody-http-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Strona błędu „Nie znaleziono” zwraca kod 200. Dlaczego to problem dla SEO?",
+        "answer": "Kod 200 mówi Google, że strona istnieje i działa. Google może więc zaindeksować pustą stronę błędu i marnować czas na takie adresy. To tzw. soft 404. Strona, której nie ma, powinna zwracać 404 albo 410.",
+        "keyPoints": [
+          "200 mówi Google, że strona działa",
+          "Google może zaindeksować stronę błędu",
+          "to soft 404",
+          "poprawnie: 404 lub 410"
+        ],
+        "explanation": "Soft 404 Search Console pokazuje osobno w raporcie Strony."
+      }
+    ],
+    "task": {
+      "task": "Prześledź kody i ustaw własne przekierowanie.\n\n1. Otwórz dowolną stronę z `http://` (np. `http://wordpress.org`) przy włączonym **F12 → Sieć** i opcji **Zachowaj log**. Zapisz kody kolejnych zapytań.\n2. Na stronie testowej (LocalWP albo instalacja z poprzednich lekcji) zainstaluj wtyczkę **Redirection**.\n3. Ustaw przekierowanie 301 z `/stara-strona` na `/kontakt` (albo inną istniejącą podstronę).\n4. Wejdź na `/stara-strona` i sprawdź w zakładce Sieć: najpierw 301, potem 200.\n5. Wejdź na nieistniejący adres i znajdź go w dzienniku 404 wtyczki (**Narzędzia → Redirection → 404s**).",
+      "checklist": [
+        "Masz zapisane kody przejścia z http na https",
+        "Wtyczka Redirection jest włączona",
+        "Przekierowanie daje 301, a potem 200",
+        "Widzisz swój błędny adres w dzienniku 404"
+      ],
+      "hints": [
+        "Bez opcji **Zachowaj log** lista w zakładce Sieć czyści się po przekierowaniu.",
+        "Przy pierwszym uruchomieniu Redirection przejdź krótki kreator. Dziennik 404 musi być włączony (domyślnie jest).",
+        "Jeśli przekierowanie nie działa, otwórz stary adres w oknie prywatnym. Przeglądarki zapamiętują 301."
+      ],
+      "solution": "- `http://wordpress.org` → **301** na `https://wordpress.org/` → **200**.\n- W Redirection: Źródło `/stara-strona`, Cel `/kontakt`, kod **301 – Przeniesiona na stałe**.\n- W zakładce Sieć: `stara-strona` z kodem **301** i nagłówkiem `Location: .../kontakt/`, potem `kontakt` z kodem **200**.\n- Dziennik 404 pokazuje wpisany adres, datę i źródło wejścia. Z tego miejsca można od razu dodać dla niego przekierowanie."
     }
   }
 ]

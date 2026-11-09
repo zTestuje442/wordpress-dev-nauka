@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 250" role="img" aria-labelledby="title">
+<title id="title">Wybór motywu: motyw blokowy, motyw klasyczny i dlaczego nigdy nie używać motywów nulled</title>
+<style>
+svg{--fg:#1d1d1b;--muted:#6b6b66;--box:#ffffff;--line:#c9c9c1;--accent:#2b6cb0;--site:#2f8f4e;--bad:#c0392b;font-family:system-ui,sans-serif}
+@media (prefers-color-scheme:dark){svg{--fg:#ecece6;--muted:#a0a09a;--box:#1f1f1d;--line:#4a4a44;--accent:#63a4ec;--site:#5cbf7d;--bad:#ec7f72}}
+.box{fill:var(--box);stroke:var(--line);stroke-width:1.5}
+.box.good{stroke:var(--site);stroke-width:2}
+.box.bad{stroke:var(--bad);stroke-width:2}
+.t{fill:var(--fg);font-size:16px;font-weight:700}
+.s{fill:var(--muted);font-size:13px}
+.ar{stroke:var(--line);stroke-width:2}
+#m path{fill:var(--line)}
+.tag{fill:var(--accent);font-size:14px;font-weight:700}
+.tag.good{fill:var(--site)}
+.tag.bad{fill:var(--bad)}
+.hl{fill:none;stroke:var(--accent);stroke-width:3;opacity:0}
+.cap{fill:var(--fg);font-size:15px;opacity:0}
+.static{fill:var(--muted);font-size:14px;opacity:0}
+</style>
+
+<rect class="box good" x="20" y="20" width="229" height="210" rx="12"/>
+<text class="t" x="135" y="52" text-anchor="middle">Motyw blokowy</text>
+<text class="s" x="135" y="84" text-anchor="middle">np. Twenty Twenty-Five</text>
+<text class="s" x="135" y="104" text-anchor="middle">edycja w Wygląd →</text>
+<text class="s" x="135" y="124" text-anchor="middle">Edytor (szablony,</text>
+<text class="s" x="135" y="144" text-anchor="middle">style, nagłówek)</text>
+<text class="s" x="135" y="164" text-anchor="middle">bez buildera</text>
+<text class="tag good" x="135" y="212" text-anchor="middle">przyszłość WP</text>
+<rect class="box " x="265" y="20" width="229" height="210" rx="12"/>
+<text class="t" x="380" y="52" text-anchor="middle">Motyw klasyczny</text>
+<text class="s" x="380" y="84" text-anchor="middle">np. Astra, Kadence,</text>
+<text class="s" x="380" y="104" text-anchor="middle">GeneratePress</text>
+<text class="s" x="380" y="124" text-anchor="middle">Wygląd → Dostosuj</text>
+<text class="s" x="380" y="144" text-anchor="middle">dobrze działa</text>
+<text class="s" x="380" y="164" text-anchor="middle">z Elementorem</text>
+<text class="tag " x="380" y="212" text-anchor="middle">sprawdzony</text>
+<rect class="box bad" x="511" y="20" width="229" height="210" rx="12"/>
+<text class="t" x="625" y="52" text-anchor="middle">Motyw „nulled”</text>
+<text class="s" x="625" y="84" text-anchor="middle">piracka kopia</text>
+<text class="s" x="625" y="104" text-anchor="middle">płatnego motywu</text>
+<text class="s" x="625" y="124" text-anchor="middle">często z wirusem</text>
+<text class="s" x="625" y="144" text-anchor="middle">bez aktualizacji</text>
+<text class="s" x="625" y="164" text-anchor="middle">i wsparcia</text>
+<text class="tag bad" x="625" y="212" text-anchor="middle">nigdy!</text>
+</svg>

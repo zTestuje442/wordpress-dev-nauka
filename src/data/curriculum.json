@@ -1373,5 +1373,1390 @@
       ],
       "solution": "- `http://wordpress.org` → **301** na `https://wordpress.org/` → **200**.\n- W Redirection: Źródło `/stara-strona`, Cel `/kontakt`, kod **301 – Przeniesiona na stałe**.\n- W zakładce Sieć: `stara-strona` z kodem **301** i nagłówkiem `Location: .../kontakt/`, potem `kontakt` z kodem **200**.\n- Dziennik 404 pokazuje wpisany adres, datę i źródło wejścia. Z tego miejsca można od razu dodać dla niego przekierowanie."
     }
+  },
+  {
+    "id": "t2-lokalne-srodowisko",
+    "week": 2,
+    "order": 1,
+    "title": "Lokalne środowisko",
+    "lesson": "**Lokalne środowisko** to WordPress działający na Twoim komputerze, bez hostingu i bez internetu. To idealne miejsce do nauki i testów: możesz psuć, ile chcesz, a klient niczego nie zobaczy.\n\n![Praca w lokalnym środowisku](diagram:lokalne-srodowisko)\n\n## LocalWP\n\nNajprostszy program do tego to darmowy **LocalWP** (Windows, macOS, Linux). Instaluje na komputerze wszystko, czego potrzebuje WordPress: serwer, PHP i bazę danych.\n\n1. Pobierz LocalWP z [localwp.com](https://localwp.com/) i zainstaluj.\n2. Kliknij **+** → **Create a new site**, podaj nazwę, np. `mojafirma`.\n3. Wybierz **Preferred** (zalecane ustawienia), podaj login i hasło administratora.\n4. Po chwili strona działa pod adresem typu `mojafirma.local`. Przycisk **WP Admin** otwiera panel.\n\nPrzydatne przyciski: **Go to site folder** (pliki strony są w `app/public`), **Open site shell** (terminal z WP-CLI) i skrzynka **Mailpit**, która przechwytuje maile wysłane przez stronę. Dzięki niej sprawdzisz formularz kontaktowy bez prawdziwej poczty.\n\n## WP_DEBUG: tryb debugowania\n\nGdy coś się psuje, WordPress zwykle pokazuje ogólny komunikat. Tryb debugowania pokazuje prawdziwą przyczynę. W pliku `wp-config.php`, nad linią `/* To wszystko, zakończ edycję! */`:\n\n```php\ndefine( 'WP_DEBUG', true );\ndefine( 'WP_DEBUG_LOG', true );\ndefine( 'WP_DEBUG_DISPLAY', false );\n```\n\n- `WP_DEBUG` włącza raportowanie błędów,\n- `WP_DEBUG_LOG` zapisuje je do pliku `wp-content/debug.log`,\n- `WP_DEBUG_DISPLAY` decyduje, czy błędy są widoczne na stronie.\n\nLokalnie możesz pokazywać błędy na ekranie. Na żywej stronie nigdy: odwiedzający zobaczyliby ścieżki plików i szczegóły serwera. Tam włączaj tylko zapis do pliku i wyłącz debugowanie po naprawie.\n\n## Czytaj dalej\n\n- [LocalWP: dokumentacja (po angielsku)](https://localwp.com/help-docs/)\n- [WordPress: debugowanie (po angielsku)](https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/)",
+    "questions": [
+      {
+        "id": "t2-lokalne-srodowisko-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Do czego służy lokalne środowisko?",
+        "answer": "Do budowy i testowania strony na własnym komputerze, bez wpływu na żywą stronę",
+        "distractors": [
+          "Do przyspieszenia strony na hostingu",
+          "Do wysyłania kopii zapasowych klientowi"
+        ],
+        "explanation": "Strona lokalna działa tylko u Ciebie. Możesz testować motywy, wtyczki i kod bez ryzyka."
+      },
+      {
+        "id": "t2-lokalne-srodowisko-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Błędy zapisane przez `WP_DEBUG_LOG` trafiają do pliku `wp-content/___`.",
+        "answer": "debug.log",
+        "explanation": "`WP_DEBUG_LOG` zapisuje błędy w `wp-content/debug.log`. To pierwsze miejsce, do którego warto zajrzeć przy białym ekranie."
+      },
+      {
+        "id": "t2-lokalne-srodowisko-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Gdzie w LocalWP są pliki strony (motywy, wtyczki, wp-config.php)?",
+        "answer": "W folderze strony, w `app/public`",
+        "distractors": [
+          "W panelu WordPressa, w Ustawieniach",
+          "Tylko w bazie danych"
+        ],
+        "explanation": "Przycisk Go to site folder otwiera folder strony. Pliki WordPressa są w `app/public`."
+      },
+      {
+        "id": "t2-lokalne-srodowisko-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Ustawienia na żywej stronie klienta: `WP_DEBUG true`, `WP_DEBUG_LOG true`, `WP_DEBUG_DISPLAY true`, `kopia przed zmianą wp-config.php`. Co jest błędem?",
+        "answer": "`WP_DEBUG_DISPLAY true`",
+        "distractors": [
+          "`WP_DEBUG true`",
+          "`WP_DEBUG_LOG true`",
+          "`kopia przed zmianą wp-config.php`"
+        ],
+        "explanation": "Na żywej stronie błędy nie mogą być widoczne dla odwiedzających. Zapisuj je tylko do pliku i wyłącz debugowanie po naprawie."
+      },
+      {
+        "id": "t2-lokalne-srodowisko-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Testujesz formularz kontaktowy w LocalWP i mail nie dochodzi na Twoją skrzynkę. Co to oznacza?",
+        "answer": "Prawdopodobnie nic złego: LocalWP przechwytuje maile w Mailpit, więc trzeba tam zajrzeć",
+        "distractors": [
+          "Formularz na pewno jest zepsuty",
+          "Trzeba kupić hosting, żeby testować formularze"
+        ],
+        "explanation": "LocalWP nie wysyła prawdziwych maili. Łapie je w Mailpit, żeby testy nie trafiały do prawdziwych ludzi."
+      },
+      {
+        "id": "t2-lokalne-srodowisko-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Dlaczego warto mieć lokalną kopię strony, zanim zaczniesz zmieniać stronę klienta?",
+        "answer": "Bo lokalnie mogę bezpiecznie testować motywy, wtyczki, aktualizacje i kod. Jeśli coś zepsuję, klient tego nie widzi, a strona dla klientów działa dalej. Na żywą stronę przenoszę tylko sprawdzone zmiany.",
+        "keyPoints": [
+          "testy bez wpływu na żywą stronę",
+          "błędy nie widzą klienci",
+          "na żywą stronę tylko sprawdzone zmiany"
+        ],
+        "explanation": "Podobną rolę na hostingu pełni staging, do którego wrócisz w tygodniu 8."
+      },
+      {
+        "id": "t2-lokalne-srodowisko-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Opisz, jak założyć nową stronę w LocalWP.",
+        "answer": "Instaluję LocalWP, klikam plus i Create a new site, podaję nazwę strony, wybieram ustawienia Preferred i podaję login, hasło i e-mail administratora. Po chwili strona działa pod adresem .local, a przycisk WP Admin otwiera panel.",
+        "keyPoints": [
+          "instalacja LocalWP",
+          "Create a new site i nazwa",
+          "ustawienia Preferred",
+          "dane administratora",
+          "adres .local i przycisk WP Admin"
+        ],
+        "explanation": "Cała instalacja trwa około minuty."
+      },
+      {
+        "id": "t2-lokalne-srodowisko-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Co robią WP_DEBUG, WP_DEBUG_LOG i WP_DEBUG_DISPLAY?",
+        "answer": "WP_DEBUG włącza raportowanie błędów. WP_DEBUG_LOG zapisuje błędy do pliku wp-content/debug.log. WP_DEBUG_DISPLAY decyduje, czy błędy są pokazywane na stronie; na żywej stronie ustawiam go na false.",
+        "keyPoints": [
+          "WP_DEBUG: włącza raportowanie",
+          "WP_DEBUG_LOG: zapis do debug.log",
+          "WP_DEBUG_DISPLAY: pokazywanie na stronie",
+          "na żywej stronie DISPLAY = false"
+        ],
+        "explanation": "Wszystkie trzy to linie define w wp-config.php."
+      },
+      {
+        "id": "t2-lokalne-srodowisko-09",
+        "type": "open",
+        "difficulty": 3,
+        "prompt": "Dlaczego na żywej stronie nie pokazuje się błędów PHP odwiedzającym?",
+        "answer": "Bo komunikaty błędów zdradzają ścieżki plików, nazwy wtyczek i szczegóły serwera, co pomaga atakującym. Wyglądają też nieprofesjonalnie. Na żywej stronie błędy zapisuje się do pliku, a debugowanie wyłącza po naprawie.",
+        "keyPoints": [
+          "błędy zdradzają szczegóły serwera i plików",
+          "to pomaga atakującym",
+          "wyglądają nieprofesjonalnie",
+          "na żywo: zapis do pliku, potem wyłączyć"
+        ],
+        "explanation": "Wrócisz do tego w tygodniu 5 przy bezpieczeństwie."
+      },
+      {
+        "id": "t2-lokalne-srodowisko-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Strona lokalna pokazuje biały ekran po instalacji wtyczki. Jak użyjesz WP_DEBUG, żeby znaleźć przyczynę?",
+        "answer": "Włączę w wp-config.php WP_DEBUG i WP_DEBUG_LOG (lokalnie mogę też DISPLAY). Odświeżę stronę i otworzę wp-content/debug.log albo przeczytam błąd na ekranie. Komunikat zwykle wskazuje plik i wtyczkę. Wtedy wyłączę tę wtyczkę, np. zmieniając nazwę jej folderu.",
+        "keyPoints": [
+          "włączyć WP_DEBUG i WP_DEBUG_LOG",
+          "odświeżyć i przeczytać debug.log",
+          "błąd wskazuje plik i wtyczkę",
+          "wyłączyć wtyczkę (np. zmiana nazwy folderu)"
+        ],
+        "explanation": "Zmiana nazwy folderu wtyczki w wp-content/plugins wyłącza ją nawet bez dostępu do panelu."
+      }
+    ],
+    "task": {
+      "task": "Postaw swoją pierwszą stronę lokalną.\n\n1. Zainstaluj [LocalWP](https://localwp.com/) i utwórz stronę o nazwie np. `nauka`.\n2. Zaloguj się do panelu przyciskiem **WP Admin**.\n3. Otwórz folder strony (**Go to site folder**) i znajdź `app/public/wp-config.php`.\n4. Dodaj w nim linie `WP_DEBUG` i `WP_DEBUG_LOG` ustawione na `true`. Zapisz plik i odśwież stronę.\n5. Otwórz skrzynkę **Mailpit** w LocalWP i sprawdź, czy jest tam mail powitalny albo inny mail od WordPressa.",
+      "checklist": [
+        "Strona lokalna działa i panel się otwiera",
+        "Plik wp-config.php jest znaleziony",
+        "WP_DEBUG i WP_DEBUG_LOG są włączone",
+        "Mailpit jest sprawdzony"
+      ],
+      "hints": [
+        "Plik `wp-config.php` otwórz w zwykłym edytorze tekstu (np. Notatnik albo VS Code), nie w Wordzie.",
+        "Linie dopisz nad komentarzem `/* To wszystko, zakończ edycję! */` (albo `That's all, stop editing!`).",
+        "Mailpit jest w LocalWP w zakładce **Tools** przy stronie."
+      ],
+      "solution": "- Strona działa pod adresem `nauka.local`, panel pod `nauka.local/wp-admin`.\n- W `app/public/wp-config.php` po zmianie:\n\n```php\ndefine( 'WP_DEBUG', true );\ndefine( 'WP_DEBUG_LOG', true );\n```\n\n- Jeśli nie ma błędów, plik `wp-content/debug.log` może w ogóle nie powstać. To dobry znak.\n- W Mailpit widać maile wysłane przez stronę. Jeśli skrzynka jest pusta, wyślij np. reset hasła z ekranu logowania i sprawdź jeszcze raz."
+    }
+  },
+  {
+    "id": "t2-pierwsze-ustawienia",
+    "week": 2,
+    "order": 2,
+    "title": "Pierwsze ustawienia WordPressa",
+    "lesson": "Świeża instalacja WordPressa ma ustawienia domyślne, które pasują do bloga, a nie do strony firmowej. Zanim dodasz pierwszą treść, przejdź przez menu **Ustawienia**. Kilka zmian zrobionych na starcie oszczędzi poprawek później, zwłaszcza adresy stron.\n\n![Cztery najważniejsze miejsca w Ustawieniach](diagram:pierwsze-ustawienia)\n\n## Ustawienia → Ogólne\n\n- **Tytuł witryny**: nazwa firmy. Pojawia się w karcie przeglądarki i często w wynikach Google.\n- **Opis** (slogan): krótko, czym zajmuje się firma. Usuń domyślne „Kolejna witryna oparta na WordPressie”, jeśli motyw go pokazuje.\n- **Adres e-mail administratora**: tu przychodzą ważne powiadomienia, m.in. o błędach krytycznych.\n- **Język witryny**: Polski. **Strefa czasowa**: Warszawa (nie UTC+1, bo nie uwzględnia zmiany czasu).\n\n## Ustawienia → Czytanie\n\n- **Strona główna wyświetla**: dla strony firmowej wybierz **Statyczną stronę**. Utwórz wcześniej strony „Strona główna” i „Blog”, a potem wskaż je tutaj.\n- **Widoczność dla wyszukiwarek**: pole „Proś wyszukiwarki o nieindeksowanie” zaznaczasz w czasie budowy i **odznaczasz przy starcie**.\n\n## Ustawienia → Bezpośrednie odnośniki\n\nDomyślne adresy typu `/?p=123` nic nie mówią ani ludziom, ani Google. Wybierz **Nazwa wpisu** (`/%postname%/`), a adres będzie wyglądał tak: `mojafirma.pl/oferta/`.\n\nZrób to **na początku**. Zmiana struktury adresów na działającej stronie zmienia adresy wszystkich wpisów i wymaga przekierowań.\n\n## Ustawienia → Dyskusja\n\nNa stronie firmowej komentarze zwykle nie są potrzebne. Jeśli je zostawiasz, włącz ręczne zatwierdzanie, żeby spam nie pojawiał się od razu. Ustawienia dotyczą nowych wpisów, a w istniejących komentarze wyłącza się osobno.\n\n## Pozostałe\n\n- **Ustawienia → Media**: rozmiary miniatur. Zwykle można zostawić.\n- **Ustawienia → Prywatność**: wskaż stronę z polityką prywatności (temat z tygodnia 3).\n\nNa koniec usuń przykładowe treści z instalacji: wpis „Witaj, świecie!”, „Przykładową stronę” i przykładowy komentarz.\n\n## Czytaj dalej\n\n- [WordPress: ekran Ustawienia ogólne (po angielsku)](https://wordpress.org/documentation/article/settings-general-screen/)\n- [WordPress: bezpośrednie odnośniki (po angielsku)](https://wordpress.org/documentation/article/settings-permalinks-screen/)",
+    "questions": [
+      {
+        "id": "t2-pierwsze-ustawienia-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Którą strukturę bezpośrednich odnośników zwykle wybiera się dla strony firmowej?",
+        "answer": "Nazwa wpisu (`/%postname%/`)",
+        "distractors": [
+          "Zwykłe (`/?p=123`)",
+          "Numeryczne (`/archives/123`)"
+        ],
+        "explanation": "Nazwa wpisu daje krótkie, czytelne adresy, np. `/oferta/`. To dobre dla ludzi i dla SEO."
+      },
+      {
+        "id": "t2-pierwsze-ustawienia-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Żeby na stronie głównej była zwykła strona, a nie lista wpisów, w Ustawienia → ___ wybierasz „Statyczną stronę”.",
+        "answer": "Czytanie",
+        "explanation": "W Ustawienia → Czytanie wskazujesz stronę główną i stronę z wpisami (np. Blog)."
+      },
+      {
+        "id": "t2-pierwsze-ustawienia-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Którą strefę czasową lepiej wybrać dla strony w Polsce?",
+        "answer": "Warszawa",
+        "distractors": [
+          "UTC+1",
+          "UTC+0"
+        ],
+        "explanation": "Strefa „Warszawa” sama przestawia się na czas letni i zimowy. UTC+1 latem pokazywałby złą godzinę, np. przy publikacji wpisów."
+      },
+      {
+        "id": "t2-pierwsze-ustawienia-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Plan konfiguracji nowej strony: `język: polski`, `strona główna: statyczna`, `bezpośrednie odnośniki: Nazwa wpisu`, `zmiana struktury odnośników po pół roku działania strony`. Co jest złym pomysłem?",
+        "answer": "`zmiana struktury odnośników po pół roku działania strony`",
+        "distractors": [
+          "`język: polski`",
+          "`strona główna: statyczna`",
+          "`bezpośrednie odnośniki: Nazwa wpisu`"
+        ],
+        "explanation": "Zmiana struktury później zmienia adresy wszystkich wpisów. Google i linki prowadzą wtedy do 404, chyba że ustawisz przekierowania. Ustaw strukturę na starcie."
+      },
+      {
+        "id": "t2-pierwsze-ustawienia-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Strona jest gotowa od miesiąca, ale nie pojawia się w Google. Co sprawdzisz w Ustawieniach najpierw?",
+        "answer": "Czy w Ustawienia → Czytanie nie jest zaznaczone „Proś wyszukiwarki o nieindeksowanie”",
+        "distractors": [
+          "Czy strefa czasowa to Warszawa",
+          "Czy komentarze są włączone"
+        ],
+        "explanation": "To pole zostawione po budowie blokuje indeksowanie. To jedna z najczęstszych przyczyn braku strony w Google."
+      },
+      {
+        "id": "t2-pierwsze-ustawienia-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Wymień ustawienia, które zmienisz od razu po instalacji WordPressa dla strony firmowej.",
+        "answer": "W Ogólnych: tytuł i opis strony, e-mail administratora, język polski i strefa czasowa Warszawa. W Czytaniu: statyczna strona główna i strona Blog. W Bezpośrednich odnośnikach: Nazwa wpisu. W Dyskusji: wyłączenie lub moderacja komentarzy. Usunę też przykładowe treści.",
+        "keyPoints": [
+          "tytuł, opis, e-mail administratora",
+          "język i strefa czasowa",
+          "statyczna strona główna",
+          "odnośniki: Nazwa wpisu",
+          "komentarze i usunięcie przykładowych treści"
+        ],
+        "explanation": "Ta lista przyda się jako stała checklista przy każdej nowej stronie."
+      },
+      {
+        "id": "t2-pierwsze-ustawienia-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Dlaczego strukturę bezpośrednich odnośników ustawia się na samym początku?",
+        "answer": "Bo zmiana struktury zmienia adresy wszystkich wpisów i stron. Na działającej stronie stare adresy są już w Google, w linkach i zakładkach, więc po zmianie dają 404 albo wymagają przekierowań. Na początku nikt tych adresów jeszcze nie zna.",
+        "keyPoints": [
+          "zmienia adresy wszystkich treści",
+          "stare adresy są w Google i linkach",
+          "po zmianie trzeba przekierowań, inaczej 404",
+          "na starcie nie ma tego problemu"
+        ],
+        "explanation": "To ten sam powód, dla którego przy zmianie adresu podstrony ustawia się 301."
+      },
+      {
+        "id": "t2-pierwsze-ustawienia-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak ustawić, żeby stroną główną była strona „Start”, a wpisy pokazywały się na stronie „Blog”?",
+        "answer": "Tworzę dwie strony: Start i Blog (stronę Blog zostawiam pustą). W Ustawienia → Czytanie wybieram Statyczną stronę, jako Stronę główną wskazuję Start, a jako Stronę wpisów wskazuję Blog i zapisuję.",
+        "keyPoints": [
+          "utworzyć strony Start i Blog",
+          "Ustawienia → Czytanie: statyczna strona",
+          "strona główna: Start",
+          "strona wpisów: Blog"
+        ],
+        "explanation": "Treść wpisana na stronę Blog się nie wyświetli, bo WordPress pokazuje tam listę wpisów."
+      },
+      {
+        "id": "t2-pierwsze-ustawienia-09",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Strona klienta nie ma komentarzy, ale co dzień przychodzą powiadomienia o spamie w komentarzach. Co zrobisz?",
+        "answer": "W Ustawienia → Dyskusja wyłączę komentarze dla nowych wpisów. Dla istniejących wpisów wyłączę je zbiorczo (Wpisy → zaznacz → Edytuj → Komentarze: nie zezwalaj) albo wtyczką do wyłączania komentarzy. Usunę zebrany spam.",
+        "keyPoints": [
+          "Ustawienia → Dyskusja dotyczą nowych wpisów",
+          "istniejące wpisy trzeba zmienić osobno (edycja zbiorcza lub wtyczka)",
+          "usunąć zebrany spam"
+        ],
+        "explanation": "Ustawienie w Dyskusji nie działa wstecz. To częsta pułapka."
+      },
+      {
+        "id": "t2-pierwsze-ustawienia-10",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Dlaczego e-mail administratora w Ustawieniach ogólnych powinien być prawdziwą, czytaną skrzynką?",
+        "answer": "Bo tam WordPress wysyła ważne powiadomienia: o błędach krytycznych z linkiem do trybu awaryjnego, o aktualizacjach i zmianach. Jeśli nikt jej nie czyta, problem ze stroną może zostać niezauważony.",
+        "keyPoints": [
+          "powiadomienia o błędach krytycznych",
+          "link do trybu awaryjnego",
+          "powiadomienia o aktualizacjach",
+          "nieczytana skrzynka = przegapione problemy"
+        ],
+        "explanation": "Zmiana tego adresu wymaga potwierdzenia z nowej skrzynki."
+      }
+    ],
+    "task": {
+      "task": "Skonfiguruj świeżą instalację tak, jak zrobisz to u klienta.\n\n1. Na stronie lokalnej ustaw w **Ustawienia → Ogólne** tytuł, opis, język polski i strefę czasową Warszawa.\n2. Utwórz strony **Strona główna** i **Blog**, a w **Ustawienia → Czytanie** ustaw statyczną stronę główną.\n3. W **Ustawienia → Bezpośrednie odnośniki** wybierz **Nazwa wpisu**.\n4. W **Ustawienia → Dyskusja** wyłącz komentarze dla nowych wpisów.\n5. Usuń przykładowy wpis, stronę i komentarz. Sprawdź, czy adres strony Blog wygląda jak `/blog/`.",
+      "checklist": [
+        "Ogólne: tytuł, opis, język i strefa czasowa",
+        "Statyczna strona główna i strona Blog",
+        "Odnośniki: Nazwa wpisu",
+        "Komentarze wyłączone i przykładowe treści usunięte"
+      ],
+      "hints": [
+        "Strony dodasz w **Strony → Dodaj**. Treść na razie może być pusta.",
+        "Po zapisaniu bezpośrednich odnośników otwórz dowolną stronę i spójrz na adres w przeglądarce.",
+        "Przykładowy wpis to „Witaj, świecie!”, strona to „Przykładowa strona”."
+      ],
+      "solution": "- Ogólne: tytuł np. „Moja Firma”, opis np. „Remonty mieszkań w Krakowie”, strefa „Warszawa”.\n- Czytanie: **Statyczna strona**, Strona główna: „Strona główna”, Strona wpisów: „Blog”.\n- Odnośniki: **Nazwa wpisu**, adres bloga: `nauka.local/blog/`.\n- Dyskusja: odznaczone „Pozwól innym komentować nowe wpisy”.\n- Przykładowe treści przeniesione do kosza, a kosz opróżniony."
+    }
+  },
+  {
+    "id": "t2-tresc-struktura",
+    "week": 2,
+    "order": 3,
+    "title": "Treść i struktura strony",
+    "lesson": "WordPress ma dwa podstawowe rodzaje treści: **wpisy** i **strony**. Wyglądają podobnie w edytorze, ale służą do czego innego. Dobry wybór ułatwia nawigację klientom i Google.\n\n![Wpisy, strony i media](diagram:wpisy-strony)\n\n## Wpisy\n\nWpisy to treści związane z czasem: porady, aktualności, artykuły blogowe. Mają **datę** i **autora**, pokazują się na liście na stronie bloga (najnowsze na górze) i w kanale RSS. Porządkujesz je:\n\n- **kategoriami**: kilka szerokich działów, np. „Porady”, „Realizacje”. Każdy wpis ma co najmniej jedną kategorię. Kategorie mogą mieć podkategorie.\n- **tagami**: dodatkowe, szczegółowe słowa, np. „łazienka”, „płytki”. Są opcjonalne. Nie twórz tagów, które mają po jednym wpisie, bo każdy tag to osobna, prawie pusta strona archiwum.\n\n## Strony\n\nStrony to treści stałe: Strona główna, O nas, Oferta, Kontakt, Polityka prywatności. Nie mają daty ani kategorii. Mogą mieć **stronę nadrzędną**, np. `Oferta → Remonty łazienek` da adres `/oferta/remonty-lazienek/`.\n\nZasada: jeśli treść za rok nadal będzie aktualna i ma być w menu, to strona. Jeśli to nowość albo artykuł z serii, to wpis.\n\n## Biblioteka mediów\n\nWszystkie zdjęcia i pliki trafiają do **Media → Biblioteka**. Jedno zdjęcie możesz użyć w wielu miejscach. Przy każdym obrazku uzupełnij **tekst alternatywny** (alt): krótki opis tego, co jest na zdjęciu. Czyta go czytnik ekranu dla osób niewidomych i Google. Przed wgraniem zmniejsz zdjęcie, np. do szerokości 2000 px, i nadaj plikowi opisową nazwę, np. `remont-lazienki-krakow.jpg`.\n\n## Plan struktury strony firmowej\n\nZanim zaczniesz klikać, rozpisz strukturę na kartce:\n\n1. Strona główna\n2. O nas\n3. Oferta (z podstronami usług)\n4. Realizacje\n5. Blog (wpisy w 2–4 kategoriach)\n6. Kontakt\n7. Polityka prywatności\n\n## Czytaj dalej\n\n- [WordPress: wpisy a strony (po angielsku)](https://wordpress.org/documentation/article/post-vs-page/)\n- [WPBeginner: kategorie a tagi (po angielsku)](https://www.wpbeginner.com/beginners-guide/categories-vs-tags-seo-best-practices-which-one-is-better/)",
+    "questions": [
+      {
+        "id": "t2-tresc-struktura-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Gdzie najlepiej umieścić treść „Kontakt” na stronie firmowej?",
+        "answer": "Na stronie, bo to stała treść w menu",
+        "distractors": [
+          "We wpisie z kategorią Kontakt",
+          "W tagu Kontakt"
+        ],
+        "explanation": "Kontakt jest stały i ma być w menu, więc to strona. Wpisy są dla treści związanych z czasem."
+      },
+      {
+        "id": "t2-tresc-struktura-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Wpisy porządkuje się kategoriami i ___.",
+        "answer": "tagami",
+        "explanation": "Kategorie to szerokie działy, a tagi to szczegółowe, opcjonalne słowa kluczowe wpisu."
+      },
+      {
+        "id": "t2-tresc-struktura-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Strona „Remonty łazienek” ma stronę nadrzędną „Oferta”. Jaki będzie jej adres przy odnośnikach „Nazwa wpisu”?",
+        "answer": "`/oferta/remonty-lazienek/`",
+        "distractors": [
+          "`/remonty-lazienek/oferta/`",
+          "`/?page_id=12`"
+        ],
+        "explanation": "Strona podrzędna dostaje w adresie nazwę strony nadrzędnej. To porządkuje adresy całej oferty."
+      },
+      {
+        "id": "t2-tresc-struktura-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Plan treści bloga: `kategorie: Porady, Realizacje`, `tagi: łazienka, kuchnia`, `osobny tag dla każdego wpisu`, `wpisy z datą na stronie Blog`. Co jest złym pomysłem?",
+        "answer": "`osobny tag dla każdego wpisu`",
+        "distractors": [
+          "`kategorie: Porady, Realizacje`",
+          "`tagi: łazienka, kuchnia`",
+          "`wpisy z datą na stronie Blog`"
+        ],
+        "explanation": "Tag z jednym wpisem tworzy prawie pustą stronę archiwum. Takie strony to słaba treść dla Google. Tag ma łączyć kilka wpisów."
+      },
+      {
+        "id": "t2-tresc-struktura-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Dlaczego tekst alternatywny (alt) obrazka jest ważny?",
+        "answer": "Opisuje obrazek dla czytników ekranu i dla Google",
+        "distractors": [
+          "Zmniejsza rozmiar pliku",
+          "Chroni zdjęcie przed kopiowaniem"
+        ],
+        "explanation": "Alt czytają osoby niewidome przez czytnik ekranu, a Google rozumie dzięki niemu obrazek. Nie zmienia rozmiaru ani nie chroni pliku."
+      },
+      {
+        "id": "t2-tresc-struktura-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Wyjaśnij różnicę między wpisem a stroną i podaj po dwa przykłady.",
+        "answer": "Wpis ma datę, autora, kategorie i tagi i pokazuje się na liście na blogu, np. porada o remoncie albo informacja o nowej usłudze. Strona jest stała, bez daty, może mieć stronę nadrzędną i zwykle jest w menu, np. O nas i Kontakt.",
+        "keyPoints": [
+          "wpis: data, kategorie, tagi, lista na blogu",
+          "przykłady wpisów: porady, aktualności",
+          "strona: stała, bez daty, w menu, hierarchia",
+          "przykłady stron: O nas, Kontakt"
+        ],
+        "explanation": "Pytanie pomocnicze: czy za rok ta treść nadal będzie aktualna i w menu?"
+      },
+      {
+        "id": "t2-tresc-struktura-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Rozpisz strukturę strony dla firmy remontowej: jakie strony, jakie wpisy, jakie kategorie?",
+        "answer": "Strony: Strona główna, O nas, Oferta z podstronami (Remonty łazienek, Remonty kuchni, Malowanie), Realizacje, Kontakt i Polityka prywatności. Blog z wpisami w kategoriach Porady i Realizacje, ewentualnie Aktualności.",
+        "keyPoints": [
+          "strony stałe: główna, O nas, Kontakt, Polityka prywatności",
+          "Oferta z podstronami usług",
+          "Realizacje",
+          "blog z 2–4 kategoriami"
+        ],
+        "explanation": "Każda usługa na osobnej podstronie to też dobra baza pod SEO (tydzień 4)."
+      },
+      {
+        "id": "t2-tresc-struktura-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak przygotujesz zdjęcie przed wgraniem do biblioteki mediów?",
+        "answer": "Zmniejszę je do rozsądnej szerokości, np. 2000 px, i skompresuję, żeby plik był lekki. Nadam opisową nazwę pliku z myślnikami, bez polskich znaków, np. remont-lazienki-krakow.jpg. Po wgraniu uzupełnię tekst alternatywny.",
+        "keyPoints": [
+          "zmniejszyć wymiary (np. 2000 px)",
+          "skompresować",
+          "opisowa nazwa pliku z myślnikami",
+          "tekst alternatywny po wgraniu"
+        ],
+        "explanation": "Zdjęcia prosto z telefonu ważą często 5–10 MB i spowalniają stronę."
+      },
+      {
+        "id": "t2-tresc-struktura-09",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Czym różnią się kategorie od tagów i jak ich używać, żeby nie zaszkodzić stronie?",
+        "answer": "Kategorie to kilka szerokich działów i każdy wpis musi mieć co najmniej jedną. Tagi są opcjonalne i szczegółowe. Używam niewielu kategorii i tylko takich tagów, które łączą kilka wpisów. Każda kategoria i tag tworzy stronę archiwum, więc puste lub prawie puste archiwa to słaba treść.",
+        "keyPoints": [
+          "kategorie: kilka szerokich działów, obowiązkowe",
+          "tagi: szczegółowe, opcjonalne",
+          "każdy tag i kategoria to strona archiwum",
+          "unikać tagów z jednym wpisem"
+        ],
+        "explanation": "Do archiwów i duplikatów wrócisz w tygodniu 7 (canonical)."
+      },
+      {
+        "id": "t2-tresc-struktura-10",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Klient chce dodać ofertę nowej usługi „Malowanie”. Wpis czy strona, i gdzie ją umieścisz?",
+        "answer": "Stronę, bo oferta jest stała i powinna być w menu. Ustawię stronę nadrzędną Oferta, więc adres będzie /oferta/malowanie/. Dodam ją do menu pod Ofertą. Ewentualnie mogę napisać też wpis na blogu, który ogłasza nową usługę i linkuje do tej strony.",
+        "keyPoints": [
+          "strona, bo treść stała",
+          "strona nadrzędna Oferta",
+          "dodać do menu",
+          "ewentualnie wpis z ogłoszeniem i linkiem"
+        ],
+        "explanation": "Wpis-ogłoszenie i strona usługi to dobre połączenie: news i stała treść."
+      }
+    ],
+    "task": {
+      "task": "Zbuduj szkielet strony firmowej na stronie lokalnej.\n\n1. Wymyśl firmę (np. remonty, fryzjer, biuro rachunkowe) i rozpisz w notatkach strukturę: strony i kategorie bloga.\n2. Utwórz strony: O nas, Oferta z 2 podstronami usług, Realizacje, Kontakt, Polityka prywatności.\n3. Utwórz 2 kategorie i dodaj po jednym wpisie do każdej.\n4. Wgraj jedno zdjęcie z opisową nazwą pliku i uzupełnij tekst alternatywny.\n5. Sprawdź adres jednej podstrony usługi. Czy zawiera `/oferta/`?",
+      "checklist": [
+        "Struktura rozpisana w notatkach",
+        "Strony z podstronami Oferty są utworzone",
+        "2 kategorie i 2 wpisy",
+        "Zdjęcie ma opisową nazwę i alt",
+        "Adres podstrony zawiera /oferta/"
+      ],
+      "hints": [
+        "Stronę nadrzędną ustawisz w edytorze strony, w panelu po prawej: **Strona → Strona nadrzędna**.",
+        "Kategorie dodasz w **Wpisy → Kategorie**. Domyślną kategorię „Bez kategorii” możesz przemianować.",
+        "Tekst alternatywny uzupełnisz w **Media → Biblioteka** po kliknięciu zdjęcia."
+      ],
+      "solution": "Przykład dla firmy remontowej:\n\n- Strony: Strona główna, O nas, **Oferta** → Remonty łazienek, Remonty kuchni, Realizacje, Kontakt, Polityka prywatności.\n- Kategorie: Porady, Realizacje (zamiast „Bez kategorii”).\n- Zdjęcie: `remont-lazienki-krakow.jpg`, alt: „Łazienka po remoncie z białymi płytkami i prysznicem walk-in”.\n- Adres usługi: `nauka.local/oferta/remonty-lazienek/`."
+    }
+  },
+  {
+    "id": "t2-menu-naglowek-stopka",
+    "week": 2,
+    "order": 4,
+    "title": "Menu, nagłówek i stopka",
+    "lesson": "**Nagłówek** i **stopka** są na każdej podstronie, więc to najczęściej oglądane miejsca na stronie. Nagłówek prowadzi do najważniejszych podstron, a stopka daje dane firmy i linki prawne.\n\n![Nagłówek, treść i stopka](diagram:naglowek-stopka)\n\n## Dobre menu główne\n\n- **5–7 pozycji**. Więcej rozprasza, szczególnie na telefonie.\n- Nazwy, które rozumie klient: „Oferta”, a nie „Nasze rozwiązania”.\n- Podstrony usług jako **podmenu** pod „Oferta”.\n- Najważniejsza akcja jako wyróżniony przycisk, np. „Zadzwoń” albo „Umów wizytę”.\n\n## Menu w motywie blokowym (edytor witryny)\n\nW motywach blokowych (np. Twenty Twenty-Five) menu edytujesz w **Wygląd → Edytor → Nawigacja** albo bezpośrednio w szablonie nagłówka. Blok **Nawigacja** pozwala dodawać strony, linki i podmenu przeciąganiem. Tam też ustawisz **logo** (blok Logo witryny) i **ikonkę strony** (favicon) w ustawieniach witryny.\n\n## Menu w motywie klasycznym\n\nW motywach klasycznych menu tworzysz w **Wygląd → Menu**: dodajesz strony z listy po lewej, ustawiasz kolejność przeciąganiem (przesunięcie w prawo tworzy podmenu) i wybierasz **położenie**, np. „Menu główne”. Logo i ikonkę strony ustawisz w **Wygląd → Dostosuj → Tożsamość witryny**, a stopkę często w **Wygląd → Widżety**.\n\n## Co w stopce\n\n- pełna nazwa firmy, adres, NIP (jeśli to firma),\n- telefon i e-mail jako klikalne linki (`tel:` i `mailto:`),\n- godziny otwarcia,\n- linki: polityka prywatności, regulamin (w sklepie), ustawienia cookies,\n- opcjonalnie: krótkie menu z ważnymi podstronami, ikony social media.\n\nDane w stopce powinny być identyczne jak w Profilu Firmy w Google (temat SEO lokalnego w tygodniu 4).\n\n## Czytaj dalej\n\n- [WordPress: blok Nawigacja (po angielsku)](https://wordpress.org/documentation/article/navigation-block/)\n- [WordPress: ekran Menu w motywach klasycznych (po angielsku)](https://wordpress.org/documentation/article/appearance-menus-screen/)",
+    "questions": [
+      {
+        "id": "t2-menu-naglowek-stopka-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Ile pozycji zwykle powinno mieć menu główne strony firmowej?",
+        "answer": "5–7",
+        "distractors": [
+          "1–2",
+          "15–20"
+        ],
+        "explanation": "5–7 pozycji mieści najważniejsze podstrony i jest czytelne także na telefonie. Szczegóły idą do podmenu."
+      },
+      {
+        "id": "t2-menu-naglowek-stopka-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "W motywie klasycznym menu tworzysz w Wygląd → ___.",
+        "answer": "Menu",
+        "explanation": "W motywach klasycznych jest ekran Wygląd → Menu. W blokowych menu edytujesz w edytorze witryny (blok Nawigacja)."
+      },
+      {
+        "id": "t2-menu-naglowek-stopka-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Gdzie w motywie blokowym zmienisz menu w nagłówku?",
+        "answer": "W Wygląd → Edytor, w nawigacji lub szablonie nagłówka",
+        "distractors": [
+          "Tylko w Wygląd → Menu",
+          "W Ustawienia → Ogólne"
+        ],
+        "explanation": "Motywy blokowe nie mają klasycznego ekranu Menu. Nawigację edytujesz w edytorze witryny."
+      },
+      {
+        "id": "t2-menu-naglowek-stopka-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Menu firmy remontowej: `Oferta (z podmenu usług)`, `Realizacje`, `Nasza filozofia i wartości zespołu w dobie zmian`, `Kontakt`. Która pozycja jest problemem?",
+        "answer": "`Nasza filozofia i wartości zespołu w dobie zmian`",
+        "distractors": [
+          "`Oferta (z podmenu usług)`",
+          "`Realizacje`",
+          "`Kontakt`"
+        ],
+        "explanation": "Pozycja w menu ma być krótka i zrozumiała, np. „O nas”. Długa nazwa psuje układ, szczególnie na telefonie."
+      },
+      {
+        "id": "t2-menu-naglowek-stopka-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Klient chce, żeby numer telefonu w stopce dzwonił po kliknięciu na telefonie. Jak wpisać link?",
+        "answer": "`tel:+48123456789`",
+        "distractors": [
+          "`https://+48123456789`",
+          "`mailto:+48123456789`"
+        ],
+        "explanation": "Link `tel:` otwiera dzwonienie, a `mailto:` nowy mail. Numer wpisuje się bez spacji, najlepiej z kierunkowym +48."
+      },
+      {
+        "id": "t2-menu-naglowek-stopka-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Co powinno się znaleźć w stopce strony firmowej?",
+        "answer": "Nazwa firmy, adres i NIP, telefon i e-mail jako klikalne linki, godziny otwarcia, linki do polityki prywatności (i regulaminu w sklepie) oraz ustawień cookies. Opcjonalnie krótkie menu i ikony social media.",
+        "keyPoints": [
+          "nazwa, adres, NIP",
+          "klikalny telefon i e-mail",
+          "godziny otwarcia",
+          "polityka prywatności i inne linki prawne"
+        ],
+        "explanation": "Dane muszą być takie same jak w Profilu Firmy w Google."
+      },
+      {
+        "id": "t2-menu-naglowek-stopka-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Opisz zasady dobrego menu głównego.",
+        "answer": "Menu ma 5–7 pozycji z krótkimi nazwami, które rozumie klient. Usługi trafiają do podmenu pod Ofertą. Najważniejsza akcja, np. telefon, jest wyróżnionym przyciskiem. Kolejność: od najważniejszych dla klienta, Kontakt zwykle na końcu.",
+        "keyPoints": [
+          "5–7 pozycji",
+          "krótkie, zrozumiałe nazwy",
+          "usługi w podmenu",
+          "wyróżniona akcja (przycisk)"
+        ],
+        "explanation": "Dobre menu jest też ważne dla SEO, bo linkuje do najważniejszych stron (tydzień 7)."
+      },
+      {
+        "id": "t2-menu-naglowek-stopka-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak w motywie klasycznym zrobić podmenu „Oferta → Remonty łazienek, Remonty kuchni”?",
+        "answer": "W Wygląd → Menu dodaję strony Oferta, Remonty łazienek i Remonty kuchni. Przeciągam podstrony pod Ofertę i lekko w prawo, aż się wsuną. Wybieram położenie Menu główne i zapisuję.",
+        "keyPoints": [
+          "Wygląd → Menu",
+          "dodać strony",
+          "przeciągnąć podstrony w prawo pod Ofertę",
+          "wybrać położenie i zapisać"
+        ],
+        "explanation": "Wsunięcie w prawo tworzy podmenu. W bloku Nawigacja robi się to przyciskiem dodania podmenu."
+      },
+      {
+        "id": "t2-menu-naglowek-stopka-09",
+        "type": "open",
+        "difficulty": 3,
+        "prompt": "Dlaczego dane firmy w stopce warto mieć dokładnie takie same jak w Profilu Firmy w Google?",
+        "answer": "Bo Google porównuje nazwę, adres i telefon (NAP) w różnych miejscach. Zgodne dane wzmacniają zaufanie do firmy i pomagają w wynikach lokalnych i w mapach. Różne wersje, np. inny numer, mogą osłabić widoczność.",
+        "keyPoints": [
+          "Google porównuje NAP (nazwa, adres, telefon)",
+          "zgodność wzmacnia zaufanie",
+          "pomaga w wynikach lokalnych i mapach",
+          "różnice osłabiają widoczność"
+        ],
+        "explanation": "To temat lekcji o SEO lokalnym w tygodniu 4."
+      },
+      {
+        "id": "t2-menu-naglowek-stopka-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Na telefonie menu z 9 pozycjami zajmuje cały ekran. Co zaproponujesz klientowi?",
+        "answer": "Skrócę menu do 5–7 pozycji: przeniosę usługi do podmenu pod Ofertą, mniej ważne strony, np. Kariera albo FAQ, do stopki. Na telefonie zostawię menu w formie ikony hamburgera i wyróżnię przycisk Zadzwoń.",
+        "keyPoints": [
+          "skrócić do 5–7 pozycji",
+          "usługi do podmenu",
+          "mniej ważne strony do stopki",
+          "na telefonie hamburger i wyróżniony telefon"
+        ],
+        "explanation": "Nie każda strona musi być w menu głównym. Stopka też jest nawigacją."
+      }
+    ],
+    "task": {
+      "task": "Zrób nagłówek i stopkę dla strony z poprzedniej lekcji.\n\n1. Sprawdź, czy Twój motyw jest blokowy (**Wygląd → Edytor**) czy klasyczny (**Wygląd → Menu**).\n2. Zbuduj menu główne z 5–7 pozycji, z podmenu pod „Oferta”.\n3. Ustaw logo (może być sam napis lub prosty plik PNG) i ikonkę strony.\n4. W stopce dodaj dane firmy: nazwę, adres, klikalny telefon (`tel:`) i e-mail (`mailto:`), link do polityki prywatności.\n5. Sprawdź menu w widoku telefonu (w przeglądarce **F12** → ikona telefonu).",
+      "checklist": [
+        "Menu ma 5–7 pozycji i podmenu",
+        "Logo i ikonka strony są ustawione",
+        "Stopka ma dane firmy i klikalne kontakty",
+        "Menu sprawdzone na widoku telefonu"
+      ],
+      "hints": [
+        "Ikonka strony (favicon) powinna być kwadratowa, najlepiej 512 × 512 px.",
+        "W bloku Akapit zaznacz numer telefonu, kliknij ikonę linku i wpisz `tel:+48...`.",
+        "Jeśli stopka w motywie blokowym ma przykładowe teksty, edytujesz ją w **Wygląd → Edytor → Wzorce → Stopka** (albo Części szablonu)."
+      ],
+      "solution": "- Menu: Strona główna, O nas, **Oferta** (Remonty łazienek, Remonty kuchni), Realizacje, Blog, Kontakt.\n- Logo w nagłówku linkuje do strony głównej, ikonka widoczna na karcie przeglądarki.\n- Stopka np.: „Moja Firma Sp. z o.o., ul. Długa 1, 30-001 Kraków, NIP 123-456-78-90, tel. [+48 123 456 789](tel:+48123456789), [biuro@mojafirma.pl](mailto:biuro@mojafirma.pl), Polityka prywatności”.\n- Na telefonie menu zwija się do ikony (hamburger), a podmenu otwiera się po dotknięciu."
+    }
+  },
+  {
+    "id": "t2-edytor-blokowy",
+    "week": 2,
+    "order": 5,
+    "title": "Edytor blokowy",
+    "lesson": "Edytor blokowy (dawniej nazywany Gutenberg) to domyślny sposób tworzenia treści w WordPressie. Każdy element, czyli akapit, nagłówek, obrazek, przycisk czy kolumny, to osobny **blok**. Z bloków składasz strony jak z klocków.\n\n![Blok, wzorzec, szablon i style](diagram:edytor-blokowy)\n\n## Bloki\n\n- Dodajesz je przyciskiem **+** albo wpisując `/` i nazwę bloku, np. `/obraz`.\n- Każdy blok ma **pasek narzędzi** nad sobą i **ustawienia** w panelu po prawej (kolory, odstępy, rozmiar).\n- Bloki **Grupa**, **Kolumny**, **Rząd** i **Siatka** (Grid) układają inne bloki obok lub pod sobą.\n- **Widok listy** (ikona trzech linii u góry) pokazuje strukturę strony. Ułatwia zaznaczanie zagnieżdżonych bloków.\n\nNowe wersje WordPressa co kilka miesięcy dodają bloki i opcje, np. okruszki (Breadcrumbs) czy lepsze ustawienia siatki na telefonie. Warto czytać, co nowego po każdej dużej aktualizacji.\n\n## Wzorce\n\n**Wzorzec** to gotowy zestaw bloków, np. sekcja „Nasza oferta” z trzema kolumnami. Wstawiasz go z zakładki **Wzorce** w oknie dodawania bloków. Własne wzorce zapiszesz, zaznaczając bloki → **⋮** → **Utwórz wzorzec**.\n\n- **Wzorzec zsynchronizowany**: zmiana w jednym miejscu zmienia go wszędzie. Dobre np. dla sekcji z danymi kontaktowymi.\n- **Wzorzec niezsynchronizowany**: wstawiasz kopię, którą możesz zmieniać osobno.\n\n## Edytor witryny\n\nW motywach blokowych w **Wygląd → Edytor** zmieniasz nie tylko treść, ale cały wygląd:\n\n- **Szablony**: układ np. strony, wpisu, archiwum, strony 404,\n- **Części szablonu**: nagłówek i stopka,\n- **Style**: kolory, typografia i odstępy dla całej strony naraz.\n\nZasada: kolory i fonty ustawiaj w **Stylach**, a nie osobno w każdym bloku. Wtedy zmiana koloru firmowego to jedno kliknięcie.\n\n## Czytaj dalej\n\n- [WordPress: edytor blokowy (po angielsku)](https://wordpress.org/documentation/article/wordpress-block-editor/)\n- [Learn WordPress: kursy dla początkujących (po angielsku)](https://learn.wordpress.org/)",
+    "questions": [
+      {
+        "id": "t2-edytor-blokowy-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Jak szybko dodać blok obrazu w edytorze?",
+        "answer": "Wpisać `/obraz` w nowej linii",
+        "distractors": [
+          "Wkleić link do zdjęcia w Ustawieniach",
+          "Dodać obraz w Wygląd → Menu"
+        ],
+        "explanation": "Ukośnik `/` otwiera szybkie wyszukiwanie bloków. Można też użyć przycisku +."
+      },
+      {
+        "id": "t2-edytor-blokowy-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Gotowy zestaw bloków, np. sekcja z ofertą, to ___.",
+        "answer": "wzorzec",
+        "explanation": "Wzorce przyspieszają budowę stron. Zsynchronizowany wzorzec zmienia się wszędzie naraz."
+      },
+      {
+        "id": "t2-edytor-blokowy-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Masz sekcję z godzinami otwarcia na 10 podstronach. Godziny się zmieniły. Co pozwoliłoby poprawić je w jednym miejscu?",
+        "answer": "Zsynchronizowany wzorzec",
+        "distractors": [
+          "Niezsynchronizowany wzorzec",
+          "Osobny blok akapitu na każdej stronie"
+        ],
+        "explanation": "Zsynchronizowany wzorzec to jedna treść używana w wielu miejscach. Zmiana w nim zmienia wszystkie wystąpienia."
+      },
+      {
+        "id": "t2-edytor-blokowy-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Plan stylu strony: `kolory firmowe w Style`, `font nagłówków w Style`, `kolor każdego przycisku ustawiany osobno w bloku`, `odstępy globalne w Style`. Co utrudni późniejsze zmiany?",
+        "answer": "`kolor każdego przycisku ustawiany osobno w bloku`",
+        "distractors": [
+          "`kolory firmowe w Style`",
+          "`font nagłówków w Style`",
+          "`odstępy globalne w Style`"
+        ],
+        "explanation": "Kolor ustawiony w każdym bloku trzeba potem zmieniać ręcznie wszędzie. Ustawienie w Stylach zmienia wszystko naraz."
+      },
+      {
+        "id": "t2-edytor-blokowy-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Nie możesz zaznaczyć przycisku, który jest w kolumnie w grupie. Co pomoże najszybciej?",
+        "answer": "Widok listy, który pokazuje wszystkie bloki jak drzewo",
+        "distractors": [
+          "Usunięcie grupy i zbudowanie sekcji od nowa",
+          "Zmiana motywu"
+        ],
+        "explanation": "Widok listy pokazuje zagnieżdżone bloki i pozwala zaznaczyć każdy z nich jednym kliknięciem."
+      },
+      {
+        "id": "t2-edytor-blokowy-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Wyjaśnij różnicę między blokiem, wzorcem i szablonem.",
+        "answer": "Blok to jeden element, np. akapit, obrazek albo przycisk. Wzorzec to gotowy zestaw bloków, np. cała sekcja z ofertą. Szablon to układ całej strony danego typu, z nagłówkiem, treścią i stopką, edytowany w edytorze witryny.",
+        "keyPoints": [
+          "blok: pojedynczy element",
+          "wzorzec: zestaw bloków (sekcja)",
+          "szablon: układ całej strony",
+          "szablony w edytorze witryny"
+        ],
+        "explanation": "Od najmniejszego do największego: blok → wzorzec → szablon."
+      },
+      {
+        "id": "t2-edytor-blokowy-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Czym różni się wzorzec zsynchronizowany od niezsynchronizowanego? Podaj przykład użycia każdego.",
+        "answer": "Zsynchronizowany jest jeden dla całej strony: zmiana w nim zmienia każde miejsce, gdzie go użyto, np. sekcja z danymi kontaktowymi. Niezsynchronizowany wstawia kopię, którą zmieniam osobno, np. układ sekcji usługi, w której każda usługa ma inny tekst.",
+        "keyPoints": [
+          "zsynchronizowany: zmiana wszędzie",
+          "przykład: dane kontaktowe, godziny",
+          "niezsynchronizowany: osobna kopia",
+          "przykład: sekcja usługi z innym tekstem"
+        ],
+        "explanation": "Dawniej zsynchronizowane wzorce nazywały się blokami wielokrotnego użytku."
+      },
+      {
+        "id": "t2-edytor-blokowy-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Dlaczego kolory i fonty ustawia się w Stylach, a nie w każdym bloku?",
+        "answer": "Bo Style działają na całą stronę. Gdy klient zmieni kolor firmowy albo font, zmieniam go w jednym miejscu. Ustawienia w każdym bloku trzeba by zmieniać ręcznie na wszystkich stronach, łatwo coś przeoczyć i strona staje się niespójna.",
+        "keyPoints": [
+          "Style działają na całą stronę",
+          "zmiana w jednym miejscu",
+          "ustawienia w blokach trzeba zmieniać wszędzie",
+          "spójny wygląd"
+        ],
+        "explanation": "To ta sama idea co klasy CSS (tydzień 3)."
+      },
+      {
+        "id": "t2-edytor-blokowy-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak zbudujesz sekcję „Trzy usługi obok siebie” z obrazkiem, nagłówkiem, tekstem i przyciskiem w każdej kolumnie?",
+        "answer": "Dodam blok Kolumny z układem 3 równych kolumn (albo blok Siatka). W każdej kolumnie dodam Obraz, Nagłówek, Akapit i Przyciski. Ustawię odstępy i kolory w panelu albo w Stylach. Na koniec zapiszę sekcję jako wzorzec, żeby łatwo ją powtórzyć.",
+        "keyPoints": [
+          "blok Kolumny (3) lub Siatka",
+          "w każdej: obraz, nagłówek, akapit, przycisk",
+          "odstępy i kolory",
+          "zapis jako wzorzec"
+        ],
+        "explanation": "Sprawdź od razu widok telefonu: kolumny zwykle układają się pod sobą."
+      },
+      {
+        "id": "t2-edytor-blokowy-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Klient pyta, czy zmiana nagłówka w Wygląd → Edytor zmieni go tylko na jednej stronie. Co odpowiesz?",
+        "answer": "Nie. Nagłówek to część szablonu, która jest wspólna dla wszystkich stron korzystających z tego szablonu, czyli zwykle dla całej witryny. Zmiana w edytorze witryny zmienia go wszędzie. Jeśli ma być inny na jednej stronie, trzeba użyć osobnego szablonu.",
+        "keyPoints": [
+          "nagłówek to część szablonu",
+          "wspólny dla całej witryny",
+          "zmiana dotyczy wszystkich stron",
+          "inny nagłówek wymaga osobnego szablonu"
+        ],
+        "explanation": "Edytor witryny zawsze pokazuje, co edytujesz: stronę czy szablon. Patrz na napis u góry."
+      }
+    ],
+    "task": {
+      "task": "Zbuduj stronę główną z bloków na stronie lokalnej.\n\n1. Otwórz stronę **Strona główna** w edytorze.\n2. Dodaj sekcję powitalną: blok **Okładka** (Cover) z tłem, nagłówkiem H1 i przyciskiem.\n3. Dodaj sekcję z trzema usługami w blokach **Kolumny**.\n4. Zapisz sekcję usług jako **wzorzec** (niezsynchronizowany).\n5. Dodaj wzorzec zsynchronizowany „Kontakt” z telefonem i wstaw go na stronę główną i na stronę Kontakt. Zmień w nim numer i sprawdź obie strony.",
+      "checklist": [
+        "Sekcja powitalna z H1 i przyciskiem",
+        "Trzy usługi w kolumnach",
+        "Wzorzec usług zapisany",
+        "Zsynchronizowany wzorzec zmienia się na obu stronach"
+      ],
+      "hints": [
+        "Okładkę znajdziesz, wpisując `/okładka` albo `/cover`.",
+        "Zaznacz całą grupę bloków w Widoku listy, potem **⋮ → Utwórz wzorzec**.",
+        "Przy tworzeniu wzorca jest przełącznik **Synchronizowany**. Dla sekcji Kontakt włącz go."
+      ],
+      "solution": "- Okładka: tło (zdjęcie lub kolor), nagłówek H1 z nazwą usługi i miastem, przycisk „Zadzwoń” lub „Zobacz ofertę”.\n- Kolumny: 3 kolumny, w każdej obraz, nagłówek H3, akapit, przycisk.\n- Wzorce znajdziesz w **Wygląd → Edytor → Wzorce** (albo w oknie dodawania bloków, zakładka Wzorce).\n- Po zmianie numeru w zsynchronizowanym wzorcu nowy numer widać na obu stronach bez ich edytowania."
+    }
+  },
+  {
+    "id": "t2-wybor-motywu",
+    "week": 2,
+    "order": 6,
+    "title": "Jak wybrać motyw",
+    "lesson": "**Motyw** decyduje o wyglądzie strony i o tym, jak wygodnie się ją edytuje. Zły motyw spowalnia stronę, przestaje być aktualizowany albo nie współpracuje z wtyczkami. Zmiana motywu po roku to często budowa strony od nowa, więc wybór warto zrobić świadomie.\n\n![Rodzaje motywów](diagram:wybor-motywu)\n\n## Motyw blokowy czy klasyczny\n\n- **Blokowy** (np. Twenty Twenty-Five, Ollie, Frost): cały wygląd edytujesz w **Wygląd → Edytor**: szablony, nagłówek, stopkę i style. Lekki, nie potrzebuje buildera. To kierunek, w którym rozwija się WordPress.\n- **Klasyczny** (np. Astra, Kadence, GeneratePress, Blocksy): ustawienia w **Wygląd → Dostosuj**, menu w **Wygląd → Menu**. Często wybierany razem z page builderem, np. Elementorem. Ogromna liczba poradników.\n\nWiele popularnych motywów łączy oba światy: działa z edytorem blokowym i z builderami.\n\n## Darmowy czy premium\n\nDarmowe motywy z katalogu **wordpress.org** przechodzą przegląd zespołu WordPressa. Wersje premium (płatne) dają więcej gotowych układów, opcji i wsparcie. Dla małej strony firmowej darmowa wersja dobrego motywu zwykle wystarczy.\n\n## Kryteria wyboru\n\n1. **Ostatnia aktualizacja**: najlepiej w ostatnich miesiącach.\n2. **Aktywne instalacje** i **oceny**: popularny motyw = więcej poradników i szybciej łatane błędy.\n3. **Szybkość**: sprawdź demo w PageSpeed Insights (tydzień 7).\n4. **Zgodność**: z WooCommerce, jeśli będzie sklep, i z builderem, jeśli go używasz.\n5. **Responsywność**: demo wygląda dobrze na telefonie.\n6. **Wsparcie i dokumentacja**.\n\n## Import demo\n\nWiele motywów ma **gotowe strony demo** do zaimportowania jednym kliknięciem (zwykle przez dodatkową wtyczkę). To szybki start, ale import dodaje dużo przykładowych treści i wtyczek. Rób go tylko na świeżej instalacji, nie na stronie z treścią.\n\n## Nigdy „nulled”\n\n**Nulled** to piracka kopia płatnego motywu albo wtyczki, rozdawana za darmo. Bardzo często zawiera ukryty złośliwy kod: spam w linkach, przekierowania, furtkę dla włamywacza. Nie dostaje aktualizacji. Do tego to naruszenie licencji. Zawsze kupuj u autora.\n\n## Czytaj dalej\n\n- [Katalog motywów WordPress.org](https://wordpress.org/themes/)\n- [WPBeginner: jak wybrać motyw (po angielsku)](https://www.wpbeginner.com/wp-themes/selecting-the-perfect-theme-for-wordpress/)",
+    "questions": [
+      {
+        "id": "t2-wybor-motywu-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Gdzie edytujesz nagłówek, stopkę i style w motywie blokowym?",
+        "answer": "W Wygląd → Edytor",
+        "distractors": [
+          "W Wygląd → Dostosuj",
+          "W Ustawienia → Ogólne"
+        ],
+        "explanation": "Motywy blokowe używają edytora witryny. Klasyczne mają Wygląd → Dostosuj."
+      },
+      {
+        "id": "t2-wybor-motywu-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Piracka kopia płatnego motywu, często z ukrytym złośliwym kodem, to motyw ___.",
+        "answer": "nulled",
+        "explanation": "Nulled oznacza pirackie wersje płatnych motywów i wtyczek. Nie dostają aktualizacji i często zawierają złośliwy kod."
+      },
+      {
+        "id": "t2-wybor-motywu-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Motyw ma piękne demo, ale ostatnia aktualizacja była 3 lata temu. Co to oznacza?",
+        "answer": "Duże ryzyko: może nie działać z nowymi wersjami WordPressa i mieć niezałatane luki",
+        "distractors": [
+          "Nic, stary motyw jest bardziej sprawdzony",
+          "Że motyw jest bardzo szybki"
+        ],
+        "explanation": "Brak aktualizacji przez lata zwykle oznacza porzucony motyw. To problem z bezpieczeństwem i zgodnością."
+      },
+      {
+        "id": "t2-wybor-motywu-04",
+        "type": "error",
+        "difficulty": 1,
+        "prompt": "Kryteria wyboru motywu dla sklepu: `aktualizowany w ostatnich miesiącach`, `zgodny z WooCommerce`, `dobry wynik PageSpeed demo`, `wersja nulled, żeby nie płacić za premium`. Co jest błędem?",
+        "answer": "`wersja nulled, żeby nie płacić za premium`",
+        "distractors": [
+          "`aktualizowany w ostatnich miesiącach`",
+          "`zgodny z WooCommerce`",
+          "`dobry wynik PageSpeed demo`"
+        ],
+        "explanation": "Nulled to piracka kopia, często z malware. W sklepie, gdzie są dane klientów i płatności, to szczególnie groźne."
+      },
+      {
+        "id": "t2-wybor-motywu-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Klient ma stronę z 50 wpisami i chce „zaimportować demo” nowego motywu. Co doradzisz?",
+        "answer": "Nie importować demo na stronie z treścią, tylko przetestować je na kopii lub stronie lokalnej",
+        "distractors": [
+          "Importować od razu, demo zastąpi stare treści i będzie ładniej",
+          "Usunąć wszystkie wpisy i wtedy importować"
+        ],
+        "explanation": "Import demo dodaje mnóstwo przykładowych stron, obrazków, menu i wtyczek. Na żywej stronie z treścią robi bałagan. Testuj na kopii."
+      },
+      {
+        "id": "t2-wybor-motywu-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Wymień kryteria, według których porównasz motywy dla klienta.",
+        "answer": "Sprawdzę datę ostatniej aktualizacji, liczbę aktywnych instalacji i oceny, szybkość demo w PageSpeed, zgodność z WooCommerce i builderem, wygląd na telefonie oraz dokumentację i wsparcie.",
+        "keyPoints": [
+          "ostatnia aktualizacja",
+          "instalacje i oceny",
+          "szybkość (PageSpeed)",
+          "zgodność z WooCommerce/builderem",
+          "responsywność, dokumentacja, wsparcie"
+        ],
+        "explanation": "Wystarczy 4–5 kryteriów z tej listy."
+      },
+      {
+        "id": "t2-wybor-motywu-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Czym różni się motyw blokowy od klasycznego?",
+        "answer": "Motyw blokowy edytuje się w Wygląd → Edytor: szablony, nagłówek, stopkę i style buduje się z bloków. Motyw klasyczny ma ustawienia w Wygląd → Dostosuj, menu w Wygląd → Menu i widżety, często współpracuje z builderem jak Elementor.",
+        "keyPoints": [
+          "blokowy: Wygląd → Edytor, wszystko z bloków",
+          "klasyczny: Wygląd → Dostosuj, Menu, Widżety",
+          "klasyczny często z builderem"
+        ],
+        "explanation": "Rodzaj motywu sprawdzisz po tym, czy w menu Wygląd jest pozycja Edytor."
+      },
+      {
+        "id": "t2-wybor-motywu-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Dlaczego nie warto używać motywów i wtyczek „nulled”?",
+        "answer": "Bo często zawierają ukryty złośliwy kod, np. spamerskie linki, przekierowania albo furtkę dla włamywacza. Nie dostają aktualizacji, więc luki nie są łatane. Nie ma wsparcia. To też naruszenie licencji autora.",
+        "keyPoints": [
+          "ukryty złośliwy kod",
+          "brak aktualizacji i łatek",
+          "brak wsparcia",
+          "naruszenie licencji"
+        ],
+        "explanation": "Wrócisz do tego w tygodniu 5 przy włamaniach."
+      },
+      {
+        "id": "t2-wybor-motywu-09",
+        "type": "open",
+        "difficulty": 3,
+        "prompt": "Klient chce motyw premium za 59 dolarów rocznie, a Ty uważasz, że wystarczy darmowy. Jak to uzasadnisz?",
+        "answer": "Powiem, że darmowa wersja popularnego motywu z wordpress.org jest sprawdzona, aktualizowana i wystarcza do strony firmowej. Premium daje głównie dodatkowe układy, opcje i wsparcie. Jeśli później będzie potrzeba funkcji premium, można dokupić licencję bez zmiany motywu.",
+        "keyPoints": [
+          "darmowy z wordpress.org jest sprawdzony i aktualizowany",
+          "wystarcza do strony firmowej",
+          "premium: więcej opcji i wsparcie",
+          "można dokupić premium później bez zmiany motywu"
+        ],
+        "explanation": "Wiele motywów (Astra, Kadence) ma wersję darmową i premium na tym samym motywie."
+      },
+      {
+        "id": "t2-wybor-motywu-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Po co sprawdzać demo motywu w PageSpeed Insights i na telefonie przed wyborem?",
+        "answer": "Bo demo pokazuje, jak motyw działa bez Twoich treści. Jeśli już demo jest wolne albo źle wygląda na telefonie, gotowa strona będzie jeszcze gorsza. Szybkość i telefon to ważne czynniki dla klientów i dla Google.",
+        "keyPoints": [
+          "demo to punkt wyjścia",
+          "wolne demo = wolna strona",
+          "większość ruchu jest z telefonów",
+          "szybkość ważna dla Google"
+        ],
+        "explanation": "Pamiętaj, że demo bywa obciążone przykładowymi zdjęciami, więc traktuj wynik orientacyjnie."
+      }
+    ],
+    "task": {
+      "task": "Porównaj trzy motywy dla wymyślonego klienta.\n\n1. W katalogu [wordpress.org/themes](https://wordpress.org/themes/) wybierz 3 motywy, w tym co najmniej jeden blokowy.\n2. Dla każdego zapisz: datę ostatniej aktualizacji, liczbę aktywnych instalacji, ocenę i czy jest blokowy.\n3. Otwórz podgląd lub demo każdego i sprawdź wygląd w widoku telefonu (F12 → ikona telefonu).\n4. Zainstaluj zwycięzcę na stronie lokalnej i włącz go.\n5. Zapisz jedno zdanie: który motyw wybierasz i dlaczego.",
+      "checklist": [
+        "3 motywy porównane według kryteriów",
+        "Sprawdzone demo na telefonie",
+        "Wybrany motyw zainstalowany lokalnie",
+        "Masz uzasadnienie wyboru"
+      ],
+      "hints": [
+        "Datę aktualizacji i liczbę instalacji znajdziesz po prawej stronie karty motywu na wordpress.org.",
+        "Motyw blokowy rozpoznasz po etykiecie „Full Site Editing” (Edycja całej witryny) w opisie.",
+        "Motyw zainstalujesz w panelu: **Wygląd → Motywy → Dodaj motyw**."
+      ],
+      "solution": "Przykład porównania (liczby zmieniają się z czasem):\n\n- **Twenty Twenty-Five**: blokowy, aktualizowany z WordPressem, bardzo dużo instalacji, lekki.\n- **Astra**: klasyczny z obsługą bloków, miliony instalacji, zgodny z WooCommerce i Elementorem, dużo gotowych demo.\n- **Kadence**: łączy bloki i klasyczne ustawienia, częste aktualizacje, dobre oceny.\n\nPrzykładowe uzasadnienie: „Wybieram Kadence, bo jest często aktualizowany, zgodny z WooCommerce, ma dobre demo na telefonie i darmowa wersja wystarczy do strony firmowej”."
+    }
+  },
+  {
+    "id": "t2-motyw-potomny",
+    "week": 2,
+    "order": 7,
+    "title": "Motyw potomny (child theme)",
+    "lesson": "Motywy dostają aktualizacje: poprawki błędów, bezpieczeństwa i nowe funkcje. Aktualizacja **podmienia wszystkie pliki motywu**. Jeśli zmieniono coś bezpośrednio w plikach motywu, np. dopisano CSS w `style.css` albo kod w `functions.php`, po aktualizacji te zmiany znikają.\n\n**Motyw potomny** (child theme) to mały motyw, który korzysta ze wszystkiego, co ma **motyw rodzic**, i trzyma tylko Twoje zmiany. Aktualizacja rodzica nie dotyka plików potomnego.\n\n![Dlaczego motyw potomny](diagram:motyw-potomny)\n\n## Kiedy potrzebny, a kiedy nie\n\n**Nie potrzebujesz** motywu potomnego, gdy:\n\n- zmieniasz tylko ustawienia w panelu (Dostosuj, Edytor, Style): są zapisane w bazie, a nie w plikach,\n- dodajesz kilka linii CSS w **Dodatkowym CSS** (w Dostosuj albo w Edytor → Style → Dodatkowy CSS),\n- dodajesz fragmenty kodu przez wtyczkę **Code Snippets** (tydzień 6).\n\n**Potrzebujesz** go, gdy:\n\n- zmieniasz pliki szablonów motywu (np. kopia `footer.php` w motywie klasycznym),\n- dodajesz dużo własnego CSS lub kodu PHP do `functions.php`,\n- AI albo programista daje Ci kod „do wklejenia w motyw”.\n\nWażne: w motywach blokowych zmiany zrobione w **Wygląd → Edytor** są zapisywane w bazie i przetrwają aktualizację. Motyw potomny przydaje się tam, gdy chcesz trzymać zmiany w plikach, np. przenosić je między stronami.\n\n## Jak założyć motyw potomny bez kodu\n\n- **Motyw klasyczny**: wtyczka **Child Theme Configurator**. Wybierasz rodzica, klikasz „Create New Child Theme”, potem włączasz potomny w **Wygląd → Motywy**.\n- **Motyw blokowy**: wtyczka **Create Block Theme** (od zespołu WordPressa) → **Utwórz motyw potomny**.\n- Niektóre motywy (np. Astra, Kadence) mają gotowy motyw potomny do pobrania na stronie autora.\n\nPo włączeniu potomnego sprawdź, czy wygląd się nie zmienił. Ustawienia z **Dostosuj** czasem trzeba skopiować (Child Theme Configurator ma do tego opcję).\n\n## Jak to działa w środku\n\nMotyw potomny to folder w `wp-content/themes/`, np. `astra-child`, z plikiem `style.css`, który w nagłówku ma linię `Template: astra`. Ta linia mówi WordPressowi, kto jest rodzicem. Wszystko, czego nie ma w potomnym, WordPress bierze z rodzica.\n\n## Czytaj dalej\n\n- [Theme Handbook: motywy potomne (po angielsku)](https://developer.wordpress.org/themes/advanced-topics/child-themes/)\n- [Wtyczka Create Block Theme](https://wordpress.org/plugins/create-block-theme/)",
+    "questions": [
+      {
+        "id": "t2-motyw-potomny-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Po co jest motyw potomny?",
+        "answer": "Żeby własne zmiany w plikach motywu przetrwały aktualizację rodzica",
+        "distractors": [
+          "Żeby strona działała szybciej",
+          "Żeby mieć dwa różne wyglądy strony naraz"
+        ],
+        "explanation": "Aktualizacja podmienia pliki rodzica. Zmiany w potomnym są w osobnym folderze i zostają."
+      },
+      {
+        "id": "t2-motyw-potomny-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "W pliku `style.css` motywu potomnego linia `___: astra` wskazuje motyw rodzica.",
+        "answer": "Template",
+        "explanation": "Linia Template z nazwą folderu rodzica łączy motyw potomny z rodzicem."
+      },
+      {
+        "id": "t2-motyw-potomny-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Chcesz zmienić kolor jednego przycisku trzema liniami CSS. Czego potrzebujesz?",
+        "answer": "Wystarczy Dodatkowy CSS w panelu, motyw potomny nie jest konieczny",
+        "distractors": [
+          "Musisz założyć motyw potomny",
+          "Musisz edytować style.css motywu rodzica"
+        ],
+        "explanation": "Dodatkowy CSS jest zapisany w bazie i przetrwa aktualizację. Motyw potomny jest potrzebny przy zmianach w plikach."
+      },
+      {
+        "id": "t2-motyw-potomny-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Plan zmian u klienta: `ustawienia kolorów w Dostosuj`, `Dodatkowy CSS dla przycisku`, `kod od AI wklejony do functions.php motywu rodzica`, `fragment kodu przez Code Snippets`. Co zniknie po aktualizacji?",
+        "answer": "`kod od AI wklejony do functions.php motywu rodzica`",
+        "distractors": [
+          "`ustawienia kolorów w Dostosuj`",
+          "`Dodatkowy CSS dla przycisku`",
+          "`fragment kodu przez Code Snippets`"
+        ],
+        "explanation": "Pliki rodzica są podmieniane przy aktualizacji. Ustawienia w panelu, Dodatkowy CSS i Code Snippets są w bazie i zostają."
+      },
+      {
+        "id": "t2-motyw-potomny-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Motyw blokowy: wszystkie zmiany zrobiono w Wygląd → Edytor. Czy aktualizacja motywu je usunie?",
+        "answer": "Nie, zmiany z edytora witryny są zapisane w bazie danych",
+        "distractors": [
+          "Tak, zawsze trzeba mieć motyw potomny",
+          "Tak, chyba że strona ma SSL"
+        ],
+        "explanation": "Edytor witryny zapisuje zmienione szablony i style w bazie. Aktualizacja plików motywu ich nie nadpisuje."
+      },
+      {
+        "id": "t2-motyw-potomny-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Wyjaśnij własnymi słowami, czym jest motyw potomny i dlaczego chroni zmiany.",
+        "answer": "To osobny, mały motyw, który korzysta z wyglądu i funkcji motywu rodzica, a trzyma tylko moje zmiany. Aktualizacja podmienia pliki rodzica, ale nie dotyka folderu potomnego, więc moje zmiany zostają.",
+        "keyPoints": [
+          "osobny motyw korzystający z rodzica",
+          "trzyma tylko moje zmiany",
+          "aktualizacja podmienia pliki rodzica",
+          "folder potomnego nietknięty"
+        ],
+        "explanation": "Działa jak przezroczysta folia na rodzicu: widać wszystko, a rysujesz tylko na folii."
+      },
+      {
+        "id": "t2-motyw-potomny-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Kiedy motyw potomny jest potrzebny, a kiedy wystarczy Dodatkowy CSS?",
+        "answer": "Dodatkowy CSS wystarczy dla kilku zmian wyglądu, a ustawienia w panelu i Code Snippets też przetrwają aktualizację. Motyw potomny jest potrzebny, gdy zmieniam pliki motywu: szablony, functions.php, dużo własnego CSS albo kod od AI do wklejenia w motyw.",
+        "keyPoints": [
+          "Dodatkowy CSS: drobne zmiany wyglądu",
+          "ustawienia panelu i Code Snippets są w bazie",
+          "potomny: zmiany w plikach (szablony, functions.php)",
+          "potomny: dużo kodu lub kod od AI do motywu"
+        ],
+        "explanation": "Zasada: zmiana w plikach = motyw potomny."
+      },
+      {
+        "id": "t2-motyw-potomny-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Opisz, jak założysz motyw potomny dla motywu klasycznego bez pisania kodu.",
+        "answer": "Zrobię kopię strony. Zainstaluję wtyczkę Child Theme Configurator, wybiorę motyw rodzica i kliknę Create New Child Theme, z opcją skopiowania ustawień z Dostosuj. Włączę motyw potomny w Wygląd → Motywy i sprawdzę, czy strona wygląda tak samo.",
+        "keyPoints": [
+          "kopia przed zmianą",
+          "wtyczka Child Theme Configurator",
+          "wybór rodzica i utworzenie potomnego",
+          "kopiowanie ustawień Dostosuj",
+          "włączenie i sprawdzenie wyglądu"
+        ],
+        "explanation": "Po utworzeniu wtyczkę konfiguratora można wyłączyć. Motyw potomny działa bez niej."
+      },
+      {
+        "id": "t2-motyw-potomny-09",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Przejmujesz stronę klienta. Poprzedni wykonawca zmieniał pliki motywu rodzica, a motyw ma czekającą aktualizację. Co zrobisz?",
+        "answer": "Nie zaktualizuję od razu, bo zmiany zniknęłyby. Zrobię kopię strony. Porównam pliki motywu z czystą wersją tej samej wersji, żeby znaleźć zmiany. Przeniosę je do motywu potomnego albo do Dodatkowego CSS czy Code Snippets, włączę potomny, sprawdzę stronę i dopiero potem zaktualizuję rodzica, najlepiej najpierw na kopii.",
+        "keyPoints": [
+          "nie aktualizować od razu",
+          "kopia strony",
+          "znaleźć zmiany (porównanie z czystą wersją)",
+          "przenieść zmiany do potomnego/CSS/Snippets",
+          "aktualizacja po sprawdzeniu, najlepiej na kopii"
+        ],
+        "explanation": "Do porównania plików możesz poprosić AI albo użyć narzędzia diff."
+      },
+      {
+        "id": "t2-motyw-potomny-10",
+        "type": "open",
+        "difficulty": 3,
+        "prompt": "Co oznacza linia Template w style.css motywu potomnego i co się stanie, gdy będzie w niej błąd?",
+        "answer": "Template to nazwa folderu motywu rodzica, np. astra. Dzięki niej WordPress wie, z którego motywu brać resztę plików. Jeśli nazwa się nie zgadza, WordPress zgłosi, że brakuje motywu rodzica, i potomnego nie da się poprawnie włączyć.",
+        "keyPoints": [
+          "Template = nazwa folderu rodzica",
+          "WordPress bierze resztę z rodzica",
+          "błąd: brak motywu rodzica",
+          "motyw potomny nie działa"
+        ],
+        "explanation": "Liczy się nazwa folderu, a nie nazwa wyświetlana motywu."
+      }
+    ],
+    "task": {
+      "task": "Załóż motyw potomny i sprawdź, czy zmiany przetrwają aktualizację.\n\n1. Na stronie lokalnej zrób kopię (w LocalWP: prawy przycisk na stronie → **Clone site**).\n2. Załóż motyw potomny: wtyczką **Child Theme Configurator** (motyw klasyczny) albo **Create Block Theme** (motyw blokowy).\n3. Włącz motyw potomny i sprawdź, czy strona wygląda tak samo.\n4. Dodaj w motywie potomnym prostą zmianę, np. w jego `style.css`: `body { border-top: 5px solid red; }`.\n5. Zainstaluj rodzica jeszcze raz (np. **Wygląd → Motywy → Dodaj motyw → Prześlij motyw** z plikiem ZIP rodzica i „Zastąp bieżący”). Sprawdź, czy czerwony pasek nadal jest.",
+      "checklist": [
+        "Kopia strony jest zrobiona",
+        "Motyw potomny jest włączony",
+        "Zmiana z potomnego jest widoczna",
+        "Zmiana przetrwała ponowną instalację rodzica"
+      ],
+      "hints": [
+        "Plik `style.css` motywu potomnego edytujesz w folderze `wp-content/themes/<nazwa>-child/`.",
+        "ZIP motywu pobierzesz ze strony motywu na wordpress.org (przycisk Pobierz).",
+        "Jeśli zmiana nie jest widoczna, wyczyść cache przeglądarki (Ctrl+F5)."
+      ],
+      "solution": "- W `wp-content/themes/` pojawił się folder np. `kadence-child` z plikiem `style.css`, w którym jest linia `Template: kadence`.\n- W **Wygląd → Motywy** aktywny jest motyw potomny, a rodzic jest zainstalowany (musi być!).\n- Czerwony pasek u góry strony widać przed i po ponownej instalacji rodzica, bo zmiana jest w folderze potomnego.\n- Gdyby tę samą linię dopisać do `style.css` rodzica, po ponownej instalacji by zniknęła."
+    }
+  },
+  {
+    "id": "t2-wybor-wtyczek",
+    "week": 2,
+    "order": 8,
+    "title": "Jak wybrać wtyczki",
+    "lesson": "Wtyczki dodają funkcje: formularz, SEO, kopie, sklep. W katalogu wordpress.org jest ich ponad 60 tysięcy. Każda wtyczka to jednak cudzy kod na Twoim serwerze: może spowolnić stronę, kłócić się z inną wtyczką albo mieć lukę. Dlatego liczy się nie liczba wtyczek, a ich **jakość**.\n\n![Jak ocenić wtyczkę](diagram:wybor-wtyczek)\n\n## Jak ocenić wtyczkę\n\nNa stronie wtyczki w katalogu wordpress.org sprawdź po prawej:\n\n- **Ostatnia aktualizacja**: najlepiej w ostatnich miesiącach. Rok bez aktualizacji to czerwona flaga.\n- **Aktywne instalacje**: im więcej, tym więcej osób zgłasza i łata błędy.\n- **Oceny** i treść opinii (szczególnie tych negatywnych i świeżych).\n- **Testowano do wersji**: zgodność z Twoją wersją WordPressa.\n- **Forum wsparcia**: czy autor odpowiada na zgłoszenia.\n\n## Zasady\n\n1. **Jedna funkcja = jedna wtyczka.** Dwie wtyczki SEO albo dwie do cache kłócą się ze sobą i spowalniają stronę.\n2. **Usuwaj nieużywane.** Wyłączona wtyczka nadal leży na serwerze i jej luka może być wykorzystana (więcej w tygodniu 5).\n3. **Nowe wtyczki testuj** na stronie lokalnej lub kopii.\n4. **Nigdy „nulled”**: tak samo jak z motywami.\n5. Wtyczka z „tysiącem funkcji” często da się zastąpić jedną prostszą albo opcją motywu.\n\n## Podstawowy zestaw dla strony firmowej\n\n- **SEO**: Yoast SEO albo Rank Math (jedna z nich),\n- **Kopie zapasowe**: np. UpdraftPlus,\n- **Bezpieczeństwo**: np. Wordfence albo Solid Security,\n- **Formularz**: Contact Form 7, WPForms Lite albo Fluent Forms,\n- **Cache**: zależnie od hostingu, np. LiteSpeed Cache na serwerach LiteSpeed. Niektóre hostingi mają cache wbudowany i wtyczka nie jest potrzebna.\n\n## Konflikt wtyczek\n\nGdy po instalacji lub aktualizacji coś przestaje działać, wyłączaj wtyczki po kolei (albo wszystkie i włączaj po jednej), aż znajdziesz winowajcę. Gdy nie masz dostępu do panelu, zmień przez SFTP nazwę folderu wtyczki w `wp-content/plugins/`, np. na `wtyczka-off`.\n\n## Czytaj dalej\n\n- [Katalog wtyczek WordPress.org](https://wordpress.org/plugins/)\n- [WPBeginner: jak wybrać najlepszą wtyczkę (po angielsku)](https://www.wpbeginner.com/opinion/how-to-choose-the-best-wordpress-plugin/)",
+    "questions": [
+      {
+        "id": "t2-wybor-wtyczek-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Która informacja na stronie wtyczki najlepiej mówi, czy wtyczka jest dalej rozwijana?",
+        "answer": "Data ostatniej aktualizacji",
+        "distractors": [
+          "Liczba zrzutów ekranu",
+          "Długość opisu"
+        ],
+        "explanation": "Świeża aktualizacja oznacza, że autor dba o wtyczkę i zgodność z nowym WordPressem."
+      },
+      {
+        "id": "t2-wybor-wtyczek-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Zasada: jedna funkcja = jedna ___.",
+        "answer": "wtyczka",
+        "explanation": "Dwie wtyczki do tej samej funkcji (np. SEO albo cache) kłócą się i spowalniają stronę."
+      },
+      {
+        "id": "t2-wybor-wtyczek-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Wtyczka jest wyłączona od roku i nikt jej nie używa. Co z nią zrobić?",
+        "answer": "Usunąć, bo wyłączona wtyczka nadal leży na serwerze i może mieć lukę",
+        "distractors": [
+          "Zostawić wyłączoną, bo wyłączona jest bezpieczna",
+          "Włączyć, żeby dostawała aktualizacje"
+        ],
+        "explanation": "Pliki wyłączonej wtyczki są dalej na serwerze. Luka w nich może zostać wykorzystana bez włączania wtyczki."
+      },
+      {
+        "id": "t2-wybor-wtyczek-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Zestaw wtyczek: `Yoast SEO`, `UpdraftPlus (kopie)`, `Rank Math SEO`, `Contact Form 7`. Co jest błędem?",
+        "answer": "`Rank Math SEO`",
+        "distractors": [
+          "`Yoast SEO`",
+          "`UpdraftPlus (kopie)`",
+          "`Contact Form 7`"
+        ],
+        "explanation": "Yoast i Rank Math robią to samo. Dwie wtyczki SEO dublują meta tagi i mapy witryny. Wybiera się jedną."
+      },
+      {
+        "id": "t2-wybor-wtyczek-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Po aktualizacji wtyczek panel pokazuje biały ekran i nie możesz się zalogować. Jak szybko wyłączyć podejrzaną wtyczkę?",
+        "answer": "Przez SFTP zmienić nazwę jej folderu w wp-content/plugins",
+        "distractors": [
+          "Odinstalować WordPressa",
+          "Poczekać, aż wtyczka sama się naprawi"
+        ],
+        "explanation": "Gdy folder ma inną nazwę, WordPress nie znajduje wtyczki i ją wyłącza. Działa bez panelu."
+      },
+      {
+        "id": "t2-wybor-wtyczek-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Wymień kryteria, według których ocenisz wtyczkę przed instalacją.",
+        "answer": "Data ostatniej aktualizacji, liczba aktywnych instalacji, oceny i świeże opinie, zgodność z moją wersją WordPressa (Testowano do) i aktywność autora na forum wsparcia.",
+        "keyPoints": [
+          "ostatnia aktualizacja",
+          "aktywne instalacje",
+          "oceny i opinie",
+          "zgodność z wersją WP",
+          "forum wsparcia"
+        ],
+        "explanation": "Wszystko widać w prawej kolumnie strony wtyczki na wordpress.org."
+      },
+      {
+        "id": "t2-wybor-wtyczek-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jaki podstawowy zestaw wtyczek dobierzesz do strony firmowej i dlaczego?",
+        "answer": "Jedną wtyczkę SEO (Yoast albo Rank Math), wtyczkę do kopii zapasowych (np. UpdraftPlus), wtyczkę bezpieczeństwa (np. Wordfence), formularz kontaktowy (np. Contact Form 7) i cache zależnie od hostingu. Każda odpowiada za inną funkcję, więc się nie dublują.",
+        "keyPoints": [
+          "jedna wtyczka SEO",
+          "kopie zapasowe",
+          "bezpieczeństwo",
+          "formularz",
+          "cache zależnie od hostingu"
+        ],
+        "explanation": "Konkretne nazwy mogą być inne. Ważne, żeby każda funkcja była pokryta jedną wtyczką."
+      },
+      {
+        "id": "t2-wybor-wtyczek-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Dlaczego nieużywane wtyczki trzeba usuwać, a nie tylko wyłączać?",
+        "answer": "Bo wyłączona wtyczka nadal ma pliki na serwerze. Jeśli ma lukę, atakujący może ją wykorzystać, wywołując plik bezpośrednio. Wyłączone wtyczki często też nie są aktualizowane, bo nikt o nich nie pamięta.",
+        "keyPoints": [
+          "pliki zostają na serwerze",
+          "luka może być wykorzystana mimo wyłączenia",
+          "wyłączone często nie są aktualizowane"
+        ],
+        "explanation": "To jedna z najczęstszych dróg włamania (tydzień 5)."
+      },
+      {
+        "id": "t2-wybor-wtyczek-09",
+        "type": "open",
+        "difficulty": 3,
+        "prompt": "Po instalacji nowej wtyczki przestał działać formularz kontaktowy. Jak znajdziesz przyczynę?",
+        "answer": "Najpierw wyłączę nową wtyczkę i sprawdzę formularz. Jeśli zadziała, to konflikt. Jeśli nie, na kopii lub stronie lokalnej wyłączę wszystkie wtyczki poza formularzem i będę włączać je po jednej, testując formularz. Sprawdzę też debug.log i konsolę przeglądarki.",
+        "keyPoints": [
+          "wyłączyć nową wtyczkę i sprawdzić",
+          "wyłączać/włączać po kolei",
+          "najlepiej na kopii",
+          "debug.log i konsola"
+        ],
+        "explanation": "WordPress ma też Tryb rozwiązywania problemów we wtyczce Health Check, który wyłącza wtyczki tylko dla Ciebie."
+      },
+      {
+        "id": "t2-wybor-wtyczek-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Klient ma 45 wtyczek i wolną stronę. Jak podejdziesz do porządków?",
+        "answer": "Zrobię kopię. Wypiszę wtyczki i przy każdej zapiszę, do czego służy i czy jest używana. Usunę nieużywane i porzucone. Znajdę dublujące się funkcje i zostawię po jednej wtyczce. Funkcje, które ma motyw, przeniosę do motywu. Po każdej zmianie sprawdzę stronę i zmierzę szybkość.",
+        "keyPoints": [
+          "kopia przed zmianami",
+          "lista wtyczek i ich funkcji",
+          "usunąć nieużywane i porzucone",
+          "usunąć duplikaty funkcji",
+          "sprawdzanie strony i szybkości"
+        ],
+        "explanation": "Sama liczba wtyczek nie jest problemem. Problemem są ciężkie, zbędne i dublujące się wtyczki."
+      }
+    ],
+    "task": {
+      "task": "Dobierz 5 wtyczek do strony firmowej.\n\n1. Wypisz 5 funkcji, których potrzebuje strona firmowa (np. SEO, kopie, bezpieczeństwo, formularz, cache).\n2. Dla każdej funkcji znajdź w [katalogu wtyczek](https://wordpress.org/plugins/) dwie kandydatki i porównaj: ostatnią aktualizację, instalacje, ocenę, zgodność.\n3. Wybierz po jednej i zainstaluj je na stronie lokalnej.\n4. Sprawdź, czy strona i panel działają po instalacji.\n5. Usuń wszystkie wtyczki, których nie używasz (np. „Hello Dolly”).",
+      "checklist": [
+        "Lista 5 funkcji",
+        "Porównanie po dwie wtyczki",
+        "5 wtyczek zainstalowanych lokalnie",
+        "Strona działa, zbędne wtyczki usunięte"
+      ],
+      "hints": [
+        "Wpisz w wyszukiwarkę katalogu funkcję po angielsku, np. `backup`, `contact form`, `seo`.",
+        "Akismet i Hello Dolly są instalowane z WordPressem. Hello Dolly możesz od razu usunąć.",
+        "Jeśli Twój hosting (np. LocalWP) nie ma LiteSpeed, wybierz inną wtyczkę cache albo pomiń cache lokalnie."
+      ],
+      "solution": "Przykładowy wybór:\n\n- **SEO**: Rank Math (druga kandydatka: Yoast SEO)\n- **Kopie**: UpdraftPlus (Duplicator)\n- **Bezpieczeństwo**: Wordfence (Solid Security)\n- **Formularz**: Contact Form 7 (WPForms Lite)\n- **Cache**: WP Super Cache (LiteSpeed Cache na serwerze LiteSpeed)\n\nWażne: po jednej wtyczce na funkcję, wszystkie aktualizowane w ostatnich miesiącach, zbędne usunięte (a nie tylko wyłączone)."
+    }
+  },
+  {
+    "id": "t2-uzytkownicy-kopie-aktualizacje",
+    "week": 2,
+    "order": 9,
+    "title": "Użytkownicy, kopie i aktualizacje",
+    "lesson": "Strona to nie projekt „zrób i zapomnij”. Trzeba nią zarządzać: kto ma dostęp, czy są kopie i czy wszystko jest aktualne. To podstawa opieki nad stronami klientów (tydzień 12).\n\n![Bezpieczna aktualizacja krok po kroku](diagram:bezpieczna-aktualizacja)\n\n## Role użytkowników\n\nWordPress ma role, które dają różne uprawnienia:\n\n- **Administrator**: wszystko, w tym wtyczki, motywy i użytkownicy.\n- **Redaktor**: publikuje i edytuje wszystkie wpisy i strony, także cudze.\n- **Autor**: publikuje i edytuje tylko swoje wpisy.\n- **Współpracownik**: pisze wpisy, ale nie może ich opublikować.\n- **Subskrybent**: tylko swój profil (np. konto klienta).\n\nZasada **najmniejszych uprawnień**: dawaj tylko tyle, ile ktoś potrzebuje. Pracownik klienta, który dodaje aktualności, to Redaktor albo Autor, a nie Administrator. Każda osoba ma **własne konto**, bez wspólnego loginu.\n\n## Kopie zapasowe\n\nPełna kopia to **pliki** (szczególnie `wp-content`) **i baza danych**. Wtyczka, np. UpdraftPlus:\n\n- robi kopie automatycznie, np. codziennie bazę i co tydzień pliki,\n- wysyła je **poza serwer**, np. na Google Drive albo Dropbox,\n- pozwala przywrócić stronę kilkoma kliknięciami.\n\nKopia, której nie da się przywrócić, nie jest kopią. Raz na jakiś czas **przetestuj przywracanie** na stronie lokalnej.\n\n## Aktualizacje\n\nAktualizacje łatają luki i błędy. Większość włamań wykorzystuje dziury, które są już dawno załatane w nowszej wersji.\n\n- **Drobne** aktualizacje WordPressa (np. 7.0.1 → 7.0.2) instalują się automatycznie.\n- **Duże** (np. 7.0 → 7.1), motywy i wtyczki aktualizujesz w **Kokpit → Aktualizacje** albo włączasz auto-aktualizacje dla zaufanych wtyczek.\n\nBezpieczna kolejność: **kopia → aktualizacja (najlepiej najpierw na kopii lub stagingu) → sprawdzenie strony**. Przy dużych zmianach czytaj listę zmian wtyczki. Gdy coś się zepsuje, przywróć kopię i szukaj przyczyny na spokojnie.\n\n## Czytaj dalej\n\n- [WordPress: role i uprawnienia (po angielsku)](https://wordpress.org/documentation/article/roles-and-capabilities/)\n- [WordPress: aktualizacje (po angielsku)](https://wordpress.org/documentation/article/updating-wordpress/)",
+    "questions": [
+      {
+        "id": "t2-uzytkownicy-kopie-aktualizacje-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Pracownik klienta ma dodawać aktualności i poprawiać wszystkie strony. Jaką rolę mu dasz?",
+        "answer": "Redaktor",
+        "distractors": [
+          "Administrator",
+          "Subskrybent"
+        ],
+        "explanation": "Redaktor edytuje i publikuje wszystkie treści, ale nie zmienia wtyczek, motywów ani użytkowników."
+      },
+      {
+        "id": "t2-uzytkownicy-kopie-aktualizacje-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Pełna kopia zapasowa strony to pliki i ___ danych.",
+        "answer": "baza",
+        "explanation": "Pliki (szczególnie wp-content) i baza danych. Bez bazy nie ma treści, bez plików nie ma zdjęć i motywu."
+      },
+      {
+        "id": "t2-uzytkownicy-kopie-aktualizacje-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Gdzie najlepiej przechowywać kopie zapasowe strony?",
+        "answer": "Poza serwerem strony, np. w chmurze",
+        "distractors": [
+          "Tylko na tym samym serwerze, obok strony",
+          "W folderze uploads"
+        ],
+        "explanation": "Gdy serwer padnie albo strona zostanie zhakowana, kopie na tym samym serwerze mogą zginąć razem z nią."
+      },
+      {
+        "id": "t2-uzytkownicy-kopie-aktualizacje-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Kolejność przy aktualizacji wtyczki WooCommerce: `sprawdzenie koszyka i zamówienia`, `kopia plików i bazy`, `aktualizacja na stagingu`, `aktualizacja na żywej stronie`. Który krok jest w złym miejscu?",
+        "answer": "`sprawdzenie koszyka i zamówienia`",
+        "distractors": [
+          "`kopia plików i bazy`",
+          "`aktualizacja na stagingu`",
+          "`aktualizacja na żywej stronie`"
+        ],
+        "explanation": "Sprawdzenie robi się po aktualizacji, a nie przed nią. Kolejność: kopia → staging → sprawdzenie → żywa strona → sprawdzenie."
+      },
+      {
+        "id": "t2-uzytkownicy-kopie-aktualizacje-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Firma ma jedno wspólne konto „biuro” z rolą Administrator dla 4 osób. Co jest największym problemem?",
+        "answer": "Nie wiadomo, kto co zmienił, a każda osoba ma pełny dostęp; trzeba dać osobne konta z właściwymi rolami",
+        "distractors": [
+          "Nic, wspólne konto jest prostsze",
+          "Tylko to, że hasło jest za krótkie"
+        ],
+        "explanation": "Osobne konta pozwalają śledzić zmiany i odebrać dostęp jednej osobie. Pełne uprawnienia powinien mieć tylko ten, kto naprawdę ich potrzebuje."
+      },
+      {
+        "id": "t2-uzytkownicy-kopie-aktualizacje-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Opisz role użytkowników w WordPressie i zasadę najmniejszych uprawnień.",
+        "answer": "Administrator może wszystko. Redaktor publikuje i edytuje wszystkie treści. Autor publikuje tylko swoje wpisy. Współpracownik pisze, ale nie publikuje. Subskrybent ma tylko profil. Zasada najmniejszych uprawnień: każdy dostaje najniższą rolę, która wystarcza do jego pracy.",
+        "keyPoints": [
+          "Administrator: wszystko",
+          "Redaktor: wszystkie treści",
+          "Autor i Współpracownik: własne wpisy",
+          "Subskrybent: profil",
+          "najniższa rola, która wystarcza"
+        ],
+        "explanation": "Mniej administratorów to mniej kont, które warto zaatakować."
+      },
+      {
+        "id": "t2-uzytkownicy-kopie-aktualizacje-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak powinna wyglądać dobra strategia kopii zapasowych dla małej strony firmowej?",
+        "answer": "Automatyczne kopie wtyczką, np. baza codziennie i pliki co tydzień, wysyłane poza serwer, np. do chmury. Kilka ostatnich kopii trzymanych, a nie tylko jedna. Raz na jakiś czas test przywracania na stronie lokalnej. Dodatkowo kopia ręczna przed każdą większą zmianą.",
+        "keyPoints": [
+          "automatyczne kopie (baza częściej, pliki rzadziej)",
+          "przechowywanie poza serwerem",
+          "kilka kopii wstecz",
+          "test przywracania",
+          "ręczna kopia przed zmianami"
+        ],
+        "explanation": "W tygodniu 5 poznasz zasadę 3-2-1."
+      },
+      {
+        "id": "t2-uzytkownicy-kopie-aktualizacje-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Dlaczego aktualizacje są ważne dla bezpieczeństwa?",
+        "answer": "Bo aktualizacje łatają znalezione luki. Informacje o lukach są publiczne, więc boty szukają stron ze starymi wersjami i atakują je masowo. Większość włamań wykorzystuje dziury, które w nowej wersji są już naprawione.",
+        "keyPoints": [
+          "aktualizacje łatają luki",
+          "luki są publicznie znane",
+          "boty szukają starych wersji",
+          "większość włamań to stare, załatane luki"
+        ],
+        "explanation": "Dlatego wtyczka bez aktualizacji od roku to ryzyko."
+      },
+      {
+        "id": "t2-uzytkownicy-kopie-aktualizacje-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Opisz bezpieczną procedurę aktualizacji dużej wtyczki na stronie klienta.",
+        "answer": "Robię kopię plików i bazy i sprawdzam, że się zapisała. Czytam listę zmian wtyczki. Aktualizuję najpierw na kopii lub stagingu i sprawdzam najważniejsze funkcje. Jeśli wszystko działa, aktualizuję na żywej stronie i znów sprawdzam. W razie problemu przywracam kopię.",
+        "keyPoints": [
+          "kopia plików i bazy",
+          "lista zmian wtyczki",
+          "najpierw staging/kopia",
+          "sprawdzenie najważniejszych funkcji",
+          "żywa strona i przywrócenie w razie błędu"
+        ],
+        "explanation": "Najlepiej aktualizować w godzinach małego ruchu, nie w piątek wieczorem."
+      },
+      {
+        "id": "t2-uzytkownicy-kopie-aktualizacje-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Hosting robi kopie, a klient pyta, po co jeszcze wtyczka do kopii. Co odpowiesz?",
+        "answer": "Kopie hostingu są u tej samej firmy, często trzymane krótko, a przywracanie bywa płatne lub możliwe tylko w całości. Kopia wtyczką w chmurze to drugie, niezależne miejsce. Mogę też przywrócić tylko bazę albo tylko pliki i przenieść stronę gdzie indziej.",
+        "keyPoints": [
+          "kopie hostingu w tym samym miejscu",
+          "bywają krótko trzymane i trudno przywracane",
+          "kopia w chmurze to niezależne miejsce",
+          "większa kontrola nad przywracaniem"
+        ],
+        "explanation": "To ta sama myśl co w lekcji o hostingu: co najmniej jedna kopia w innym miejscu."
+      }
+    ],
+    "task": {
+      "task": "Zrób kopię i odtwórz stronę lokalną.\n\n1. Na stronie lokalnej zainstaluj **UpdraftPlus** i zrób ręczną kopię (**Ustawienia → UpdraftPlus Backups → Utwórz kopię**).\n2. Pobierz pliki kopii na komputer (baza, wtyczki, motywy, uploads).\n3. Zepsuj coś celowo: usuń jedną stronę z kosza i jedną wtyczkę.\n4. Przywróć kopię w UpdraftPlus i sprawdź, czy strona i wtyczka wróciły.\n5. Dodaj użytkownika z rolą **Redaktor** i zaloguj się na niego w oknie prywatnym. Sprawdź, czy widzi menu Wtyczki.",
+      "checklist": [
+        "Kopia zrobiona i pobrana",
+        "Strona celowo zmieniona",
+        "Kopia przywrócona i strona wróciła",
+        "Redaktor dodany i uprawnienia sprawdzone"
+      ],
+      "hints": [
+        "Pliki kopii w UpdraftPlus mają nazwy z `-db` (baza), `-plugins`, `-themes`, `-uploads`.",
+        "Przy przywracaniu zaznacz wszystkie części kopii.",
+        "Okno prywatne otworzysz skrótem Ctrl+Shift+N (Chrome)."
+      ],
+      "solution": "- UpdraftPlus tworzy kilka plików: bazę (`...-db.gz`) i archiwa ZIP z wtyczkami, motywami, uploads i innymi plikami.\n- Po przywróceniu usunięta strona i wtyczka wracają, bo wróciła baza i pliki z momentu kopii.\n- Redaktor nie widzi menu **Wtyczki**, **Wygląd** ani **Użytkownicy**, ale może edytować wszystkie wpisy i strony.\n- Na prawdziwej stronie w ustawieniach UpdraftPlus ustaw harmonogram i zdalne miejsce (np. Google Drive)."
+    }
   }
 ]

@@ -1984,7 +1984,7 @@
         "W bloku Akapit zaznacz numer telefonu, kliknij ikonę linku i wpisz `tel:+48...`.",
         "Jeśli stopka w motywie blokowym ma przykładowe teksty, edytujesz ją w **Wygląd → Edytor → Wzorce → Stopka** (albo Części szablonu)."
       ],
-      "solution": "- Menu: Strona główna, O nas, **Oferta** (Remonty łazienek, Remonty kuchni), Realizacje, Blog, Kontakt.\n- Logo w nagłówku linkuje do strony głównej, ikonka widoczna na karcie przeglądarki.\n- Stopka np.: „Moja Firma Sp. z o.o., ul. Długa 1, 30-001 Kraków, NIP 123-456-78-90, tel. [+48 123 456 789](tel:+48123456789), [biuro@mojafirma.pl](mailto:biuro@mojafirma.pl), Polityka prywatności”.\n- Na telefonie menu zwija się do ikony (hamburger), a podmenu otwiera się po dotknięciu."
+      "solution": "- Menu: Strona główna, O nas, **Oferta** (Remonty łazienek, Remonty kuchni), Realizacje, Blog, Kontakt.\n- Logo w nagłówku linkuje do strony głównej, ikonka widoczna na karcie przeglądarki.\n- Stopka np.: „Moja Firma Sp. z o.o., ul. Długa 1, 30-001 Kraków, NIP 123-456-78-90, tel. +48 123 456 789 (link `tel:+48123456789`), biuro@mojafirma.pl (link `mailto:biuro@mojafirma.pl`), Polityka prywatności”.\n- Na telefonie menu zwija się do ikony (hamburger), a podmenu otwiera się po dotknięciu."
     }
   },
   {
@@ -2757,6 +2757,1240 @@
         "Okno prywatne otworzysz skrótem Ctrl+Shift+N (Chrome)."
       ],
       "solution": "- UpdraftPlus tworzy kilka plików: bazę (`...-db.gz`) i archiwa ZIP z wtyczkami, motywami, uploads i innymi plikami.\n- Po przywróceniu usunięta strona i wtyczka wracają, bo wróciła baza i pliki z momentu kopii.\n- Redaktor nie widzi menu **Wtyczki**, **Wygląd** ani **Użytkownicy**, ale może edytować wszystkie wpisy i strony.\n- Na prawdziwej stronie w ustawieniach UpdraftPlus ustaw harmonogram i zdalne miejsce (np. Google Drive)."
+    }
+  },
+  {
+    "id": "t3-html-css",
+    "week": 3,
+    "order": 1,
+    "title": "HTML i CSS dla twórcy stron",
+    "lesson": "Nie musisz pisać stron w kodzie, ale musisz **rozumieć**, z czego są zbudowane. Wtedy wiesz, co poprawić w edytorze, co powiedzieć AI i jak przeczytać to, co pokazują narzędzia przeglądarki.\n\n![HTML, CSS i model pudełkowy](diagram:html-css)\n\n## HTML: co jest na stronie\n\nHTML opisuje **strukturę**: co jest nagłówkiem, co akapitem, co linkiem. Każdy element to znacznik:\n\n```html\n<h1>Remonty łazienek w Krakowie</h1>\n<p>Robimy remonty od 15 lat.</p>\n<a href=\"/kontakt/\">Napisz do nas</a>\n<img src=\"lazienka.jpg\" alt=\"Łazienka po remoncie\">\n```\n\n- `<h1>`–`<h6>`: nagłówki. Jeden `<h1>` na stronę, potem `<h2>`, `<h3>` w logicznej kolejności.\n- `<p>`: akapit, `<a>`: link, `<img>`: obrazek z atrybutem `alt`.\n- `<div>`, `<section>`: „pudełka”, które grupują inne elementy.\n\nEdytor blokowy i buildery piszą ten HTML za Ciebie. Blok Nagłówek to `<h2>` (albo inny poziom, który wybierzesz), blok Akapit to `<p>`.\n\n## CSS: jak to wygląda\n\nCSS opisuje **wygląd**: kolory, czcionki, odstępy, układ. Reguła CSS ma selektor (do czego) i właściwości (co zmienić):\n\n```css\n.oferta {\n  color: #1d4ed8;\n  padding: 24px;\n  border-radius: 8px;\n}\n```\n\n- **Klasa** (`class=\"oferta\"` w HTML, `.oferta` w CSS) to etykieta, która pozwala nadać styl wielu elementom naraz. W edytorze blokowym dodasz ją w panelu bloku: **Zaawansowane → Dodatkowe klasy CSS**.\n- **Kolory** zapisuje się zwykle jako kod HEX, np. `#1d4ed8`.\n- **Jednostki**: `px` (piksele), `%` (procent szerokości rodzica), `rem` (względem wielkości tekstu).\n\n## Model pudełkowy\n\nKażdy element to prostokąt. Od środka:\n\n1. **content**: treść,\n2. **padding**: odstęp wewnątrz, między treścią a ramką,\n3. **border**: ramka,\n4. **margin**: odstęp na zewnątrz, od sąsiednich elementów.\n\nGdy „coś jest za blisko” albo „za daleko”, prawie zawsze chodzi o margin albo padding. W edytorze blokowym to pola **Marginesy** i **Dopełnienie** w ustawieniach bloku.\n\n## Czytaj dalej\n\n- [MDN: podstawy HTML (po angielsku)](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content)\n- [MDN: model pudełkowy (po angielsku)](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Box_model)",
+    "questions": [
+      {
+        "id": "t3-html-css-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Za co odpowiada HTML, a za co CSS?",
+        "answer": "HTML za strukturę i treść, CSS za wygląd",
+        "distractors": [
+          "HTML za wygląd, CSS za treść",
+          "Oba tylko za kolory"
+        ],
+        "explanation": "HTML mówi, co jest na stronie (nagłówek, akapit, link). CSS mówi, jak to wygląda."
+      },
+      {
+        "id": "t3-html-css-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Odstęp wewnątrz elementu, między treścią a ramką, to w CSS ___.",
+        "answer": "padding",
+        "explanation": "Padding to odstęp wewnątrz pudełka. Margin to odstęp na zewnątrz, od sąsiadów."
+      },
+      {
+        "id": "t3-html-css-03",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Który znacznik HTML oznacza link?",
+        "answer": "`<a>`",
+        "distractors": [
+          "`<p>`",
+          "`<img>`",
+          "`<h1>`"
+        ],
+        "explanation": "`<a href=\"...\">` to link. `<p>` to akapit, `<img>` obrazek, `<h1>` główny nagłówek."
+      },
+      {
+        "id": "t3-html-css-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Kod: `<h1>Remonty</h1>`, `<p>Robimy remonty</p>`, `<img src=\"lazienka.jpg\">`, `<a href=\"/kontakt/\">Kontakt</a>`. Czego brakuje w jednym z elementów?",
+        "answer": "`<img src=\"lazienka.jpg\">`",
+        "distractors": [
+          "`<h1>Remonty</h1>`",
+          "`<p>Robimy remonty</p>`",
+          "`<a href=\"/kontakt/\">Kontakt</a>`"
+        ],
+        "explanation": "Obrazek nie ma atrybutu `alt`. Bez niego czytnik ekranu i Google nie wiedzą, co przedstawia."
+      },
+      {
+        "id": "t3-html-css-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Między dwoma sekcjami na stronie jest za duża przerwa, a tło sekcji jej nie obejmuje. Co prawdopodobnie trzeba zmniejszyć?",
+        "answer": "Margin (odstęp na zewnątrz sekcji)",
+        "distractors": [
+          "Padding (odstęp w środku)",
+          "Rozmiar czcionki"
+        ],
+        "explanation": "Tło elementu obejmuje content i padding, ale nie margin. Przerwa poza tłem to margin."
+      },
+      {
+        "id": "t3-html-css-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Wyjaśnij własnymi słowami, czym jest klasa CSS i po co się jej używa.",
+        "answer": "Klasa to etykieta nadana elementowi w HTML, np. class=\"oferta\". W CSS piszę regułę .oferta { ... }, która zmienia wygląd wszystkich elementów z tą etykietą naraz. Dzięki temu ten sam styl mogę użyć w wielu miejscach i zmienić go w jednym.",
+        "keyPoints": [
+          "etykieta elementu w HTML (class=\"...\")",
+          "w CSS: .nazwa { ... }",
+          "jeden styl dla wielu elementów",
+          "zmiana w jednym miejscu"
+        ],
+        "explanation": "W edytorze blokowym klasę dodasz w Zaawansowane → Dodatkowe klasy CSS."
+      },
+      {
+        "id": "t3-html-css-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Opisz model pudełkowy od środka na zewnątrz.",
+        "answer": "W środku jest treść (content). Wokół niej padding, czyli odstęp wewnątrz. Potem border, czyli ramka. Na zewnątrz margin, czyli odstęp od sąsiednich elementów.",
+        "keyPoints": [
+          "content: treść",
+          "padding: odstęp w środku",
+          "border: ramka",
+          "margin: odstęp na zewnątrz"
+        ],
+        "explanation": "Kolejność łatwo zapamiętać: od treści do sąsiadów."
+      },
+      {
+        "id": "t3-html-css-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Dlaczego na stronie powinien być jeden nagłówek H1 i logiczna kolejność H2, H3?",
+        "answer": "H1 mówi, o czym jest cała strona, dla ludzi, czytników ekranu i Google. H2 to główne sekcje, a H3 podsekcje w nich. Logiczna hierarchia pomaga w czytaniu, dostępności i SEO. Kilka H1 albo skoki z H1 do H4 mieszają tę strukturę.",
+        "keyPoints": [
+          "H1 = temat całej strony",
+          "H2 sekcje, H3 podsekcje",
+          "pomaga czytnikom ekranu i Google",
+          "bez skoków i wielu H1"
+        ],
+        "explanation": "Do nagłówków wrócisz w tygodniu 4 przy SEO."
+      },
+      {
+        "id": "t3-html-css-09",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Klient chce, żeby wszystkie przyciski „Zadzwoń” miały pomarańczowe tło. Jak to zrobisz, żeby łatwo zmienić kolor później?",
+        "answer": "Nadam przyciskom wspólną klasę, np. przycisk-telefon, w ustawieniach bloku. W Dodatkowym CSS dodam regułę .przycisk-telefon a { background: #f97316; }. Gdy kolor się zmieni, poprawię jedną linię. Albo ustawię styl przycisku globalnie w Stylach edytora witryny.",
+        "keyPoints": [
+          "wspólna klasa dla przycisków",
+          "reguła w Dodatkowym CSS",
+          "zmiana w jednym miejscu",
+          "alternatywa: Style globalne"
+        ],
+        "explanation": "Dokładny selektor (np. czy z `a`) najłatwiej ustalić w DevTools (następna lekcja)."
+      },
+      {
+        "id": "t3-html-css-10",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak HTML z edytora blokowego ma się do bloków, które klikasz?",
+        "answer": "Każdy blok zapisuje się jako kawałek HTML. Blok Nagłówek to h2 (lub inny wybrany poziom), Akapit to p, Obraz to img z alt, Przycisk to link a. Ustawienia bloku, np. kolor, dodają klasy albo style CSS. Edytor pisze kod za mnie, a ja decyduję o strukturze.",
+        "keyPoints": [
+          "każdy blok = kawałek HTML",
+          "przykłady: Nagłówek → h2, Akapit → p, Obraz → img",
+          "ustawienia dodają klasy/CSS",
+          "edytor pisze kod, ja decyduję o strukturze"
+        ],
+        "explanation": "Kod bloku zobaczysz w menu bloku → Edytuj jako HTML."
+      }
+    ],
+    "task": {
+      "task": "Zobacz HTML i CSS swojej strony bez pisania kodu od zera.\n\n1. Na stronie lokalnej dodaj blok **Grupa** z nagłówkiem i akapitem. W **Zaawansowane → Dodatkowe klasy CSS** wpisz `oferta`.\n2. Otwórz menu bloku Nagłówek (**⋮**) → **Edytuj jako HTML** i zobacz jego kod. Wróć do edycji wizualnej.\n3. Dodaj w **Dodatkowym CSS** (Wygląd → Dostosuj albo Edytor → Style → ⋮ → Dodatkowy CSS) regułę dla `.oferta`: tło, padding i zaokrąglenie.\n4. Zmień wartość padding na 4 różne liczby i obserwuj efekt.\n5. Zapisz w notatkach, czym różni się margin od padding na Twoim przykładzie.",
+      "checklist": [
+        "Grupa ma klasę oferta",
+        "Widzisz HTML bloku nagłówka",
+        "Reguła CSS zmienia wygląd grupy",
+        "Masz własny opis margin i padding"
+      ],
+      "hints": [
+        "Przykładowa reguła: `.oferta { background: #eef2ff; padding: 24px; border-radius: 12px; }`.",
+        "Jeśli zmiana nie działa, sprawdź, czy klasa w bloku jest wpisana bez kropki, a w CSS z kropką.",
+        "Dodaj `margin-top: 60px;` i zobacz, że tło nie obejmuje tego odstępu."
+      ],
+      "solution": "- HTML nagłówka wygląda np. tak: `<h2 class=\"wp-block-heading\">Nasza oferta</h2>`.\n- Reguła:\n\n```css\n.oferta {\n  background: #eef2ff;\n  padding: 24px;\n  border-radius: 12px;\n}\n```\n\n- **Padding** powiększa tło wokół tekstu. **Margin** odsuwa całą grupę od sąsiadów, a tło go nie obejmuje."
+    }
+  },
+  {
+    "id": "t3-rwd",
+    "week": 3,
+    "order": 2,
+    "title": "Strona na telefonie (RWD)",
+    "lesson": "Ponad połowa ruchu na większości stron to telefony, a Google ocenia stronę głównie po jej wersji mobilnej (mobile-first indexing). **RWD** (Responsive Web Design) oznacza, że ta sama strona dopasowuje układ do szerokości ekranu.\n\n![Ten sam układ na trzech ekranach](diagram:rwd)\n\n## Jak to działa\n\nMotyw i edytor ustawiają **punkty przełamania** (breakpoints), np. 1024 px i 767 px. Poniżej danej szerokości układ się zmienia: kolumny układają się pod sobą, menu chowa się do ikony ☰ (hamburger), odstępy się zmniejszają. W CSS robią to reguły `@media`.\n\n## Co sprawdzić na telefonie\n\n- **Brak przewijania w bok**: nic nie wystaje poza ekran.\n- **Tekst**: co najmniej 16 px, czytelny bez powiększania.\n- **Przyciski i linki**: duże (ok. 48 px wysokości) i nie za blisko siebie.\n- **Menu**: otwiera się i zamyka, podmenu działa po dotknięciu.\n- **Zdjęcia**: zmniejszają się, nie są ucięte w ważnym miejscu.\n- **Formularz**: pola wygodne do wpisania, klawiatura numeryczna przy telefonie (pole typu tel).\n- **Telefon w nagłówku**: klikalny link `tel:`.\n\n## Jak poprawić widok mobilny\n\n- **Edytor blokowy**: przełącznik podglądu (Komputer / Tablet / Telefon) u góry. Kolumny mają opcję **Ułóż w stos na urządzeniach mobilnych**. Siatka (Grid) sama zmienia liczbę kolumn.\n- **Elementor**: tryb responsywny (ikona ekranu na dole panelu). Ustawienia oznaczone ikoną ekranu możesz zmienić osobno dla telefonu, np. mniejszy nagłówek. Elementy da się **ukryć** na danym urządzeniu.\n- **CSS**: reguła tylko dla telefonów:\n\n```css\n@media (max-width: 767px) {\n  .oferta h2 { font-size: 24px; }\n}\n```\n\nTestuj w przeglądarce (F12 → ikona telefonu, skrót Ctrl+Shift+M) i **na prawdziwym telefonie**. Podgląd nie pokaże wszystkiego, np. jak działa dotyk.\n\n## Czytaj dalej\n\n- [Google: indeksowanie mobile-first (po angielsku)](https://developers.google.com/search/docs/crawling-indexing/mobile/mobile-sites-mobile-first-indexing)\n- [MDN: projektowanie responsywne (po angielsku)](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Responsive_Design)",
+    "questions": [
+      {
+        "id": "t3-rwd-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Co oznacza RWD?",
+        "answer": "Strona dopasowuje układ do szerokości ekranu",
+        "distractors": [
+          "Osobna strona tylko dla telefonów pod innym adresem",
+          "Strona ładuje się szybciej na komputerze"
+        ],
+        "explanation": "Responsive Web Design: jedna strona, która zmienia układ na różnych ekranach."
+      },
+      {
+        "id": "t3-rwd-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "W CSS regułę tylko dla wąskich ekranów zapisuje się w bloku `@___ (max-width: 767px)`.",
+        "answer": "media",
+        "explanation": "Reguła `@media` stosuje style tylko wtedy, gdy warunek, np. szerokość ekranu, jest spełniony."
+      },
+      {
+        "id": "t3-rwd-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Skrót, który w Chrome DevTools włącza widok telefonu:",
+        "answer": "Ctrl+Shift+M",
+        "distractors": [
+          "Ctrl+P",
+          "Ctrl+Shift+N"
+        ],
+        "explanation": "Ctrl+Shift+M przełącza pasek urządzeń w DevTools. Ctrl+Shift+N to okno prywatne."
+      },
+      {
+        "id": "t3-rwd-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Lista kontrolna wersji mobilnej: `tekst co najmniej 16 px`, `przyciski ok. 48 px wysokości`, `poziome przewijanie, żeby zmieścić tabelę`, `menu w ikonie ☰`. Co jest błędem?",
+        "answer": "`poziome przewijanie, żeby zmieścić tabelę`",
+        "distractors": [
+          "`tekst co najmniej 16 px`",
+          "`przyciski ok. 48 px wysokości`",
+          "`menu w ikonie ☰`"
+        ],
+        "explanation": "Strona nie powinna przewijać się w bok. Szeroką tabelę zawija się w przewijany kontener albo zamienia na listę."
+      },
+      {
+        "id": "t3-rwd-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Google ocenia stronę głównie na podstawie wersji mobilnej. Klient ukrył na telefonie połowę treści, „żeby było krócej”. Co to może oznaczać?",
+        "answer": "Google może nie brać pod uwagę ukrytej treści, więc strona traci na SEO",
+        "distractors": [
+          "Nic, Google patrzy tylko na wersję komputerową",
+          "Strona zyska, bo jest krótsza"
+        ],
+        "explanation": "Przy indeksowaniu mobile-first liczy się to, co widać w wersji mobilnej. Ważną treść skróć lub zwiń, ale jej nie usuwaj."
+      },
+      {
+        "id": "t3-rwd-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Co sprawdzisz na telefonie przed oddaniem strony klientowi?",
+        "answer": "Czy nic nie przewija się w bok, czy tekst jest czytelny (min. 16 px), czy przyciski są duże i nie za blisko, czy menu i podmenu działają, czy zdjęcia się mieszczą, czy formularz da się wygodnie wypełnić i czy telefon jest klikalny.",
+        "keyPoints": [
+          "brak przewijania w bok",
+          "czytelny tekst",
+          "duże przyciski",
+          "działające menu",
+          "zdjęcia, formularz, klikalny telefon"
+        ],
+        "explanation": "Zrób z tego swoją stałą checklistę."
+      },
+      {
+        "id": "t3-rwd-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Czym są punkty przełamania (breakpoints)?",
+        "answer": "To szerokości ekranu, przy których zmienia się układ strony, np. 1024 px dla tabletu i 767 px dla telefonu. Poniżej takiej szerokości kolumny układają się pod sobą, menu się zwija, zmieniają się rozmiary. W CSS robi się to regułami @media.",
+        "keyPoints": [
+          "szerokości, przy których zmienia się układ",
+          "przykłady: ok. 1024 i 767 px",
+          "kolumny pod sobą, menu zwinięte",
+          "w CSS: @media"
+        ],
+        "explanation": "Motywy i buildery mają własne wartości, ale zwykle zbliżone."
+      },
+      {
+        "id": "t3-rwd-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak w edytorze blokowym i w Elementorze ustawisz mniejszy nagłówek tylko na telefonie?",
+        "answer": "W edytorze blokowym mogę użyć płynnej typografii w Stylach albo dodać klasę i regułę CSS w @media (max-width: 767px). W Elementorze przełączam się w tryb telefonu i zmieniam rozmiar czcionki w ustawieniu z ikoną ekranu, wtedy zmiana dotyczy tylko telefonu.",
+        "keyPoints": [
+          "edytor blokowy: płynna typografia lub klasa + @media",
+          "Elementor: tryb responsywny",
+          "ustawienia z ikoną ekranu działają per urządzenie"
+        ],
+        "explanation": "Wartości ustawione w trybie telefonu nie zmieniają widoku komputera."
+      },
+      {
+        "id": "t3-rwd-09",
+        "type": "open",
+        "difficulty": 3,
+        "prompt": "Dlaczego test w DevTools nie zastąpi sprawdzenia na prawdziwym telefonie?",
+        "answer": "DevTools symuluje szerokość ekranu, ale nie dotyk palcem, prawdziwą szybkość sieci komórkowej, klawiaturę ekranową ani zachowanie przeglądarki telefonu. Na telefonie lepiej widać, czy przyciski są za małe, czy coś zasłania klawiatura i czy strona ładuje się szybko.",
+        "keyPoints": [
+          "DevTools tylko symuluje szerokość",
+          "brak prawdziwego dotyku i klawiatury",
+          "inna szybkość sieci",
+          "na telefonie widać wygodę użycia"
+        ],
+        "explanation": "Dobra praktyka: sprawdź na jednym Androidzie i jednym iPhonie."
+      },
+      {
+        "id": "t3-rwd-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Na telefonie trzy kolumny z usługami są bardzo wąskie i tekst się łamie po jednym słowie. Jak to naprawisz?",
+        "answer": "Ustawię kolumny tak, żeby na telefonie układały się pod sobą: w bloku Kolumny włączę Ułóż w stos na urządzeniach mobilnych, w Elementorze zmienię szerokość kolumny na 100% w trybie telefonu albo kierunek kontenera na kolumnę. Sprawdzę też tablet, gdzie mogą być 2 kolumny.",
+        "keyPoints": [
+          "kolumny pod sobą na telefonie",
+          "blok Kolumny: Ułóż w stos",
+          "Elementor: 100% lub kierunek kolumna w trybie telefonu",
+          "sprawdzić tablet"
+        ],
+        "explanation": "To najczęstszy problem z mobilną wersją stron z kolumnami."
+      }
+    ],
+    "task": {
+      "task": "Popraw stronę lokalną na telefonie.\n\n1. Otwórz swoją stronę główną, naciśnij **F12** i **Ctrl+Shift+M**. Wybierz model telefonu, np. iPhone SE (najmniejszy ekran).\n2. Przejdź checklistę z lekcji: przewijanie w bok, tekst, przyciski, menu, zdjęcia, telefon.\n3. Zapisz w notatkach co najmniej 2 problemy.\n4. Napraw je w edytorze (podgląd telefonu albo CSS z `@media`).\n5. Jeśli możesz, otwórz stronę na prawdziwym telefonie (np. przez **Live Link** w LocalWP).",
+      "checklist": [
+        "Strona sprawdzona w widoku iPhone SE",
+        "Zapisane co najmniej 2 problemy",
+        "Problemy poprawione",
+        "Strona obejrzana ponownie po poprawkach"
+      ],
+      "hints": [
+        "Przewijanie w bok najłatwiej zauważyć, przeciągając stronę palcem (albo myszą w trybie urządzenia) w lewo.",
+        "Live Link w LocalWP daje tymczasowy adres, który otworzysz na telefonie.",
+        "Jeśli coś wystaje poza ekran, w DevTools najedź na elementy w zakładce Elementy i szukaj tego, który jest szerszy niż ekran."
+      ],
+      "solution": "Typowe problemy i poprawki:\n\n- **Kolumny za wąskie** → Ułóż w stos na telefonach.\n- **Za duży nagłówek H1** (łamie się na 5 linii) → mniejsza czcionka na telefonie.\n- **Element szerszy niż ekran** (np. obrazek z szerokością w px) → szerokość 100% albo `max-width: 100%`.\n- **Za małe linki w stopce** → większy odstęp między nimi.\n- **Telefon nieklikalny** → link `tel:`."
+    }
+  },
+  {
+    "id": "t3-devtools",
+    "week": 3,
+    "order": 3,
+    "title": "Narzędzia przeglądarki (DevTools)",
+    "lesson": "**DevTools** to wbudowane w przeglądarkę narzędzia dla twórców stron. Otwierasz je klawiszem **F12** (albo prawy przycisk → **Zbadaj**). Pozwalają zajrzeć „pod maskę” każdej strony: sprawdzić kod, znaleźć błąd, wolny plik albo brakującą podstronę. Nie zmieniasz nimi strony na serwerze, wszystko dzieje się tylko w Twojej przeglądarce.\n\n![Najważniejsze zakładki DevTools](diagram:devtools)\n\n## Elementy (Elements)\n\nPokazuje HTML strony i CSS zaznaczonego elementu. Ikona strzałki w lewym górnym rogu pozwala kliknąć dowolny element na stronie. Możesz **na żywo** zmienić tekst, kolor czy odstęp i zobaczyć efekt. Zmiany znikają po odświeżeniu, więc to idealne miejsce do testów przed wpisaniem CSS na stronę.\n\n## Widok urządzenia\n\nIkona telefonu (Ctrl+Shift+M) symuluje ekran telefonu lub tabletu. Znasz ją z lekcji o RWD.\n\n## Konsola (Console)\n\nPokazuje błędy JavaScript (na czerwono) i ostrzeżenia (na żółto), np. o mixed content. Gdy „nie działa przycisk” albo „nie wysyła się formularz”, zajrzyj tu najpierw. Treść błędu wklejona do AI często od razu wskazuje przyczynę.\n\n## Sieć (Network)\n\nLista wszystkich plików, które pobiera strona: HTML, CSS, skrypty, obrazki, fonty. Dla każdego widać:\n\n- **Status**: 200, 301, 404...,\n- **Rozmiar** i **czas** pobrania,\n- typ pliku.\n\nKliknij nagłówek kolumny **Rozmiar**, żeby znaleźć najcięższe pliki (często zdjęcie 5 MB prosto z aparatu). Filtr **Img** pokazuje same obrazki. Czerwone wiersze to błędy, np. brakujący plik (404).\n\n## Lighthouse\n\nRaport z oceną 0–100 w czterech kategoriach: **wydajność**, **dostępność**, **dobre praktyki** i **SEO**, z listą konkretnych poprawek. Uruchamiaj go w oknie prywatnym (wtyczki przeglądarki zaniżają wynik). Do szybkości wrócisz w tygodniu 7.\n\n## Czytaj dalej\n\n- [Chrome DevTools: przegląd (po angielsku)](https://developer.chrome.com/docs/devtools/overview)\n- [Lighthouse: wprowadzenie (po angielsku)](https://developer.chrome.com/docs/lighthouse/overview)",
+    "questions": [
+      {
+        "id": "t3-devtools-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Którą zakładką DevTools sprawdzisz kod statusu (np. 404) brakującego obrazka?",
+        "answer": "Sieć (Network)",
+        "distractors": [
+          "Elementy (Elements)",
+          "Lighthouse"
+        ],
+        "explanation": "Zakładka Sieć pokazuje każdy pobierany plik z kodem statusu, rozmiarem i czasem."
+      },
+      {
+        "id": "t3-devtools-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "DevTools otwierasz klawiszem ___.",
+        "answer": "F12",
+        "explanation": "F12 albo prawy przycisk myszy → Zbadaj."
+      },
+      {
+        "id": "t3-devtools-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Zmieniono kolor przycisku w zakładce Elementy. Co się stanie po odświeżeniu strony?",
+        "answer": "Zmiana zniknie, bo DevTools zmienia stronę tylko w przeglądarce",
+        "distractors": [
+          "Zmiana zapisze się na serwerze",
+          "Kolor zmieni się wszystkim odwiedzającym"
+        ],
+        "explanation": "DevTools to miejsce do testów. Żeby zmiana została, trzeba ją wpisać na stronie, np. w Dodatkowym CSS."
+      },
+      {
+        "id": "t3-devtools-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Plan szukania wolnego obrazka: `F12 → Sieć`, `filtr Img`, `sortowanie po kolumnie Nazwa`, `odświeżenie strony`. Który krok nie pomoże znaleźć najcięższego pliku?",
+        "answer": "`sortowanie po kolumnie Nazwa`",
+        "distractors": [
+          "`F12 → Sieć`",
+          "`filtr Img`",
+          "`odświeżenie strony`"
+        ],
+        "explanation": "Najcięższe pliki znajdziesz, sortując po kolumnie Rozmiar (albo Czas), a nie po nazwie."
+      },
+      {
+        "id": "t3-devtools-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Lighthouse daje stronie 45 punktów za wydajność, a za drugim razem 72. Co mogło wpłynąć na różnicę?",
+        "answer": "Wtyczki przeglądarki, cache i obciążenie komputera; dlatego testuje się w oknie prywatnym i kilka razy",
+        "distractors": [
+          "Lighthouse losuje wynik",
+          "Strona sama się naprawiła"
+        ],
+        "explanation": "Wynik zależy od warunków testu. Okno prywatne bez wtyczek i kilka pomiarów dają wiarygodniejszy obraz."
+      },
+      {
+        "id": "t3-devtools-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Opisz krótko cztery najważniejsze zakładki DevTools i do czego ich użyjesz.",
+        "answer": "Elementy: podgląd HTML i CSS, testowanie zmian wyglądu na żywo. Konsola: błędy JavaScript i ostrzeżenia, np. mixed content. Sieć: lista pobieranych plików z kodem statusu, rozmiarem i czasem, do szukania 404 i ciężkich plików. Lighthouse: raport z oceną wydajności, dostępności, dobrych praktyk i SEO.",
+        "keyPoints": [
+          "Elementy: HTML/CSS, testy wyglądu",
+          "Konsola: błędy JS i ostrzeżenia",
+          "Sieć: pliki, statusy, rozmiar, czas",
+          "Lighthouse: raport i ocena"
+        ],
+        "explanation": "To codzienne narzędzia każdego twórcy stron."
+      },
+      {
+        "id": "t3-devtools-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Klient mówi, że przycisk „Wyślij” w formularzu nic nie robi. Jak użyjesz DevTools, żeby szukać przyczyny?",
+        "answer": "Otworzę Konsolę i kliknę przycisk, sprawdzając, czy pojawia się czerwony błąd JavaScript. Otworzę zakładkę Sieć i zobaczę, czy po kliknięciu idzie zapytanie i jaki ma status (np. 403, 500). Treść błędu wkleję do AI albo poszukam, która wtyczka go powoduje.",
+        "keyPoints": [
+          "Konsola: błąd JS po kliknięciu",
+          "Sieć: czy idzie zapytanie i jaki status",
+          "błąd 403/500 wskazuje serwer lub firewall",
+          "treść błędu do AI lub szukania"
+        ],
+        "explanation": "Częsta przyczyna: konflikt skryptów dwóch wtyczek albo blokada przez wtyczkę bezpieczeństwa."
+      },
+      {
+        "id": "t3-devtools-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak sprawdzisz, który kolor i odstęp ma przycisk na stronie konkurencji?",
+        "answer": "Kliknę przycisk prawym przyciskiem → Zbadaj. W zakładce Elementy zobaczę jego HTML i klasę, a w panelu Style jego CSS: kolor tła, kolor tekstu, padding, zaokrąglenie. Mogę też w zakładce Obliczone (Computed) zobaczyć końcowe wartości.",
+        "keyPoints": [
+          "prawy przycisk → Zbadaj",
+          "Elementy: HTML i klasa",
+          "panel Style: kolor, padding, zaokrąglenie",
+          "Obliczone: wartości końcowe"
+        ],
+        "explanation": "Używaj tego do nauki i inspiracji, a nie kopiowania całych projektów."
+      },
+      {
+        "id": "t3-devtools-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak znajdziesz w DevTools brakujące pliki (404) na stronie?",
+        "answer": "Otworzę zakładkę Sieć, odświeżę stronę i posortuję po kolumnie Status albo poszukam czerwonych wierszy. Kliknę plik z 404 i sprawdzę jego adres, żeby ustalić, skąd jest wczytywany: z motywu, wtyczki czy treści. Konsola też pokazuje błędy ładowania.",
+        "keyPoints": [
+          "zakładka Sieć i odświeżenie",
+          "czerwone wiersze / sortowanie po statusie",
+          "adres pliku wskazuje źródło",
+          "konsola też pokazuje błędy ładowania"
+        ],
+        "explanation": "Brakujące pliki spowalniają stronę i mogą psuć wygląd."
+      },
+      {
+        "id": "t3-devtools-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Dlaczego raport Lighthouse warto robić w oknie prywatnym i dla wersji mobilnej?",
+        "answer": "W oknie prywatnym nie działają wtyczki przeglądarki, które dodają skrypty i zaniżają wynik. Wersja mobilna symuluje wolniejszy telefon i sieć, tak jak robi Google, który ocenia stronę głównie po wersji mobilnej. Wynik mobilny jest zwykle niższy i bardziej realistyczny.",
+        "keyPoints": [
+          "okno prywatne = bez wtyczek przeglądarki",
+          "wtyczki zaniżają wynik",
+          "mobile symuluje wolny telefon i sieć",
+          "Google ocenia głównie wersję mobilną"
+        ],
+        "explanation": "W tygodniu 7 poznasz też PageSpeed Insights, które pokazuje dane od prawdziwych użytkowników."
+      }
+    ],
+    "task": {
+      "task": "Znajdź na stronie wolny obrazek i błąd w konsoli.\n\n1. Wybierz dowolną stronę firmy z okolicy (albo swoją stronę lokalną) i otwórz ją w oknie prywatnym.\n2. **F12 → Sieć**, filtr **Img**, odśwież stronę i posortuj po **Rozmiarze**. Zapisz nazwę i rozmiar najcięższego obrazka.\n3. Otwórz **Konsolę** i zapisz pierwszy czerwony błąd (jeśli jest).\n4. Uruchom **Lighthouse** dla wersji mobilnej. Zapisz 4 wyniki i jedną rekomendację.\n5. W zakładce **Elementy** zmień na żywo kolor nagłówka i zrób zrzut ekranu.",
+      "checklist": [
+        "Masz nazwę i rozmiar najcięższego obrazka",
+        "Konsola sprawdzona, błąd zapisany lub brak błędów",
+        "Masz 4 wyniki Lighthouse i rekomendację",
+        "Kolor zmieniony na żywo w Elementach"
+      ],
+      "hints": [
+        "Rozmiar może się wyświetlać w dwóch liczbach: przesłany (mniejszy, skompresowany) i rzeczywisty.",
+        "Lighthouse jest w DevTools jako zakładka (czasem ukryta pod ikoną ») .",
+        "Jeśli konsola pokazuje dużo komunikatów, filtruj po poziomie **Błędy**."
+      ],
+      "solution": "Przykładowe wyniki:\n\n- Najcięższy obrazek: `baner-glowny.jpg`, 3,8 MB. Powinien mieć ok. 150–300 KB (zmniejszenie wymiarów i format WebP).\n- Konsola: np. `Failed to load resource: the server responded with a status of 404` dla pliku wtyczki albo błąd `Uncaught TypeError` ze skryptu.\n- Lighthouse (mobile): Wydajność 52, Dostępność 88, Dobre praktyki 96, SEO 92. Rekomendacja np. „Wyświetlaj obrazy w formatach nowej generacji” albo „Zmniejsz nieużywany JavaScript”.\n- Zmiana koloru w Elementach znika po odświeżeniu."
+    }
+  },
+  {
+    "id": "t3-figma",
+    "week": 3,
+    "order": 4,
+    "title": "Z projektu Figma na stronę",
+    "lesson": "Często grafik projektuje stronę w **Figmie**, a Ty masz ją zbudować w WordPressie. Nie musisz umieć projektować. Musisz umieć **odczytać** projekt: kolory, fonty, rozmiary, odstępy, i wyeksportować grafiki.\n\n![Od projektu do gotowej strony](diagram:figma-do-wp)\n\n## Dostęp do projektu\n\nWystarczy link z dostępem do podglądu (**can view**). Darmowe konto Figma pozwala klikać elementy i sprawdzać ich właściwości. Grafik może też udostępnić tryb **Dev Mode**, w którym właściwości są podane jak w CSS.\n\n## Co odczytać na początku\n\nZanim zbudujesz pierwszą sekcję, zbierz **system** projektu:\n\n- **Kolory**: główny, dodatkowy, tło, tekst. Kod HEX, np. `#1D4ED8`. Często są zapisane jako style lub zmienne w panelu po prawej.\n- **Fonty**: nazwy (np. Inter, Poppins), wielkości dla H1, H2, tekstu, grubości.\n- **Odstępy**: powtarzające się wartości, np. 8, 16, 24, 48 px.\n- **Szerokość treści**: np. 1200 px.\n- **Przyciski**: kolor, zaokrąglenie, padding.\n\nTe wartości wpisz od razu w **Style** edytora witryny albo w ustawienia globalne motywu lub Elementora. Potem każda sekcja będzie automatycznie spójna.\n\n## Jak odczytać element\n\nKliknij element: w panelu po prawej widać szerokość, wysokość, kolor, font. Przytrzymaj **Alt** (Option na Macu) i najedź na inny element, żeby zobaczyć **odległość** między nimi w pikselach.\n\n## Eksport grafik\n\nZaznacz grafikę → panel **Export** na dole po prawej:\n\n- **SVG**: ikony i logo (ostre w każdym rozmiarze, mały plik),\n- **PNG**: grafiki z przezroczystością,\n- **JPG**: zdjęcia. Później przekonwertujesz je do WebP (tydzień 7).\n\nEksportuj w rozmiarze **2x** dla ekranów o wysokiej gęstości, a potem kompresuj.\n\n## Fonty a RODO\n\nFonty Google pobierane z serwerów Google przekazują adres IP odwiedzającego. Bezpieczniej jest hostować fonty **lokalnie** na swoim serwerze. W motywach blokowych fonty wgrasz w **Style → Typografia → Zarządzaj fontami**, wiele motywów i wtyczek ma opcję „wczytuj fonty lokalnie”.\n\n## Projekt to wzór, nie zrzut ekranu\n\nProjekt jest zwykle na jeden ekran komputera. Wersję mobilną ustal z grafikiem albo zaproponuj logiczne ułożenie pod sobą. Nie odtwarzaj każdego piksela, jeśli psuje to responsywność.\n\n## Czytaj dalej\n\n- [Figma: eksport (po angielsku)](https://help.figma.com/hc/en-us/articles/360040028114-Export-from-Figma-Design)\n- [Figma Learn: Dev Mode (po angielsku)](https://help.figma.com/hc/en-us/articles/15023124644247-Guide-to-Dev-Mode)",
+    "questions": [
+      {
+        "id": "t3-figma-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "W jakim formacie najlepiej wyeksportować logo i ikony z Figmy?",
+        "answer": "SVG",
+        "distractors": [
+          "JPG",
+          "GIF"
+        ],
+        "explanation": "SVG to grafika wektorowa: ostra w każdym rozmiarze i lekka. JPG jest dla zdjęć."
+      },
+      {
+        "id": "t3-figma-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "W Figmie przytrzymanie klawisza ___ i najechanie na inny element pokazuje odległość między elementami.",
+        "answer": "Alt",
+        "explanation": "Alt (Option na Macu) pokazuje odstępy w pikselach między zaznaczonym a wskazanym elementem."
+      },
+      {
+        "id": "t3-figma-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Co warto zrobić z kolorami i fontami z projektu, zanim zaczniesz budować sekcje?",
+        "answer": "Wpisać je w ustawienia globalne (Style, motyw lub Elementor)",
+        "distractors": [
+          "Ustawiać je osobno w każdym bloku",
+          "Pominąć, bo i tak się zmienią"
+        ],
+        "explanation": "Ustawienia globalne dają spójność i pozwalają zmienić kolor w jednym miejscu."
+      },
+      {
+        "id": "t3-figma-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Plan pracy z projektem: `zebrać kolory i fonty`, `ustawić je w Stylach`, `eksportować zdjęcia jako SVG`, `porównać stronę z projektem`. Co jest błędem?",
+        "answer": "`eksportować zdjęcia jako SVG`",
+        "distractors": [
+          "`zebrać kolory i fonty`",
+          "`ustawić je w Stylach`",
+          "`porównać stronę z projektem`"
+        ],
+        "explanation": "Zdjęcia eksportuje się jako JPG (potem WebP). SVG nadaje się do ikon i logo, a zdjęcie w SVG byłoby ogromne."
+      },
+      {
+        "id": "t3-figma-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Projekt pokazuje tylko wersję na komputer. Co zrobić z wersją mobilną?",
+        "answer": "Ustalić ją z grafikiem albo zaproponować logiczne ułożenie elementów pod sobą",
+        "distractors": [
+          "Nie robić wersji mobilnej",
+          "Zmniejszyć całą stronę proporcjonalnie, jak obrazek"
+        ],
+        "explanation": "Proporcjonalne zmniejszenie daje nieczytelny tekst. Na telefonie elementy układa się pod sobą zgodnie z zasadami RWD."
+      },
+      {
+        "id": "t3-figma-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Jakie informacje zbierzesz z projektu Figma przed rozpoczęciem budowy?",
+        "answer": "Kolory (główny, dodatkowy, tło, tekst) w HEX, fonty z wielkościami dla nagłówków i tekstu, powtarzające się odstępy, szerokość treści oraz wygląd przycisków: kolor, zaokrąglenie, padding.",
+        "keyPoints": [
+          "kolory w HEX",
+          "fonty i wielkości",
+          "odstępy",
+          "szerokość treści",
+          "wygląd przycisków"
+        ],
+        "explanation": "To tzw. system projektu. Z nim każda sekcja buduje się szybciej."
+      },
+      {
+        "id": "t3-figma-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Dlaczego fonty Google warto wczytywać lokalnie z własnego serwera?",
+        "answer": "Bo przy wczytywaniu z serwerów Google przeglądarka odwiedzającego wysyła Google swój adres IP, który jest daną osobową. Bez zgody może to być problem z RODO. Lokalne fonty nie przekazują danych i często ładują się szybciej.",
+        "keyPoints": [
+          "wczytanie z Google przekazuje adres IP",
+          "IP to dana osobowa (RODO)",
+          "lokalnie: bez przekazywania danych",
+          "często szybciej"
+        ],
+        "explanation": "W 2022 roku sąd w Niemczech uznał takie wczytywanie fontów bez zgody za naruszenie."
+      },
+      {
+        "id": "t3-figma-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Opisz, jak odczytasz z Figmy wygląd przycisku i odtworzysz go w WordPressie.",
+        "answer": "Kliknę przycisk w Figmie i odczytam w panelu kolor tła, kolor i font tekstu, zaokrąglenie rogów i wymiary. Odstępy wewnątrz sprawdzę, klikając tekst i używając Alt. W WordPressie ustawię styl przycisku globalnie (Style → Bloki → Przycisk albo ustawienia motywu/Elementora), żeby wszystkie przyciski były takie same.",
+        "keyPoints": [
+          "odczyt koloru, fontu, zaokrąglenia",
+          "padding przez Alt lub Dev Mode",
+          "ustawienie globalnego stylu przycisku",
+          "wszystkie przyciski spójne"
+        ],
+        "explanation": "W Dev Mode zobaczysz od razu gotowy CSS przycisku."
+      },
+      {
+        "id": "t3-figma-09",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Jakie formaty grafik wyeksportujesz z Figmy dla: logo, zdjęcia zespołu, ikony usług z przezroczystością tła?",
+        "answer": "Logo: SVG, bo jest ostre w każdym rozmiarze. Zdjęcie zespołu: JPG w rozmiarze 2x, potem kompresja i konwersja do WebP. Ikony usług: SVG, a jeśli są złożone z efektów, to PNG z przezroczystością.",
+        "keyPoints": [
+          "logo: SVG",
+          "zdjęcie: JPG 2x, potem WebP",
+          "ikony: SVG lub PNG z przezroczystością"
+        ],
+        "explanation": "WordPress domyślnie nie pozwala wgrywać SVG. Potrzebna jest wtyczka, np. Safe SVG, która czyści pliki z niebezpiecznego kodu."
+      },
+      {
+        "id": "t3-figma-10",
+        "type": "open",
+        "difficulty": 3,
+        "prompt": "Klient porównuje gotową stronę z projektem i mówi, że „nie jest identyczna co do piksela”. Jak to wyjaśnisz?",
+        "answer": "Projekt to wzór na jeden rozmiar ekranu, a strona musi działać na wielu ekranach i przeglądarkach. Fonty renderują się trochę inaczej, treści mają inną długość, a układ dopasowuje się do szerokości. Dbam o zgodność systemu: kolory, fonty, odstępy i układ. Konkretne różnice, które przeszkadzają, poprawię.",
+        "keyPoints": [
+          "projekt na jeden rozmiar ekranu",
+          "strona działa na wielu ekranach",
+          "fonty i treści się różnią",
+          "zgodność systemu, poprawa ważnych różnic"
+        ],
+        "explanation": "Warto to omówić z klientem przed rozpoczęciem prac."
+      }
+    ],
+    "task": {
+      "task": "Zbuduj sekcję z gotowego projektu Figma.\n\n1. Otwórz w Figmie darmowy projekt strony, np. wyszukaj w [Figma Community](https://www.figma.com/community) frazę „landing page” albo „website template”.\n2. Wybierz jedną sekcję (np. „Hero” albo „Usługi”). Zapisz w notatkach jej kolory (HEX), font i wielkości, odstępy i szerokość.\n3. Wyeksportuj z niej jedną ikonę jako SVG i jedno zdjęcie jako JPG.\n4. Zbuduj tę sekcję na stronie lokalnej (bloki albo Elementor).\n5. Porównaj obie wersje obok siebie i zapisz 2 różnice.",
+      "checklist": [
+        "Kolory, fonty i odstępy zapisane",
+        "Ikona SVG i zdjęcie JPG wyeksportowane",
+        "Sekcja zbudowana na stronie",
+        "Porównanie i 2 różnice zapisane"
+      ],
+      "hints": [
+        "Projekt z Community otwórz przyciskiem **Open in Figma**. Utworzy się Twoja kopia.",
+        "Kolor zobaczysz po kliknięciu elementu w sekcji **Fill** po prawej.",
+        "Jeśli WordPress nie pozwala wgrać SVG, zainstaluj wtyczkę **Safe SVG** albo użyj PNG."
+      ],
+      "solution": "Przykładowe notatki z sekcji Hero:\n\n- Kolory: tło `#0F172A`, nagłówek `#FFFFFF`, przycisk `#F97316`, tekst `#CBD5E1`.\n- Fonty: Inter, H1 56 px / 700, tekst 18 px / 400.\n- Odstępy: padding sekcji 96 px u góry i dołu, odstęp nagłówek–tekst 24 px, szerokość treści 1200 px.\n- Różnice: inna długość tekstu, więc nagłówek łamie się w innym miejscu; font w przeglądarce wygląda odrobinę cieniej."
+    }
+  },
+  {
+    "id": "t3-elementor",
+    "week": 3,
+    "order": 5,
+    "title": "Page builder (Elementor)",
+    "lesson": "**Elementor** to najpopularniejszy page builder dla WordPressa. Budujesz w nim stronę wizualnie, przeciągając elementy i widząc od razu efekt. Jest często wymagany w ogłoszeniach o pracę, dlatego warto go znać, nawet jeśli na co dzień używasz edytora blokowego.\n\n![Kontenery, widżety, szablony](diagram:elementor)\n\n## Podstawy\n\n- **Elementor** (darmowy) z katalogu wtyczek i opcjonalnie **Elementor Pro** (płatny): Theme Builder, formularze, więcej widżetów.\n- Lekki motyw pod Elementora to **Hello Elementor**, często też Astra lub Kadence.\n- Edycję strony otwierasz przyciskiem **Edytuj w Elementor**.\n\n## Kontenery i widżety\n\n- **Kontener** to pudełko na sekcję. Ma kierunek: **rząd** (elementy obok siebie) albo **kolumna** (pod sobą). Kontenery można zagnieżdżać, np. kontener sekcji z trzema kontenerami kolumn.\n- **Widżet** to element treści: Nagłówek, Edytor tekstu, Obraz, Przycisk, Ikona, Formularz (Pro).\n- Każdy element ma trzy zakładki ustawień: **Treść**, **Styl** i **Zaawansowane** (marginesy, padding, responsywność, własne klasy CSS).\n\n## Ustawienia globalne\n\nW **Ustawieniach witryny** (ikona hamburgera w panelu) ustawiasz **globalne kolory i fonty**, czyli Kit. Używaj ich zamiast wpisywać kolory ręcznie: zmiana koloru firmowego w jednym miejscu zmieni całą stronę.\n\n## Szablony\n\nKażdą sekcję lub stronę możesz zapisać jako **szablon** (prawy przycisk → Zapisz jako szablon) i wstawiać ją ponownie. W wersji Pro **Theme Builder** pozwala zbudować nagłówek, stopkę i szablon wpisu (tydzień 11).\n\n## Elementor a szybkość\n\nBuilder dodaje dużo kodu HTML, CSS i JavaScript. Strona zbudowana „na szybko” może być ciężka. Dobre praktyki:\n\n- jak najmniej zagnieżdżonych kontenerów,\n- globalne kolory i fonty zamiast ustawień w każdym widżecie,\n- włączone funkcje wydajności w **Elementor → Ustawienia → Funkcje** (np. zoptymalizowane wczytywanie),\n- nie dokładaj kilku paczek dodatków („addons”) do tej samej funkcji,\n- lekki motyw (Hello Elementor).\n\n## Czytaj dalej\n\n- [Elementor: centrum pomocy (po angielsku)](https://elementor.com/help/)\n- [Elementor: kontenery (po angielsku)](https://elementor.com/help/container-element/)",
+    "questions": [
+      {
+        "id": "t3-elementor-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Jak w Elementorze ułożyć trzy elementy obok siebie?",
+        "answer": "Kontener z kierunkiem „rząd”",
+        "distractors": [
+          "Kontener z kierunkiem „kolumna”",
+          "Trzy osobne strony"
+        ],
+        "explanation": "Kierunek rząd układa elementy obok siebie, kolumna pod sobą."
+      },
+      {
+        "id": "t3-elementor-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Element treści w Elementorze, np. Nagłówek albo Przycisk, to ___.",
+        "answer": "widżet",
+        "explanation": "Widżety przeciąga się do kontenerów. Kontener odpowiada za układ, widżet za treść."
+      },
+      {
+        "id": "t3-elementor-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Gdzie najlepiej ustawić kolory firmowe w Elementorze?",
+        "answer": "W Ustawieniach witryny jako kolory globalne",
+        "distractors": [
+          "W każdym widżecie osobno",
+          "W Ustawienia → Ogólne WordPressa"
+        ],
+        "explanation": "Kolory globalne zmieniają się wszędzie naraz. Ręcznie wpisane kolory trzeba poprawiać w każdym widżecie."
+      },
+      {
+        "id": "t3-elementor-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Zasady szybkiej strony w Elementorze: `lekki motyw Hello`, `globalne kolory i fonty`, `trzy paczki addonów z tymi samymi widżetami`, `mało zagnieżdżonych kontenerów`. Co spowalnia stronę?",
+        "answer": "`trzy paczki addonów z tymi samymi widżetami`",
+        "distractors": [
+          "`lekki motyw Hello`",
+          "`globalne kolory i fonty`",
+          "`mało zagnieżdżonych kontenerów`"
+        ],
+        "explanation": "Każda paczka dodatków ładuje własne pliki. Kilka paczek do tej samej funkcji mocno obciąża stronę."
+      },
+      {
+        "id": "t3-elementor-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Klient wyłączył Elementora „bo spowalnia”. Co zobaczy na stronach zbudowanych w Elementorze?",
+        "answer": "Strony stracą układ i style: zostanie surowa treść albo kody, bo układ tworzył Elementor",
+        "distractors": [
+          "Nic się nie zmieni",
+          "Strony automatycznie przejdą na edytor blokowy"
+        ],
+        "explanation": "Strony zbudowane builderem zależą od niego. Wyłączenie buildera psuje ich wygląd. Zmiana buildera to w praktyce przebudowa stron."
+      },
+      {
+        "id": "t3-elementor-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Wyjaśnij różnicę między kontenerem a widżetem w Elementorze.",
+        "answer": "Kontener to pudełko, które odpowiada za układ: ustawia elementy w rzędzie lub w kolumnie, ma tło, odstępy i może zawierać inne kontenery. Widżet to konkretny element treści w kontenerze, np. nagłówek, tekst, obraz albo przycisk.",
+        "keyPoints": [
+          "kontener: układ (rząd/kolumna)",
+          "kontener: tło, odstępy, zagnieżdżanie",
+          "widżet: element treści",
+          "widżet w kontenerze"
+        ],
+        "explanation": "To ta sama idea co bloki Grupa/Kolumny i bloki treści w edytorze blokowym."
+      },
+      {
+        "id": "t3-elementor-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jakie dobre praktyki zastosujesz, żeby strona w Elementorze była szybka?",
+        "answer": "Lekki motyw (Hello Elementor), globalne kolory i fonty, jak najmniej zagnieżdżonych kontenerów, włączone funkcje wydajności w ustawieniach Elementora, jedna paczka dodatków zamiast kilku, zoptymalizowane zdjęcia.",
+        "keyPoints": [
+          "lekki motyw",
+          "globalne kolory i fonty",
+          "mało zagnieżdżeń",
+          "funkcje wydajności",
+          "bez zbędnych addonów, lekkie zdjęcia"
+        ],
+        "explanation": "Wynik sprawdzisz w Lighthouse przed i po zmianach."
+      },
+      {
+        "id": "t3-elementor-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Kiedy wybierzesz Elementora, a kiedy edytor blokowy dla nowej strony klienta?",
+        "answer": "Elementora, gdy klient już go zna, chce sam wygodnie edytować wizualnie, potrzebuje gotowych widżetów (np. formularz Pro, popup) albo zespół pracuje w nim na co dzień. Edytor blokowy, gdy liczy się szybkość, prostota i brak dodatkowych opłat, a strona nie wymaga zaawansowanych efektów.",
+        "keyPoints": [
+          "Elementor: klient zna, edycja wizualna, gotowe widżety",
+          "edytor blokowy: szybkość, prostota, bez opłat",
+          "decyzja zależy od klienta i potrzeb"
+        ],
+        "explanation": "Nie ma jednej dobrej odpowiedzi. Ważne, żeby umieć uzasadnić wybór."
+      },
+      {
+        "id": "t3-elementor-09",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Jak zrobić, żeby ta sama sekcja „Kontakt” była na 5 stronach i zmieniała się w jednym miejscu?",
+        "answer": "W Elementor Pro zapiszę sekcję jako szablon globalny (Global Widget lub szablon wstawiany shortcode'em/widżetem Szablon). Wtedy zmiana szablonu zmienia wszystkie miejsca. W darmowej wersji mogę wstawić zapisany szablon widżetem Szablon albo użyć zsynchronizowanego wzorca blokowego.",
+        "keyPoints": [
+          "zapisanie sekcji jako szablon",
+          "wstawienie szablonu, a nie kopii",
+          "zmiana w jednym miejscu",
+          "alternatywa: zsynchronizowany wzorzec"
+        ],
+        "explanation": "Zwykłe wstawienie szablonu z biblioteki tworzy kopię, która się nie aktualizuje."
+      },
+      {
+        "id": "t3-elementor-10",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak w Elementorze ukryć dekoracyjny obrazek na telefonie?",
+        "answer": "Zaznaczę widżet obrazka, wejdę w Zaawansowane → Responsywność i włączę Ukryj na urządzeniach mobilnych. Sprawdzę w trybie responsywnym, czy układ bez niego dobrze wygląda.",
+        "keyPoints": [
+          "Zaawansowane → Responsywność",
+          "Ukryj na mobile",
+          "sprawdzić w trybie responsywnym"
+        ],
+        "explanation": "Ukrywaj tylko dekoracje. Ważna treść musi zostać na telefonie (mobile-first indexing)."
+      }
+    ],
+    "task": {
+      "task": "Zbuduj prosty landing page w Elementorze.\n\n1. Na kopii strony lokalnej zainstaluj **Elementor** i motyw **Hello Elementor**.\n2. Ustaw w **Ustawieniach witryny** 2 kolory globalne i font nagłówków.\n3. Utwórz stronę „Promocja” i zbuduj 3 sekcje: hero z przyciskiem, 3 korzyści w rzędzie, sekcja kontaktowa.\n4. Zapisz sekcję kontaktową jako szablon.\n5. Sprawdź stronę w trybie telefonu i popraw jedną rzecz. Uruchom Lighthouse i zapisz wynik wydajności.",
+      "checklist": [
+        "Elementor i Hello Elementor zainstalowane",
+        "Kolory i font globalne ustawione",
+        "3 sekcje zbudowane",
+        "Sekcja kontaktowa zapisana jako szablon",
+        "Widok mobilny poprawiony, wynik Lighthouse zapisany"
+      ],
+      "hints": [
+        "Kolory globalne: ikona ☰ w panelu Elementora → **Ustawienia witryny → Kolory globalne**.",
+        "Hero: kontener z tłem (zdjęcie lub kolor), Nagłówek H1, Edytor tekstu, Przycisk.",
+        "Tryb responsywny włączysz ikoną ekranu na dole lewego panelu."
+      ],
+      "solution": "- Kit: np. kolor główny `#1D4ED8`, akcent `#F97316`, font nagłówków Poppins.\n- Hero: kontener (kolumna) z tłem, H1 „Promocja na remont łazienki -10%”, tekst, przycisk z kolorem akcentu.\n- Korzyści: kontener w kierunku rząd z trzema kontenerami (ikona + nagłówek + tekst). Na telefonie kierunek kolumna.\n- Szablon: prawy przycisk na kontenerze → **Zapisz jako szablon**; widoczny w **Szablony → Zapisane szablony**.\n- Lighthouse mobile dla prostej strony w Elementorze to zwykle 60–90, zależnie od zdjęć i hostingu."
+    }
+  },
+  {
+    "id": "t3-formularze",
+    "week": 3,
+    "order": 6,
+    "title": "Formularze kontaktowe",
+    "lesson": "Formularz kontaktowy to często najważniejszy element strony firmowej: z niego przychodzą zapytania od klientów. Musi działać niezawodnie, nie przepuszczać spamu i spełniać wymagania RODO.\n\n![Droga wiadomości z formularza](diagram:formularz)\n\n## Wybór wtyczki\n\n- **Contact Form 7**: darmowy, bardzo popularny, formularz budujesz w prostym kodzie. Sam nie zapisuje wiadomości, do tego służy dodatek **Flamingo**.\n- **WPForms Lite**, **Fluent Forms**: budowa przeciąganiem, wygodne dla klienta.\n- **Elementor Pro**: widżet Formularz, jeśli strona jest w Elementorze.\n\nPola: tylko te, które są naprawdę potrzebne (imię, e-mail lub telefon, wiadomość). Każde dodatkowe pole obniża liczbę wysłanych formularzy.\n\n## Antyspam\n\nBoty wysyłają formularze tysiącami. Sposoby ochrony:\n\n- **Honeypot**: ukryte pole, które widzi tylko bot. Gdy jest wypełnione, formularz odrzuca wiadomość. Niewidoczne dla ludzi.\n- **Cloudflare Turnstile** lub **Google reCAPTCHA v3**: sprawdzanie w tle, zwykle bez klikania obrazków. reCAPTCHA przesyła dane do Google, więc trzeba to opisać w polityce prywatności.\n- **Akismet**: filtr spamu (płatny dla firm).\n\n## RODO pod formularzem\n\nFormularz zbiera dane osobowe, więc pod nim musi być **informacja**, kto jest administratorem danych, w jakim celu je przetwarza i link do **polityki prywatności**.\n\n- Do odpowiedzi na wiadomość zwykle wystarczy ta informacja. Podstawą jest prośba samej osoby lub uzasadniony interes firmy.\n- **Osobna zgoda** (checkbox) jest potrzebna np. na newsletter lub marketing. Checkbox nie może być zaznaczony z góry i nie może być warunkiem wysłania zapytania.\n\nKonkretne formułki zgód ustala klient (najlepiej z prawnikiem). Twoja rola: dobrze je osadzić technicznie.\n\n## Niezawodność\n\n- Wysyłka przez **SMTP** (lekcja z tygodnia 1).\n- **Od**: adres w domenie strony, **Odpowiedz do**: e-mail klienta.\n- **Zapis wiadomości** w panelu (Flamingo albo wbudowany w WPForms/Fluent Forms): nic nie zginie, gdy poczta zawiedzie.\n- **Komunikat po wysłaniu** albo strona podziękowania (przyda się do mierzenia konwersji w GA4).\n- Test po każdej zmianie wtyczek i raz w miesiącu.\n\n## Czytaj dalej\n\n- [Contact Form 7: dokumentacja (po angielsku)](https://contactform7.com/docs/)\n- [UODO: poradnik RODO](https://uodo.gov.pl/pl/383)",
+    "questions": [
+      {
+        "id": "t3-formularze-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Czym jest honeypot w formularzu?",
+        "answer": "Ukrytym polem, które wypełnia tylko bot",
+        "distractors": [
+          "Polem z zaznaczoną zgodą RODO",
+          "Kodem rabatowym dla klienta"
+        ],
+        "explanation": "Ludzie nie widzą tego pola. Gdy jest wypełnione, formularz wie, że wysyła go bot."
+      },
+      {
+        "id": "t3-formularze-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Contact Form 7 sam nie zapisuje wiadomości; zapisuje je dodatek ___.",
+        "answer": "Flamingo",
+        "explanation": "Flamingo zapisuje wiadomości z CF7 w panelu. Inne wtyczki, np. WPForms czy Fluent Forms, mają zapis wbudowany."
+      },
+      {
+        "id": "t3-formularze-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Checkbox zgody na newsletter pod formularzem kontaktowym powinien być:",
+        "answer": "Niezaznaczony i dobrowolny",
+        "distractors": [
+          "Zaznaczony domyślnie",
+          "Obowiązkowy, bez niego formularz się nie wyśle"
+        ],
+        "explanation": "Zgoda musi być dobrowolna i wyrażona aktywnie. Zaznaczony z góry checkbox to nie jest ważna zgoda."
+      },
+      {
+        "id": "t3-formularze-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Ustawienia formularza: `pola: imię, e-mail, wiadomość`, `honeypot włączony`, `checkbox zgody marketingowej zaznaczony domyślnie`, `informacja z linkiem do polityki prywatności`. Co jest błędem?",
+        "answer": "`checkbox zgody marketingowej zaznaczony domyślnie`",
+        "distractors": [
+          "`pola: imię, e-mail, wiadomość`",
+          "`honeypot włączony`",
+          "`informacja z linkiem do polityki prywatności`"
+        ],
+        "explanation": "Zgoda musi być aktywna. Domyślnie zaznaczone pole nie jest ważną zgodą według RODO."
+      },
+      {
+        "id": "t3-formularze-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Klient dodał do formularza 12 pól „żeby wiedzieć więcej o kliencie”. Co prawdopodobnie się stanie?",
+        "answer": "Spadnie liczba wysłanych zapytań, a RODO wymaga zbierania tylko potrzebnych danych",
+        "distractors": [
+          "Liczba zapytań wzrośnie",
+          "Nic się nie zmieni"
+        ],
+        "explanation": "Każde pole to wysiłek dla odwiedzającego. RODO też mówi o minimalizacji danych: zbieraj tylko to, czego potrzebujesz."
+      },
+      {
+        "id": "t3-formularze-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Jakie sposoby ochrony formularza przed spamem znasz i czym się różnią?",
+        "answer": "Honeypot to ukryte pole widoczne tylko dla botów, niewidoczne i bez przeszkód dla ludzi. Cloudflare Turnstile i reCAPTCHA v3 sprawdzają w tle, czy to człowiek; reCAPTCHA przesyła dane do Google. Akismet filtruje treść wiadomości jako filtr spamu.",
+        "keyPoints": [
+          "honeypot: ukryte pole dla botów",
+          "Turnstile / reCAPTCHA: sprawdzanie w tle",
+          "reCAPTCHA wysyła dane do Google (polityka prywatności)",
+          "Akismet: filtr treści"
+        ],
+        "explanation": "Często wystarczy honeypot + Turnstile."
+      },
+      {
+        "id": "t3-formularze-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Co powinno być pod formularzem kontaktowym ze względu na RODO?",
+        "answer": "Informacja, kto jest administratorem danych, w jakim celu dane będą przetwarzane (odpowiedź na zapytanie) i link do polityki prywatności. Jeśli zbieram zgody dodatkowe, np. na newsletter, to osobny, niezaznaczony i dobrowolny checkbox.",
+        "keyPoints": [
+          "informacja o administratorze i celu",
+          "link do polityki prywatności",
+          "zgody dodatkowe: osobny checkbox",
+          "niezaznaczony i dobrowolny"
+        ],
+        "explanation": "Treść informacji przygotowuje klient lub prawnik, Ty ją osadzasz."
+      },
+      {
+        "id": "t3-formularze-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak zapewnisz, że żadne zapytanie z formularza nie zginie?",
+        "answer": "Ustawię wysyłkę przez SMTP z adresu w domenie strony, włączę zapisywanie wiadomości w panelu (Flamingo lub wbudowany zapis), przetestuję formularz po konfiguracji i dodam test do comiesięcznej opieki nad stroną. Sprawdzę też, czy wiadomości nie trafiają do spamu.",
+        "keyPoints": [
+          "wysyłka przez SMTP",
+          "zapis wiadomości w panelu",
+          "test po konfiguracji",
+          "regularne testy",
+          "sprawdzenie spamu"
+        ],
+        "explanation": "Zapis w panelu to siatka bezpieczeństwa, gdy poczta zawiedzie."
+      },
+      {
+        "id": "t3-formularze-09",
+        "type": "open",
+        "difficulty": 3,
+        "prompt": "Dlaczego po wysłaniu formularza warto pokazać stronę podziękowania zamiast samego komunikatu?",
+        "answer": "Strona podziękowania ma własny adres, więc w Google Analytics łatwo policzyć wysłane formularze jako konwersję. Można na niej też dać dalsze kroki, np. link do realizacji albo numer telefonu. Sam komunikat trudniej mierzyć.",
+        "keyPoints": [
+          "osobny adres strony",
+          "łatwe mierzenie konwersji w GA4",
+          "miejsce na dalsze kroki"
+        ],
+        "explanation": "Stronę podziękowania oznacz jako noindex, żeby nie trafiła do Google."
+      },
+      {
+        "id": "t3-formularze-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Formularz przestał wysyłać wiadomości po aktualizacji wtyczek. Co sprawdzisz?",
+        "answer": "Wyślę test i sprawdzę w konsoli i zakładce Sieć, czy jest błąd. Sprawdzę zapisane wiadomości (Flamingo) i log wtyczki SMTP, czy mail został wysłany. Sprawdzę spam. Jeśli formularz w ogóle się nie wysyła, szukam konfliktu: wyłączam ostatnio aktualizowane wtyczki na kopii, sprawdzam ustawienia antyspamu i klucze Turnstile/reCAPTCHA.",
+        "keyPoints": [
+          "test i DevTools (konsola, sieć)",
+          "zapis wiadomości i log SMTP",
+          "folder spam",
+          "konflikt wtyczek na kopii",
+          "ustawienia antyspamu"
+        ],
+        "explanation": "Rozróżnij: czy formularz się nie wysyła, czy mail nie dochodzi. To dwa różne problemy."
+      }
+    ],
+    "task": {
+      "task": "Dodaj działający formularz kontaktowy ze zgodą.\n\n1. Na stronie lokalnej zainstaluj **Contact Form 7** i **Flamingo** (albo WPForms Lite).\n2. Zbuduj formularz: imię, e-mail, wiadomość, ukryte pole honeypot (np. wtyczka „Honeypot for Contact Form 7”).\n3. Dodaj pod formularzem informację o danych osobowych z linkiem do polityki prywatności i osobny, niezaznaczony checkbox zgody na newsletter (opcjonalny).\n4. Ustaw **Od**: adres w domenie strony, **Odpowiedz do**: e-mail z formularza.\n5. Wyślij test i sprawdź wiadomość w Mailpit (LocalWP) i we Flamingo.",
+      "checklist": [
+        "Formularz z 3 polami i honeypotem",
+        "Informacja RODO i niezaznaczona zgoda",
+        "Ustawione Od i Odpowiedz do",
+        "Test widoczny w Mailpit i we Flamingo"
+      ],
+      "hints": [
+        "W CF7 pola Od i Odpowiedz do są w zakładce **Wiadomość** (Mail). Odpowiedz do: `Reply-To: [your-email]`.",
+        "Checkbox opcjonalny w CF7: `[checkbox newsletter use_label_element \"Chcę dostawać newsletter\"]` (bez gwiazdki = nieobowiązkowy).",
+        "Wiadomości we Flamingo: **Flamingo → Wiadomości przychodzące**."
+      ],
+      "solution": "Przykładowy formularz CF7:\n\n```\n<label> Imię [text* your-name] </label>\n<label> E-mail [email* your-email] </label>\n<label> Wiadomość [textarea* your-message] </label>\n[checkbox newsletter use_label_element \"Chcę dostawać newsletter (opcjonalnie)\"]\nAdministratorem danych jest Moja Firma. Dane wykorzystamy, żeby odpowiedzieć na wiadomość. Więcej w [polityce prywatności](/polityka-prywatnosci/).\n[submit \"Wyślij\"]\n```\n\n- Zakładka Wiadomość: Od `Moja Firma <formularz@nauka.local>`, dodatkowe nagłówki `Reply-To: [your-email]`.\n- W Mailpit widać maila, a we Flamingo zapisaną wiadomość."
+    }
+  },
+  {
+    "id": "t3-cookies",
+    "week": 3,
+    "order": 7,
+    "title": "Cookies i baner zgody",
+    "lesson": "**Cookies** (ciasteczka) to małe pliki zapisywane przez stronę w przeglądarce. Część jest niezbędna (np. koszyk, logowanie), a część śledzi odwiedzających (analityka, reklamy). Na te drugie trzeba **zgody** przed ich zapisaniem. Wymagają tego przepisy UE (RODO i dyrektywa o prywatności, w Polsce Prawo komunikacji elektronicznej).\n\n![Baner zgody i Consent Mode](diagram:cookies-zgoda)\n\n## Rodzaje cookies\n\n- **Niezbędne**: logowanie, koszyk, zapamiętanie zgody. Bez zgody.\n- **Funkcjonalne**: np. język, wybrany widok.\n- **Analityczne**: Google Analytics, Hotjar. Wymagają zgody.\n- **Marketingowe**: Meta Pixel, Google Ads, remarketing. Wymagają zgody.\n\n## Dobry baner zgody (CMP)\n\nBaner obsługuje wtyczka typu **CMP** (Consent Management Platform), np. **Complianz**, **CookieYes** albo **Cookiebot**. Zasady:\n\n- przed zgodą nie uruchamiają się skrypty analityczne i marketingowe,\n- przyciski **„Akceptuj wszystkie”** i **„Odrzuć wszystkie”** są równie widoczne, na pierwszym ekranie,\n- można wybrać kategorie w ustawieniach,\n- zgodę da się **zmienić lub wycofać** w każdej chwili (link w stopce lub ikona),\n- baner nie zasłania całej strony bez możliwości odmowy.\n\nWtyczka skanuje stronę i tworzy listę cookies do polityki cookies.\n\n## Google Consent Mode v2\n\nJeśli strona używa usług Google (GA4, Google Ads), baner musi przekazywać decyzję do Google przez **Consent Mode v2**. To sygnały:\n\n- `analytics_storage`: zgoda na cookies analityczne,\n- `ad_storage`: zgoda na cookies reklamowe,\n- `ad_user_data` i `ad_personalization`: zgoda na wysyłanie danych do reklam i personalizację.\n\nOd 2024 roku jest to wymagane w Europie, żeby działały m.in. remarketing i pomiar konwersji Google Ads. Wybieraj CMP z certyfikatem Google (Complianz, CookieYes i Cookiebot go mają). Przy odmowie GA4 może działać w trybie bez cookies i modelować brakujące dane.\n\n## Jak sprawdzić baner\n\nW DevTools: **Aplikacja (Application) → Cookies**. Wejdź na stronę w oknie prywatnym, **nie** klikaj banera i sprawdź, czy nie ma cookies `_ga` (Google Analytics) ani `_fbp` (Meta). Potem kliknij „Akceptuj” i sprawdź ponownie.\n\n## Czytaj dalej\n\n- [Google: Consent Mode (po angielsku)](https://developers.google.com/tag-platform/security/guides/consent)\n- [UODO: poradniki](https://uodo.gov.pl/pl/383)",
+    "questions": [
+      {
+        "id": "t3-cookies-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Które cookies mogą działać bez zgody odwiedzającego?",
+        "answer": "Niezbędne, np. koszyk i logowanie",
+        "distractors": [
+          "Analityczne, np. Google Analytics",
+          "Marketingowe, np. Meta Pixel"
+        ],
+        "explanation": "Niezbędne cookies są potrzebne do działania strony. Analityka i reklamy wymagają zgody."
+      },
+      {
+        "id": "t3-cookies-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Sygnał Consent Mode dla zgody na cookies analityczne to `___storage`.",
+        "answer": "analytics_",
+        "explanation": "`analytics_storage` dotyczy analityki, `ad_storage` reklam. Do tego `ad_user_data` i `ad_personalization`."
+      },
+      {
+        "id": "t3-cookies-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Wtyczka do zarządzania zgodami na cookies to:",
+        "answer": "CMP, np. Complianz albo CookieYes",
+        "distractors": [
+          "CDN, np. Cloudflare",
+          "SMTP, np. WP Mail SMTP"
+        ],
+        "explanation": "CMP (Consent Management Platform) pokazuje baner, zapisuje zgody i blokuje skrypty przed zgodą."
+      },
+      {
+        "id": "t3-cookies-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Projekt banera: `przycisk Akceptuj wszystkie`, `link Odrzuć schowany małym drukiem w ustawieniach`, `ustawienia kategorii`, `link Ustawienia cookies w stopce`. Co jest błędem?",
+        "answer": "`link Odrzuć schowany małym drukiem w ustawieniach`",
+        "distractors": [
+          "`przycisk Akceptuj wszystkie`",
+          "`ustawienia kategorii`",
+          "`link Ustawienia cookies w stopce`"
+        ],
+        "explanation": "Odmowa musi być tak samo łatwa jak zgoda. Przycisk Odrzuć powinien być na pierwszym ekranie, równie widoczny."
+      },
+      {
+        "id": "t3-cookies-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Na stronie jest baner, ale w DevTools przed kliknięciem czegokolwiek widać cookie `_ga`. Co to oznacza?",
+        "answer": "Google Analytics uruchamia się przed zgodą, więc baner nie blokuje skryptów",
+        "distractors": [
+          "Wszystko w porządku, `_ga` to cookie niezbędne",
+          "To cookie banera, które zapisuje zgodę"
+        ],
+        "explanation": "`_ga` to cookie Google Analytics. Bez zgody nie powinno go być. Trzeba podłączyć GA4 przez CMP lub Consent Mode."
+      },
+      {
+        "id": "t3-cookies-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Wymień rodzaje cookies i powiedz, które wymagają zgody.",
+        "answer": "Niezbędne (logowanie, koszyk, zapamiętanie zgody) nie wymagają zgody. Funkcjonalne (np. język) zależnie od przypadku. Analityczne (Google Analytics) i marketingowe (Meta Pixel, Google Ads) wymagają zgody przed zapisaniem.",
+        "keyPoints": [
+          "niezbędne: bez zgody",
+          "funkcjonalne: zależnie",
+          "analityczne: zgoda",
+          "marketingowe: zgoda"
+        ],
+        "explanation": "Pełną listę cookies na stronie tworzy skaner wtyczki CMP."
+      },
+      {
+        "id": "t3-cookies-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jakie cechy ma poprawny baner zgody na cookies?",
+        "answer": "Przed zgodą blokuje skrypty analityczne i marketingowe. Ma równie widoczne przyciski Akceptuj wszystkie i Odrzuć wszystkie na pierwszym ekranie oraz ustawienia kategorii. Pozwala zmienić lub wycofać zgodę w każdej chwili, np. linkiem w stopce. Przekazuje zgodę do Google przez Consent Mode.",
+        "keyPoints": [
+          "blokuje skrypty przed zgodą",
+          "Akceptuj i Odrzuć równie widoczne",
+          "ustawienia kategorii",
+          "zmiana/wycofanie zgody",
+          "Consent Mode v2"
+        ],
+        "explanation": "Te zasady wynikają z wytycznych europejskich organów ochrony danych."
+      },
+      {
+        "id": "t3-cookies-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Czym jest Google Consent Mode v2 i dlaczego jest ważny dla sklepów z reklamami Google?",
+        "answer": "To sposób przekazania Google decyzji odwiedzającego o zgodach: analytics_storage, ad_storage, ad_user_data i ad_personalization. Od 2024 roku w Europie bez niego nie działa poprawnie remarketing i pomiar konwersji w Google Ads, więc sklep traci dane do reklam.",
+        "keyPoints": [
+          "przekazuje zgody do Google",
+          "4 sygnały (analytics_storage, ad_storage, ad_user_data, ad_personalization)",
+          "wymagany w Europie od 2024",
+          "bez niego: brak remarketingu i pomiaru konwersji"
+        ],
+        "explanation": "Do GTM i Consent Mode wrócisz w tygodniu 10."
+      },
+      {
+        "id": "t3-cookies-09",
+        "type": "open",
+        "difficulty": 3,
+        "prompt": "Jak sprawdzisz w DevTools, czy baner naprawdę blokuje cookies przed zgodą?",
+        "answer": "Otworzę stronę w oknie prywatnym, nie kliknę banera i wejdę w DevTools → Aplikacja → Cookies. Sprawdzę, czy nie ma cookies analitycznych i reklamowych, np. _ga i _fbp. Potem kliknę Akceptuj i sprawdzę, czy się pojawiły. Mogę też sprawdzić w zakładce Sieć, czy przed zgodą nie idą zapytania do Google Analytics.",
+        "keyPoints": [
+          "okno prywatne, bez kliknięcia banera",
+          "Aplikacja → Cookies",
+          "brak _ga i _fbp przed zgodą",
+          "po akceptacji się pojawiają",
+          "zakładka Sieć jako dodatkowy test"
+        ],
+        "explanation": "Przy Consent Mode w trybie zaawansowanym zapytania do Google mogą iść, ale bez cookies."
+      },
+      {
+        "id": "t3-cookies-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Klient chce baner, który „zmusza do akceptacji” i zasłania całą stronę, dopóki ktoś nie kliknie Akceptuj. Co mu odpowiesz?",
+        "answer": "Wyjaśnię, że to niezgodne z przepisami: zgoda musi być dobrowolna, a odmowa tak samo łatwa jak akceptacja. Za takie banery grożą kary, a odwiedzający często wtedy po prostu wychodzą. Zaproponuję poprawny baner z równymi przyciskami i Consent Mode, który pozwala Google modelować część brakujących danych.",
+        "keyPoints": [
+          "wymuszona zgoda jest niezgodna z przepisami",
+          "odmowa musi być równie łatwa",
+          "ryzyko kar i utraty odwiedzających",
+          "propozycja: poprawny baner + Consent Mode"
+        ],
+        "explanation": "Twoją rolą jest doradzić i zapisać decyzję klienta, zwłaszcza gdy upiera się przy złym rozwiązaniu."
+      }
+    ],
+    "task": {
+      "task": "Ustaw baner zgody i sprawdź go w DevTools.\n\n1. Na stronie lokalnej zainstaluj wtyczkę CMP, np. **Complianz** albo **CookieYes**, i przejdź kreator.\n2. Dodaj na stronę testowy skrypt analityczny przez wtyczkę (np. kod GA4 z identyfikatorem testowym przez Site Kit albo kod w CMP).\n3. Ustaw baner: przyciski Akceptuj i Odrzuć równie widoczne, link „Ustawienia cookies” w stopce.\n4. W oknie prywatnym sprawdź **Aplikacja → Cookies** przed kliknięciem banera i po kliknięciu „Akceptuj”.\n5. Zapisz, jakie cookies pojawiły się przed i po zgodzie.",
+      "checklist": [
+        "Wtyczka CMP skonfigurowana",
+        "Skrypt analityczny podłączony",
+        "Baner z równymi przyciskami i linkiem w stopce",
+        "Cookies sprawdzone przed i po zgodzie"
+      ],
+      "hints": [
+        "Complianz ma kreator, który pyta o używane usługi (np. Google Analytics) i sam blokuje ich skrypty.",
+        "Jeśli nie masz konta GA4, użyj skryptu testowego z dokumentacji wtyczki. Ważne, żeby zobaczyć blokowanie.",
+        "W **Aplikacja → Cookies** kliknij adres strony po lewej, żeby zobaczyć listę cookies."
+      ],
+      "solution": "- Przed zgodą: tylko cookies niezbędne, np. cookie banera (`cmplz_...` albo `cookieyes-consent`) i cookies WordPressa przy logowaniu. **Brak** `_ga`.\n- Po kliknięciu „Akceptuj”: pojawiają się `_ga` i `_ga_XXXX` (GA4) oraz zapis zgody.\n- Po kliknięciu „Odrzuć”: `_ga` się nie pojawia, zapisuje się tylko decyzja.\n- Link „Ustawienia cookies” w stopce otwiera baner ponownie."
+    }
+  },
+  {
+    "id": "t3-rodo",
+    "week": 3,
+    "order": 8,
+    "title": "RODO i polityka prywatności",
+    "lesson": "**RODO** to unijne przepisy o ochronie danych osobowych. Strona firmowa prawie zawsze przetwarza dane: z formularza, zamówień, analityki, a nawet z logów serwera (adresy IP). Dlatego każda strona potrzebuje **polityki prywatności**.\n\nWażne: nie jesteś prawnikiem i nie odpowiadasz za treść prawną. Twoja rola to wiedzieć, **co strona zbiera technicznie**, przekazać to klientowi i dobrze osadzić dokumenty na stronie.\n\n![Co musi być w polityce prywatności](diagram:rodo-polityka)\n\n## Podstawowe pojęcia\n\n- **Dane osobowe**: wszystko, co pozwala zidentyfikować osobę: imię, e-mail, telefon, adres IP, identyfikatory cookies.\n- **Administrator danych**: firma, która decyduje, po co i jak dane są przetwarzane. Zwykle Twój klient.\n- **Podmiot przetwarzający**: firma, która przetwarza dane na zlecenie administratora, np. hosting, dostawca poczty, a czasem Ty, jeśli opiekujesz się stroną. Z takimi firmami administrator zawiera **umowę powierzenia**.\n- **Podstawa prawna**: np. zgoda, wykonanie umowy (zamówienie), obowiązek prawny (faktury), prawnie uzasadniony interes (odpowiedź na zapytanie, bezpieczeństwo).\n\n## Co powinna zawierać polityka prywatności\n\n1. Kto jest administratorem i jak się z nim skontaktować.\n2. Jakie dane strona zbiera i **skąd** (formularz, zamówienia, newsletter, cookies, logi).\n3. W jakim **celu** i na jakiej **podstawie**.\n4. Jak **długo** dane są przechowywane.\n5. **Komu** są przekazywane (hosting, poczta, Google, Meta, kurierzy, księgowość), także poza UE.\n6. Jakie **prawa** ma osoba: dostęp, poprawienie, usunięcie, ograniczenie, przeniesienie, sprzeciw, wycofanie zgody, skarga do **Prezesa UODO**.\n7. Informacje o cookies (albo osobna polityka cookies).\n\n## Twoja lista techniczna dla klienta\n\nPrzed pisaniem polityki przygotuj dla klienta spis tego, co działa na stronie: formularze i jakie pola zbierają, sklep, newsletter, wtyczki wysyłające dane na zewnątrz (reCAPTCHA, fonty Google, mapy Google, filmy YouTube, czat), narzędzia analityczne i reklamowe, hosting i jego lokalizacja.\n\n## W WordPressie\n\n- **Ustawienia → Prywatność**: wskazujesz stronę polityki prywatności. WordPress ma tam też **szablon** z podpowiedziami i fragmenty tekstów dodawane przez wtyczki.\n- **Narzędzia → Eksport danych osobowych** i **Usuń dane osobowe**: obsługa żądań osób, np. „proszę usunąć moje dane”.\n- Generatory polityk (często płatne) pomagają, ale tekst zawsze musi pasować do tego, co strona **naprawdę** robi.\n\nLink do polityki prywatności daj w stopce i pod każdym formularzem.\n\n## Czytaj dalej\n\n- [UODO: poradniki RODO](https://uodo.gov.pl/pl/383)\n- [WordPress: ekran Prywatność (po angielsku)](https://wordpress.org/documentation/article/settings-privacy-screen/)",
+    "questions": [
+      {
+        "id": "t3-rodo-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Kto zwykle jest administratorem danych zbieranych przez stronę firmową?",
+        "answer": "Firma, do której należy strona (klient)",
+        "distractors": [
+          "Firma hostingowa",
+          "Twórca motywu WordPress"
+        ],
+        "explanation": "Administrator decyduje, po co i jak przetwarza dane. Hosting przetwarza dane na zlecenie, jako podmiot przetwarzający."
+      },
+      {
+        "id": "t3-rodo-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Skargę na przetwarzanie danych w Polsce składa się do Prezesa ___.",
+        "answer": "UODO",
+        "explanation": "Urząd Ochrony Danych Osobowych. Informacja o tym prawie musi być w polityce prywatności."
+      },
+      {
+        "id": "t3-rodo-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Czy adres IP odwiedzającego jest daną osobową?",
+        "answer": "Tak, bo w połączeniu z innymi danymi może wskazać osobę",
+        "distractors": [
+          "Nie, to tylko numer komputera",
+          "Tylko jeśli jest zapisany w formularzu"
+        ],
+        "explanation": "Adres IP jest traktowany jako dana osobowa. Dlatego liczą się np. logi serwera, fonty Google i analityka."
+      },
+      {
+        "id": "t3-rodo-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Lista do polityki prywatności sklepu: `administrator i kontakt`, `cele i podstawy przetwarzania`, `odbiorcy: hosting, kurier, Google`, `zdanie: nie przekazujemy danych nikomu`. Co jest błędem?",
+        "answer": "`zdanie: nie przekazujemy danych nikomu`",
+        "distractors": [
+          "`administrator i kontakt`",
+          "`cele i podstawy przetwarzania`",
+          "`odbiorcy: hosting, kurier, Google`"
+        ],
+        "explanation": "Sklep przekazuje dane hostingowi, kurierowi, operatorowi płatności, Google. Zdanie „nikomu” jest nieprawdziwe i sprzeczne z resztą."
+      },
+      {
+        "id": "t3-rodo-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Klient skopiował politykę prywatności z innej strony, bo „wszystkie są takie same”. Jaki to problem?",
+        "answer": "Polityka musi opisywać to, co robi ta konkretna strona: inne narzędzia, odbiorców i cele",
+        "distractors": [
+          "Żaden, polityki są uniwersalne",
+          "Tylko to, że ma inną nazwę firmy"
+        ],
+        "explanation": "Każda strona używa innych narzędzi i przekazuje dane innym firmom. Skopiowany tekst zwykle nie zgadza się z rzeczywistością."
+      },
+      {
+        "id": "t3-rodo-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Wyjaśnij różnicę między administratorem danych a podmiotem przetwarzającym, z przykładami.",
+        "answer": "Administrator decyduje, po co i jak przetwarza dane, np. firma, do której należy strona. Podmiot przetwarzający przetwarza dane na zlecenie administratora, np. hosting, dostawca poczty albo osoba, która opiekuje się stroną. Administrator zawiera z nim umowę powierzenia.",
+        "keyPoints": [
+          "administrator decyduje o celach",
+          "przykład: firma klienta",
+          "podmiot przetwarzający działa na zlecenie",
+          "przykład: hosting, poczta",
+          "umowa powierzenia"
+        ],
+        "explanation": "Jeśli opiekujesz się stroną z dostępem do danych klientów, też możesz być podmiotem przetwarzającym."
+      },
+      {
+        "id": "t3-rodo-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Wymień, co powinna zawierać polityka prywatności strony firmowej.",
+        "answer": "Kto jest administratorem i kontakt do niego, jakie dane są zbierane i skąd, w jakim celu i na jakiej podstawie, jak długo są przechowywane, komu są przekazywane (także poza UE), jakie prawa ma osoba, w tym skarga do Prezesa UODO, oraz informacje o cookies.",
+        "keyPoints": [
+          "administrator i kontakt",
+          "jakie dane i skąd",
+          "cel, podstawa, czas przechowywania",
+          "odbiorcy",
+          "prawa osoby i skarga do UODO",
+          "cookies"
+        ],
+        "explanation": "Ten spis to też dobra lista pytań do klienta."
+      },
+      {
+        "id": "t3-rodo-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jaką listę techniczną przygotujesz klientowi przed napisaniem polityki prywatności?",
+        "answer": "Spiszę formularze i ich pola, sklep i newsletter, wtyczki i usługi, które wysyłają dane na zewnątrz (reCAPTCHA, fonty Google, Mapy Google, YouTube, czat), narzędzia analityczne i reklamowe (GA4, Meta Pixel, Google Ads), wtyczkę cookies oraz hosting, pocztę i ich lokalizację.",
+        "keyPoints": [
+          "formularze i pola",
+          "sklep, newsletter",
+          "zewnętrzne usługi (reCAPTCHA, fonty, mapy, YouTube)",
+          "analityka i reklamy",
+          "hosting i poczta"
+        ],
+        "explanation": "Klient lub prawnik napisze z tego treść, a Ty dopilnujesz zgodności ze stroną."
+      },
+      {
+        "id": "t3-rodo-09",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Osoba pisze do firmy: „Usuńcie moje dane”. Jak WordPress może pomóc to obsłużyć?",
+        "answer": "W Narzędzia → Usuń dane osobowe wpisuję e-mail tej osoby. WordPress wysyła jej link potwierdzający, a po potwierdzeniu usuwa lub anonimizuje jej dane, np. komentarze i dane zamówień, jeśli wtyczka to obsługuje. Trzeba też usunąć dane spoza WordPressa, np. z poczty, Flamingo czy newslettera, i pamiętać o danych, które firma musi zachować, np. faktury.",
+        "keyPoints": [
+          "Narzędzia → Usuń dane osobowe",
+          "potwierdzenie mailem",
+          "usuwa dane obsługiwane przez WP i wtyczki",
+          "dane poza WP trzeba usunąć osobno",
+          "wyjątek: obowiązki prawne (faktury)"
+        ],
+        "explanation": "Podobnie działa Eksport danych osobowych dla prawa dostępu."
+      },
+      {
+        "id": "t3-rodo-10",
+        "type": "open",
+        "difficulty": 3,
+        "prompt": "Dlaczego osadzone filmy YouTube i Mapy Google mają znaczenie dla polityki prywatności?",
+        "answer": "Bo po wczytaniu strony przeglądarka łączy się z serwerami Google, przekazuje adres IP i może zapisywać cookies, nawet gdy nikt nie kliknie filmu. To przekazanie danych firmie trzeciej, które trzeba opisać i często objąć zgodą. Rozwiązanie: tryb rozszerzonej prywatności YouTube, blokowanie przez CMP do zgody albo podgląd-obrazek wczytujący film po kliknięciu.",
+        "keyPoints": [
+          "łączenie z serwerami Google przy wczytaniu strony",
+          "przekazanie IP i cookies",
+          "trzeba opisać i często mieć zgodę",
+          "rozwiązania: CMP, tryb prywatności, ładowanie po kliknięciu"
+        ],
+        "explanation": "Complianz i podobne wtyczki potrafią zastąpić osadzenie obrazkiem do czasu zgody."
+      }
+    ],
+    "task": {
+      "task": "Przygotuj politykę prywatności dla strony testowej.\n\n1. Spisz w notatkach, co zbiera Twoja strona lokalna: formularze, wtyczki, usługi zewnętrzne, analityka, hosting.\n2. W **Ustawienia → Prywatność** utwórz stronę polityki prywatności z szablonu WordPressa.\n3. Uzupełnij ją: administrator (wymyślona firma), dane, cele, czas, odbiorcy, prawa, cookies. Usuń fragmenty, które nie dotyczą strony.\n4. Dodaj link do polityki w stopce i pod formularzem.\n5. Sprawdź **Narzędzia → Eksport danych osobowych** na swoim adresie e-mail.",
+      "checklist": [
+        "Lista techniczna danych gotowa",
+        "Strona polityki utworzona z szablonu",
+        "Wszystkie 7 punktów uzupełnione",
+        "Link w stopce i pod formularzem",
+        "Eksport danych sprawdzony"
+      ],
+      "hints": [
+        "Szablon WordPressa ma podpowiedzi w nawiasach. Zamień je na treść albo usuń.",
+        "Kliknij **Sprawdź przewodnik** w Ustawienia → Prywatność, żeby zobaczyć teksty proponowane przez wtyczki.",
+        "To ćwiczenie. Prawdziwą politykę dla klienta konsultuje się z prawnikiem."
+      ],
+      "solution": "Przykładowy szkielet:\n\n1. **Administrator**: Moja Firma Sp. z o.o., ul. Długa 1, Kraków, kontakt: biuro@mojafirma.pl.\n2. **Dane**: z formularza (imię, e-mail, treść), z cookies (po zgodzie), logi serwera (IP).\n3. **Cele i podstawy**: odpowiedź na wiadomość (uzasadniony interes), analityka (zgoda), bezpieczeństwo (uzasadniony interes).\n4. **Czas**: wiadomości do 12 miesięcy, logi zgodnie z ustawieniami hostingu, cookies według polityki cookies.\n5. **Odbiorcy**: hosting, dostawca poczty, Google (Analytics) – w tym transfer poza UE na podstawie odpowiednich zabezpieczeń.\n6. **Prawa**: dostęp, sprostowanie, usunięcie, ograniczenie, przeniesienie, sprzeciw, wycofanie zgody, skarga do Prezesa UODO.\n7. **Cookies**: odesłanie do banera i polityki cookies."
     }
   }
 ]

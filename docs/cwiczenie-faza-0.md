@@ -1,5 +1,7 @@
 # Ćwiczenie dla Ciebie: pierwszy temat
 
+> Temat „Rekordy DNS” (`t1-dns-records`) jest już napisany w Fazie 5. Możesz porównać z nim swoją wersję albo przećwiczyć to samo na innym temacie.
+
 Dopisz do `src/data/curriculum.json` jeden temat, temat **„DNS records”** z Tygodnia 1 (Podstawy WP + Serwer).
 
 ## Gotowe, gdy

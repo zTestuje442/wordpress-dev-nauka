@@ -1,5 +1,7 @@
 # Ćwiczenie do Fazy 3: napisz zadanie praktyczne
 
+> Temat „Rekordy DNS” (`t1-dns-records`) jest już napisany w Fazie 5. Możesz porównać z nim swoją wersję albo przećwiczyć to samo na innym temacie.
+
 Bez programowania. Edytujesz tylko `src/data/curriculum.json`.
 
 ## Zadanie

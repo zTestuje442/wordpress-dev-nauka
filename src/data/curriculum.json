@@ -6314,5 +6314,940 @@
       ],
       "solution": "1. **Odcięcie** (ja, 15 min): tryb konserwacji, kopia zainfekowanej strony.\n2. **Hasła** (ja + klient, 30 min): WordPress (wszystkie konta), FTP, baza (+ `wp-config.php`), hosting, poczta, Cloudflare, rejestrator domeny; nowe klucze bezpieczeństwa; usunięcie obcych kont.\n3. **Czyszczenie** (ja, 1–3 h): przywrócenie kopii sprzed 10 dni z UpdraftPlus po eksporcie nowych zamówień; skan Wordfence.\n4. **Przyczyna** (ja, 1 h): aktualizacja wszystkiego, usunięcie dziurawej wtyczki, 2FA, firewall.\n5. **Search Console** (ja, 15 min): prośba o weryfikację z opisem działań.\n6. **Komunikacja** (ja): „Dzień dobry, dziś rano wykryliśmy, że strona została zainfekowana i przekierowywała część odwiedzających na obce strony. Stronę tymczasowo wyłączyliśmy i zmieniliśmy hasła. Dziś do 16:00 przywrócimy czystą wersję i zaktualizujemy zabezpieczenia. Prosimy o zmianę hasła do poczty firmowej. Dane klientów sklepu nie wyciekły, ale to sprawdzamy. Na przyszłość włączymy logowanie dwuskładnikowe i codzienne kopie.”"
     }
+  },
+  {
+    "id": "t6-czytanie-html-css",
+    "week": 6,
+    "order": 1,
+    "title": "Jak czytać HTML i CSS",
+    "lesson": "Nie musisz pisać HTML i CSS od zera. Wystarczy, że umiesz **przeczytać**, co jest na stronie, znaleźć właściwy element i zmienić kolor, odstęp czy rozmiar. Podstawy HTML i CSS oraz DevTools znasz z tygodnia 3. Tu skupiamy się na praktyce: jak zmienić konkretną rzecz.\n\n![Od elementu do reguły CSS](diagram:czytanie-css)\n\n## Jak wygląda element HTML\n\n```html\n<a class=\"wp-block-button__link has-primary-background-color\" href=\"/kontakt/\">Umów wycenę</a>\n```\n\n- `a` to **znacznik** (tu: link),\n- `class=\"...\"` to **klasy**, czyli „etykiety”, po których CSS znajduje element; element może mieć kilka klas oddzielonych spacją,\n- `href` to **atrybut** (adres linku),\n- tekst między znacznikami to treść.\n\n## Jak wygląda reguła CSS\n\n```css\n.wp-block-button__link {\n  background-color: #1e5aa8;\n  padding: 12px 24px;\n  border-radius: 6px;\n}\n```\n\n- `.wp-block-button__link` to **selektor**: kropka oznacza klasę,\n- w klamrach są **właściwości** i **wartości**: kolor tła, odstęp wewnętrzny, zaokrąglenie rogów.\n\n## Najczęściej zmieniane właściwości\n\n- `color` (kolor tekstu), `background-color` (tło),\n- `font-size` (rozmiar tekstu), `font-weight` (grubość),\n- `padding` (odstęp wewnątrz), `margin` (odstęp na zewnątrz),\n- `border-radius` (zaokrąglenie), `display: none` (ukrycie).\n\n## Dlaczego moja zmiana nie działa\n\nW panelu **Styles** przekreślona reguła oznacza, że **inna, silniejsza reguła wygrywa**. Silniejsza jest reguła bardziej szczegółowa (np. `.header .wp-block-button__link` wygrywa z samym `.wp-block-button__link`) albo późniejsza w kodzie. Rozwiązanie: użyj takiego samego lub dokładniejszego selektora. `!important` działa, ale to ostateczność, bo potem trudno coś nadpisać.\n\n## Zmiana tylko na telefonie\n\n```css\n@media (max-width: 767px) {\n  .wp-block-button__link { font-size: 18px; }\n}\n```\n\nReguły w `@media (max-width: 767px)` działają tylko na wąskich ekranach (pamiętasz RWD z tygodnia 3).\n\n## Czytaj dalej\n\n- [MDN: podstawy CSS (po angielsku)](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics)\n- [Chrome: praca z CSS w DevTools (po angielsku)](https://developer.chrome.com/docs/devtools/css)",
+    "questions": [
+      {
+        "id": "t6-czytanie-html-css-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Co w CSS oznacza kropka na początku selektora, np. `.przycisk`?",
+        "answer": "Klasę elementu",
+        "distractors": [
+          "Identyfikator strony",
+          "Komentarz w kodzie"
+        ],
+        "explanation": "`.przycisk` wybiera wszystkie elementy z klasą „przycisk”."
+      },
+      {
+        "id": "t6-czytanie-html-css-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Odstęp wewnątrz elementu, między treścią a ramką, to w CSS właściwość ___.",
+        "answer": "padding",
+        "explanation": "padding to odstęp wewnętrzny, margin to odstęp na zewnątrz elementu."
+      },
+      {
+        "id": "t6-czytanie-html-css-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "W panelu Styles reguła jest przekreślona. Co to oznacza?",
+        "answer": "Inna, silniejsza reguła ją nadpisuje",
+        "distractors": [
+          "Reguła ma błąd składni",
+          "Reguła zostanie usunięta po odświeżeniu"
+        ],
+        "explanation": "Przekreślenie pokazuje, że wygrywa inna reguła: bardziej szczegółowa lub późniejsza."
+      },
+      {
+        "id": "t6-czytanie-html-css-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Reguła CSS: `.wp-block-button__link {`, `background-color: #1e5aa8;`, `padding 12px 24px;`, `border-radius: 6px; }`. Gdzie jest błąd?",
+        "answer": "`padding 12px 24px;`",
+        "distractors": [
+          "`.wp-block-button__link {`",
+          "`background-color: #1e5aa8;`",
+          "`border-radius: 6px; }`"
+        ],
+        "explanation": "Brakuje dwukropka między właściwością a wartością: `padding: 12px 24px;`."
+      },
+      {
+        "id": "t6-czytanie-html-css-05",
+        "type": "choice",
+        "difficulty": 2,
+        "tricky": true,
+        "prompt": "Zmiana koloru przycisku w DevTools zniknęła po odświeżeniu. Dlaczego?",
+        "answer": "DevTools zmienia stronę tylko w Twojej przeglądarce, na chwilę",
+        "distractors": [
+          "Cache strony ją usunął",
+          "WordPress cofnął zmianę, bo była błędna"
+        ],
+        "explanation": "DevTools służy do testów. Zmianę na stałe wklejasz do Dodatkowego CSS."
+      },
+      {
+        "id": "t6-czytanie-html-css-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Jak znajdziesz i zmienisz kolor przycisku na stronie, nie znając kodu motywu?",
+        "answer": "Klikam prawym przyciskiem na przycisku i wybieram Zbadaj. W kodzie HTML odczytuję klasę, w panelu Styles znajduję regułę z kolorem tła, testuję nowy kolor w przeglądarce, a potem kopiuję regułę z nową wartością do Dodatkowego CSS.",
+        "keyPoints": [
+          "Zbadaj na elemencie",
+          "odczytanie klasy",
+          "panel Styles i reguła",
+          "test w przeglądarce",
+          "wklejenie do Dodatkowego CSS"
+        ],
+        "explanation": "Ta sama metoda działa dla odstępów, czcionek i ukrywania elementów."
+      },
+      {
+        "id": "t6-czytanie-html-css-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Wyjaśnij, z czego składa się reguła CSS.",
+        "answer": "Z selektora, który mówi, jakie elementy stylujemy, np. .przycisk dla klasy, i z bloku w klamrach z właściwościami i wartościami, np. background-color: #1e5aa8; Każda para kończy się średnikiem.",
+        "keyPoints": [
+          "selektor wybiera elementy",
+          "kropka = klasa",
+          "właściwość: wartość",
+          "średnik po każdej parze"
+        ],
+        "explanation": "Selektor może łączyć kilka klas, np. .header .przycisk."
+      },
+      {
+        "id": "t6-czytanie-html-css-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Twoja reguła CSS nie działa, bo jest przekreślona. Jak to naprawisz?",
+        "answer": "Sprawdzę w panelu Styles, która reguła wygrywa i jaki ma selektor. Użyję takiego samego lub dokładniejszego selektora, np. dodam klasę rodzica, żeby moja reguła była silniejsza. !important zostawię na ostateczność, bo utrudnia późniejsze zmiany.",
+        "keyPoints": [
+          "sprawdzenie wygrywającej reguły",
+          "dokładniejszy selektor",
+          "klasa rodzica",
+          "!important jako ostateczność"
+        ],
+        "explanation": "Reguła późniejsza w kodzie wygrywa z równie szczegółową wcześniejszą."
+      },
+      {
+        "id": "t6-czytanie-html-css-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak zmienić rozmiar tekstu przycisku tylko na telefonach?",
+        "answer": "Wkładam regułę do media query, np. @media (max-width: 767px) { .przycisk { font-size: 18px; } }. Reguła działa tylko na ekranach węższych niż 768 pikseli. Sprawdzam efekt w trybie urządzenia w DevTools.",
+        "keyPoints": [
+          "media query @media (max-width: ...)",
+          "reguła w środku",
+          "działa tylko na wąskich ekranach",
+          "test w trybie urządzenia"
+        ],
+        "explanation": "Builderzy jak Elementor mają do tego osobne ustawienia dla telefonu."
+      },
+      {
+        "id": "t6-czytanie-html-css-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Klient chce ukryć napis „Brak produktów w koszyku” tylko w jednym miejscu. Jak podejdziesz do tego przez CSS i na co uważasz?",
+        "answer": "Zbadam element i poszukam klasy, która jest unikalna dla tego miejsca, np. klasy rodzica lub strony, i użyję display: none z dokładnym selektorem. Uważam, żeby nie ukryć tego samego elementu w innych miejscach, więc sprawdzam kilka podstron. CSS tylko ukrywa element, nadal jest w kodzie, więc to rozwiązanie wizualne, nie treściowe.",
+        "keyPoints": [
+          "znalezienie unikalnej klasy (rodzic, strona)",
+          "display: none z dokładnym selektorem",
+          "sprawdzenie innych podstron",
+          "element dalej jest w kodzie"
+        ],
+        "explanation": "WordPress dodaje klasy do body, np. page-id-12, które pozwalają ograniczyć regułę do jednej strony."
+      }
+    ],
+    "task": {
+      "task": "Znajdź i zmień styl przycisku na stronie testowej.\n\n1. Otwórz stronę z przyciskiem (blok Przyciski lub przycisk w Elementorze).\n2. Kliknij prawym przyciskiem → **Zbadaj**. Zapisz klasy przycisku.\n3. W panelu **Styles** zmień kolor tła, zaokrąglenie i padding. Zobacz efekt.\n4. Skopiuj regułę z nowymi wartościami do **Wygląd → Dostosuj → Dodatkowy CSS** (w motywie blokowym: Edytor witryny → Style → Dodatkowy CSS).\n5. Dodaj regułę, która tylko na telefonie powiększa tekst przycisku. Sprawdź w trybie urządzenia.",
+      "checklist": [
+        "Klasy przycisku odczytane",
+        "Zmiana przetestowana w DevTools",
+        "Reguła zapisana w Dodatkowym CSS",
+        "Reguła tylko dla telefonu działa"
+      ],
+      "hints": [
+        "Prawym przyciskiem na **tekście** przycisku, żeby trafić w element `a` lub `button`.",
+        "W Styles kliknij w wartość, żeby ją zmienić. Kwadracik koloru otwiera próbnik.",
+        "Tryb urządzenia w DevTools: ikona telefonu i tabletu lub Ctrl+Shift+M."
+      ],
+      "solution": "```css\n.wp-block-button__link {\n  background-color: #c0392b;\n  border-radius: 999px;\n  padding: 14px 28px;\n}\n\n@media (max-width: 767px) {\n  .wp-block-button__link { font-size: 18px; }\n}\n```\n\nJeśli reguła jest przekreślona, użyj dokładniejszego selektora, np. `.wp-block-button .wp-block-button__link`."
+    }
+  },
+  {
+    "id": "t6-gdzie-wklejac-kod",
+    "week": 6,
+    "order": 2,
+    "title": "Gdzie wklejać kod w WordPressie",
+    "lesson": "AI da Ci kawałek kodu i napisze „dodaj do functions.php”. Zanim to zrobisz, wybierz właściwe miejsce. Od tego zależy, czy zmiana przetrwa aktualizację i czy błąd nie położy całej strony.\n\n![Gdzie wkleić kod](diagram:gdzie-kod)\n\n## Dodatkowy CSS\n\nTylko dla CSS. **Wygląd → Dostosuj → Dodatkowy CSS** w motywach klasycznych albo **Edytor witryny → Style → Dodatkowy CSS** w blokowych. Zmiany zapisują się w bazie i przetrwają aktualizację motywu. Elementor ma też pole **Własny CSS** przy elementach (w wersji Pro).\n\n## Code Snippets (polecane)\n\nWtyczka [Code Snippets](https://wordpress.org/plugins/code-snippets/) to najwygodniejsze miejsce na kod PHP od AI:\n\n- każdy fragment osobno, z nazwą i opisem („Zmiana tekstu Do koszyka”),\n- przełącznik **włącz / wyłącz**,\n- wybór, gdzie działa: wszędzie, tylko w panelu, tylko na stronie,\n- przy oczywistym błędzie składni wtyczka **nie aktywuje** fragmentu, zamiast położyć stronę,\n- fragmenty przetrwają zmianę motywu.\n\n## Motyw potomny\n\nMotyw potomny (z tygodnia 2) ma własny `functions.php` i `style.css`. To dobre miejsce na większe zmiany i własne szablony, ale błąd w `functions.php` daje **błąd krytyczny**, a naprawa wymaga FTP. Kod związany z wyglądem motywu znika przy jego zmianie.\n\n## Nigdy: pliki motywu rodzica i wtyczek\n\nZmiany w `functions.php` motywu rodzica albo w plikach wtyczek **znikną przy najbliższej aktualizacji**. Dodatkowo edytor plików w panelu wyłączamy (lekcja o utwardzaniu z tygodnia 5).\n\n## Kod JavaScript i kody śledzenia\n\nKrótkie skrypty dodasz w Code Snippets (typ HTML lub JS) albo we wtyczce do nagłówka i stopki (np. WPCode). Szczegóły w lekcji o skryptach.\n\n## Zasada\n\n1. Czy to tylko wygląd? → Dodatkowy CSS.\n2. Czy to PHP lub skrypt? → Code Snippets.\n3. Czy to duża zmiana szablonów? → motyw potomny.\n\n## Czytaj dalej\n\n- [Code Snippets: dokumentacja (po angielsku)](https://codesnippets.pro/docs/)\n- [WPBeginner: jak bezpiecznie dodawać kod (po angielsku)](https://www.wpbeginner.com/plugins/how-to-easily-add-custom-code-in-wordpress-without-breaking-your-site/)",
+    "questions": [
+      {
+        "id": "t6-gdzie-wklejac-kod-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Gdzie najlepiej wkleić krótki fragment PHP od AI?",
+        "answer": "W wtyczce Code Snippets",
+        "distractors": [
+          "W functions.php motywu rodzica",
+          "W pliku wtyczki WooCommerce"
+        ],
+        "explanation": "Code Snippets pozwala włączać i wyłączać fragmenty i przetrwa aktualizacje motywu."
+      },
+      {
+        "id": "t6-gdzie-wklejac-kod-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Sam kod CSS wklejasz w WordPressie do sekcji Dodatkowy ___.",
+        "answer": "CSS",
+        "explanation": "Dodatkowy CSS jest w Dostosuj (motywy klasyczne) lub w Edytorze witryny (motywy blokowe)."
+      },
+      {
+        "id": "t6-gdzie-wklejac-kod-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Co stanie się ze zmianą w functions.php motywu rodzica po jego aktualizacji?",
+        "answer": "Zostanie usunięta",
+        "distractors": [
+          "Zostanie zachowana",
+          "WordPress przeniesie ją do motywu potomnego"
+        ],
+        "explanation": "Aktualizacja nadpisuje pliki motywu. Dlatego kod trzyma się w motywie potomnym lub Code Snippets."
+      },
+      {
+        "id": "t6-gdzie-wklejac-kod-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Plan zmian: `CSS koloru przycisku → Dodatkowy CSS`, `PHP zmiany tekstu przycisku → Code Snippets`, `własny szablon strony → motyw potomny`, `poprawka w pliku wtyczki WooCommerce → bezpośrednio w pliku`. Co jest błędem?",
+        "answer": "`poprawka w pliku wtyczki WooCommerce → bezpośrednio w pliku`",
+        "distractors": [
+          "`CSS koloru przycisku → Dodatkowy CSS`",
+          "`PHP zmiany tekstu przycisku → Code Snippets`",
+          "`własny szablon strony → motyw potomny`"
+        ],
+        "explanation": "Zmiany w plikach wtyczek znikają przy aktualizacji. Wtyczki zmienia się hookami w Code Snippets."
+      },
+      {
+        "id": "t6-gdzie-wklejac-kod-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Klient zmieni motyw za rok. Gdzie trzymać kod, który ma działać niezależnie od motywu (np. zmiana tekstu w sklepie)?",
+        "answer": "W Code Snippets, bo fragmenty nie zależą od motywu",
+        "distractors": [
+          "W functions.php motywu potomnego",
+          "W Dodatkowym CSS motywu"
+        ],
+        "explanation": "Kod w motywie potomnym i Dodatkowy CSS w Dostosuj są związane z motywem i znikną po jego zmianie."
+      },
+      {
+        "id": "t6-gdzie-wklejac-kod-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Wyjaśnij, gdzie wkleisz CSS, PHP i duże zmiany szablonów, i dlaczego.",
+        "answer": "CSS do Dodatkowego CSS, bo to tylko wygląd i przetrwa aktualizacje. PHP i krótkie skrypty do Code Snippets, bo każdy fragment można osobno włączyć i wyłączyć, a błędy rzadziej kładą stronę. Duże zmiany i własne szablony do motywu potomnego. Nigdy do plików motywu rodzica ani wtyczek, bo aktualizacja je nadpisze.",
+        "keyPoints": [
+          "CSS → Dodatkowy CSS",
+          "PHP → Code Snippets",
+          "szablony → motyw potomny",
+          "nigdy motyw rodzica / wtyczki"
+        ],
+        "explanation": "Ta zasada wystarcza w 95% przypadków."
+      },
+      {
+        "id": "t6-gdzie-wklejac-kod-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jakie zalety ma wtyczka Code Snippets w porównaniu z functions.php?",
+        "answer": "Każdy fragment jest osobno, z nazwą i opisem, i można go włączyć lub wyłączyć jednym kliknięciem. Można wybrać, gdzie działa. Przy błędzie składni wtyczka nie aktywuje fragmentu. Fragmenty nie zależą od motywu, więc przetrwają jego zmianę.",
+        "keyPoints": [
+          "osobne fragmenty z opisem",
+          "włącz / wyłącz",
+          "wybór miejsca działania",
+          "ochrona przed błędem składni",
+          "niezależność od motywu"
+        ],
+        "explanation": "Wciąż warto testować fragmenty na stagingu."
+      },
+      {
+        "id": "t6-gdzie-wklejac-kod-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "AI mówi: „dodaj ten kod do functions.php”. Co zrobisz?",
+        "answer": "Sprawdzę, co kod robi, i zapytam AI o wyjaśnienie, jeśli nie rozumiem. Zamiast functions.php motywu dodam go jako nowy fragment w Code Snippets z opisem, najpierw na stagingu lub stronie lokalnej, po zrobieniu kopii. Po włączeniu sprawdzę stronę i panel.",
+        "keyPoints": [
+          "zrozumienie, co robi kod",
+          "Code Snippets zamiast functions.php",
+          "opis fragmentu",
+          "najpierw staging i kopia",
+          "test po włączeniu"
+        ],
+        "explanation": "AI pisze „functions.php”, bo to najczęstsza instrukcja w internecie, a nie dlatego, że to najlepsze miejsce."
+      },
+      {
+        "id": "t6-gdzie-wklejac-kod-09",
+        "type": "open",
+        "difficulty": 3,
+        "prompt": "Dlaczego kod w motywie potomnym jest ryzykowniejszy niż w Code Snippets, jeśli zawiera błąd?",
+        "answer": "Błąd w functions.php motywu potomnego od razu daje błąd krytyczny całej strony i panelu, a naprawa wymaga FTP lub trybu odzyskiwania. Code Snippets przy błędzie składni nie aktywuje fragmentu, a przy innym błędzie można wyłączyć fragment z panelu lub trybem bezpiecznym wtyczki.",
+        "keyPoints": [
+          "błąd w functions.php = błąd krytyczny",
+          "naprawa przez FTP / tryb odzyskiwania",
+          "Code Snippets blokuje błąd składni",
+          "fragment można wyłączyć"
+        ],
+        "explanation": "Code Snippets ma też tryb bezpieczny włączany stałą w wp-config.php."
+      },
+      {
+        "id": "t6-gdzie-wklejac-kod-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Klient ma 30 linijek CSS w functions.php, wklejonych jako tekst w funkcji. Co zaproponujesz?",
+        "answer": "Przeniosę CSS do Dodatkowego CSS albo do style.css motywu potomnego, bo CSS nie powinien być w PHP. Zrobię kopię, wkleję CSS w nowe miejsce, usunę funkcję z functions.php i sprawdzę wygląd na kilku stronach i na telefonie. Kod będzie czytelniejszy i łatwiejszy do zmiany.",
+        "keyPoints": [
+          "CSS do Dodatkowego CSS / style.css",
+          "CSS nie w PHP",
+          "kopia przed zmianą",
+          "usunięcie funkcji i test wyglądu"
+        ],
+        "explanation": "Porządek w kodzie ułatwia późniejszą opiekę nad stroną."
+      }
+    ],
+    "task": {
+      "task": "Dodaj własny CSS i fragment kodu przez Code Snippets.\n\n1. Dodaj w **Dodatkowym CSS** regułę zmieniającą kolor nagłówków H2 na stronie.\n2. Zainstaluj wtyczkę **Code Snippets**.\n3. Dodaj nowy fragment PHP o nazwie „Tekst w stopce panelu” z kodem z rozwiązania poniżej. Ustaw „Uruchom tylko w panelu administracyjnym”.\n4. Włącz fragment i sprawdź dół dowolnej strony panelu.\n5. Wyłącz fragment i sprawdź, że tekst zniknął.",
+      "checklist": [
+        "Reguła w Dodatkowym CSS działa",
+        "Code Snippets zainstalowany",
+        "Fragment PHP dodany z nazwą i opisem",
+        "Fragment włączony i wyłączony"
+      ],
+      "hints": [
+        "Code Snippets: **Fragmenty → Dodaj nowy**, typ PHP.",
+        "Nie wklejaj `<?php` na początku. Code Snippets dodaje to sam.",
+        "Tekst w stopce panelu widać na samym dole każdej strony panelu."
+      ],
+      "solution": "CSS:\n\n```css\nh2 { color: #1e5aa8; }\n```\n\nFragment PHP:\n\n```php\nadd_filter( 'admin_footer_text', function () {\n    return 'Strona przygotowana przez Alek WP';\n} );\n```\n\nPo włączeniu na dole panelu zamiast „Dziękujemy za tworzenie z WordPressem” pojawia się nowy tekst. Po wyłączeniu wraca domyślny."
+    }
+  },
+  {
+    "id": "t6-ai-prompt-kod",
+    "week": 6,
+    "order": 3,
+    "title": "Jak prosić AI o kod do WordPressa",
+    "lesson": "AI (Claude, ChatGPT) świetnie pisze kod do WordPressa, ale odpowiedź jest tak dobra, jak polecenie. Ogólne „zmień przycisk w sklepie” daje ogólny kod. Konkretne polecenie daje kod, który działa za pierwszym razem.\n\n![Elementy dobrego polecenia](diagram:prompt-ai)\n\n## Co podać w poleceniu\n\n1. **Kontekst**: wersja WordPressa, motyw (np. Astra, Kadence, motyw blokowy), builder (Elementor), ważne wtyczki (WooCommerce i wersja).\n2. **Cel**: co ma się zmienić, gdzie i dla kogo. Opisz efekt, nie technikę.\n3. **Ograniczenia**: bez instalowania wtyczek, tylko na stronie produktu, ma przetrwać aktualizację motywu.\n4. **Miejsce**: „Kod wkleję do Code Snippets”.\n5. **Wyjaśnienie**: „Wyjaśnij prostym językiem, co robi każda część, nie jestem programistą”.\n\n## Przykład\n\nSłabe polecenie:\n\n„Zmień tekst przycisku do koszyka.”\n\nDobre polecenie:\n\n„Mam WordPress 6.9, motyw Astra i WooCommerce 10. Chcę, żeby przycisk „Dodaj do koszyka” na stronie pojedynczego produktu i na liście produktów miał tekst „Kupuję”. Bez instalowania wtyczek. Kod wkleję do wtyczki Code Snippets. Wyjaśnij prostym językiem, co robi każda linia, i powiedz, jak to cofnąć.”\n\n## Jak rozmawiać dalej\n\n- **Błąd?** Wklej dokładny komunikat błędu i opisz, co zrobiono. AI poprawi kod.\n- **Nie działa, ale bez błędu?** Opisz, co widać, i dołącz klasę elementu z DevTools.\n- **Nie rozumiesz?** Poproś: „wyjaśnij to jak dla osoby, która nie programuje”.\n- **Czy jest prościej?** Zapytaj, czy da się to zrobić ustawieniem lub CSS zamiast PHP. Często się da.\n\n## Na co uważać\n\n- AI potrafi **wymyślić** nieistniejącą funkcję lub hook. Dlatego zawsze testuj (następna lekcja).\n- Nie wklejaj do AI haseł, kluczy API ani danych klientów.\n- Kod do starszych wersji (np. jQuery w każdej linii, przestarzałe funkcje) zgłoś AI i poproś o nowszą wersję.\n\n## Czytaj dalej\n\n- [Anthropic: wskazówki do pisania poleceń (po angielsku)](https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview)\n- [WooCommerce: dokumentacja dla deweloperów (po angielsku)](https://developer.woocommerce.com/docs/)",
+    "questions": [
+      {
+        "id": "t6-ai-prompt-kod-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Które polecenie da najlepszy kod?",
+        "answer": "„Mam WP 6.9, Astrę i WooCommerce. Zmień tekst przycisku do koszyka na „Kupuję”, kod wkleję do Code Snippets, wyjaśnij go”",
+        "distractors": [
+          "„Zmień przycisk w sklepie”",
+          "„Napisz kod do WordPressa”"
+        ],
+        "explanation": "Kontekst, cel, miejsce i prośba o wyjaśnienie dają kod, który działa za pierwszym razem."
+      },
+      {
+        "id": "t6-ai-prompt-kod-02",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Kod od AI dał błąd krytyczny. Co wkleić do rozmowy?",
+        "answer": "Dokładny komunikat błędu i opis, co zrobiono",
+        "distractors": [
+          "Tylko słowo „nie działa”",
+          "Hasło do panelu, żeby AI sprawdziło samo"
+        ],
+        "explanation": "Dokładny błąd pozwala AI znaleźć problem. Haseł nigdy nie wklejaj."
+      },
+      {
+        "id": "t6-ai-prompt-kod-03",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "AI potrafi wymyślić nieistniejącą funkcję, dlatego kod zawsze trzeba ___ przed użyciem na żywej stronie.",
+        "answer": "przetestować",
+        "explanation": "Test na stagingu lub stronie lokalnej wyłapuje zmyślone funkcje i błędy."
+      },
+      {
+        "id": "t6-ai-prompt-kod-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Polecenie do AI: `Mam WordPress 6.9 i Elementor`, `chcę ukryć cenę dla niezalogowanych`, `oto login i hasło do panelu: admin / Firma2026`, `kod wkleję do Code Snippets`. Co jest błędem?",
+        "answer": "`oto login i hasło do panelu: admin / Firma2026`",
+        "distractors": [
+          "`Mam WordPress 6.9 i Elementor`",
+          "`chcę ukryć cenę dla niezalogowanych`",
+          "`kod wkleję do Code Snippets`"
+        ],
+        "explanation": "Do AI nie wkleja się haseł, kluczy API ani danych klientów. AI do napisania kodu nie potrzebuje dostępu."
+      },
+      {
+        "id": "t6-ai-prompt-kod-05",
+        "type": "choice",
+        "difficulty": 2,
+        "tricky": true,
+        "prompt": "AI dało 40 linijek PHP, żeby zmienić kolor tła stopki. Co warto zrobić?",
+        "answer": "Zapytać, czy da się to zrobić ustawieniem motywu lub jedną regułą CSS",
+        "distractors": [
+          "Wkleić od razu, skoro AI tak napisało",
+          "Poprosić o jeszcze dłuższy kod"
+        ],
+        "explanation": "AI czasem komplikuje. Prostsze rozwiązanie jest łatwiejsze w utrzymaniu."
+      },
+      {
+        "id": "t6-ai-prompt-kod-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Wymień, co powinno zawierać dobre polecenie do AI z prośbą o kod do WordPressa.",
+        "answer": "Kontekst: wersję WordPressa, motyw, builder i ważne wtyczki z wersjami. Cel opisany jako efekt: co ma się zmienić i gdzie. Ograniczenia, np. bez nowych wtyczek. Miejsce, gdzie wkleję kod, np. Code Snippets. Prośbę o wyjaśnienie prostym językiem i o sposób cofnięcia.",
+        "keyPoints": [
+          "kontekst: WP, motyw, builder, wtyczki",
+          "cel jako efekt",
+          "ograniczenia",
+          "miejsce wklejenia",
+          "prośba o wyjaśnienie / cofnięcie"
+        ],
+        "explanation": "Te same elementy działają przy prośbach o CSS i o konfigurację."
+      },
+      {
+        "id": "t6-ai-prompt-kod-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Napisz dobre polecenie dla AI: chcesz, żeby w sklepie przy darmowej dostawie od 200 zł pokazywał się pasek „Brakuje Ci X zł do darmowej dostawy”.",
+        "answer": "Mam WordPress 6.9, motyw Kadence i WooCommerce 10. Darmowa dostawa jest od 200 zł. Chcę, żeby w koszyku i w mini-koszyku pokazywał się pasek z tekstem „Brakuje Ci X zł do darmowej dostawy”, a po przekroczeniu kwoty „Masz darmową dostawę”. Bez nowych wtyczek, kod wkleję do Code Snippets. Wyjaśnij prostym językiem, co robi kod, gdzie zmienić kwotę i jak go wyłączyć.",
+        "keyPoints": [
+          "kontekst: WP, motyw, WooCommerce",
+          "kwota i dokładne teksty",
+          "gdzie ma się pokazywać",
+          "bez wtyczek, Code Snippets",
+          "wyjaśnienie i gdzie zmienić kwotę"
+        ],
+        "explanation": "Dobrze też zapytać, czy kwotę da się brać z ustawień wysyłki zamiast wpisywać w kodzie."
+      },
+      {
+        "id": "t6-ai-prompt-kod-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Kod od AI nie daje błędu, ale nic się nie zmienia. Jak poprowadzisz dalszą rozmowę?",
+        "answer": "Opiszę dokładnie: gdzie jest wklejony kod, czy fragment jest włączony, na jakiej stronie sprawdzam i czy cache jest wyczyszczony. Dołączę klasę lub fragment HTML elementu z DevTools i zapytam, czy kod pasuje do mojego motywu albo buildera, bo np. Elementor może nadpisywać szablon WooCommerce.",
+        "keyPoints": [
+          "opis, gdzie wklejony i czy włączony",
+          "na jakiej stronie sprawdzam",
+          "czy wyczyszczony cache",
+          "HTML / klasa z DevTools",
+          "pytanie o zgodność z motywem lub builderem"
+        ],
+        "explanation": "Częsta przyczyna to cache albo builder, który używa własnego widżetu zamiast szablonu."
+      },
+      {
+        "id": "t6-ai-prompt-kod-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Dlaczego warto prosić AI o wyjaśnienie kodu, skoro i tak go nie piszesz?",
+        "answer": "Żeby rozumieć, co wklejam na stronę klienta i za co odpowiadam, żeby umieć to zmienić lub cofnąć, wychwycić, gdy kod robi coś więcej, niż trzeba, i z czasem uczyć się rozpoznawać wzorce, np. hooki. To też pozwala wytłumaczyć zmianę klientowi.",
+        "keyPoints": [
+          "odpowiedzialność za kod u klienta",
+          "umiejętność zmiany i cofnięcia",
+          "wychwycenie niechcianych działań",
+          "nauka wzorców",
+          "wyjaśnienie klientowi"
+        ],
+        "explanation": "Pytaj aż do momentu, gdy możesz własnymi słowami opisać, co robi kod."
+      },
+      {
+        "id": "t6-ai-prompt-kod-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "AI dało kod z funkcją, której nie ma w dokumentacji WooCommerce. Co zrobisz?",
+        "answer": "Nie wkleję go od razu. Zapytam AI wprost, czy ta funkcja istnieje i w której wersji, i poproszę o link do dokumentacji. Sprawdzę nazwę w dokumentacji WooCommerce lub w wyszukiwarce. Przetestuję kod na stagingu z włączonym debugowaniem. Jeśli to zmyślenie, poproszę o rozwiązanie oparte na udokumentowanym hooku.",
+        "keyPoints": [
+          "nie wklejać od razu",
+          "zapytać AI o źródło",
+          "sprawdzić w dokumentacji",
+          "test na stagingu z debugowaniem",
+          "prośba o udokumentowany hook"
+        ],
+        "explanation": "Zmyślone funkcje dają błąd „Call to undefined function”."
+      }
+    ],
+    "task": {
+      "task": "Poproś AI o zmianę tekstu przycisku „Dodaj do koszyka”.\n\n1. Zapisz kontekst swojej strony testowej: wersja WordPressa, motyw, WooCommerce (jeśli nie masz, zainstaluj na stronie lokalnej i dodaj jeden produkt).\n2. Napisz polecenie według schematu: kontekst, cel, ograniczenia, miejsce, wyjaśnienie.\n3. Wyślij je do Claude i przeczytaj wyjaśnienie kodu.\n4. Zadaj co najmniej jedno pytanie dodatkowe (np. „jak zmienić tekst tylko w jednej kategorii?”).\n5. Dodaj kod w Code Snippets na stronie lokalnej i sprawdź stronę produktu i sklepu.",
+      "checklist": [
+        "Kontekst strony zapisany",
+        "Polecenie według schematu",
+        "Kod wyjaśniony przez AI",
+        "Pytanie dodatkowe zadane",
+        "Kod działa na stronie produktu i w sklepie"
+      ],
+      "hints": [
+        "Wersję WordPressa zobaczysz w **Kokpit → Aktualizacje**, wersję WooCommerce na liście wtyczek.",
+        "Na liście produktów i na stronie produktu przycisk ma osobne filtry. Dobry kod obsługuje oba.",
+        "Po dodaniu kodu wyczyść cache, jeśli masz wtyczkę cache."
+      ],
+      "solution": "Polecenie:\n\n„Mam WordPress 6.9, motyw Twenty Twenty-Five i WooCommerce 10. Chcę zmienić tekst przycisku „Dodaj do koszyka” na „Kupuję” na stronie produktu i na liście produktów. Bez wtyczek, kod wkleję do Code Snippets. Wyjaśnij prostym językiem każdą część i jak to cofnąć.”\n\nPrzykładowy kod:\n\n```php\nadd_filter( 'woocommerce_product_single_add_to_cart_text', function () {\n    return 'Kupuję';\n} );\nadd_filter( 'woocommerce_product_add_to_cart_text', function () {\n    return 'Kupuję';\n} );\n```\n\nPierwszy filtr zmienia tekst na stronie produktu, drugi na listach produktów. Cofnięcie: wyłączenie fragmentu w Code Snippets. W motywie blokowym przycisk może pochodzić z bloku, wtedy tekst zmienia się też w ustawieniach bloku."
+    }
+  },
+  {
+    "id": "t6-sprawdzanie-kodu-ai",
+    "week": 6,
+    "order": 4,
+    "title": "Sprawdzanie kodu od AI",
+    "lesson": "Kod od AI zwykle działa, ale nie zawsze. Czasem ma literówkę, czasem używa funkcji, której nie ma, a czasem psuje coś w innym miejscu. Dlatego **nigdy nie wklejasz kodu od razu na żywą stronę klienta**.\n\n![Droga kodu od AI na stronę](diagram:test-kodu-ai)\n\n## Staging\n\n**Staging** to kopia strony do testów, niewidoczna dla klientów. Masz trzy możliwości:\n\n- **strona lokalna** w Local (z tygodnia 2): kopia żywej strony, np. przez eksport w wtyczce do migracji,\n- **staging w hostingu**: wiele firm hostingowych tworzy go jednym kliknięciem i potem „wypycha” zmiany na żywą stronę,\n- **wtyczka** (np. WP Staging).\n\nPełna lekcja o stagingu jest w tygodniu 8.\n\n## Tryb debug\n\nNa stagingu włącz w `wp-config.php`:\n\n```php\ndefine( 'WP_DEBUG', true );\ndefine( 'WP_DEBUG_LOG', true );\ndefine( 'WP_DEBUG_DISPLAY', false );\n```\n\nBłędy, ostrzeżenia i przestarzałe funkcje trafią do pliku `wp-content/debug.log`. Na żywej stronie debug ma być wyłączony.\n\n## Co sprawdzić po dodaniu kodu\n\n- stronę, której dotyczy zmiana, i 2–3 inne (strona główna, kontakt, koszyk),\n- panel WordPressa (czy się otwiera, czy nie ma komunikatów),\n- widok na telefonie,\n- plik `debug.log` (czy pojawiły się nowe wpisy),\n- konsolę przeglądarki (F12 → Console) przy kodzie JavaScript.\n\n## Gdy pojawi się błąd krytyczny\n\n1. Wyłącz fragment w Code Snippets (lub zmień nazwę folderu wtyczki przez FTP, jak w tygodniu 5).\n2. Skopiuj **dokładny komunikat** z `debug.log`, np.:\n\n```\nPHP Fatal error: Uncaught Error: Call to undefined function wc_get_cart_total() in ...\n```\n\n3. Wklej go do rozmowy z AI razem z kodem.\n\n## Jak czytać komunikaty\n\n- **Fatal error**: strona nie działa, trzeba poprawić od razu.\n- **Warning**: coś jest nie tak, ale strona działa. Napraw.\n- **Notice / Deprecated**: drobna uwaga lub przestarzała funkcja. Warto poprawić przy okazji.\n- **Call to undefined function**: funkcja nie istnieje, często zmyślona przez AI albo z wtyczki, której nie masz.\n- **syntax error, unexpected ...**: literówka w kodzie, np. brak średnika lub nawiasu.\n\n## Czytaj dalej\n\n- [WordPress: debugowanie (po angielsku)](https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/)",
+    "questions": [
+      {
+        "id": "t6-sprawdzanie-kodu-ai-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Gdzie najpierw dodać kod od AI?",
+        "answer": "Na stagingu lub stronie lokalnej, po zrobieniu kopii",
+        "distractors": [
+          "Od razu na żywej stronie, bo AI zwykle ma rację",
+          "W pliku motywu rodzica na żywej stronie"
+        ],
+        "explanation": "Staging pozwala znaleźć błędy, zanim zobaczą je klienci."
+      },
+      {
+        "id": "t6-sprawdzanie-kodu-ai-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Błędy przy WP_DEBUG_LOG zapisują się do pliku wp-content/___.log.",
+        "answer": "debug",
+        "explanation": "Plik debug.log zawiera komunikaty z nazwą pliku i numerem linii."
+      },
+      {
+        "id": "t6-sprawdzanie-kodu-ai-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Komunikat „Call to undefined function” oznacza zwykle, że:",
+        "answer": "Kod używa funkcji, która nie istnieje lub pochodzi z niezainstalowanej wtyczki",
+        "distractors": [
+          "Brakuje średnika w kodzie",
+          "Strona ma za mało pamięci"
+        ],
+        "explanation": "To typowy objaw zmyślonej przez AI funkcji."
+      },
+      {
+        "id": "t6-sprawdzanie-kodu-ai-04",
+        "type": "error",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Ustawienia na żywej stronie sklepu: `WP_DEBUG: true`, `WP_DEBUG_DISPLAY: true`, `kopia z dzisiejszego ranka`, `Code Snippets z opisanymi fragmentami`. Co jest problemem?",
+        "answer": "`WP_DEBUG_DISPLAY: true`",
+        "distractors": [
+          "`kopia z dzisiejszego ranka`",
+          "`Code Snippets z opisanymi fragmentami`",
+          "`WP_DEBUG: true`"
+        ],
+        "explanation": "Wyświetlanie błędów pokazuje klientom komunikaty ze ścieżkami serwera. Na żywej stronie debug ma być wyłączony, a błędy co najwyżej logowane."
+      },
+      {
+        "id": "t6-sprawdzanie-kodu-ai-05",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "W debug.log jest tylko „Deprecated: function ... is deprecated”. Co to znaczy?",
+        "answer": "Kod używa przestarzałej funkcji, działa, ale warto go poprawić",
+        "distractors": [
+          "Strona nie działa",
+          "Ktoś się włamał"
+        ],
+        "explanation": "Deprecated to ostrzeżenie, że funkcja zniknie w przyszłych wersjach."
+      },
+      {
+        "id": "t6-sprawdzanie-kodu-ai-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Opisz bezpieczną drogę kodu od AI na żywą stronę klienta.",
+        "answer": "Robię kopię, dodaję kod na stagingu lub stronie lokalnej z włączonym trybem debug, sprawdzam stronę, której dotyczy zmiana, kilka innych stron, panel, telefon i debug.log. Jeśli jest błąd, wyłączam fragment i wracam do AI z komunikatem. Gdy działa, dodaję ten sam kod na żywej stronie i sprawdzam ją jeszcze raz.",
+        "keyPoints": [
+          "kopia",
+          "staging z debug",
+          "test: strony, panel, telefon, log",
+          "błąd → wyłączenie i AI",
+          "żywa strona i ponowny test"
+        ],
+        "explanation": "Na żywą stronę dodawaj kod w spokojnej porze, nie w piątek wieczorem."
+      },
+      {
+        "id": "t6-sprawdzanie-kodu-ai-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak włączyć tryb debug, żeby błędy zapisywały się do pliku, ale nie były widoczne dla odwiedzających?",
+        "answer": "W wp-config.php ustawiam WP_DEBUG na true, WP_DEBUG_LOG na true i WP_DEBUG_DISPLAY na false. Błędy trafią do wp-content/debug.log, a strona nie pokaże ich odwiedzającym. Robię to na stagingu i wyłączam po testach.",
+        "keyPoints": [
+          "WP_DEBUG true",
+          "WP_DEBUG_LOG true",
+          "WP_DEBUG_DISPLAY false",
+          "plik wp-content/debug.log",
+          "na stagingu, wyłączyć po testach"
+        ],
+        "explanation": "Linie dodaje się przed komentarzem „That's all, stop editing!”."
+      },
+      {
+        "id": "t6-sprawdzanie-kodu-ai-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Co sprawdzasz po dodaniu fragmentu kodu, nawet jeśli strona się ładuje?",
+        "answer": "Stronę, której dotyczy zmiana, i kilka innych, np. główną, kontakt i koszyk, panel WordPressa, widok na telefonie, plik debug.log pod kątem nowych wpisów i konsolę przeglądarki, jeśli kod zawiera JavaScript.",
+        "keyPoints": [
+          "strona zmiany i inne strony",
+          "panel",
+          "telefon",
+          "debug.log",
+          "konsola przy JS"
+        ],
+        "explanation": "Kod może działać w jednym miejscu i psuć coś w innym."
+      },
+      {
+        "id": "t6-sprawdzanie-kodu-ai-09",
+        "type": "open",
+        "difficulty": 3,
+        "prompt": "W debug.log widzisz: „PHP Parse error: syntax error, unexpected '}' in ... snippet on line 7”. Co to znaczy i co zrobisz?",
+        "answer": "To błąd składni: w linii 7 lub tuż przed nią jest literówka, np. brakujący średnik, nawias albo cudzysłów, przez co klamra jest nieoczekiwana. Wyłączę fragment, sprawdzę linie 6–7, a jeśli nie widzę błędu, wkleję kod i komunikat do AI z prośbą o poprawkę.",
+        "keyPoints": [
+          "błąd składni",
+          "problem w linii 7 lub tuż przed",
+          "brak średnika / nawiasu / cudzysłowu",
+          "wyłączenie fragmentu",
+          "kod + komunikat do AI"
+        ],
+        "explanation": "Code Snippets zwykle łapie takie błędy przy zapisie."
+      },
+      {
+        "id": "t6-sprawdzanie-kodu-ai-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Kod od AI działa, ale strona produktu ładuje się o 3 sekundy dłużej. Co zrobisz?",
+        "answer": "Nie przeniosę go na żywą stronę. Porównam czas ładowania z kodem i bez (wyłączając fragment), żeby mieć pewność, że to on. Wrócę do AI z opisem: co kod ma robić, że spowalnia stronę o 3 sekundy, i zapytam o wydajniejsze rozwiązanie, np. bez zapytań do bazy przy każdym wyświetleniu lub z cache.",
+        "keyPoints": [
+          "nie na żywą stronę",
+          "porównanie z kodem i bez",
+          "opis problemu dla AI",
+          "prośba o wydajniejsze rozwiązanie"
+        ],
+        "explanation": "Działający kod to nie wszystko. Liczy się też szybkość i bezpieczeństwo."
+      }
+    ],
+    "task": {
+      "task": "Wywołaj błąd na stagingu i napraw go.\n\n1. Na stronie lokalnej włącz tryb debug (trzy linie z lekcji) w `wp-config.php`.\n2. Dodaj w Code Snippets fragment z celowym błędem, np. wywołanie nieistniejącej funkcji `pokaz_promocje();` przypięte do `wp_footer`.\n3. Wejdź na stronę i otwórz `wp-content/debug.log`. Skopiuj komunikat.\n4. Wklej kod i komunikat do Claude z prośbą o wyjaśnienie i poprawkę.\n5. Popraw lub usuń fragment, sprawdź, że w logu nie pojawiają się nowe błędy, i wyłącz debug.",
+      "checklist": [
+        "Debug włączony z zapisem do pliku",
+        "Błąd wywołany",
+        "Komunikat z debug.log skopiowany",
+        "Błąd wyjaśniony i naprawiony z pomocą AI",
+        "Debug wyłączony"
+      ],
+      "hints": [
+        "W Local plik `wp-config.php` jest w `app/public`.",
+        "Kod z błędem: `add_action( 'wp_footer', function () { pokaz_promocje(); } );`",
+        "Jeśli Code Snippets nie pozwala zapisać fragmentu, to dobrze: wtyczka sama wyłapała błąd. Zapisz go mimo to jako aktywny, jeśli jest taka opcja, albo dodaj w motywie potomnym."
+      ],
+      "solution": "Wpis w `debug.log`:\n\n```\nPHP Fatal error: Uncaught Error: Call to undefined function pokaz_promocje() in .../wp-content/plugins/code-snippets/...\n```\n\nWyjaśnienie AI: funkcja `pokaz_promocje` nie istnieje. Trzeba ją zdefiniować albo usunąć wywołanie. Poprawka np.:\n\n```php\nadd_action( 'wp_footer', function () {\n    echo '<p class=\"promocja\">Darmowa dostawa od 200 zł</p>';\n} );\n```\n\nPo poprawce w logu nie ma nowych wpisów, debug wyłączony (`WP_DEBUG` na `false`)."
+    }
+  },
+  {
+    "id": "t6-skrypty-sledzace",
+    "week": 6,
+    "order": 5,
+    "title": "Skrypty na stronie i kody śledzenia",
+    "lesson": "**JavaScript** to język, który działa w przeglądarce odwiedzającego. Dzięki niemu strona reaguje na kliknięcia, pokazuje okienka czatu, karuzele i mierzy ruch. Większość skryptów, które dodasz, to gotowe **kody śledzenia** i widżety od innych firm.\n\n![Gdzie i jak wklejać skrypty](diagram:skrypty-sledzace)\n\n## Najczęstsze skrypty\n\n- **Google Analytics 4** (GA4): statystyki ruchu (tydzień 10),\n- **Google Tag Manager** (GTM): „pojemnik” na inne skrypty, zarządzany z panelu Google,\n- **Meta Pixel**: śledzenie dla reklam na Facebooku i Instagramie,\n- **czat** (np. tawk.to, Tidio, LiveChat), **opinie**, **mapy**, **kalendarze rezerwacji**.\n\nDostawca zawsze daje kod i mówi, gdzie go wkleić, np. „wklej w sekcji `<head>`” albo „przed zamknięciem `</body>`”.\n\n## Jak wygląda kod śledzenia\n\n```html\n<script async src=\"https://www.googletagmanager.com/gtag/js?id=G-ABC123\"></script>\n<script>\n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n  gtag('js', new Date());\n  gtag('config', 'G-ABC123');\n</script>\n```\n\nNie musisz go rozumieć linia po linii. Ważne: `G-ABC123` to identyfikator Twojej usługi, a `<script>` oznacza skrypt.\n\n## Gdzie wkleić\n\n- **Wtyczka do nagłówka i stopki** (np. [WPCode](https://wordpress.org/plugins/insert-headers-and-footers/)): pole „Nagłówek” (`<head>`) i „Stopka” (przed `</body>`). Kod działa na całej stronie i przetrwa zmianę motywu.\n- **Oficjalna wtyczka dostawcy**: np. Site Kit by Google dla GA4 i GSC, wtyczka Meta dla Pixela. Łączysz konto, bez wklejania kodu.\n- **GTM**: wklejasz raz kod GTM, a resztę skryptów dodajesz w panelu Google, bez ruszania strony.\n- Elementor ma **Custom Code** (w wersji Pro).\n\n## Typowe błędy\n\n- **Ten sam kod dwa razy** (np. GA4 przez wtyczkę i drugi raz przez GTM): podwójne statystyki.\n- Kod wklejony w **treść wpisu** (działa tylko na tej stronie) lub w **pliki motywu** (zniknie przy aktualizacji).\n- Skrypty śledzące uruchamiane **przed zgodą** na cookies (baner i Consent Mode z tygodnia 3).\n- Za dużo skryptów: każdy spowalnia stronę. Przejrzyj, czy wszystkie są potrzebne.\n\n## Jak sprawdzić, czy działa\n\n- **Podgląd źródła** (Ctrl+U) i wyszukanie identyfikatora (np. `G-ABC123`): ile razy występuje.\n- Narzędzia dostawcy: raport **Czas rzeczywisty** w GA4, **Tag Assistant** dla Google, **Meta Pixel Helper**.\n- DevTools → **Network**: czy skrypt się pobiera.\n\n## Czytaj dalej\n\n- [Google: konfiguracja tagu Google (pomoc GA4)](https://support.google.com/analytics/answer/9304153?hl=pl)\n- [WPBeginner: jak dodać kod do nagłówka i stopki (po angielsku)](https://www.wpbeginner.com/plugins/how-to-add-header-and-footer-code-in-wordpress/)",
+    "questions": [
+      {
+        "id": "t6-skrypty-sledzace-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Gdzie najlepiej dodać kod Google Analytics na całej stronie?",
+        "answer": "Raz, przez wtyczkę do nagłówka i stopki, oficjalną wtyczkę lub GTM",
+        "distractors": [
+          "W treści każdego wpisu",
+          "W pliku header.php motywu rodzica"
+        ],
+        "explanation": "Jedno miejsce dla całej strony, które przetrwa aktualizacje."
+      },
+      {
+        "id": "t6-skrypty-sledzace-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Język skryptów, które działają w przeglądarce odwiedzającego, to ___.",
+        "answer": "JavaScript",
+        "explanation": "JavaScript obsługuje m.in. kody śledzenia, czaty i karuzele."
+      },
+      {
+        "id": "t6-skrypty-sledzace-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Po co jest Google Tag Manager?",
+        "answer": "Żeby zarządzać wieloma skryptami z panelu Google, wklejając na stronę tylko jeden kod",
+        "distractors": [
+          "Żeby przyspieszyć hosting",
+          "Żeby zastąpić baner cookies"
+        ],
+        "explanation": "GTM to pojemnik na tagi: GA4, Pixel, konwersje reklam."
+      },
+      {
+        "id": "t6-skrypty-sledzace-04",
+        "type": "error",
+        "difficulty": 2,
+        "tricky": true,
+        "prompt": "Konfiguracja analityki: `kod GTM w nagłówku przez WPCode`, `GA4 dodane w GTM`, `GA4 dodatkowo przez Site Kit`, `skrypty uruchamiane po zgodzie na cookies`. Co jest problemem?",
+        "answer": "`GA4 dodatkowo przez Site Kit`",
+        "distractors": [
+          "`kod GTM w nagłówku przez WPCode`",
+          "`GA4 dodane w GTM`",
+          "`skrypty uruchamiane po zgodzie na cookies`"
+        ],
+        "explanation": "GA4 wczytane dwa razy liczy każde wyświetlenie podwójnie. Wybierz jedną drogę."
+      },
+      {
+        "id": "t6-skrypty-sledzace-05",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Jak szybko sprawdzić, czy kod śledzenia nie jest wklejony dwa razy?",
+        "answer": "Otworzyć źródło strony (Ctrl+U) i wyszukać identyfikator, np. G-ABC123",
+        "distractors": [
+          "Zapytać hosting",
+          "Wyłączyć wszystkie wtyczki"
+        ],
+        "explanation": "Identyfikator powinien pojawić się w jednym kodzie konfiguracji."
+      },
+      {
+        "id": "t6-skrypty-sledzace-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Wymień sposoby dodania kodu śledzenia do strony WordPress i wskaż, którego nie używać.",
+        "answer": "Wtyczka do nagłówka i stopki, np. WPCode, oficjalna wtyczka dostawcy, np. Site Kit lub wtyczka Meta, Google Tag Manager z jednym kodem na stronie albo Custom Code w Elementorze Pro. Nie wklejam kodu do treści wpisów ani do plików motywu rodzica.",
+        "keyPoints": [
+          "wtyczka nagłówka i stopki",
+          "oficjalna wtyczka dostawcy",
+          "GTM",
+          "nie w treści wpisu",
+          "nie w plikach motywu rodzica"
+        ],
+        "explanation": "Najważniejsze, żeby wybrać jedną drogę dla jednego skryptu."
+      },
+      {
+        "id": "t6-skrypty-sledzace-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jaki związek mają kody śledzenia z banerem cookies?",
+        "answer": "Skrypty śledzące, np. GA4 i Meta Pixel, zapisują pliki cookies i przetwarzają dane, więc w UE wymagają zgody. Powinny ruszać dopiero po zgodzie albo działać w trybie ograniczonym przez Consent Mode. Baner cookies musi być połączony ze skryptami, np. przez GTM lub wtyczkę zgód.",
+        "keyPoints": [
+          "skrypty śledzące zapisują cookies",
+          "wymagana zgoda w UE",
+          "uruchamianie po zgodzie / Consent Mode",
+          "połączenie banera ze skryptami"
+        ],
+        "explanation": "To rozwinięcie lekcji o cookies z tygodnia 3."
+      },
+      {
+        "id": "t6-skrypty-sledzace-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak sprawdzisz, czy nowo dodany kod GA4 działa?",
+        "answer": "Otworzę stronę w oknie prywatnym i zaakceptuję cookies, a w GA4 otworzę raport Czas rzeczywisty i zobaczę, czy pojawia się wizyta. Dodatkowo sprawdzę w źródle strony, czy identyfikator jest raz, w DevTools Network, czy skrypt się pobiera, lub użyję Tag Assistant.",
+        "keyPoints": [
+          "okno prywatne i zgoda",
+          "raport Czas rzeczywisty",
+          "identyfikator raz w źródle",
+          "Network lub Tag Assistant"
+        ],
+        "explanation": "Wtyczki blokujące reklamy mogą blokować GA4, więc testuj bez nich."
+      },
+      {
+        "id": "t6-skrypty-sledzace-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Dlaczego zbyt wiele skryptów to problem?",
+        "answer": "Każdy skrypt to dodatkowe pobieranie i praca przeglądarki, co spowalnia stronę i pogarsza Core Web Vitals. Skrypty innych firm mogą też zbierać dane, wymagają zgody i mogą się psuć. Warto co jakiś czas przejrzeć, które są potrzebne, i usunąć stare, np. po zakończonej kampanii.",
+        "keyPoints": [
+          "spowolnienie strony",
+          "gorsze Core Web Vitals",
+          "zbieranie danych i zgody",
+          "przegląd i usuwanie starych"
+        ],
+        "explanation": "Szybkość strony rozwiniesz w tygodniu 7."
+      },
+      {
+        "id": "t6-skrypty-sledzace-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Klient wkleił kod czatu do jednego wpisu i dziwi się, że czat nie działa na innych stronach. Co wyjaśnisz i co zrobisz?",
+        "answer": "Wyjaśnię, że kod w treści wpisu działa tylko na tej jednej stronie, a w dodatku edytor może go uszkodzić. Usunę kod z wpisu i dodam go raz w stopce przez wtyczkę nagłówka i stopki lub wtyczkę dostawcy czatu, a potem sprawdzę kilka stron i telefon.",
+        "keyPoints": [
+          "kod w treści działa tylko na tej stronie",
+          "edytor może go uszkodzić",
+          "przeniesienie do stopki przez wtyczkę",
+          "test na kilku stronach"
+        ],
+        "explanation": "Kody czatów i widżetów wkleja się zwykle przed </body>, czyli w stopce."
+      }
+    ],
+    "task": {
+      "task": "Wklej kod śledzenia przez wtyczkę.\n\n1. Zainstaluj wtyczkę **WPCode** na stronie lokalnej.\n2. W **Code Snippets → Header & Footer** (WPCode) wklej w nagłówek przykładowy kod GA4 z lekcji (możesz zostawić identyfikator `G-ABC123`, to tylko ćwiczenie).\n3. Otwórz źródło strony (Ctrl+U) i znajdź `G-ABC123`. Sprawdź, że kod jest w `<head>`.\n4. W DevTools → **Network** wyszukaj `gtag` i zobacz, czy skrypt się pobiera.\n5. Jeśli masz prawdziwą stronę z GA4, sprawdź raport **Czas rzeczywisty**.",
+      "checklist": [
+        "WPCode zainstalowany",
+        "Kod wklejony w nagłówek",
+        "Kod znaleziony w źródle strony",
+        "Skrypt widoczny w Network"
+      ],
+      "hints": [
+        "W WPCode pole nagłówka nazywa się **Header**.",
+        "Ctrl+F w widoku źródła wyszukuje tekst.",
+        "Na stronie lokalnej GA4 nie zbierze danych, ale skrypt i tak się pobierze."
+      ],
+      "solution": "- W źródle strony w sekcji `<head>` jest `<script async src=\"https://www.googletagmanager.com/gtag/js?id=G-ABC123\">` i konfiguracja z `gtag('config', 'G-ABC123')`.\n- Identyfikator występuje w jednym bloku kodu (dwa razy w nim: w adresie i w konfiguracji).\n- W Network widać zapytanie `gtag/js?id=G-ABC123` (status 200)."
+    }
+  },
+  {
+    "id": "t6-hierarchia-hooki",
+    "week": 6,
+    "order": 6,
+    "title": "Template hierarchy i hooki: idea",
+    "lesson": "Ta lekcja nie uczy pisania kodu. Chodzi o to, żeby **kod od AI był dla Ciebie zrozumiały**: skąd WordPress wie, jak wyświetlić stronę, i czym jest „hook”, który pojawia się w prawie każdym fragmencie.\n\n![Jak WordPress buduje stronę](diagram:hooki)\n\n## Hierarchia szablonów\n\nGdy ktoś wchodzi na adres, WordPress sprawdza, **jaki to rodzaj treści**, i szuka w motywie najbardziej pasującego szablonu. Jeśli go nie ma, bierze ogólniejszy. Przykłady (motyw klasyczny):\n\n- pojedynczy wpis: `single-post.php` → `single.php` → `singular.php` → `index.php`,\n- strona: `page-kontakt.php` → `page.php` → `singular.php` → `index.php`,\n- kategoria: `category-porady.php` → `category.php` → `archive.php` → `index.php`,\n- strona główna z wpisami: `home.php` → `index.php`.\n\n`index.php` to ostatnia deska ratunku. Motywy blokowe działają tak samo, tylko szablony są plikami `.html` i edytujesz je w **Edytorze witryny** (Szablony). Dlatego AI może powiedzieć „utwórz szablon single-product” albo „zmień szablon Archiwum”.\n\n## Hooki: punkty zaczepienia\n\nWordPress, budując stronę, mija setki **hooków**: nazwanych punktów, w których mówi „jeśli ktoś chce, teraz może coś dodać lub zmienić”. Wtyczki działają właśnie tak: nie zmieniają plików WordPressa, tylko podpinają się pod hooki.\n\nSą dwa rodzaje:\n\n- **akcja** (`add_action`): „w tym momencie zrób coś dodatkowo”, np. dodaj tekst w stopce,\n- **filtr** (`add_filter`): „weź tę wartość, zmień ją i oddaj”, np. zmień tekst przycisku.\n\n## Jak czytać kod z hookiem\n\n```php\nadd_filter( 'woocommerce_product_single_add_to_cart_text', function () {\n    return 'Kupuję';\n} );\n```\n\n- `add_filter`: chcę **zmienić** wartość,\n- `'woocommerce_product_single_add_to_cart_text'`: **nazwa hooka**, czyli co zmieniam (tekst przycisku na stronie produktu),\n- `function () { ... }`: mój kod,\n- `return 'Kupuję';`: nowa wartość, którą oddaję.\n\n```php\nadd_action( 'wp_footer', function () {\n    echo '<p>Darmowa dostawa od 200 zł</p>';\n} );\n```\n\n- `add_action`: chcę **dodać** coś w danym momencie,\n- `'wp_footer'`: moment tuż przed końcem strony,\n- `echo`: wypisz ten HTML na stronie.\n\n## Po co Ci to\n\n- Rozumiesz, **co i gdzie** zmienia kod od AI.\n- Nazwę hooka możesz wpisać w wyszukiwarkę i sprawdzić, czy istnieje.\n- Wiesz, dlaczego zmiana przez hook przetrwa aktualizację, a edycja pliku nie.\n\n## Czytaj dalej\n\n- [WordPress: hierarchia szablonów (po angielsku)](https://developer.wordpress.org/themes/basics/template-hierarchy/)\n- [WordPress: hooki (po angielsku)](https://developer.wordpress.org/plugins/hooks/)",
+    "questions": [
+      {
+        "id": "t6-hierarchia-hooki-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Czym jest hook w WordPressie?",
+        "answer": "Nazwanym punktem, w którym kod może coś dodać lub zmienić",
+        "distractors": [
+          "Plikiem szablonu motywu",
+          "Rodzajem wtyczki do bezpieczeństwa"
+        ],
+        "explanation": "Hooki pozwalają zmieniać działanie WordPressa bez edycji jego plików."
+      },
+      {
+        "id": "t6-hierarchia-hooki-02",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Który rodzaj hooka służy do zmiany wartości, np. tekstu przycisku?",
+        "answer": "Filtr (`add_filter`)",
+        "distractors": [
+          "Akcja (`add_action`)",
+          "Szablon (`page.php`)"
+        ],
+        "explanation": "Filtr dostaje wartość, zmienia ją i oddaje przez return."
+      },
+      {
+        "id": "t6-hierarchia-hooki-03",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Ostatni, najogólniejszy szablon w hierarchii motywu klasycznego to ___.php.",
+        "answer": "index",
+        "explanation": "Gdy WordPress nie znajdzie bardziej pasującego szablonu, używa index.php."
+      },
+      {
+        "id": "t6-hierarchia-hooki-04",
+        "type": "error",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Kod: `add_filter( 'woocommerce_product_single_add_to_cart_text', function () {`, `echo 'Kupuję';`, `} );`, `(fragment włączony w Code Snippets)`. Co jest błędem?",
+        "answer": "`echo 'Kupuję';`",
+        "distractors": [
+          "`add_filter( 'woocommerce_product_single_add_to_cart_text', function () {`",
+          "`} );`",
+          "`(fragment włączony w Code Snippets)`"
+        ],
+        "explanation": "Filtr musi oddać wartość przez return. echo wypisze tekst w złym miejscu, a przycisk dostanie pusty tekst."
+      },
+      {
+        "id": "t6-hierarchia-hooki-05",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Dla pojedynczego wpisu motyw nie ma `single-post.php` ani `single.php`. Czego użyje WordPress?",
+        "answer": "Kolejnego ogólniejszego szablonu: `singular.php`, a w ostateczności `index.php`",
+        "distractors": [
+          "Pokaże błąd 404",
+          "Użyje szablonu strony głównej"
+        ],
+        "explanation": "Hierarchia przechodzi od najbardziej szczegółowego do najogólniejszego."
+      },
+      {
+        "id": "t6-hierarchia-hooki-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Wyjaśnij własnymi słowami, czym jest hierarchia szablonów.",
+        "answer": "To kolejność, w jakiej WordPress szuka szablonu do wyświetlenia strony. Sprawdza, jaki to rodzaj treści, np. wpis, strona, kategoria, i bierze najbardziej szczegółowy szablon, który ma motyw, np. page-kontakt.php, a jeśli go nie ma, ogólniejszy, aż do index.php.",
+        "keyPoints": [
+          "kolejność szukania szablonu",
+          "zależy od rodzaju treści",
+          "od szczegółowego do ogólnego",
+          "index.php na końcu"
+        ],
+        "explanation": "W motywach blokowych to samo widać w Edytorze witryny → Szablony."
+      },
+      {
+        "id": "t6-hierarchia-hooki-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Czym różni się akcja od filtra?",
+        "answer": "Akcja (add_action) pozwala w danym momencie zrobić coś dodatkowo, np. dodać tekst w stopce, i niczego nie zwraca. Filtr (add_filter) dostaje wartość, np. tekst przycisku albo tytuł, pozwala ją zmienić i musi ją oddać przez return.",
+        "keyPoints": [
+          "akcja: zrób coś w danym momencie",
+          "akcja nic nie zwraca",
+          "filtr: zmienia wartość",
+          "filtr musi oddać przez return"
+        ],
+        "explanation": "Filtr bez return zwykle kasuje wartość."
+      },
+      {
+        "id": "t6-hierarchia-hooki-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Opisz, co robi ten kod: add_action( 'wp_footer', function () { echo '<p>Darmowa dostawa od 200 zł</p>'; } );",
+        "answer": "Podpina się pod akcję wp_footer, czyli moment tuż przed końcem strony, i wypisuje tam akapit z tekstem „Darmowa dostawa od 200 zł”. Tekst pojawi się na każdej stronie witryny na samym dole.",
+        "keyPoints": [
+          "akcja wp_footer",
+          "moment przed końcem strony",
+          "echo wypisuje akapit",
+          "pojawia się na każdej stronie"
+        ],
+        "explanation": "Żeby był tylko w sklepie, kod musi sprawdzać rodzaj strony, np. is_woocommerce()."
+      },
+      {
+        "id": "t6-hierarchia-hooki-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Dlaczego wtyczki i Code Snippets używają hooków zamiast zmieniać pliki WordPressa?",
+        "answer": "Bo pliki WordPressa, motywów i wtyczek są nadpisywane przy aktualizacji, a kod podpięty pod hook jest w osobnym miejscu i działa dalej. Hooki pozwalają też wielu wtyczkom zmieniać to samo bez nadpisywania siebie nawzajem i łatwo wyłączyć zmianę.",
+        "keyPoints": [
+          "pliki nadpisywane przy aktualizacji",
+          "kod hooka w osobnym miejscu",
+          "wiele wtyczek naraz",
+          "łatwe wyłączenie"
+        ],
+        "explanation": "Dlatego hasło „nie edytuj rdzenia” jest jedną z głównych zasad WordPressa."
+      },
+      {
+        "id": "t6-hierarchia-hooki-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "AI dało kod z hookiem `woocommerce_after_add_to_cart_button_text`. Jak sprawdzisz, czy to prawdziwy hook, zanim go użyjesz?",
+        "answer": "Wpiszę nazwę hooka w wyszukiwarkę i w dokumentację WooCommerce, np. w ich spis hooków lub kod na GitHubie. Jeśli nie ma żadnych wyników, prawdopodobnie hook jest zmyślony. Zapytam AI o źródło, a kod przetestuję na stagingu z debugowaniem. Zmyślony hook nie da błędu, po prostu nic nie zrobi.",
+        "keyPoints": [
+          "wyszukanie nazwy hooka",
+          "dokumentacja / kod WooCommerce",
+          "brak wyników = prawdopodobnie zmyślony",
+          "pytanie AI o źródło",
+          "zmyślony hook nie daje błędu, tylko nic nie robi"
+        ],
+        "explanation": "Zmyślona funkcja daje błąd krytyczny, a zmyślony hook cichą porażkę: kod po prostu nie działa."
+      }
+    ],
+    "task": {
+      "task": "Opisz własnymi słowami kod z hookiem od AI.\n\n1. Poproś Claude o fragment, który dodaje tekst „Bezpłatna wycena w 24 h” pod tytułem każdego wpisu na blogu.\n2. Wypisz z kodu: czy to akcja, czy filtr, nazwę hooka i co robi funkcja.\n3. Poproś AI o wyjaśnienie każdej linii i porównaj ze swoim opisem.\n4. Sprawdź nazwę hooka w dokumentacji WordPressa (wyszukaj ją w internecie).\n5. Dodaj kod na stronie lokalnej w Code Snippets i sprawdź wpis oraz stronę (czy na stronie tekstu nie ma).",
+      "checklist": [
+        "Kod od AI pobrany",
+        "Rodzaj hooka i jego nazwa wypisane",
+        "Własny opis porównany z wyjaśnieniem AI",
+        "Hook sprawdzony w dokumentacji",
+        "Kod przetestowany"
+      ],
+      "hints": [
+        "Typowe rozwiązanie używa filtra `the_content`, który zmienia treść wpisu.",
+        "Poproś, żeby tekst pokazywał się tylko we wpisach, nie na stronach (funkcja `is_singular( 'post' )`).",
+        "Wyszukaj: „the_content developer.wordpress.org”."
+      ],
+      "solution": "```php\nadd_filter( 'the_content', function ( $content ) {\n    if ( is_singular( 'post' ) ) {\n        return '<p class=\"wycena\">Bezpłatna wycena w 24 h</p>' . $content;\n    }\n    return $content;\n} );\n```\n\n- Filtr `the_content` dostaje treść wpisu (`$content`).\n- Jeśli to pojedynczy wpis (`is_singular( 'post' )`), dokleja akapit z tekstem przed treścią i oddaje całość.\n- W innym przypadku oddaje treść bez zmian. Dlatego na stronach tekstu nie ma."
+    }
   }
 ]

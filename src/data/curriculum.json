@@ -11018,5 +11018,637 @@
       ],
       "solution": "Klaster „Remont łazienki” (fragment planu):\n\n1. Ile kosztuje remont łazienki w 2026 (informacyjna, poradnik, priorytet wysoki).\n2. Remont łazienki krok po kroku: ile trwa (informacyjna, poradnik, wysoki).\n3. Płytki matowe czy błyszczące (porównawcza, porównanie, średni).\n4. Prysznic walk-in: wady i zalety (porównawcza, średni).\n5. Mała łazienka: 10 pomysłów na aranżację (informacyjna, niski).\n\nAkapit: „Remont łazienki 4 m² w Krakowie kosztuje w 2026 roku zwykle 25–35 tys. zł z materiałami średniej klasy. Cena zależy głównie od zakresu prac hydraulicznych, formatu płytek i wyposażenia.”"
     }
+  },
+  {
+    "id": "t11-typy-tresci",
+    "week": 11,
+    "order": 1,
+    "title": "Własne typy treści",
+    "lesson": "WordPress ma wbudowane **typy treści**: wpisy, strony, a z WooCommerce produkty. Gdy firma ma coś innego, np. **realizacje**, **zespół**, **oferty pracy**, **nieruchomości**, warto zrobić dla tego **własny typ treści** (custom post type, CPT). Bez programowania, klikając w panelu.\n\n![Typ treści z taksonomią, polami i filtrem](diagram:typy-tresci)\n\n## Po co osobny typ\n\n- osobne menu w panelu („Realizacje”), więc klient od razu wie, gdzie dodać nową,\n- własne adresy: `/realizacje/lazienka-na-kazimierzu/`,\n- własne pola (ACF z tygodnia 8) i własny szablon,\n- realizacje nie mieszają się z wpisami blogowymi w archiwach i kanale RSS.\n\n## Taksonomie\n\n**Taksonomia** to sposób grupowania, jak kategorie i tagi. Dla realizacji możesz dodać np. **Rodzaj prac** (łazienka, kuchnia, malowanie) i **Dzielnica**. Każda taksonomia ma swoje archiwum, np. `/rodzaj-prac/lazienka/`.\n\n## Jak zrobić to w panelu\n\n- **ACF** (od wersji 6.1 także w darmowej): **ACF → Typy treści → Dodaj nowy** (nazwa, slug `realizacje`, ikona, obsługiwane funkcje: tytuł, edytor, obrazek wyróżniający) oraz **ACF → Taksonomie**.\n- **Pods**: darmowa wtyczka, która robi typy treści, taksonomie i pola w jednym miejscu.\n\nPotem w ACF tworzysz grupę pól z regułą **Typ treści = Realizacja**.\n\n## Lista z filtrowaniem\n\n- **Edytor blokowy**: blok **Pętla zapytania** (Query Loop) z typem treści Realizacje, siatką i obrazkiem wyróżniającym. Filtr: osobne strony dla rodzajów prac albo lista linków do archiwów taksonomii.\n- **Elementor Pro**: widżet **Loop Grid** z szablonem karty i widżet **Taxonomy Filter**, który filtruje bez przeładowania strony.\n- Wtyczki filtrów (np. Search & Filter) dla bardziej rozbudowanych filtrów.\n\n## SEO\n\n- archiwum typu (`/realizacje/`) i pojedyncze realizacje zwykle **indeksowane**, z szablonem title we wtyczce SEO,\n- archiwa taksonomii: indeksuj, jeśli mają sens dla użytkowników i własny opis,\n- po utworzeniu typu zapisz **Ustawienia → Bezpośrednie odnośniki**, jeśli adresy dają 404.\n\n## Czytaj dalej\n\n- [ACF: rejestrowanie typów treści (po angielsku)](https://www.advancedcustomfields.com/resources/registering-a-custom-post-type/)\n- [WordPress: typy treści (po angielsku)](https://developer.wordpress.org/plugins/post-types/)",
+    "questions": [
+      {
+        "id": "t11-typy-tresci-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Kiedy warto utworzyć własny typ treści?",
+        "answer": "Gdy firma ma treści innego rodzaju niż wpisy i strony, np. realizacje lub oferty pracy",
+        "distractors": [
+          "Zawsze zamiast stron",
+          "Tylko w sklepach WooCommerce"
+        ],
+        "explanation": "Osobny typ porządkuje panel, adresy, pola i szablony."
+      },
+      {
+        "id": "t11-typy-tresci-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Sposób grupowania treści, taki jak kategorie i tagi, to ___.",
+        "answer": "taksonomia",
+        "explanation": "Własne taksonomie, np. Rodzaj prac, mają własne archiwa."
+      },
+      {
+        "id": "t11-typy-tresci-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Po utworzeniu typu treści strony realizacji dają błąd 404. Co zrobić najpierw?",
+        "answer": "Zapisać ponownie Ustawienia → Bezpośrednie odnośniki",
+        "distractors": [
+          "Usunąć typ treści i utworzyć od nowa",
+          "Zmienić motyw"
+        ],
+        "explanation": "Zapis odświeża reguły adresów i zwykle rozwiązuje problem."
+      },
+      {
+        "id": "t11-typy-tresci-04",
+        "type": "error",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Ustawienia typu Realizacje: `slug: realizacje`, `obsługuje: tytuł, edytor, obrazek wyróżniający`, `publiczny: nie, bo to tylko dla panelu`, `taksonomia Rodzaj prac`. Co sprawi, że realizacje nie będą widoczne na stronie?",
+        "answer": "`publiczny: nie, bo to tylko dla panelu`",
+        "distractors": [
+          "`slug: realizacje`",
+          "`obsługuje: tytuł, edytor, obrazek wyróżniający`",
+          "`taksonomia Rodzaj prac`"
+        ],
+        "explanation": "Typ niepubliczny nie ma stron dla odwiedzających. Realizacje mają być publiczne."
+      },
+      {
+        "id": "t11-typy-tresci-05",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Jakim blokiem w edytorze blokowym zbudujesz listę realizacji?",
+        "answer": "Pętla zapytania (Query Loop)",
+        "distractors": [
+          "Blok Galeria",
+          "Blok Kolumny"
+        ],
+        "explanation": "Pętla zapytania wyświetla wpisy wybranego typu treści w siatce lub liście."
+      },
+      {
+        "id": "t11-typy-tresci-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Wyjaśnij, czym są własne typy treści i taksonomie, na przykładzie firmy remontowej.",
+        "answer": "Własny typ treści to nowy rodzaj zawartości obok wpisów i stron, np. Realizacje, z osobnym menu w panelu, własnymi adresami, polami i szablonem. Taksonomia grupuje te treści, np. Rodzaj prac: łazienka, kuchnia, malowanie, i ma własne archiwa. Dzięki temu klient może filtrować realizacje po rodzaju prac.",
+        "keyPoints": [
+          "typ treści: nowy rodzaj zawartości",
+          "osobne menu, adresy, pola, szablon",
+          "taksonomia grupuje",
+          "przykład: Rodzaj prac",
+          "filtrowanie"
+        ],
+        "explanation": "To samo podejście sprawdza się przy zespole, ofertach pracy, nieruchomościach."
+      },
+      {
+        "id": "t11-typy-tresci-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak bez programowania utworzysz typ Realizacje z polami?",
+        "answer": "W ACF w Typy treści dodaję nowy typ: nazwa Realizacje, slug realizacje, ikona, obsługa tytułu, edytora i obrazka wyróżniającego, typ publiczny z archiwum. W Taksonomie dodaję Rodzaj prac przypisany do Realizacji. W Grupach pól tworzę pola, np. metraż, czas, zakres, z regułą Typ treści = Realizacja. Zapisuję bezpośrednie odnośniki i dodaję pierwsze realizacje.",
+        "keyPoints": [
+          "ACF → Typy treści: nazwa, slug, funkcje",
+          "publiczny z archiwum",
+          "taksonomia Rodzaj prac",
+          "grupa pól z regułą typu",
+          "zapis odnośników i pierwsze wpisy"
+        ],
+        "explanation": "Pods robi to samo w jednej wtyczce."
+      },
+      {
+        "id": "t11-typy-tresci-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak zbudujesz stronę z listą realizacji i filtrem w Elementorze Pro?",
+        "answer": "Tworzę szablon karty w Loop Builderze: obrazek wyróżniający, tytuł, rodzaj prac, metraż z pola ACF. Na stronie Realizacje wstawiam widżet Loop Grid z zapytaniem o typ Realizacje i tym szablonem, a nad nim widżet Taxonomy Filter połączony z siatką, z taksonomią Rodzaj prac. Sprawdzam filtrowanie i widok na telefonie.",
+        "keyPoints": [
+          "szablon karty w Loop Builderze",
+          "Loop Grid z typem Realizacje",
+          "Taxonomy Filter połączony z siatką",
+          "test filtrów i telefonu"
+        ],
+        "explanation": "W edytorze blokowym podobny efekt daje Pętla zapytania i linki do archiwów taksonomii."
+      },
+      {
+        "id": "t11-typy-tresci-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak zadbasz o SEO własnego typu treści?",
+        "answer": "Ustawię szablon title i opisu dla realizacji we wtyczce SEO, sprawdzę, czy realizacje i archiwum są w mapie witryny, zdecyduję, czy archiwa taksonomii indeksować (tak, jeśli mają sens i opis), dodam linki z usług do realizacji danego rodzaju i odwrotnie, a każda realizacja dostanie unikalny opis i zdjęcia z alt.",
+        "keyPoints": [
+          "szablony title i opisu",
+          "mapa witryny",
+          "decyzja o archiwach taksonomii",
+          "linki usługi ↔ realizacje",
+          "unikalne opisy i alt"
+        ],
+        "explanation": "Realizacje to świetny materiał na E-E-A-T: prawdziwe doświadczenie."
+      },
+      {
+        "id": "t11-typy-tresci-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Klient ma 60 realizacji dodanych jako zwykłe wpisy w kategorii „Realizacje”, wymieszane z blogiem. Jak przeniesiesz je do własnego typu treści?",
+        "answer": "Zrobię kopię i utworzę typ Realizacje. Przeniosę wpisy wtyczką do zmiany typu treści (np. Post Type Switcher) albo eksportem i importem. Adresy się zmienią, więc ustawię przekierowania 301 ze starych adresów wpisów na nowe. Uzupełnię taksonomię i pola, poprawię linki wewnętrzne, sprawdzę mapę witryny i Search Console po zmianie.",
+        "keyPoints": [
+          "kopia i nowy typ treści",
+          "zmiana typu wtyczką lub import",
+          "301 ze starych adresów",
+          "taksonomia, pola, linki",
+          "kontrola mapy i GSC"
+        ],
+        "explanation": "Całość najlepiej przećwiczyć na stagingu."
+      }
+    ],
+    "task": {
+      "task": "Zrób sekcję „Realizacje” z filtrem.\n\n1. W ACF utwórz typ treści **Realizacje** (slug `realizacje`, publiczny, z archiwum) i taksonomię **Rodzaj prac**.\n2. Dodaj grupę pól: Metraż, Czas realizacji, Zakres prac (reguła: typ treści Realizacja).\n3. Dodaj 4 realizacje w 2 rodzajach prac, z obrazkiem wyróżniającym i polami.\n4. Zbuduj stronę **Realizacje**: Pętla zapytania (lub Loop Grid w Elementorze Pro) z siatką kart.\n5. Dodaj filtr: linki do archiwów rodzajów prac albo Taxonomy Filter. Sprawdź adresy i zapisz Bezpośrednie odnośniki.",
+      "checklist": [
+        "Typ Realizacje i taksonomia",
+        "Grupa pól",
+        "4 realizacje",
+        "Strona z siatką",
+        "Filtr działa"
+      ],
+      "hints": [
+        "Ikona typu treści: np. `dashicons-hammer` lub `dashicons-portfolio`.",
+        "W Pętli zapytania wyłącz „Dziedzicz zapytanie z szablonu” i wybierz typ treści Realizacje.",
+        "Wartości pól w karcie: blok Akapit z powiązaniem z polem lub tag dynamiczny w Elementorze."
+      ],
+      "solution": "- Typ: Realizacje, slug `realizacje`, archiwum `/realizacje/`. Taksonomia: Rodzaj prac (Łazienka, Kuchnia).\n- Realizacje: „Łazienka na Kazimierzu” (6 m², 4 tygodnie), „Kuchnia w bloku na Ruczaju” (9 m², 3 tygodnie) i 2 kolejne.\n- Strona Realizacje: Pętla zapytania, siatka 3 kolumny, obrazek, tytuł, rodzaj prac. Nad nią linki „Wszystkie · Łazienki · Kuchnie” do `/rodzaj-prac/lazienka/` i `/rodzaj-prac/kuchnia/`."
+    }
+  },
+  {
+    "id": "t11-theme-builder",
+    "week": 11,
+    "order": 2,
+    "title": "Theme builder: szablony",
+    "lesson": "**Theme builder** pozwala zaprojektować szablony, które działają na wielu stronach naraz: nagłówek, stopkę, wygląd każdego wpisu na blogu, archiwa kategorii, stronę 404, wyniki wyszukiwania. Zmieniasz raz i zmiana działa wszędzie.\n\n![Rodzaje szablonów](diagram:theme-builder)\n\n## Dwie drogi\n\n**Edytor witryny** (motywy blokowe, za darmo): **Wygląd → Edytor**:\n\n- **Części szablonu** (template parts): Nagłówek, Stopka,\n- **Szablony**: Pojedynczy wpis, Strona, Archiwum, Kategoria, Wyniki wyszukiwania, 404, a dla typów treści np. „Pojedyncza realizacja”,\n- **Wzorce** (patterns): gotowe sekcje do wielokrotnego użycia, także zsynchronizowane (zmiana w jednym miejscu = zmiana wszędzie).\n\n**Elementor Pro**: **Szablony → Theme Builder**:\n\n- szablony Nagłówek, Stopka, Pojedynczy wpis, Archiwum, Strona 404, Loop Item, a z WooCommerce Produkt i Archiwum produktów,\n- **warunki wyświetlania**: np. „cała witryna”, „wpisy z kategorii Porady”, „wszystkie realizacje”.\n\n## Szablon pojedynczego wpisu\n\nTypowy układ:\n\n- okruszki, **tytuł** (H1), data i autor, czas czytania,\n- obrazek wyróżniający,\n- **treść wpisu** (blok Zawartość wpisu lub widżet Post Content),\n- box autora (E-E-A-T, tydzień 8),\n- **CTA** do usługi, np. „Planujesz remont łazienki? Umów wycenę”,\n- **powiązane wpisy** z tej samej kategorii.\n\nDynamiczne elementy (tytuł, data, treść) pobierają dane z każdego wpisu. Ty projektujesz tylko układ.\n\n## Archiwum\n\nLista wpisów kategorii z obrazkiem, tytułem, zajawką i paginacją. Opis kategorii nad listą (tydzień 8). Nagłówek kategorii jako H1.\n\n## Dobre praktyki\n\n- najpierw **projekt** (szkic lub Figma z tygodnia 3), potem szablon,\n- jeden szablon na typ treści, wyjątki warunkami,\n- test na kilku wpisach: krótki, długi, bez obrazka,\n- sprawdzenie na telefonie,\n- w Elementorze: nie mieszaj szablonów motywu (Astra, Kadence) i Theme Buildera dla tego samego elementu bez potrzeby.\n\n## Czytaj dalej\n\n- [WordPress: edytor witryny (po angielsku)](https://wordpress.org/documentation/article/site-editor/)\n- [Elementor: Theme Builder (po angielsku)](https://elementor.com/help/theme-builder/)",
+    "questions": [
+      {
+        "id": "t11-theme-builder-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Do czego służy theme builder?",
+        "answer": "Do projektowania szablonów działających na wielu stronach naraz, np. wpisów i archiwów",
+        "distractors": [
+          "Do pisania treści wpisów",
+          "Do instalowania motywów"
+        ],
+        "explanation": "Zmieniasz szablon raz, a zmiana działa na wszystkich wpisach danego typu."
+      },
+      {
+        "id": "t11-theme-builder-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "W Elementor Pro o tym, gdzie działa szablon, decydują warunki ___.",
+        "answer": "wyświetlania",
+        "explanation": "Np. cała witryna, wybrana kategoria, wszystkie realizacje."
+      },
+      {
+        "id": "t11-theme-builder-03",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Gdzie w motywie blokowym edytujesz szablon pojedynczego wpisu?",
+        "answer": "Wygląd → Edytor → Szablony → Pojedynczy wpis",
+        "distractors": [
+          "Wpisy → Dodaj nowy",
+          "Ustawienia → Czytanie"
+        ],
+        "explanation": "Edytor witryny zawiera szablony i części szablonu."
+      },
+      {
+        "id": "t11-theme-builder-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Szablon pojedynczego wpisu: `tytuł z bloku Tytuł wpisu jako H1`, `treść z bloku Zawartość wpisu`, `tytuł wpisany ręcznie „Jak dobrać płytki” w szablonie`, `powiązane wpisy z tej samej kategorii`. Co jest błędem?",
+        "answer": "`tytuł wpisany ręcznie „Jak dobrać płytki” w szablonie`",
+        "distractors": [
+          "`tytuł z bloku Tytuł wpisu jako H1`",
+          "`treść z bloku Zawartość wpisu`",
+          "`powiązane wpisy z tej samej kategorii`"
+        ],
+        "explanation": "Ręczny tytuł pojawi się na każdym wpisie. W szablonie używa się elementów dynamicznych."
+      },
+      {
+        "id": "t11-theme-builder-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Zmiana w zsynchronizowanym wzorcu (synced pattern) w edytorze blokowym:",
+        "answer": "Zmienia ten wzorzec we wszystkich miejscach, gdzie go użyto",
+        "distractors": [
+          "Działa tylko na jednej stronie",
+          "Tworzy jego kopię"
+        ],
+        "explanation": "To dobre miejsce np. na wspólne CTA lub dane kontaktowe."
+      },
+      {
+        "id": "t11-theme-builder-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Jakie szablony warto zaprojektować dla strony firmowej z blogiem?",
+        "answer": "Nagłówek i stopkę dla całej strony, szablon pojedynczego wpisu z tytułem, datą, autorem, treścią, CTA i powiązanymi wpisami, archiwum kategorii z opisem i listą wpisów, stronę 404 z wyszukiwarką i linkami, wyniki wyszukiwania, a dla własnych typów treści, np. realizacji, szablon pojedynczej realizacji i archiwum.",
+        "keyPoints": [
+          "nagłówek i stopka",
+          "pojedynczy wpis",
+          "archiwum kategorii",
+          "404 i wyniki wyszukiwania",
+          "szablony dla własnych typów"
+        ],
+        "explanation": "Dobra strona 404 zatrzymuje ludzi, którzy trafili na zły adres."
+      },
+      {
+        "id": "t11-theme-builder-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Porównaj edytor witryny i Theme Builder Elementora Pro.",
+        "answer": "Edytor witryny jest wbudowany i darmowy, działa z motywami blokowymi, ma szablony, części szablonu i wzorce, jest lżejszy i szybszy. Theme Builder Elementora wymaga Pro, działa z dowolnym zgodnym motywem, ma rozbudowane warunki wyświetlania, Loop Builder i więcej widżetów, ale strona jest zwykle cięższa.",
+        "keyPoints": [
+          "edytor witryny: darmowy, motywy blokowe",
+          "lżejszy i szybszy",
+          "Elementor: Pro, dowolny motyw",
+          "warunki wyświetlania, Loop Builder",
+          "cięższa strona"
+        ],
+        "explanation": "Wybór często zależy od tego, na czym jest już zbudowana strona."
+      },
+      {
+        "id": "t11-theme-builder-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak zaprojektujesz szablon wpisu na blogu, który pomaga sprzedawać usługi?",
+        "answer": "Na górze okruszki, tytuł H1, data aktualizacji i autor, potem obrazek i treść. W treści lub pod nią box z CTA do powiązanej usługi, np. „Planujesz remont łazienki? Umów bezpłatną wycenę”, box autora z doświadczeniem i powiązane wpisy z tej samej kategorii. Wszystko dynamiczne, sprawdzone na telefonie.",
+        "keyPoints": [
+          "okruszki, H1, data, autor",
+          "treść z obrazkiem",
+          "CTA do usługi",
+          "box autora (E-E-A-T)",
+          "powiązane wpisy, telefon"
+        ],
+        "explanation": "CTA może zależeć od kategorii wpisu dzięki warunkom wyświetlania."
+      },
+      {
+        "id": "t11-theme-builder-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Po co testować szablon na kilku różnych wpisach?",
+        "answer": "Bo wpisy się różnią: krótki i długi tekst, bardzo długi tytuł, brak obrazka wyróżniającego, różne kategorie. Szablon, który wygląda dobrze na jednym idealnym wpisie, może się rozjechać przy innym, np. pusty obszar bez obrazka albo za długi tytuł na telefonie.",
+        "keyPoints": [
+          "różna długość treści i tytułów",
+          "brak obrazka wyróżniającego",
+          "różne kategorie",
+          "rozjechany układ na telefonie"
+        ],
+        "explanation": "Dobrze mieć jeden wpis testowy z najtrudniejszymi przypadkami."
+      },
+      {
+        "id": "t11-theme-builder-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Na stronie z Elementorem Pro nagłówek wyświetla się podwójnie: jeden z motywu Astra, drugi z Theme Buildera. Co zrobisz?",
+        "answer": "Theme Builder powinien zastąpić nagłówek motywu, ale część motywów wymaga ustawienia. Sprawdzę warunki wyświetlania szablonu nagłówka w Elementorze, w ustawieniach motywu wyłączę jego nagłówek (np. w Astrze opcja Disable header dla stron lub globalnie) albo użyję motywu Hello Elementor, który nie ma własnego nagłówka. Potem wyczyszczę cache i sprawdzę kilka stron.",
+        "keyPoints": [
+          "sprawdzenie warunków szablonu",
+          "wyłączenie nagłówka motywu",
+          "lub motyw Hello Elementor",
+          "cache i test na kilku stronach"
+        ],
+        "explanation": "Mieszanie elementów motywu i Theme Buildera to częste źródło takich problemów."
+      }
+    ],
+    "task": {
+      "task": "Zrób szablon wpisu na blogu.\n\n1. Naszkicuj układ wpisu: co jest na górze, co w środku, co na dole (CTA, autor, powiązane).\n2. Otwórz szablon **Pojedynczy wpis** w edytorze witryny (lub utwórz w Theme Builder Elementora Pro).\n3. Ułóż elementy dynamiczne: okruszki, tytuł, data, autor, obrazek, treść, powiązane wpisy (Pętla zapytania z tą samą kategorią).\n4. Dodaj zsynchronizowany wzorzec z CTA do usługi.\n5. Sprawdź szablon na 3 wpisach (krótki, długi, bez obrazka) i na telefonie.",
+      "checklist": [
+        "Szkic układu",
+        "Szablon otwarty lub utworzony",
+        "Elementy dynamiczne ułożone",
+        "Wzorzec CTA",
+        "Test na 3 wpisach i telefonie"
+      ],
+      "hints": [
+        "Wzorzec zsynchronizowany: zaznacz bloki → trzy kropki → **Utwórz wzorzec** → włącz „Zsynchronizowany”.",
+        "Okruszki dodasz blokiem Okruszki (nowsze wersje WordPressa) lub blokiem wtyczki SEO.",
+        "Box autora: blok **Biogram autora** (Author Biography) i **Awatar**."
+      ],
+      "solution": "Układ: okruszki → Tytuł wpisu (H1) → Data · Autor → Obrazek wyróżniający → Zawartość wpisu → wzorzec „CTA remont” (tło w kolorze akcentu, tekst „Planujesz remont? Umów bezpłatną wycenę”, przycisk) → Biogram autora → „Przeczytaj też” (Pętla zapytania, 3 wpisy, ta sama kategoria).\n\nTest: krótki wpis bez obrazka (brak pustego miejsca), długi tytuł na telefonie (zawija się poprawnie)."
+    }
+  },
+  {
+    "id": "t11-wielojezycznosc",
+    "week": 11,
+    "order": 3,
+    "title": "Wielojęzyczność",
+    "lesson": "Strona w kilku językach to coś więcej niż tłumaczenie tekstu. Każda wersja potrzebuje **własnego adresu**, przetłumaczonego menu, a sklep także przetłumaczonych produktów, maili i dokumentów. Google musi wiedzieć, które strony są swoimi odpowiednikami.\n\n![Jak działają wersje językowe](diagram:wielojezycznosc)\n\n## Wtyczki\n\n- [Polylang](https://wordpress.org/plugins/polylang/): darmowa wersja wystarcza dla zwykłej strony. Dla WooCommerce potrzebny jest płatny dodatek Polylang for WooCommerce.\n- **WPML**: płatny, rozbudowany, z modułem WooCommerce, tłumaczeniem ciągów z motywów i wtyczek, integracją z tłumaczeniem maszynowym.\n- **TranslatePress**: tłumaczenie „na żywo” na podglądzie strony.\n\n## Struktura adresów\n\n- **podkatalog**: `firma.pl/en/` (najprostszy i najczęstszy),\n- **subdomena**: `en.firma.pl`,\n- **osobna domena**: `firma.de` (najdroższa, mocny sygnał lokalny).\n\nNie używaj parametrów (`?lang=en`) i automatycznego przełączania języka według przeglądarki bez możliwości wyboru, bo Googlebot zobaczy tylko jedną wersję.\n\n## Co tłumaczyć\n\n- strony i wpisy (każde tłumaczenie to osobna strona połączona z oryginałem),\n- **menu** (osobne menu dla każdego języka),\n- **slugi** (`/en/bathroom-renovation/`, nie `/en/remont-lazienki/`),\n- title i meta description (wtyczka SEO współpracuje z Polylang i WPML),\n- **ciągi** z motywu i wtyczek (przyciski, komunikaty formularzy),\n- w sklepie: produkty, kategorie, atrybuty, maile, regulamin, waluta (wtyczka wielowalutowa).\n\n## hreflang\n\nTag `hreflang` mówi Google: „ta strona ma odpowiednik w innym języku pod tym adresem”:\n\n```html\n<link rel=\"alternate\" hreflang=\"pl\" href=\"https://firma.pl/oferta/remont-lazienki/\" />\n<link rel=\"alternate\" hreflang=\"en\" href=\"https://firma.pl/en/bathroom-renovation/\" />\n<link rel=\"alternate\" hreflang=\"x-default\" href=\"https://firma.pl/oferta/remont-lazienki/\" />\n```\n\nPolylang i WPML dodają go automatycznie, gdy strony są połączone jako tłumaczenia. Zasady: linki w **obie strony**, każda wersja wskazuje też **siebie**, `x-default` dla wersji domyślnej.\n\n## Tłumaczenie maszynowe\n\nAI tłumaczy dobrze, ale zawsze **czyta to człowiek** znający język, szczególnie oferty, ceny i dokumenty prawne. Słowa kluczowe w drugim języku sprawdź osobno: ludzie mogą szukać inaczej, niż wynika z tłumaczenia.\n\n## Czytaj dalej\n\n- [Google: wersje strony w różnych językach](https://developers.google.com/search/docs/specialty/international/localized-versions?hl=pl)\n- [Polylang: dokumentacja (po angielsku)](https://polylang.pro/documentation/)",
+    "questions": [
+      {
+        "id": "t11-wielojezycznosc-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Która struktura adresów dla wersji angielskiej jest najprostsza i najczęstsza?",
+        "answer": "Podkatalog, np. `firma.pl/en/`",
+        "distractors": [
+          "Parametr, np. `firma.pl/?lang=en`",
+          "Ta sama strona z tekstem w dwóch językach"
+        ],
+        "explanation": "Podkatalog jest prosty w utrzymaniu i dobrze rozumiany przez Google."
+      },
+      {
+        "id": "t11-wielojezycznosc-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Tag, który wskazuje Google wersje strony w innych językach, to ___.",
+        "answer": "hreflang",
+        "explanation": "Wtyczki wielojęzyczne dodają go automatycznie przy połączonych tłumaczeniach."
+      },
+      {
+        "id": "t11-wielojezycznosc-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Czy darmowy Polylang wystarczy do tłumaczenia sklepu WooCommerce?",
+        "answer": "Nie, potrzebny jest płatny dodatek Polylang for WooCommerce (lub WPML z modułem)",
+        "distractors": [
+          "Tak, zawsze",
+          "Sklepów nie da się tłumaczyć"
+        ],
+        "explanation": "Produkty, koszyk i maile wymagają dodatkowej integracji."
+      },
+      {
+        "id": "t11-wielojezycznosc-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Wersja angielska: `adresy z prefiksem /en/`, `przetłumaczone menu`, `slugi zostawione po polsku: /en/remont-lazienki/`, `hreflang w obie strony`. Co poprawić?",
+        "answer": "`slugi zostawione po polsku: /en/remont-lazienki/`",
+        "distractors": [
+          "`adresy z prefiksem /en/`",
+          "`przetłumaczone menu`",
+          "`hreflang w obie strony`"
+        ],
+        "explanation": "Slug jest częścią treści widocznej w wynikach. W wersji angielskiej powinien być po angielsku."
+      },
+      {
+        "id": "t11-wielojezycznosc-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Strona automatycznie przełącza język według ustawień przeglądarki, bez możliwości zmiany. Co z tym jest nie tak?",
+        "answer": "Googlebot i część osób zobaczą tylko jedną wersję, a użytkownik nie może wybrać języka",
+        "distractors": [
+          "Nic, to najlepsza praktyka",
+          "Tylko to, że strona ładuje się wolniej"
+        ],
+        "explanation": "Lepiej zaproponować zmianę języka i dać przełącznik niż przekierowywać na siłę."
+      },
+      {
+        "id": "t11-wielojezycznosc-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Co trzeba przetłumaczyć, robiąc stronę firmową w dwóch językach?",
+        "answer": "Strony i wpisy jako połączone tłumaczenia, menu, slugi, title i meta description, ciągi z motywu i wtyczek, np. przyciski i komunikaty formularzy, teksty alt obrazów, a do tego dodać przełącznik języka. W sklepie dodatkowo produkty, kategorie, atrybuty, maile, regulamin i ewentualnie waluty.",
+        "keyPoints": [
+          "strony i wpisy",
+          "menu i slugi",
+          "title i opisy",
+          "ciągi z motywu i wtyczek",
+          "sklep: produkty, maile, regulamin, waluty"
+        ],
+        "explanation": "Najłatwiej przeoczyć ciągi: przyciski, komunikaty i maile."
+      },
+      {
+        "id": "t11-wielojezycznosc-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Wyjaśnij, jak działa hreflang i jakie są zasady jego poprawnego użycia.",
+        "answer": "hreflang informuje Google, że strona ma odpowiedniki w innych językach pod wskazanymi adresami, żeby pokazywać ludziom właściwą wersję. Zasady: linki w obie strony (PL wskazuje EN i EN wskazuje PL), każda wersja wskazuje też siebie, x-default dla wersji domyślnej, poprawne kody języków. Wtyczki dodają to same przy połączonych tłumaczeniach.",
+        "keyPoints": [
+          "informacja o odpowiednikach językowych",
+          "właściwa wersja w wynikach",
+          "linki w obie strony",
+          "wskazanie siebie i x-default",
+          "wtyczki robią to automatycznie"
+        ],
+        "explanation": "Błędy hreflang widać w narzędziach do audytu, np. Screaming Frog."
+      },
+      {
+        "id": "t11-wielojezycznosc-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Polylang czy WPML? Jak zdecydujesz?",
+        "answer": "Dla zwykłej strony firmowej z kilkoma językami wybiorę darmowy Polylang. Dla sklepu WooCommerce porównam płatne Polylang for WooCommerce i WPML z modułem WooCommerce. WPML jest rozbudowany, dobrze tłumaczy ciągi z motywów i wtyczek oraz integruje się z tłumaczeniem maszynowym, ale jest płatny i cięższy. Sprawdzę zgodność z motywem, builderem i wtyczkami klienta.",
+        "keyPoints": [
+          "zwykła strona: darmowy Polylang",
+          "sklep: płatne dodatki",
+          "WPML: rozbudowany, ciągi, tłumaczenie maszynowe",
+          "koszt i waga",
+          "zgodność z motywem i wtyczkami"
+        ],
+        "explanation": "Zmiana wtyczki wielojęzycznej później jest trudna, więc wybór warto przemyśleć."
+      },
+      {
+        "id": "t11-wielojezycznosc-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak sprawdzisz słowa kluczowe dla wersji angielskiej, zamiast tylko przetłumaczyć polskie?",
+        "answer": "Sprawdzę w narzędziu do słów kluczowych dla kraju docelowego, np. Wielkiej Brytanii, jak ludzie naprawdę szukają usługi, np. „bathroom renovation” vs „bathroom refurbishment”, i jakie frazy mają ruch. Zobaczę wyniki Google dla tego kraju i język konkurencji. Dopiero wtedy ustalę frazy, title i slugi.",
+        "keyPoints": [
+          "narzędzie dla kraju docelowego",
+          "różne warianty słów",
+          "ruch fraz",
+          "wyniki Google i konkurencja w tym kraju",
+          "frazy, title, slugi"
+        ],
+        "explanation": "Ten sam język w różnych krajach może mieć różne słownictwo (UK vs US)."
+      },
+      {
+        "id": "t11-wielojezycznosc-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Klient przetłumaczył stronę wtyczką na żywo, ale wersja niemiecka nie pojawia się w Google. Co sprawdzisz?",
+        "answer": "Czy wersja niemiecka ma własne adresy (np. /de/), a nie tylko tłumaczenie w przeglądarce lub parametr, czy nie ma noindex, czy są tagi hreflang w obie strony, czy niemieckie adresy są w mapie witryny, czy jest przełącznik z linkami do odpowiedników, czy strona nie przekierowuje automatycznie według języka i czy w Search Console widać niemieckie adresy w raporcie Strony.",
+        "keyPoints": [
+          "własne adresy wersji językowej",
+          "brak noindex",
+          "hreflang w obie strony",
+          "mapa witryny i przełącznik z linkami",
+          "brak automatycznego przekierowania, raport w GSC"
+        ],
+        "explanation": "Tłumaczenie tylko po stronie przeglądarki (JavaScript) Google może w ogóle nie widzieć."
+      }
+    ],
+    "task": {
+      "task": "Zrób stronę w 2 językach.\n\n1. Zainstaluj Polylang na stronie lokalnej, dodaj języki: polski (domyślny) i angielski, struktura z podkatalogiem `/en/`.\n2. Przetłumacz stronę główną, jedną usługę i kontakt (możesz z AI, ale przeczytaj tłumaczenie).\n3. Ustaw angielskie slugi i title.\n4. Utwórz menu dla angielskiej wersji i dodaj przełącznik języka.\n5. Sprawdź w źródle strony tagi `hreflang` na wersji polskiej i angielskiej.",
+      "checklist": [
+        "Polylang z 2 językami",
+        "3 strony przetłumaczone",
+        "Angielskie slugi i title",
+        "Menu i przełącznik języka",
+        "hreflang sprawdzony"
+      ],
+      "hints": [
+        "Polylang: **Języki → Ustawienia → Modyfikacja adresu URL**: „Język jest ustawiany na podstawie nazwy katalogu w bezpośrednich linkach”.",
+        "Tłumaczenie tworzysz ikoną plusa przy stronie na liście stron, w kolumnie flagi.",
+        "Przełącznik: w menu pozycja **Przełącznik języka** albo blok przełącznika."
+      ],
+      "solution": "- Języki: Polski (domyślny), English. Adresy: `/oferta/remont-lazienki/` i `/en/bathroom-renovation/`.\n- Title EN: „Bathroom renovation in Kraków | Remonty Kowalski”.\n- Menu EN: Home, Services, Contact + przełącznik PL | EN.\n- Źródło wersji PL: `hreflang=\"pl\"` (siebie), `hreflang=\"en\"` (odpowiednik), `hreflang=\"x-default\"`. Wersja EN ma te same trzy tagi."
+    }
+  },
+  {
+    "id": "t11-przenosiny",
+    "week": 11,
+    "order": 4,
+    "title": "Przenosiny strony na inny serwer",
+    "lesson": "Przeniesienie strony na nowy hosting, z serwera testowego na produkcję albo na nową domenę to rutynowa praca. Wtyczki do migracji robią większość roboty, ale kolejność kroków i kontrola po przeniesieniu decydują, czy klient niczego nie zauważy.\n\n![Etapy przenosin](diagram:przenosiny)\n\n## Wtyczki\n\n- [Duplicator](https://wordpress.org/plugins/duplicator/): tworzy **paczkę** (archiwum z plikami i bazą) i plik **installer.php**. Na nowym serwerze wgrywasz oba pliki, otwierasz installer w przeglądarce i podajesz dane nowej bazy.\n- [All-in-One WP Migration](https://wordpress.org/plugins/all-in-one-wp-migration/): eksport do jednego pliku, import na świeżej instalacji WordPressa na nowym serwerze. Darmowa wersja ma limit wielkości importu.\n- **Narzędzia hostingu**: wiele firm hostingowych ma własny migrator lub przenosi stronę za darmo.\n\n## Kolejność przenosin na nowy hosting\n\n1. **Kopia** obecnej strony (tydzień 5).\n2. **Obniżenie TTL** rekordów DNS z wyprzedzeniem (np. na 300 sekund), żeby zmiana rozeszła się szybciej (tydzień 1).\n3. **Eksport** wtyczką.\n4. **Import** na nowym serwerze: baza danych, użytkownik, hasło.\n5. **Test przed zmianą DNS**: tymczasowy adres od hostingu albo wpis w pliku **hosts** na swoim komputerze, który kieruje domenę na nowy serwer tylko dla Ciebie.\n6. **Wstrzymanie zmian** na starej stronie (w sklepie: tryb konserwacji na czas przenosin, żeby nie zgubić zamówień).\n7. **Zmiana rekordu A** (i AAAA) domeny na adres IP nowego serwera.\n8. **Kontrola**: SSL na nowym serwerze, poczta (rekordy MX, jeśli poczta też się przenosi), formularze, płatności, zadania cron, cache, Cloudflare.\n9. Stary hosting **zostaw na kilka dni**, zanim go wyłączysz.\n\n## Zmiana domeny przy okazji\n\nWtyczki do migracji same **podmieniają adresy** w bazie (stara domena → nowa), także w serializowanych danych, czego nie zrobi zwykłe „znajdź i zamień” w pliku SQL. Do tego przekierowania 301 i Search Console (lekcja o migracji z tygodnia 10).\n\n## Typowe problemy\n\n- **za duża paczka**: wyklucz kopie zapasowe i cache z eksportu,\n- **mieszana zawartość** (http na https): podmiana adresów, wtyczka do naprawy linków,\n- **błąd bazy danych**: dane w `wp-config.php` (tydzień 5),\n- **404 na podstronach**: zapisz Bezpośrednie odnośniki, sprawdź `.htaccess`.\n\n## Czytaj dalej\n\n- [WordPress: przenoszenie WordPressa (po angielsku)](https://developer.wordpress.org/advanced-administration/upgrade/migrating/)\n- [WPBeginner: przenoszenie na nowy hosting (po angielsku)](https://www.wpbeginner.com/wp-tutorials/how-to-move-wordpress-to-a-new-host-or-server-with-no-downtime/)",
+    "questions": [
+      {
+        "id": "t11-przenosiny-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Co tworzy Duplicator do przeniesienia strony?",
+        "answer": "Paczkę z plikami i bazą oraz plik installer.php",
+        "distractors": [
+          "Tylko kopię bazy danych",
+          "Nowy motyw"
+        ],
+        "explanation": "Na nowym serwerze uruchamiasz installer.php i podajesz dane nowej bazy."
+      },
+      {
+        "id": "t11-przenosiny-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Żeby zmiana DNS rozeszła się szybciej, z wyprzedzeniem obniża się wartość ___ rekordów.",
+        "answer": "TTL",
+        "explanation": "TTL mówi, jak długo serwery pamiętają stary adres."
+      },
+      {
+        "id": "t11-przenosiny-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Jak przetestować stronę na nowym serwerze przed zmianą DNS?",
+        "answer": "Przez tymczasowy adres od hostingu lub wpis w pliku hosts na swoim komputerze",
+        "distractors": [
+          "Nie da się, trzeba najpierw zmienić DNS",
+          "Przez wyłączenie starej strony"
+        ],
+        "explanation": "Plik hosts kieruje domenę na nowy serwer tylko na Twoim komputerze."
+      },
+      {
+        "id": "t11-przenosiny-04",
+        "type": "error",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Plan przenosin sklepu: `kopia i obniżenie TTL dzień wcześniej`, `import i test przez plik hosts`, `zmiana DNS bez wstrzymania zamówień na starym serwerze`, `stary hosting zostaje na tydzień`. Co grozi utratą danych?",
+        "answer": "`zmiana DNS bez wstrzymania zamówień na starym serwerze`",
+        "distractors": [
+          "`kopia i obniżenie TTL dzień wcześniej`",
+          "`import i test przez plik hosts`",
+          "`stary hosting zostaje na tydzień`"
+        ],
+        "explanation": "Zamówienia złożone na starym serwerze po eksporcie nie trafią na nowy. Trzeba je wstrzymać na czas przenosin."
+      },
+      {
+        "id": "t11-przenosiny-05",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Dlaczego przy zmianie domeny nie wystarczy „znajdź i zamień” w pliku SQL?",
+        "answer": "Bo w bazie są dane serializowane, które się uszkodzą przy zmianie długości tekstu",
+        "distractors": [
+          "Bo pliki SQL są zaszyfrowane",
+          "Bo domena nie jest zapisana w bazie"
+        ],
+        "explanation": "Wtyczki do migracji i WP-CLI podmieniają adresy z obsługą serializacji."
+      },
+      {
+        "id": "t11-przenosiny-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Opisz kolejność przenosin strony na nowy hosting.",
+        "answer": "Kopia strony, obniżenie TTL DNS z wyprzedzeniem, eksport wtyczką (Duplicator lub All-in-One), import na nowym serwerze z danymi nowej bazy, test przez tymczasowy adres lub plik hosts, wstrzymanie zmian na starej stronie (w sklepie tryb konserwacji), zmiana rekordu A na nowy IP, kontrola SSL, poczty, formularzy i płatności, a stary hosting zostaje na kilka dni.",
+        "keyPoints": [
+          "kopia i obniżenie TTL",
+          "eksport i import",
+          "test przed zmianą DNS",
+          "wstrzymanie zmian",
+          "zmiana rekordu A i kontrola, stary hosting na kilka dni"
+        ],
+        "explanation": "Najlepiej przenosić w godzinach małego ruchu."
+      },
+      {
+        "id": "t11-przenosiny-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Co sprawdzisz po zmianie DNS na nowy serwer?",
+        "answer": "Czy domena wskazuje nowy serwer, czy działa certyfikat SSL i HTTPS, czy działają strony, panel, formularze i maile z WordPressa (SMTP), czy poczta firmowa działa (rekordy MX), czy w sklepie działają płatności i powiadomienia bramki, czy zadania cron się wykonują i czy cache oraz Cloudflare nie pokazują starej wersji.",
+        "keyPoints": [
+          "DNS wskazuje nowy serwer",
+          "SSL i HTTPS",
+          "strony, panel, formularze, SMTP",
+          "poczta (MX)",
+          "płatności, cron, cache i Cloudflare"
+        ],
+        "explanation": "Sprawdź stronę z telefonu w sieci komórkowej, bo ma inny DNS niż Twój komputer."
+      },
+      {
+        "id": "t11-przenosiny-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Do czego służy plik hosts przy przenosinach?",
+        "answer": "To plik na komputerze, w którym można przypisać domenie konkretny adres IP. Wpisuję tam domenę z IP nowego serwera i wtedy tylko mój komputer otwiera stronę z nowego serwera, a wszyscy inni dalej widzą starą. Dzięki temu testuję nową wersję pod prawdziwą domeną przed zmianą DNS. Po teście usuwam wpis.",
+        "keyPoints": [
+          "plik na komputerze: domena → IP",
+          "tylko mój komputer widzi nowy serwer",
+          "test pod prawdziwą domeną",
+          "usunięcie wpisu po teście"
+        ],
+        "explanation": "Windows: C:\\Windows\\System32\\drivers\\etc\\hosts, macOS: /etc/hosts."
+      },
+      {
+        "id": "t11-przenosiny-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Paczka All-in-One WP Migration ma 3 GB, a darmowa wersja nie pozwala jej zaimportować. Co zrobisz?",
+        "answer": "Sprawdzę, co zajmuje miejsce: często kopie zapasowe innych wtyczek, cache, logi lub nieużywane media. Wykluczę je z eksportu w opcjach zaawansowanych lub usunę przed eksportem. Jeśli nadal za duża, użyję Duplicatora, migratora hostingu, wersji płatnej albo przeniosę pliki przez FTP lub SSH i bazę przez phpMyAdmin, z podmianą adresów w WP-CLI.",
+        "keyPoints": [
+          "sprawdzenie, co zajmuje miejsce",
+          "wykluczenie kopii, cache, logów",
+          "usunięcie nieużywanych mediów",
+          "inne narzędzie lub wersja płatna",
+          "ręcznie: FTP/SSH + baza + WP-CLI"
+        ],
+        "explanation": "Kopie zapasowe w folderze strony to częsty powód ogromnych paczek."
+      },
+      {
+        "id": "t11-przenosiny-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Po przeniesieniu strony klient zgłasza, że nie dostaje maili z formularza, choć strona działa. Co sprawdzisz?",
+        "answer": "Czy WordPress wysyła maile przez SMTP, bo nowy serwer może blokować funkcję mail() lub port. Sprawdzę ustawienia wtyczki SMTP i dane logowania, rekordy SPF i DKIM domeny, które mogą wskazywać stary serwer, log wysyłki we wtyczce i folder spam. Jeśli poczta firmowa też była na starym hostingu, sprawdzę rekordy MX.",
+        "keyPoints": [
+          "SMTP zamiast mail()",
+          "ustawienia i dane wtyczki SMTP",
+          "SPF i DKIM po zmianie serwera",
+          "log wysyłki i spam",
+          "rekordy MX poczty firmowej"
+        ],
+        "explanation": "Poczta to najczęściej pomijany element przenosin."
+      }
+    ],
+    "task": {
+      "task": "Przenieś stronę na inny serwer.\n\n1. Zrób kopię strony testowej.\n2. Wyeksportuj ją wtyczką All-in-One WP Migration lub Duplicator (wyklucz kopie zapasowe i cache).\n3. Utwórz w Local nową, pustą stronę (to Twój „nowy serwer”) i zaimportuj paczkę. Jeśli masz hosting testowy, przenieś stronę tam.\n4. Sprawdź na nowej kopii: logowanie, strony, obrazy, formularz, Bezpośrednie odnośniki.\n5. Zapisz listę kontrolną przenosin dla prawdziwej strony klienta (z TTL, plikiem hosts, DNS i kontrolą po zmianie).",
+      "checklist": [
+        "Kopia",
+        "Eksport bez zbędnych plików",
+        "Import na nowej stronie",
+        "Kontrola nowej kopii",
+        "Lista kontrolna przenosin"
+      ],
+      "hints": [
+        "All-in-One: **Eksport → Eksportuj do → Plik**, w opcjach zaawansowanych wyklucz kopie zapasowe i cache.",
+        "Po imporcie zaloguj się danymi ze starej strony. Import nadpisuje użytkowników.",
+        "Lista kontrolna: co zrobić dzień wcześniej, w dniu przenosin i przez kilka dni po."
+      ],
+      "solution": "Lista kontrolna (fragment):\n\n- Dzień wcześniej: kopia, TTL rekordu A na 300 s, sprawdzenie wersji PHP na nowym serwerze.\n- W dniu przenosin: tryb konserwacji (sklep), eksport, import, test przez plik hosts (`203.0.113.10 firma.pl`), zmiana rekordu A, wyłączenie trybu konserwacji.\n- Po zmianie: SSL, strony, panel, formularz i SMTP, poczta, płatności, cron, cache i Cloudflare, Search Console (błędy).\n- Po tygodniu: wyłączenie starego hostingu, przywrócenie TTL."
+    }
   }
 ]

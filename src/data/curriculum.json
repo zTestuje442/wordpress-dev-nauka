@@ -9125,5 +9125,950 @@
       ],
       "solution": "- Staging: WP Staging → `nauka.local/staging/`, logowanie tylko dla administratora, noindex.\n- Zaktualizowane: Yoast SEO, Code Snippets, motyw Twenty Twenty-Five.\n- Testy: strona główna i podstrony OK, formularz wysłany, telefon OK, zamówienie testowe #105 z mailem, `debug.log` bez nowych błędów.\n- Żywa strona: kopia UpdraftPlus, te same aktualizacje, ponowne testy OK."
     }
+  },
+  {
+    "id": "t9-uruchomienie-sklepu",
+    "week": 9,
+    "order": 1,
+    "title": "Uruchomienie sklepu WooCommerce",
+    "lesson": "**WooCommerce** to darmowa wtyczka, która zamienia WordPress w sklep internetowy. Działa na nim duża część sklepów na świecie, a w Polsce ma pełne wsparcie lokalnych płatności, kurierów i fakturowania.\n\n![Kroki uruchomienia sklepu](diagram:sklep-start)\n\n## Zanim zaczniesz\n\n- **Hosting** z dobrą wydajnością (sklep obciąża serwer bardziej niż wizytówka), SSL, kopie zapasowe.\n- **Działalność gospodarcza** (lub działalność nierejestrowana do określonego limitu przychodu) i regulamin. O prawie w lekcji 4.\n- **Motyw zgodny z WooCommerce**: większość popularnych (Astra, Kadence, Blocksy, motywy blokowe) jest.\n\n## Instalacja i kreator\n\n**Wtyczki → Dodaj nową → WooCommerce**. Kreator zapyta o:\n\n- adres sklepu (z niego WooCommerce liczy podatki i wysyłkę),\n- branżę i rodzaj produktów (fizyczne, cyfrowe),\n- propozycje dodatkowych wtyczek: **odznacz** to, czego nie potrzebujesz.\n\n## Ustawienia ogólne\n\n**WooCommerce → Ustawienia → Ogólne**:\n\n- **lokalizacja sprzedaży**: np. tylko Polska albo wybrane kraje,\n- **waluta**: złoty polski (zł), separator dziesiętny przecinek, tysięcy spacja,\n- **włącz podatki**: zaznacz, jeśli sklep jest płatnikiem VAT.\n\n## Podatki VAT\n\nZakładka **Podatki**:\n\n- ceny wpisujesz **brutto** (z VAT), tak jak klient je widzi, to wygodniejsze w Polsce,\n- **standardowa stawka**: Polska, 23%,\n- **dodatkowe klasy**: 8% (np. niektóre usługi), 5% (np. książki, część żywności), 0%. Każdy produkt ma swoją klasę podatkową.\n\nSzczegóły stawek i sprzedaży za granicę (OSS) ustal z księgową. Sklep nie jest płatnikiem VAT? Nie włączaj podatków.\n\n## Strony sklepu\n\nWooCommerce tworzy strony: **Sklep**, **Koszyk**, **Zamówienie** (kasa), **Moje konto**. Sprawdzasz je w **Ustawienia → Zaawansowane** (Konfiguracja stron). Nowe sklepy mają koszyk i kasę zbudowane z **bloków**. Nie usuwaj tych stron, a jeśli trzeba, przypisz na nowo.\n\n## Tryb „wkrótce”\n\nDo czasu startu sklep może być w trybie **Wkrótce dostępny** (Coming soon) w ustawieniach Widoczność witryny: Ty widzisz sklep po zalogowaniu, a klienci stronę zapowiedzi.\n\n## Czytaj dalej\n\n- [WooCommerce: pierwsze kroki (po angielsku)](https://woocommerce.com/document/woocommerce-setup-wizard/)\n- [WPBeginner: jak założyć sklep (po angielsku)](https://www.wpbeginner.com/wp-tutorials/how-to-start-an-online-store/)",
+    "questions": [
+      {
+        "id": "t9-uruchomienie-sklepu-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Czym jest WooCommerce?",
+        "answer": "Darmową wtyczką, która zamienia WordPress w sklep",
+        "distractors": [
+          "Płatnym hostingiem dla sklepów",
+          "Motywem graficznym WordPressa"
+        ],
+        "explanation": "WooCommerce dodaje produkty, koszyk, kasę, zamówienia i płatności."
+      },
+      {
+        "id": "t9-uruchomienie-sklepu-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Podstawowa stawka VAT w Polsce to ___%.",
+        "answer": "23",
+        "explanation": "Inne stawki (8%, 5%, 0%) ustawia się jako dodatkowe klasy podatkowe."
+      },
+      {
+        "id": "t9-uruchomienie-sklepu-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Jak najwygodniej wpisywać ceny w polskim sklepie z VAT?",
+        "answer": "Brutto, czyli tak, jak widzi je klient",
+        "distractors": [
+          "Netto, a klient sam doliczy VAT",
+          "Raz brutto, raz netto, zależnie od produktu"
+        ],
+        "explanation": "Ceny brutto upraszczają pracę i pokazują klientom pełną kwotę."
+      },
+      {
+        "id": "t9-uruchomienie-sklepu-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Konfiguracja sklepu: `waluta: złoty polski`, `separator dziesiętny: przecinek`, `strona Koszyk usunięta, bo wygląda brzydko`, `standardowa stawka VAT 23%`. Co zepsuje sklep?",
+        "answer": "`strona Koszyk usunięta, bo wygląda brzydko`",
+        "distractors": [
+          "`waluta: złoty polski`",
+          "`separator dziesiętny: przecinek`",
+          "`standardowa stawka VAT 23%`"
+        ],
+        "explanation": "Strony sklepu są potrzebne do działania zakupów. Wygląd zmienia się w edytorze, nie przez usunięcie."
+      },
+      {
+        "id": "t9-uruchomienie-sklepu-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Sklep nie jest płatnikiem VAT. Co z ustawieniem podatków?",
+        "answer": "Nie włączać podatków w WooCommerce",
+        "distractors": [
+          "Włączyć i ustawić 23% dla bezpieczeństwa",
+          "Włączyć i ustawić 0% dla wszystkich produktów"
+        ],
+        "explanation": "Bez VAT podatki zostają wyłączone, a ceny są cenami końcowymi. Szczegóły ustala się z księgową."
+      },
+      {
+        "id": "t9-uruchomienie-sklepu-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Opisz kroki uruchomienia sklepu WooCommerce od instalacji do zamówienia testowego.",
+        "answer": "Instaluję WooCommerce i przechodzę kreator: adres sklepu, branża, rodzaj produktów, bez zbędnych dodatkowych wtyczek. W ustawieniach ogólnych ustawiam kraje sprzedaży, walutę PLN, separatory i włączam podatki, jeśli sklep jest płatnikiem VAT. Dodaję stawki VAT. Sprawdzam strony Sklep, Koszyk, Zamówienie i Moje konto. Na koniec składam zamówienie testowe.",
+        "keyPoints": [
+          "instalacja i kreator",
+          "kraje, waluta, separatory",
+          "podatki i stawki VAT",
+          "strony sklepu",
+          "zamówienie testowe"
+        ],
+        "explanation": "Do startu sklep może być w trybie „Wkrótce dostępny”."
+      },
+      {
+        "id": "t9-uruchomienie-sklepu-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak ustawisz stawki VAT dla sklepu z płytkami (23%) i książkami o remontach (5%)?",
+        "answer": "Włączam podatki, ustawiam wpisywanie cen brutto, w standardowej stawce dodaję Polska 23%. Tworzę dodatkową klasę, np. Obniżona 5%, z wierszem Polska 5%. Płytkom zostawiam klasę standardową, a książkom w edycji produktu przypisuję klasę 5%.",
+        "keyPoints": [
+          "włączenie podatków, ceny brutto",
+          "stawka standardowa 23%",
+          "klasa 5% z wierszem dla Polski",
+          "przypisanie klasy w produkcie"
+        ],
+        "explanation": "Stawkę dla konkretnego produktu warto potwierdzić z księgową."
+      },
+      {
+        "id": "t9-uruchomienie-sklepu-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jakie strony tworzy WooCommerce i co zrobić, gdy któraś zniknie?",
+        "answer": "Sklep (lista produktów), Koszyk, Zamówienie (kasa) i Moje konto. Jeśli któraś zniknie, tworzę nową stronę z odpowiednim blokiem lub shortcodem i przypisuję ją w WooCommerce → Ustawienia → Zaawansowane, w konfiguracji stron. Potem testuję cały zakup.",
+        "keyPoints": [
+          "Sklep, Koszyk, Zamówienie, Moje konto",
+          "nowa strona z blokiem/shortcodem",
+          "przypisanie w Ustawienia → Zaawansowane",
+          "test zakupu"
+        ],
+        "explanation": "W WooCommerce → Status widać, czy strony są poprawnie przypisane."
+      },
+      {
+        "id": "t9-uruchomienie-sklepu-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Co sprawdzisz przed uruchomieniem sklepu dla klientów?",
+        "answer": "Dane firmy i adres, walutę i podatki, produkty i ceny, płatności i wysyłkę, maile zamówień, regulamin, politykę prywatności i zwroty, SSL i kopie zapasowe, wygląd na telefonie i pełne zamówienie testowe z płatnością, mailem i obsługą w panelu. Na końcu wyłączam tryb „Wkrótce dostępny”.",
+        "keyPoints": [
+          "dane, waluta, podatki",
+          "produkty i ceny",
+          "płatności, wysyłka, maile",
+          "regulamin i dokumenty",
+          "SSL, kopie, telefon, zamówienie testowe"
+        ],
+        "explanation": "Lista kontrolna przed startem oszczędza nerwy pierwszego dnia."
+      },
+      {
+        "id": "t9-uruchomienie-sklepu-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Klient chce sprzedawać też do Niemiec i Czech. Na co zwrócisz uwagę w ustawieniach sklepu?",
+        "answer": "Na lokalizacje sprzedaży i wysyłki (dodać te kraje), strefy wysyłki z cenami za granicę, waluty (czy ceny w PLN, czy potrzebna wtyczka wielowalutowa), VAT przy sprzedaży konsumentom w UE: procedura OSS i stawki kraju klienta, co trzeba ustalić z księgową, regulamin i maile w językach klientów oraz metody płatności popularne w tych krajach.",
+        "keyPoints": [
+          "kraje sprzedaży i wysyłki",
+          "strefy wysyłki zagranicznej",
+          "waluty",
+          "VAT OSS i stawki kraju klienta (księgowa)",
+          "języki i lokalne płatności"
+        ],
+        "explanation": "Wielojęzyczność sklepu poznasz w tygodniu 11."
+      }
+    ],
+    "task": {
+      "task": "Postaw sklep testowy.\n\n1. Na stronie lokalnej zainstaluj WooCommerce i przejdź kreator (odznacz zbędne wtyczki).\n2. Ustaw: sprzedaż do Polski, walutę zł, przecinek jako separator dziesiętny, spację jako separator tysięcy.\n3. Włącz podatki, ceny brutto, dodaj stawkę 23% i klasę 8%.\n4. Sprawdź strony sklepu w **Ustawienia → Zaawansowane**.\n5. Włącz tryb **Wkrótce dostępny** i sprawdź w oknie prywatnym, co widzi klient.",
+      "checklist": [
+        "WooCommerce zainstalowany",
+        "Waluta i separatory ustawione",
+        "Podatki ze stawkami 23% i 8%",
+        "Strony sklepu przypisane",
+        "Tryb Wkrótce dostępny sprawdzony"
+      ],
+      "hints": [
+        "Stawki VAT: **Ustawienia → Podatki → Stawki standardowe → Wstaw wiersz**: kraj PL, stawka 23, nazwa VAT.",
+        "Nowa klasa podatkowa: **Ustawienia → Podatki → Opcje podatkowe → Dodatkowe klasy podatkowe**.",
+        "Tryb Wkrótce dostępny: **WooCommerce → Ustawienia → Widoczność witryny**."
+      ],
+      "solution": "- Ogólne: Polska, zł, separator tysięcy „ ” (spacja), dziesiętny „,”, 2 miejsca po przecinku.\n- Podatki: ceny wpisane z podatkiem: Tak; standardowa: PL, 23%, „VAT”; klasa „Obniżona 8%”: PL, 8%.\n- Strony: Sklep, Koszyk, Zamówienie, Moje konto przypisane.\n- W oknie prywatnym widać stronę „Wkrótce dostępny”."
+    }
+  },
+  {
+    "id": "t9-produkty",
+    "week": 9,
+    "order": 2,
+    "title": "Produkty w WooCommerce",
+    "lesson": "Produkty to serce sklepu. Dobrze dodane produkty łatwo znaleźć, filtrować i aktualizować. Źle dodane (każdy kolor jako osobny produkt, ceny w opisie) to chaos przy każdej zmianie.\n\n![Rodzaje produktów](diagram:produkty-woo)\n\n## Produkt prosty\n\nJedna wersja, jedna cena. **Produkty → Dodaj nowy**:\n\n- **nazwa** i **opisy**: długi i krótki (lekcja z tygodnia 8),\n- **cena regularna** i ewentualnie **cena promocyjna** (z datami),\n- **SKU**: unikalny kod produktu, przydaje się w integracjach (tydzień 12),\n- **zapasy**: zarządzanie stanem, liczba sztuk, zamówienia po wyczerpaniu,\n- **wysyłka**: waga i wymiary (do liczenia kosztów wysyłki),\n- **zdjęcie produktu** i **galeria**, **kategoria**, **tagi**.\n\n## Produkt zmienny (z wariantami)\n\nJeden produkt w kilku wersjach, np. płytka w 3 kolorach i 2 rozmiarach:\n\n1. Typ produktu: **Produkt zmienny**.\n2. **Atrybuty**: dodaj Kolor (Grafit, Beż, Biały) i Rozmiar (60×60, 60×120), zaznacz „Używane do wariantów”.\n3. **Warianty**: wygeneruj z atrybutów. Każdy wariant ma **własną cenę, SKU, stan i zdjęcie**.\n\nKlient wybiera opcje z listy, a cena i zdjęcie zmieniają się automatycznie.\n\n## Atrybuty globalne\n\nAtrybuty dodane w **Produkty → Atrybuty** są wspólne dla wszystkich produktów. Dzięki temu działają **filtry** w sklepie (np. „pokaż płytki w kolorze grafit”). Atrybuty wpisane tylko w jednym produkcie (lokalne) nie dadzą filtrów.\n\n## Kategorie i tagi\n\n- **Kategorie**: drzewo sklepu (Płytki → Łazienkowe → Matowe). Każdy produkt ma **jedną główną** kategorię, opis kategorii to ważna treść SEO.\n- **Tagi**: dodatkowe etykiety, np. „nowość”. Używaj oszczędnie.\n\n## Inne typy\n\n- **Grupowy**: zestaw osobnych produktów na jednej stronie,\n- **Zewnętrzny**: link do sprzedaży gdzie indziej (np. afiliacja),\n- **Wirtualny / do pobrania**: bez wysyłki, np. e-book, kurs.\n\n## Dużo produktów naraz\n\n**Import CSV** (Produkty → Importuj): plik z kolumnami (nazwa, cena, SKU, kategoria, zdjęcia). Najpierw wyeksportuj jeden produkt, żeby zobaczyć wzór kolumn.\n\n## Czytaj dalej\n\n- [WooCommerce: dodawanie produktów (po angielsku)](https://woocommerce.com/document/managing-products/)\n- [WooCommerce: produkty zmienne (po angielsku)](https://woocommerce.com/document/variable-product/)",
+    "questions": [
+      {
+        "id": "t9-produkty-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Płytka występuje w 3 kolorach z różnymi cenami. Jak ją dodać?",
+        "answer": "Jako produkt zmienny z atrybutem Kolor i trzema wariantami",
+        "distractors": [
+          "Jako trzy osobne produkty proste",
+          "Jako jeden produkt prosty z kolorami w opisie"
+        ],
+        "explanation": "Warianty mają własne ceny, stany i zdjęcia, a klient wybiera kolor z listy."
+      },
+      {
+        "id": "t9-produkty-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Unikalny kod produktu używany w magazynie i integracjach to ___.",
+        "answer": "SKU",
+        "explanation": "SKU (Stock Keeping Unit) przydaje się m.in. przy importach i BaseLinkerze."
+      },
+      {
+        "id": "t9-produkty-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Dlaczego warto tworzyć atrybuty w Produkty → Atrybuty, a nie tylko w produkcie?",
+        "answer": "Bo globalne atrybuty działają jako filtry w sklepie",
+        "distractors": [
+          "Bo produkty ładują się szybciej",
+          "Bo lokalnych atrybutów nie można edytować"
+        ],
+        "explanation": "Filtrowanie po kolorze czy rozmiarze wymaga atrybutów globalnych."
+      },
+      {
+        "id": "t9-produkty-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Produkt zmienny: `atrybut Kolor: Grafit, Beż`, `zaznaczone Używane do wariantów`, `warianty bez ceny, bo cena jest w opisie produktu`, `zdjęcie przy każdym wariancie`. Co jest błędem?",
+        "answer": "`warianty bez ceny, bo cena jest w opisie produktu`",
+        "distractors": [
+          "`atrybut Kolor: Grafit, Beż`",
+          "`zaznaczone Używane do wariantów`",
+          "`zdjęcie przy każdym wariancie`"
+        ],
+        "explanation": "Wariant bez ceny nie da się kupić. Cena musi być w polu wariantu."
+      },
+      {
+        "id": "t9-produkty-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Sklep chce zaimportować 400 produktów z pliku od hurtowni. Od czego zacząć?",
+        "answer": "Od eksportu jednego produktu do CSV, żeby zobaczyć wzór kolumn, i testowego importu kilku pozycji",
+        "distractors": [
+          "Od importu wszystkich 400 od razu na żywym sklepie",
+          "Od ręcznego dodawania po jednym"
+        ],
+        "explanation": "Test na kilku produktach (najlepiej na stagingu) pokazuje błędy, zanim powielą się 400 razy."
+      },
+      {
+        "id": "t9-produkty-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Czym różni się produkt prosty od zmiennego? Podaj przykłady.",
+        "answer": "Produkt prosty ma jedną wersję i jedną cenę, np. klej do płytek 25 kg. Produkt zmienny ma warianty utworzone z atrybutów, np. płytka w kolorach Grafit, Beż i rozmiarach 60×60, 60×120, a każdy wariant ma własną cenę, SKU, stan magazynu i zdjęcie.",
+        "keyPoints": [
+          "prosty: jedna wersja i cena",
+          "zmienny: warianty z atrybutów",
+          "wariant: własna cena, SKU, stan, zdjęcie",
+          "przykłady"
+        ],
+        "explanation": "Każdy kolor jako osobny produkt to częsty błąd początkujących."
+      },
+      {
+        "id": "t9-produkty-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak dodasz produkt zmienny krok po kroku?",
+        "answer": "Wybieram typ Produkt zmienny, w zakładce Atrybuty dodaję atrybuty globalne, np. Kolor i Rozmiar, z wartościami i zaznaczam Używane do wariantów, zapisuję. W zakładce Warianty generuję warianty ze wszystkich atrybutów i w każdym wpisuję cenę, SKU, stan magazynu i zdjęcie. Na koniec sprawdzam produkt na stronie: wybór opcji, zmianę ceny i zdjęcia.",
+        "keyPoints": [
+          "typ Produkt zmienny",
+          "atrybuty z Używane do wariantów",
+          "generowanie wariantów",
+          "cena, SKU, stan, zdjęcie w wariancie",
+          "test na stronie"
+        ],
+        "explanation": "Warianty bez ceny są niewidoczne lub niedostępne do zakupu."
+      },
+      {
+        "id": "t9-produkty-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak zaplanujesz kategorie sklepu z materiałami do łazienki?",
+        "answer": "Zrobię drzewo kategorii według tego, jak klienci szukają: np. Płytki (Łazienkowe, Kuchenne, Podłogowe), Armatura (Baterie, Deszczownice), Ceramika (Umywalki, Miski WC), Chemia budowlana. Do 2–3 poziomów, każdy produkt w jednej głównej kategorii, cechy takie jak kolor czy format jako atrybuty z filtrami, a nie osobne kategorie. Każda kategoria dostanie opis SEO.",
+        "keyPoints": [
+          "według sposobu szukania klientów",
+          "2–3 poziomy",
+          "jedna główna kategoria produktu",
+          "cechy jako atrybuty i filtry",
+          "opisy kategorii"
+        ],
+        "explanation": "Słowa kluczowe z tygodnia 4 pomogą nazwać kategorie."
+      },
+      {
+        "id": "t9-produkty-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak ustawisz zarządzanie stanem magazynowym produktu?",
+        "answer": "W zakładce Zapasy włączam zarządzanie stanem, wpisuję liczbę sztuk i decyduję, czy pozwalam na zamówienia po wyczerpaniu (np. z informacją o dłuższej wysyłce). W ustawieniach WooCommerce ustawiam próg niskiego stanu i powiadomienia mailem. W produktach zmiennych stan ustawiam przy każdym wariancie.",
+        "keyPoints": [
+          "włączenie zarządzania stanem",
+          "liczba sztuk",
+          "zamówienia po wyczerpaniu",
+          "próg niskiego stanu i powiadomienia",
+          "stan przy wariantach"
+        ],
+        "explanation": "Stany z hurtownią synchronizują integracje, np. BaseLinker (tydzień 12)."
+      },
+      {
+        "id": "t9-produkty-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "W sklepie każdy kolor płytki jest osobnym produktem (90 produktów zamiast 30). Jakie to ma wady i jak to naprawić?",
+        "answer": "Wady: trudniejsza obsługa i zmiany cen, rozproszone opinie, prawie identyczne opisy, czyli duplikaty dla Google, i gorszy wybór dla klienta. Naprawa: zrobić kopię, utworzyć produkty zmienne z atrybutem Kolor, przenieść dane i zdjęcia do wariantów, a stare adresy przekierować 301 na nowe produkty, żeby nie stracić ruchu i linków.",
+        "keyPoints": [
+          "trudna obsługa i zmiany cen",
+          "duplikaty opisów",
+          "rozproszone opinie, gorszy wybór",
+          "produkty zmienne z wariantami",
+          "301 ze starych adresów"
+        ],
+        "explanation": "Przebudowę rób na stagingu i sprawdź ruch w Search Console po zmianie."
+      }
+    ],
+    "task": {
+      "task": "Dodaj 10 produktów do sklepu testowego.\n\n1. Utwórz drzewo 2–3 kategorii (np. Płytki → Łazienkowe, Chemia budowlana).\n2. Dodaj atrybuty globalne Kolor i Rozmiar z wartościami.\n3. Dodaj 7 produktów prostych: nazwa, cena, SKU, kategoria, zdjęcie, krótki opis, waga.\n4. Dodaj 3 produkty zmienne z wariantami (cena, SKU, stan i zdjęcie przy każdym wariancie).\n5. Ustaw cenę promocyjną z datami dla jednego produktu i sprawdź wszystkie produkty na stronie sklepu.",
+      "checklist": [
+        "Drzewo kategorii",
+        "Atrybuty globalne",
+        "7 produktów prostych",
+        "3 produkty zmienne z wariantami",
+        "Cena promocyjna z datami"
+      ],
+      "hints": [
+        "Zdjęcia możesz wziąć z darmowych banków (np. Unsplash) albo użyć zdjęć z wcześniejszych ćwiczeń.",
+        "W wariantach jest opcja **Ustaw ceny regularne** dla wszystkich naraz, a potem zmienisz pojedyncze.",
+        "Datę promocji ustawisz po kliknięciu **Harmonogram** przy cenie promocyjnej."
+      ],
+      "solution": "- Kategorie: Płytki → Łazienkowe, Płytki → Podłogowe, Chemia budowlana.\n- Atrybuty: Kolor (Grafit, Beż, Biały), Rozmiar (60×60, 60×120).\n- Proste: Klej elastyczny 25 kg (89 zł, SKU KLEJ-25, 25 kg), Fuga szara 5 kg, Grunt 5 l, ...\n- Zmienne: Płytka Mat Stone: Grafit 60×60 (119 zł/m²), Grafit 60×120 (139 zł/m²), Beż 60×60 ...\n- Promocja: Fuga szara 39 zł → 32 zł od 1 do 14 grudnia."
+    }
+  },
+  {
+    "id": "t9-platnosci-wysylka",
+    "week": 9,
+    "order": 3,
+    "title": "Płatności i wysyłka",
+    "lesson": "Klient porzuca koszyk, gdy nie ma ulubionej metody płatności albo dostawa jest za droga lub niejasna. W Polsce oczekuje **BLIK-a, szybkiego przelewu i Paczkomatów**.\n\n![Od koszyka do opłaconego zamówienia](diagram:platnosci-wysylka)\n\n## Bramki płatności\n\nBramka (operator płatności) przyjmuje pieniądze od klienta i przekazuje je sklepowi, pobierając prowizję.\n\n- **Przelewy24**, **PayU**, **Tpay**, **Autopay**: polskie bramki z BLIK-iem, szybkimi przelewami, kartami, Google Pay i Apple Pay, płatnościami odroczonymi. Każda ma wtyczkę do WooCommerce.\n- **Stripe**, **PayPal**: popularne przy sprzedaży za granicę.\n- **Wbudowane metody WooCommerce**: przelew bankowy (tradycyjny), za pobraniem, płatność przy odbiorze osobistym.\n\nProces: zakładasz konto u operatora (weryfikacja firmy trwa kilka dni), instalujesz wtyczkę, wpisujesz **klucze** (ID sprzedawcy, klucz API), testujesz w **trybie testowym (sandbox)**, potem przełączasz na tryb produkcyjny.\n\n## Strefy wysyłki\n\n**WooCommerce → Ustawienia → Wysyłka**:\n\n- **strefa** to obszar (np. Polska, Unia Europejska),\n- w strefie dodajesz **metody**: stawka ryczałtowa (np. kurier 19 zł), darmowa wysyłka (np. od 300 zł), odbiór osobisty,\n- **klasy wysyłkowe** pozwalają różnicować ceny, np. paleta dla ciężkich towarów.\n\n## Paczkomaty i kurierzy\n\n- **InPost** ma oficjalną wtyczkę: Paczkomat z mapą wyboru punktu w koszyku, generowanie etykiet z panelu zamówienia.\n- Inne: DPD, DHL, Orlen Paczka, Poczta Polska, a także **agregatory** (np. Furgonetka, Apaczka), które dają wiele przewoźników w jednej wtyczce.\n\n## Dobre praktyki\n\n- koszt dostawy widoczny **jak najwcześniej**, np. na stronie produktu i w koszyku,\n- próg darmowej dostawy („Brakuje Ci 40 zł do darmowej dostawy”) podnosi wartość koszyka,\n- czas wysyłki przy produkcie,\n- **testowe zamówienie** każdą metodą płatności i dostawy przed startem.\n\n## Czytaj dalej\n\n- [WooCommerce: strefy wysyłki (po angielsku)](https://woocommerce.com/document/setting-up-shipping-zones/)",
+    "questions": [
+      {
+        "id": "t9-platnosci-wysylka-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Które metody płatności są najważniejsze dla polskich klientów?",
+        "answer": "BLIK, szybkie przelewy i karty przez polską bramkę płatności",
+        "distractors": [
+          "Tylko przelew tradycyjny",
+          "Tylko PayPal"
+        ],
+        "explanation": "Brak BLIK-a i szybkich przelewów to częsty powód porzucenia koszyka."
+      },
+      {
+        "id": "t9-platnosci-wysylka-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Obszar w WooCommerce, dla którego ustawia się metody i ceny dostawy, to strefa ___.",
+        "answer": "wysyłki",
+        "explanation": "Strefy (np. Polska, UE) mają własne metody dostawy."
+      },
+      {
+        "id": "t9-platnosci-wysylka-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Gdzie najpierw sprawdzić działanie bramki płatności?",
+        "answer": "W trybie testowym (sandbox) bramki",
+        "distractors": [
+          "Od razu na prawdziwych klientach",
+          "Nie trzeba sprawdzać, bo wtyczka jest oficjalna"
+        ],
+        "explanation": "Sandbox pozwala przejść płatność bez prawdziwych pieniędzy."
+      },
+      {
+        "id": "t9-platnosci-wysylka-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Ustawienia wysyłki: `strefa Polska`, `kurier 19 zł`, `darmowa wysyłka od 300 zł`, `koszt dostawy pokazywany dopiero na ostatnim kroku po podaniu danych karty`. Co szkodzi sprzedaży?",
+        "answer": "`koszt dostawy pokazywany dopiero na ostatnim kroku po podaniu danych karty`",
+        "distractors": [
+          "`strefa Polska`",
+          "`kurier 19 zł`",
+          "`darmowa wysyłka od 300 zł`"
+        ],
+        "explanation": "Ukryty do końca koszt dostawy to jeden z głównych powodów porzucania koszyka."
+      },
+      {
+        "id": "t9-platnosci-wysylka-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Sklep sprzedaje płytki na paletach i drobną chemię. Jak różnicować koszty dostawy?",
+        "answer": "Klasami wysyłkowymi: inna cena dla klasy Paleta, inna dla paczek",
+        "distractors": [
+          "Jedną stawką dla wszystkiego",
+          "Osobnym sklepem dla palet"
+        ],
+        "explanation": "Klasa wysyłkowa przypisana do produktu zmienia cenę dostawy w ramach metody."
+      },
+      {
+        "id": "t9-platnosci-wysylka-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Opisz, jak podłączysz polską bramkę płatności do WooCommerce.",
+        "answer": "Zakładam konto firmowe u operatora, np. Przelewy24 lub PayU, i przechodzę weryfikację. Instaluję oficjalną wtyczkę, wpisuję dane z panelu operatora: ID sprzedawcy i klucze API. Włączam tryb testowy i przechodzę kilka zamówień testowych, sprawdzam zmianę statusu i maile. Potem przełączam na tryb produkcyjny i robię jedną małą prawdziwą płatność.",
+        "keyPoints": [
+          "konto i weryfikacja u operatora",
+          "oficjalna wtyczka",
+          "ID i klucze API",
+          "tryb testowy i zamówienia testowe",
+          "tryb produkcyjny i prawdziwy test"
+        ],
+        "explanation": "Kluczy API nie wysyłaj mailem ani nie wklejaj do AI."
+      },
+      {
+        "id": "t9-platnosci-wysylka-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak skonfigurujesz wysyłkę: kurier 19 zł, Paczkomat 14 zł, darmowa od 300 zł, tylko Polska?",
+        "answer": "W Ustawienia → Wysyłka tworzę strefę Polska. Dodaję metodę Stawka ryczałtowa Kurier 19 zł, metodę Paczkomat z wtyczki InPost za 14 zł i Darmową wysyłkę z warunkiem minimalnej kwoty zamówienia 300 zł. W ustawieniach ogólnych ograniczam sprzedaż i wysyłkę do Polski. Testuję koszyk poniżej i powyżej 300 zł.",
+        "keyPoints": [
+          "strefa Polska",
+          "kurier stawka ryczałtowa 19 zł",
+          "Paczkomat z wtyczki InPost 14 zł",
+          "darmowa od 300 zł",
+          "test poniżej i powyżej progu"
+        ],
+        "explanation": "Darmowa dostawa nie ukrywa automatycznie innych metod. Do tego służy ustawienie lub fragment kodu."
+      },
+      {
+        "id": "t9-platnosci-wysylka-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Dlaczego koszt dostawy powinien być widoczny jak najwcześniej?",
+        "answer": "Bo nieoczekiwany koszt na końcu zakupu to jeden z najczęstszych powodów porzucania koszyka. Gdy klient widzi koszt na stronie produktu lub w koszyku, nie czuje się zaskoczony, a informacja o progu darmowej dostawy zachęca do większego zamówienia.",
+        "keyPoints": [
+          "nieoczekiwany koszt = porzucony koszyk",
+          "brak zaskoczenia",
+          "próg darmowej dostawy zwiększa koszyk"
+        ],
+        "explanation": "Dodaj informację o dostawie na stronie produktu."
+      },
+      {
+        "id": "t9-platnosci-wysylka-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak zaplanujesz test płatności i wysyłki przed startem sklepu?",
+        "answer": "Dla każdej kombinacji metody płatności i dostawy składam zamówienie testowe: BLIK, karta, przelew tradycyjny, za pobraniem i kurier, Paczkomat, odbiór. Sprawdzam koszt dostawy, wybór Paczkomatu, przejście przez bramkę w trybie testowym, status zamówienia, maile do klienta i sklepu i generowanie etykiety. Po teście kasuję zamówienia testowe.",
+        "keyPoints": [
+          "każda kombinacja płatności i dostawy",
+          "koszt i wybór punktu",
+          "bramka w trybie testowym",
+          "statusy i maile",
+          "etykieta, usunięcie testów"
+        ],
+        "explanation": "Zapisz wyniki w tabeli, żeby niczego nie pominąć."
+      },
+      {
+        "id": "t9-platnosci-wysylka-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Klienci płacą BLIK-iem, pieniądze dochodzą, ale zamówienia zostają w statusie „Oczekujące na płatność”. Co sprawdzisz?",
+        "answer": "Powiadomienia zwrotne od bramki (webhook, adres powiadomień URL): czy w panelu operatora jest poprawny adres sklepu z https, czy firewall lub Cloudflare nie blokuje zapytań od bramki, czy wtyczka jest w trybie produkcyjnym z właściwymi kluczami i czy cache nie obejmuje adresu powiadomień. Sprawdzę logi wtyczki bramki i WooCommerce → Status → Logi.",
+        "keyPoints": [
+          "powiadomienia zwrotne od bramki",
+          "adres powiadomień z https",
+          "firewall / Cloudflare nie blokuje",
+          "tryb produkcyjny i klucze",
+          "logi wtyczki"
+        ],
+        "explanation": "Sklep dowiaduje się o płatności dopiero z powiadomienia bramki."
+      }
+    ],
+    "task": {
+      "task": "Skonfiguruj płatność i wysyłkę w sklepie testowym.\n\n1. Włącz przelew bankowy i za pobraniem (wbudowane metody WooCommerce).\n2. Zainstaluj wtyczkę polskiej bramki (np. Przelewy24 lub PayU) i przejdź jej ustawienia w trybie testowym (sandbox, jeśli operator go udostępnia bez umowy).\n3. Utwórz strefę Polska: kurier 19 zł, darmowa wysyłka od 300 zł, odbiór osobisty.\n4. Zainstaluj wtyczkę InPost i sprawdź, jak wygląda wybór Paczkomatu w koszyku.\n5. Złóż 2 zamówienia testowe: poniżej i powyżej 300 zł.",
+      "checklist": [
+        "Przelew i za pobraniem włączone",
+        "Wtyczka bramki zainstalowana i ustawiona w trybie testowym",
+        "Strefa Polska z 3 metodami",
+        "Wtyczka InPost sprawdzona",
+        "2 zamówienia testowe"
+      ],
+      "hints": [
+        "Metody płatności: **WooCommerce → Ustawienia → Płatności**.",
+        "Bez konta u operatora możesz tylko obejrzeć ustawienia wtyczki. To wystarczy w ćwiczeniu.",
+        "InPost do pełnego działania wymaga konta i tokenu API. W ćwiczeniu obejrzyj ustawienia i koszyk."
+      ],
+      "solution": "- Płatności: Przelew bankowy (dane konta firmy), Za pobraniem (tylko dla kuriera), Przelewy24 w trybie testowym.\n- Strefa Polska: Kurier DPD 19 zł, Odbiór osobisty 0 zł, Darmowa wysyłka (minimalna kwota 300 zł).\n- Zamówienie 1: 120 zł + kurier 19 zł = 139 zł, przelew. Zamówienie 2: 340 zł, darmowa wysyłka."
+    }
+  },
+  {
+    "id": "t9-maile-regulamin-prawo",
+    "week": 9,
+    "order": 4,
+    "title": "Maile, regulamin i prawo w sklepie",
+    "lesson": "Sklep internetowy w Polsce musi spełniać przepisy o prawach konsumenta i informowaniu o cenach. Dobra wiadomość: większość wymagań to ustawienia i dokumenty, a nie programowanie. Ta lekcja to praktyczny przegląd, a **nie porada prawna**. Regulamin warto przygotować z prawnikiem albo w sprawdzonym generatorze dokumentów dla sklepów.\n\n![Maile, dokumenty i zasady cen](diagram:sklep-prawo)\n\n## Maile zamówień\n\nWooCommerce wysyła maile: **nowe zamówienie** (do sklepu), **zamówienie w trakcie realizacji**, **zrealizowane**, **anulowane**, **zwrot**, **notatka do zamówienia**. Ustawisz je w **WooCommerce → Ustawienia → E-maile**: nadawca, kolory, stopka z danymi firmy, treść.\n\nNajważniejsze: maile muszą **dochodzić**. Wysyłaj je przez **SMTP** (wtyczka i skrzynka firmowa lub usługa typu Brevo, z tygodnia 1) i ustaw SPF, DKIM, DMARC dla domeny. Bez tego część maili trafi do spamu.\n\n## Regulamin sklepu\n\nRegulamin to umowa ze sklepem. Zwykle zawiera:\n\n- dane sprzedawcy (nazwa, adres, NIP, kontakt),\n- jak złożyć zamówienie, ceny, płatności, dostawa i czas realizacji,\n- **reklamacje** (niezgodność towaru z umową),\n- **prawo odstąpienia od umowy**: konsument może zwrócić towar kupiony na odległość **w ciągu 14 dni** bez podania przyczyny, wzór formularza odstąpienia,\n- informacje o pozasądowym rozwiązywaniu sporów,\n- postanowienia dla przedsiębiorców (także osób prowadzących jednoosobową działalność, które kupują na cele niezwiązane zawodowo i mają częściowo prawa konsumenta).\n\nW WooCommerce: strona **Regulamin** przypisana w **Ustawienia → Zaawansowane**, a w kasie pole akceptacji regulaminu. Do tego **polityka prywatności** (tydzień 3).\n\n## Dyrektywa Omnibus: ceny przy promocjach\n\nGdy ogłaszasz **obniżkę ceny**, musisz pokazać **najniższą cenę z 30 dni przed obniżką**, np.: „Najniższa cena z 30 dni przed obniżką: 129 zł”. WooCommerce nie robi tego sam. Potrzebna jest wtyczka (szukaj „Omnibus”), która zapisuje historię cen i wyświetla informację przy produkcie w promocji.\n\n## Przycisk zamówienia i inne\n\n- przycisk składania zamówienia z jasnym napisem, np. **„Zamawiam z obowiązkiem zapłaty”** (lub równoważnym),\n- ceny brutto, koszty dostawy przed złożeniem zamówienia (lekcja 3),\n- potwierdzenie zamówienia mailem.\n\n## Zamówienie testowe\n\nPrzed startem przejdź zamówienie jak klient: produkt → koszyk → kasa (regulamin, zgody) → płatność → maile. Sprawdź treść maili i to, czy doszły do skrzynek Gmail i Outlook.\n\n## Czytaj dalej\n\n- [UOKiK: prawa konsumenta przy zakupach w internecie](https://prawakonsumenta.uokik.gov.pl/)\n- [WooCommerce: ustawienia e-maili (po angielsku)](https://woocommerce.com/document/configuring-woocommerce-settings/emails/)",
+    "questions": [
+      {
+        "id": "t9-maile-regulamin-prawo-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Ile dni ma konsument na odstąpienie od umowy zawartej przez internet bez podania przyczyny?",
+        "answer": "14 dni",
+        "distractors": [
+          "7 dni",
+          "30 dni"
+        ],
+        "explanation": "To podstawowe prawo konsumenta przy zakupach na odległość."
+      },
+      {
+        "id": "t9-maile-regulamin-prawo-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Przy obniżce ceny trzeba pokazać najniższą cenę z ___ dni przed obniżką.",
+        "answer": "30",
+        "explanation": "To wymóg z tzw. dyrektywy Omnibus."
+      },
+      {
+        "id": "t9-maile-regulamin-prawo-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Dlaczego maile sklepu warto wysyłać przez SMTP?",
+        "answer": "Żeby dochodziły do klientów, a nie trafiały do spamu",
+        "distractors": [
+          "Bo WooCommerce bez SMTP w ogóle nie wysyła maili",
+          "Żeby maile były kolorowe"
+        ],
+        "explanation": "SMTP z uwierzytelnioną domeną (SPF, DKIM, DMARC) poprawia dostarczalność."
+      },
+      {
+        "id": "t9-maile-regulamin-prawo-04",
+        "type": "error",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Kasa sklepu: `pole akceptacji regulaminu`, `koszt dostawy widoczny przed zamówieniem`, `przycisk z napisem „Dalej”`, `link do polityki prywatności`. Co jest niezgodne z dobrymi praktykami i przepisami?",
+        "answer": "`przycisk z napisem „Dalej”`",
+        "distractors": [
+          "`pole akceptacji regulaminu`",
+          "`koszt dostawy widoczny przed zamówieniem`",
+          "`link do polityki prywatności`"
+        ],
+        "explanation": "Przycisk składania zamówienia musi jasno mówić, że zamówienie oznacza obowiązek zapłaty, np. „Zamawiam z obowiązkiem zapłaty”."
+      },
+      {
+        "id": "t9-maile-regulamin-prawo-05",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Sklep ogłasza „-20%” na produkt. Czy WooCommerce sam pokaże najniższą cenę z 30 dni?",
+        "answer": "Nie, potrzebna jest wtyczka, która zapisuje historię cen",
+        "distractors": [
+          "Tak, robi to domyślnie",
+          "Nie trzeba jej pokazywać przy promocjach procentowych"
+        ],
+        "explanation": "Wtyczki Omnibus zapisują historię cen i wyświetlają informację przy cenie promocyjnej."
+      },
+      {
+        "id": "t9-maile-regulamin-prawo-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Co zwykle zawiera regulamin sklepu internetowego?",
+        "answer": "Dane sprzedawcy, zasady składania zamówień, ceny, płatności, dostawę i czas realizacji, procedurę reklamacji, prawo odstąpienia od umowy w ciągu 14 dni z wzorem formularza, informacje o pozasądowym rozwiązywaniu sporów i postanowienia dla przedsiębiorców. Regulamin akceptuje się w kasie.",
+        "keyPoints": [
+          "dane sprzedawcy",
+          "zamówienia, płatności, dostawa",
+          "reklamacje",
+          "odstąpienie 14 dni i formularz",
+          "spory i przedsiębiorcy"
+        ],
+        "explanation": "Regulamin przygotuj z prawnikiem lub w sprawdzonym generatorze."
+      },
+      {
+        "id": "t9-maile-regulamin-prawo-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Wyjaśnij zasadę Omnibus i jak ją wdrożyć w WooCommerce.",
+        "answer": "Przy każdej informacji o obniżce ceny sklep musi pokazać najniższą cenę tego produktu z 30 dni przed obniżką. WooCommerce nie robi tego sam, więc instaluję wtyczkę Omnibus, która zapisuje historię cen, i ustawiam wyświetlanie informacji przy produktach w promocji. Sprawdzam na produkcie testowym z ceną promocyjną.",
+        "keyPoints": [
+          "obniżka → najniższa cena z 30 dni",
+          "WooCommerce nie robi tego sam",
+          "wtyczka zapisująca historię cen",
+          "wyświetlanie przy promocji i test"
+        ],
+        "explanation": "Wtyczka musi działać od pewnego czasu, żeby mieć historię cen."
+      },
+      {
+        "id": "t9-maile-regulamin-prawo-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jakie maile wysyła WooCommerce i co w nich ustawić?",
+        "answer": "Do sklepu: nowe zamówienie, anulowane, nieudane. Do klienta: w trakcie realizacji, zrealizowane, zwrot, notatka, wstrzymane, dane konta i reset hasła. Ustawiam nadawcę i adres z domeny firmy, kolory i logo, stopkę z danymi firmy i kontaktem, treść maili po polsku, a wysyłkę przez SMTP. Sprawdzam podgląd i test zamówienia.",
+        "keyPoints": [
+          "maile do sklepu i do klienta",
+          "nadawca z domeny firmy",
+          "logo, kolory, stopka",
+          "treść po polsku",
+          "SMTP i test"
+        ],
+        "explanation": "Wtyczki do maili WooCommerce pozwalają też edytować je wizualnie."
+      },
+      {
+        "id": "t9-maile-regulamin-prawo-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Opisz, jak przejdziesz zamówienie testowe przed startem sklepu i co sprawdzisz.",
+        "answer": "Jak klient: wybieram produkt, dodaję do koszyka, sprawdzam koszt dostawy, w kasie podaję dane, akceptuję regulamin i zgody, wybieram płatność i dostawę, klikam przycisk zamówienia, płacę w trybie testowym. Sprawdzam maile do klienta i sklepu (treść, czy nie trafiły do spamu), status w panelu, a potem zmieniam status na zrealizowane i sprawdzam kolejny mail.",
+        "keyPoints": [
+          "ścieżka jak klient",
+          "koszt dostawy i kasa",
+          "regulamin, zgody, przycisk",
+          "płatność testowa",
+          "maile i statusy w panelu"
+        ],
+        "explanation": "Sprawdź maile w Gmailu i Outlooku."
+      },
+      {
+        "id": "t9-maile-regulamin-prawo-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Klient chce w promocji podawać przekreśloną „cenę katalogową”, której nigdy nie stosował. Co mu powiesz?",
+        "answer": "Że to wprowadzanie konsumentów w błąd i naruszenie zasad Omnibus: przy obniżce trzeba podać najniższą cenę z 30 dni przed obniżką, a nie wymyśloną cenę wyjściową. Grożą kary od UOKiK. Zaproponuję uczciwą promocję z poprawnym wyświetlaniem najniższej ceny przez wtyczkę.",
+        "keyPoints": [
+          "wprowadzanie w błąd",
+          "naruszenie zasad Omnibus",
+          "ryzyko kar UOKiK",
+          "uczciwa promocja z najniższą ceną z 30 dni"
+        ],
+        "explanation": "Odmawianie nieuczciwych praktyk to też część profesjonalizmu."
+      }
+    ],
+    "task": {
+      "task": "Przejdź zamówienie testowe w sklepie testowym.\n\n1. Ustaw maile WooCommerce: nadawca, kolor, stopka z danymi firmy.\n2. Podłącz wysyłkę maili przez SMTP (wtyczka z tygodnia 1) albo, na stronie lokalnej, sprawdzaj maile w Local w zakładce **Mail** (Mailpit).\n3. Utwórz stronę Regulamin (może być szkic) i przypisz ją w ustawieniach. Sprawdź pole akceptacji w kasie.\n4. Zainstaluj wtyczkę Omnibus i ustaw cenę promocyjną dla jednego produktu.\n5. Złóż zamówienie testowe, zmień jego status na Zrealizowane i sprawdź oba maile.",
+      "checklist": [
+        "Maile ustawione",
+        "SMTP lub podgląd maili w Local",
+        "Regulamin przypisany i akceptacja w kasie",
+        "Wtyczka Omnibus i promocja",
+        "Zamówienie testowe z mailami"
+      ],
+      "hints": [
+        "Local przechwytuje maile ze strony lokalnej. Zobaczysz je w zakładce **Tools → Mailpit**.",
+        "Napis przycisku w kasie blokowej zmienisz w ustawieniach bloku Kasa.",
+        "Wtyczka Omnibus zacznie pokazywać historię po zapisaniu zmian ceny."
+      ],
+      "solution": "- E-maile: nadawca „Sklep Płytki24”, adres `sklep@twojadomena.pl`, kolor bazowy jak w logo, stopka z NIP i telefonem.\n- Kasa: pole „Akceptuję regulamin sklepu”, przycisk „Zamawiam z obowiązkiem zapłaty”.\n- Promocja: Fuga szara 39 zł → 32 zł, pod ceną „Najniższa cena z 30 dni przed obniżką: 39 zł”.\n- Maile: „Zamówienie przyjęte” i „Zamówienie zrealizowane” widoczne w Mailpit."
+    }
+  },
+  {
+    "id": "t9-seo-sklepu",
+    "week": 9,
+    "order": 5,
+    "title": "SEO sklepu internetowego",
+    "lesson": "SEO sklepu to wszystko, co znasz z tygodni 4 i 7, plus kilka problemów, które pojawiają się tylko w e-commerce: filtry, warianty, produkty, które się kończą, i tysiące podobnych stron.\n\n![Najważniejsze tematy SEO sklepu](diagram:seo-sklepu)\n\n## Kategorie: główne strony pod frazy\n\nFrazy ogólne („płytki łazienkowe matowe”, „baterie podtynkowe”) najlepiej pozycjonować **kategoriami**. Każda ważna kategoria ma:\n\n- unikalny title i meta description,\n- krótki wstęp i poradnik pod produktami (tydzień 8),\n- linki z menu i z innych kategorii, okruszki.\n\nGdy fraza jest ważna, a kategorii nie ma (np. „płytki grafitowe”), **utwórz podkategorię** lub stronę docelową zamiast liczyć na filtr.\n\n## Filtry i sortowanie\n\nFiltry po kolorze, rozmiarze, cenie i sortowanie tworzą adresy z parametrami: `?filter_kolor=grafit&orderby=price`. Kombinacji mogą być **tysiące**, a każda to prawie duplikat kategorii.\n\n- strony filtrów: **noindex** lub canonical do kategorii (wtyczki filtrów i SEO mają takie opcje),\n- linki filtrów nie powinny być główną drogą robota po sklepie,\n- przy bardzo dużych sklepach: blokada parametrów w robots.txt (crawl budget z tygodnia 7).\n\n## Produkty niedostępne\n\n- **chwilowo brak**: zostaw stronę z informacją i np. zapisem na powiadomienie o dostępności,\n- **wycofany na zawsze**: przekierowanie **301** do następcy lub do kategorii, gdy strona ma ruch lub linki,\n- WooCommerce ma opcję **ukrywania** niedostępnych produktów z listy. Ukrycie z listy nie usuwa strony produktu.\n\n## Warianty\n\nWarianty (kolory, rozmiary) to **jedna strona produktu**, nie osobne adresy (lekcja 2). Unikasz duplikatów i zbierasz opinie w jednym miejscu.\n\n## Schema Product\n\nWooCommerce i wtyczka SEO dodają dane `Product`: nazwa, cena, waluta, dostępność, oceny. Dzięki temu w Google może pojawić się cena i gwiazdki. Te same dane są podstawą **Google Merchant Center** i bezpłatnych wyników w zakładce Zakupy (tydzień 12).\n\n## Szybkość\n\nSklep jest cięższy niż wizytówka: więcej zdjęć, skryptów i zapytań do bazy. Optymalizacja obrazów i cache (tydzień 7) są tu podwójnie ważne. Koszyk, kasa i Moje konto **nie mogą być cache'owane**, dobre wtyczki cache wykluczają je same.\n\n## Czytaj dalej\n\n- [Google: sprawdzone metody dla sklepów](https://developers.google.com/search/docs/specialty/ecommerce?hl=pl)\n- [Google: nawigacja fasetowa, czyli filtry (po angielsku)](https://developers.google.com/search/docs/crawling-indexing/crawling-managing-faceted-navigation)",
+    "questions": [
+      {
+        "id": "t9-seo-sklepu-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Jaka strona sklepu najlepiej odpowiada na ogólną frazę, np. „płytki łazienkowe matowe”?",
+        "answer": "Strona kategorii",
+        "distractors": [
+          "Pojedynczy produkt",
+          "Strona koszyka"
+        ],
+        "explanation": "Kategoria pokazuje wybór, czyli to, czego szuka ktoś z ogólną frazą."
+      },
+      {
+        "id": "t9-seo-sklepu-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Produkt wycofany na zawsze, który ma ruch i linki, najlepiej przekierować kodem ___ do następcy lub kategorii.",
+        "answer": "301",
+        "explanation": "Przekierowanie zachowuje ruch i wartość linków."
+      },
+      {
+        "id": "t9-seo-sklepu-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Co zrobić ze stronami filtrów typu `?filter_kolor=grafit&orderby=price`?",
+        "answer": "Ustawić noindex lub canonical do kategorii, żeby nie tworzyły tysięcy duplikatów",
+        "distractors": [
+          "Dodać je wszystkie do mapy witryny",
+          "Napisać do każdej osobny opis"
+        ],
+        "explanation": "Kombinacji filtrów są tysiące, a treść jest prawie taka sama jak w kategorii."
+      },
+      {
+        "id": "t9-seo-sklepu-04",
+        "type": "error",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Ustawienia SEO sklepu: `kategorie z opisami i title`, `filtry z noindex`, `koszyk i kasa zapisywane w cache dla szybkości`, `schema Product z ceną i dostępnością`. Co jest błędem?",
+        "answer": "`koszyk i kasa zapisywane w cache dla szybkości`",
+        "distractors": [
+          "`kategorie z opisami i title`",
+          "`filtry z noindex`",
+          "`schema Product z ceną i dostępnością`"
+        ],
+        "explanation": "Koszyk, kasa i Moje konto są inne dla każdego klienta. Cache pokazałby cudze dane lub zepsuł zamówienia."
+      },
+      {
+        "id": "t9-seo-sklepu-05",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Produktu chwilowo nie ma, dostawa za 2 tygodnie. Co zrobić ze stroną?",
+        "answer": "Zostawić z informacją o dostępności i opcją powiadomienia",
+        "distractors": [
+          "Usunąć stronę",
+          "Przekierować 301 na stronę główną"
+        ],
+        "explanation": "Strona wróci do sprzedaży, więc jej ruch i pozycje warto zachować."
+      },
+      {
+        "id": "t9-seo-sklepu-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Jakie problemy SEO są typowe dla sklepów, a nie występują na zwykłych stronach?",
+        "answer": "Tysiące adresów z filtrów i sortowania, które są prawie duplikatami kategorii, produkty niedostępne lub wycofane, warianty jako osobne produkty, skopiowane opisy od producenta, duża liczba podobnych stron i cięższa strona przez zdjęcia i skrypty. Do tego dane strukturalne produktów i Merchant Center.",
+        "keyPoints": [
+          "filtry i sortowanie: duplikaty",
+          "produkty niedostępne / wycofane",
+          "warianty jako osobne produkty",
+          "opisy od producenta",
+          "szybkość, schema Product"
+        ],
+        "explanation": "Kategorie to zwykle najważniejsze strony sklepu w Google."
+      },
+      {
+        "id": "t9-seo-sklepu-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak potraktujesz produkt chwilowo niedostępny, a jak wycofany na zawsze?",
+        "answer": "Chwilowo niedostępny zostawiam z informacją o dostępności, ewentualnie zapisem na powiadomienie i propozycją podobnych produktów. Wycofany na zawsze przekierowuję 301 do następcy lub najbliższej kategorii, jeśli strona ma ruch lub linki. Jeśli nie ma ruchu ani linków, może zwrócić 410 lub 404.",
+        "keyPoints": [
+          "chwilowo: strona zostaje z informacją",
+          "powiadomienie i podobne produkty",
+          "na zawsze: 301 do następcy/kategorii",
+          "bez ruchu: 404/410"
+        ],
+        "explanation": "Ruch na stronę sprawdzisz w Search Console."
+      },
+      {
+        "id": "t9-seo-sklepu-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak zdecydujesz, czy dla frazy „płytki grafitowe” zrobić podkategorię, czy wystarczy filtr?",
+        "answer": "Sprawdzę popularność frazy i intencję w narzędziu do słów kluczowych i w Google. Jeśli fraza ma sensowny ruch i ludzie szukają wyboru produktów, robię podkategorię lub stronę docelową z unikalnym opisem, title i linkami. Filtr z noindex zostaje dla rzadkich kombinacji, które nie mają ruchu.",
+        "keyPoints": [
+          "sprawdzenie popularności i intencji",
+          "fraza z ruchem → podkategoria/strona docelowa",
+          "unikalny opis, title, linki",
+          "rzadkie kombinacje → filtr z noindex"
+        ],
+        "explanation": "Niektóre wtyczki filtrów pozwalają tworzyć indeksowane strony dla wybranych kombinacji."
+      },
+      {
+        "id": "t9-seo-sklepu-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Dlaczego dane strukturalne Product są ważne dla sklepu?",
+        "answer": "Bo opisują Google cenę, walutę, dostępność i oceny produktu, dzięki czemu w wynikach może pojawić się cena i gwiazdki, co zwiększa klikalność. Te same dane wykorzystuje Google Merchant Center i bezpłatne wyniki w zakładce Zakupy. Muszą zgadzać się z tym, co widać na stronie.",
+        "keyPoints": [
+          "cena, dostępność, oceny dla Google",
+          "wynik z ceną i gwiazdkami",
+          "większa klikalność",
+          "Merchant Center i Zakupy",
+          "zgodność ze stroną"
+        ],
+        "explanation": "WooCommerce dodaje je domyślnie, wtyczka SEO je rozszerza."
+      },
+      {
+        "id": "t9-seo-sklepu-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "W Search Console sklep ma 40 000 „stron wykrytych, ale obecnie niezindeksowanych”, a produktów jest 800. Co się dzieje i co zrobisz?",
+        "answer": "Najpewniej filtry, sortowanie i inne parametry tworzą tysiące adresów, które robot odkrywa przez linki. Marnują crawl budget i rozpraszają sygnały. Sprawdzę przykłady adresów w raporcie, ustawię noindex lub canonical dla filtrów, ograniczę linki do filtrów dla robotów lub zablokuję parametry w robots.txt, wyczyszczę mapę witryny z parametrów i będę obserwować raport.",
+        "keyPoints": [
+          "filtry i parametry tworzą tysiące adresów",
+          "marnowanie crawl budgetu",
+          "sprawdzenie przykładowych adresów",
+          "noindex/canonical, robots.txt dla parametrów",
+          "mapa bez parametrów, obserwacja"
+        ],
+        "explanation": "Kolejność ma znaczenie: blokada w robots.txt uniemożliwia robotowi zobaczenie noindex."
+      }
+    ],
+    "task": {
+      "task": "Popraw SEO sklepu testowego.\n\n1. Wybierz 2 najważniejsze kategorie i ustaw im title, meta description i krótki opis.\n2. Sprawdź, jakie adresy tworzą filtry i sortowanie (dodaj widżet lub blok filtrów, kliknij kilka opcji, zobacz adres).\n3. Ustaw noindex dla stron z filtrami (wtyczka filtrów lub SEO) i sprawdź canonical w źródle.\n4. Zdecyduj, co zrobić z produktem niedostępnym i wycofanym: oznacz jeden jako „Brak w magazynie”, drugi usuń z przekierowaniem 301.\n5. Sprawdź jeden produkt w [Teście wyników z elementami rozszerzonymi](https://search.google.com/test/rich-results) (lub w Schema Markup Validator przez kod źródłowy).",
+      "checklist": [
+        "2 kategorie z title, opisem i wstępem",
+        "Adresy filtrów zapisane",
+        "noindex lub canonical dla filtrów",
+        "Produkt niedostępny i wycofany obsłużone",
+        "Schema Product sprawdzona"
+      ],
+      "hints": [
+        "Blok **Filtr według atrybutu** dodasz na stronie sklepu w edytorze witryny (szablon Archiwum produktów).",
+        "Yoast dodaje do stron z filtrami canonical do kategorii. Sprawdź w źródle (Ctrl+U).",
+        "Przekierowanie 301 dodasz wtyczką Redirection lub w Rank Math."
+      ],
+      "solution": "- Kategoria „Płytki łazienkowe”: title „Płytki łazienkowe – matowe i błyszczące | Płytki24”, wstęp 2 zdania.\n- Filtr: `/kategoria/plytki-lazienkowe/?filter_kolor=grafit` z canonical do `/kategoria/plytki-lazienkowe/` (lub noindex).\n- Niedostępny: „Płytka Beż 60×60”, status Brak w magazynie, strona zostaje.\n- Wycofany: „Klej stary model” → 301 na „Klej elastyczny 25 kg”.\n- Walidator: `Product` z `offers` (cena, PLN, InStock) bez błędów."
+    }
+  },
+  {
+    "id": "t9-wyglad-sklepu",
+    "week": 9,
+    "order": 6,
+    "title": "Wygląd sklepu",
+    "lesson": "Wygląd sklepu to nie tylko estetyka. Od układu strony produktu, koszyka i kasy zależy, ile osób kupi. Najważniejsza zasada: **projektujesz szablony**, a nie każdą stronę produktu osobno.\n\n![Ścieżka zakupu i szablony](diagram:wyglad-sklepu)\n\n## Gdzie zmieniasz wygląd\n\n- **Motyw blokowy**: **Wygląd → Edytor → Szablony**: „Pojedynczy produkt”, „Archiwum produktów”, „Wyniki wyszukiwania produktów”, a strony **Koszyk** i **Zamówienie** zbudowane z bloków WooCommerce.\n- **Elementor Pro**: **Theme Builder** → Pojedynczy produkt, Archiwum produktów (tydzień 11). Koszyk i kasa mają osobne widżety.\n- **Ustawienia motywu** (np. Astra, Kadence): liczba kolumn, wygląd kart produktów, galeria.\n\nZmiana szablonu działa na **wszystkie produkty** naraz.\n\n## Strona produktu\n\nNa pierwszym ekranie, także na telefonie:\n\n- **duże zdjęcia** z galerią i powiększeniem,\n- **nazwa, cena** (z informacją Omnibus przy promocji), **warianty**,\n- **przycisk „Dodaj do koszyka”** wyróżniony kolorem,\n- **dostawa i czas wysyłki**, darmowa dostawa od X zł,\n- **elementy zaufania**: zwrot 14 dni, bezpieczne płatności, opinie (gwiazdki).\n\nNiżej: opis, parametry, opinie, **produkty powiązane** (podobne i „kupowane razem”, w produkcie: Podobne produkty i Sprzedaż komplementarna).\n\n## Archiwum (lista produktów)\n\nCzytelna siatka (na telefonie 2 kolumny), filtry, sortowanie, cena i zdjęcie, opcjonalnie przycisk przy produkcie.\n\n## Koszyk i kasa\n\n- **koszyk**: podsumowanie, koszt dostawy, kupon, informacja o progu darmowej dostawy,\n- **kasa**: **jak najmniej pól** (czy potrzebny jest drugi telefon, nazwa firmy?), zakupy **bez zakładania konta** (gość), widoczne metody płatności, bez menu i rozpraszaczy.\n\nNowa kasa blokowa WooCommerce jest szybka i przejrzysta. Część starszych wtyczek działa tylko ze starą kasą (shortcode). Sprawdź zgodność przed zmianą.\n\n## Telefon przede wszystkim\n\nWiększość klientów kupuje na telefonie. Testuj całą ścieżkę zakupu na prawdziwym telefonie: czy przycisk jest widoczny, czy pola wygodnie się wypełnia, czy BLIK działa.\n\n## Czytaj dalej\n\n- [WPBeginner: jak założyć sklep (po angielsku)](https://www.wpbeginner.com/wp-tutorials/how-to-start-an-online-store/)\n- [Baymard Institute: badania UX kasy (po angielsku)](https://baymard.com/research-articles/checkout-flow-average-form-fields)",
+    "questions": [
+      {
+        "id": "t9-wyglad-sklepu-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Jak zmienić układ wszystkich stron produktów naraz?",
+        "answer": "Edytując szablon pojedynczego produktu (edytor witryny lub Theme Builder)",
+        "distractors": [
+          "Edytując każdy produkt osobno",
+          "Zmieniając opis kategorii"
+        ],
+        "explanation": "Szablon decyduje o układzie każdej strony produktu."
+      },
+      {
+        "id": "t9-wyglad-sklepu-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Zakupy bez zakładania konta to zakupy jako ___.",
+        "answer": "gość",
+        "explanation": "Wymuszone zakładanie konta to częsty powód porzucania koszyka."
+      },
+      {
+        "id": "t9-wyglad-sklepu-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Co powinno być widoczne na pierwszym ekranie strony produktu na telefonie?",
+        "answer": "Zdjęcie, nazwa, cena, warianty i przycisk Dodaj do koszyka",
+        "distractors": [
+          "Pełny opis i opinie, a przycisk na dole",
+          "Tylko zdjęcie na cały ekran"
+        ],
+        "explanation": "Klient od razu widzi, co to jest, ile kosztuje i jak kupić."
+      },
+      {
+        "id": "t9-wyglad-sklepu-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Projekt kasy: `zakupy jako gość`, `metody płatności widoczne`, `wymagane pola: drugi telefon, nazwa firmy, data urodzenia`, `brak menu w kasie`. Co szkodzi konwersji?",
+        "answer": "`wymagane pola: drugi telefon, nazwa firmy, data urodzenia`",
+        "distractors": [
+          "`zakupy jako gość`",
+          "`metody płatności widoczne`",
+          "`brak menu w kasie`"
+        ],
+        "explanation": "Każde zbędne pole to powód do porzucenia zakupu. Zostaw tylko to, co potrzebne do realizacji."
+      },
+      {
+        "id": "t9-wyglad-sklepu-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Po przejściu na kasę blokową przestało działać pole wtyczki do faktur. Dlaczego?",
+        "answer": "Wtyczka może obsługiwać tylko starą kasę (shortcode) i nie jest zgodna z blokami",
+        "distractors": [
+          "Kasa blokowa nie obsługuje faktur w ogóle",
+          "Trzeba wyczyścić cache przeglądarki"
+        ],
+        "explanation": "Przed zmianą kasy sprawdź zgodność wtyczek. Można wrócić do kasy z shortcode."
+      },
+      {
+        "id": "t9-wyglad-sklepu-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Co powinno znaleźć się na stronie produktu, żeby zwiększyć szanse na zakup?",
+        "answer": "Duże zdjęcia z galerią, nazwa, cena z informacją Omnibus przy promocji, wybór wariantu, wyraźny przycisk Dodaj do koszyka, koszt i czas dostawy, elementy zaufania (zwrot 14 dni, bezpieczne płatności, opinie), a niżej opis, parametry, opinie i produkty powiązane.",
+        "keyPoints": [
+          "zdjęcia i galeria",
+          "nazwa, cena, warianty, przycisk",
+          "dostawa i czas wysyłki",
+          "elementy zaufania i opinie",
+          "opis, parametry, powiązane"
+        ],
+        "explanation": "Najważniejsze elementy na pierwszym ekranie telefonu."
+      },
+      {
+        "id": "t9-wyglad-sklepu-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak uprościsz kasę w sklepie?",
+        "answer": "Zostawię tylko pola potrzebne do realizacji i faktury, usunę zbędne (drugi telefon, data urodzenia), włączę zakupy jako gość z opcjonalnym założeniem konta, pokażę metody płatności i dostawy w czytelny sposób, ukryję menu i rozpraszacze, dodam elementy zaufania i sprawdzę całość na telefonie.",
+        "keyPoints": [
+          "tylko potrzebne pola",
+          "zakupy jako gość",
+          "czytelne płatności i dostawy",
+          "bez menu i rozpraszaczy",
+          "test na telefonie"
+        ],
+        "explanation": "Pola zmienisz w ustawieniach bloku Kasa lub wtyczką do pól kasy."
+      },
+      {
+        "id": "t9-wyglad-sklepu-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Gdzie i jak zaprojektujesz szablon strony produktu w motywie blokowym i w Elementorze?",
+        "answer": "W motywie blokowym w Wygląd → Edytor → Szablony → Pojedynczy produkt, układając bloki WooCommerce: galerię, tytuł, cenę, przycisk, opis, powiązane. W Elementorze Pro w Theme Builder tworzę szablon Pojedynczy produkt z widżetami WooCommerce i ustawiam warunek wyświetlania dla wszystkich produktów. Sprawdzam na kilku produktach, także zmiennych, i na telefonie.",
+        "keyPoints": [
+          "motyw blokowy: Edytor → Szablony → Pojedynczy produkt",
+          "bloki WooCommerce",
+          "Elementor Pro: Theme Builder i widżety",
+          "warunek: wszystkie produkty",
+          "test na kilku produktach i telefonie"
+        ],
+        "explanation": "Theme Builder rozwiniesz w tygodniu 11."
+      },
+      {
+        "id": "t9-wyglad-sklepu-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Dlaczego elementy zaufania są ważne w sklepie i jakie dodasz?",
+        "answer": "Bo klient nie zna sklepu i boi się, że nie dostanie towaru lub nie odzyska pieniędzy. Dodam opinie i oceny, informację o zwrocie w 14 dni, bezpieczne płatności z logo operatorów, dane firmy i kontakt, czas wysyłki, ewentualnie certyfikaty lub opinie z zewnętrznych serwisów.",
+        "keyPoints": [
+          "obawa przed nieznanym sklepem",
+          "opinie i oceny",
+          "zwroty 14 dni",
+          "bezpieczne płatności",
+          "dane firmy, kontakt, czas wysyłki"
+        ],
+        "explanation": "Elementy zaufania najbardziej pomagają nowym, mało znanym sklepom."
+      },
+      {
+        "id": "t9-wyglad-sklepu-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Sklep ma dużo wejść na produkty z telefonów, ale mało zakupów. Jak poszukasz przyczyny w wyglądzie?",
+        "answer": "Przejdę zakup na prawdziwym telefonie: czy przycisk Dodaj do koszyka jest widoczny bez przewijania, czy wybór wariantu jest wygodny, czy koszt dostawy jest jasny, ile pól ma kasa i czy działa BLIK. Sprawdzę w analityce, na którym kroku ludzie odpadają (produkt, koszyk, kasa), i nagrania sesji, np. Microsoft Clarity. Potem poprawię najsłabszy krok i porównam wyniki.",
+        "keyPoints": [
+          "test zakupu na telefonie",
+          "widoczność przycisku i wariantów",
+          "koszt dostawy i liczba pól",
+          "analityka: krok porzucenia",
+          "nagrania sesji i poprawa najsłabszego kroku"
+        ],
+        "explanation": "Analitykę zakupów ustawisz w tygodniu 10."
+      }
+    ],
+    "task": {
+      "task": "Zaprojektuj stronę produktu.\n\n1. Narysuj (na kartce lub w Figmie) układ strony produktu na telefonie i komputerze: co jest na pierwszym ekranie.\n2. Otwórz szablon pojedynczego produktu (edytor witryny lub Theme Builder) i ułóż go według projektu.\n3. Dodaj blok lub widżet z informacją o dostawie i elementami zaufania (np. „Wysyłka w 24 h · Zwrot 14 dni · Bezpieczne płatności”).\n4. Ustaw w 2 produktach produkty powiązane (Sprzedaż komplementarna).\n5. Sprawdź szablon na produkcie prostym i zmiennym, na komputerze i telefonie.",
+      "checklist": [
+        "Projekt układu na telefon i komputer",
+        "Szablon produktu ułożony",
+        "Informacja o dostawie i zaufaniu",
+        "Produkty powiązane",
+        "Test na 2 produktach i telefonie"
+      ],
+      "hints": [
+        "W edytorze witryny: **Wygląd → Edytor → Szablony → Pojedynczy produkt → Edytuj**.",
+        "Informację o dostawie zrób blokiem Akapit lub Lista z ikonami w kolumnie obok ceny.",
+        "Sprzedaż komplementarna: w produkcie zakładka **Produkty powiązane**."
+      ],
+      "solution": "Pierwszy ekran na telefonie: galeria (1 duże zdjęcie z miniaturami), nazwa, gwiazdki, cena (z informacją Omnibus), wybór koloru i rozmiaru, przycisk „Dodaj do koszyka” w kolorze akcentu, linia „Wysyłka w 24 h · Darmowa dostawa od 300 zł · Zwrot 14 dni”.\n\nNiżej: zakładki Opis, Parametry, Opinie; sekcja „Kupowane razem” (klej i fuga do płytek).\n\nSzablon sprawdzony na produkcie prostym (Klej) i zmiennym (Płytka Mat Stone). Na telefonie przycisk widoczny bez przewijania."
+    }
   }
 ]

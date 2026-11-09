@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 250" role="img" aria-labelledby="title">
+<title id="title">Cztery najważniejsze miejsca w Google Search Console: Skuteczność, Strony, Sprawdzenie adresu URL i Mapy witryn</title>
+<style>
+svg{--fg:#1d1d1b;--muted:#6b6b66;--box:#ffffff;--line:#c9c9c1;--accent:#2b6cb0;--site:#2f8f4e;--bad:#c0392b;font-family:system-ui,sans-serif}
+@media (prefers-color-scheme:dark){svg{--fg:#ecece6;--muted:#a0a09a;--box:#1f1f1d;--line:#4a4a44;--accent:#63a4ec;--site:#5cbf7d;--bad:#ec7f72}}
+.box{fill:var(--box);stroke:var(--line);stroke-width:1.5}
+.box.good{stroke:var(--site);stroke-width:2}
+.box.bad{stroke:var(--bad);stroke-width:2}
+.t{fill:var(--fg);font-size:16px;font-weight:700}
+.s{fill:var(--muted);font-size:13px}
+.ar{stroke:var(--line);stroke-width:2}
+#m path{fill:var(--line)}
+.tag{fill:var(--accent);font-size:14px;font-weight:700}
+.tag.good{fill:var(--site)}
+.tag.bad{fill:var(--bad)}
+.hl{fill:none;stroke:var(--accent);stroke-width:3;opacity:0}
+.cap{fill:var(--fg);font-size:15px;opacity:0}
+.static{fill:var(--muted);font-size:14px;opacity:0}
+</style>
+
+<rect class="box good" x="20" y="20" width="168" height="210" rx="12"/>
+<text class="t" x="104" y="52" text-anchor="middle">Skuteczność</text>
+<text class="s" x="104" y="84" text-anchor="middle">kliknięcia</text>
+<text class="s" x="104" y="104" text-anchor="middle">wyświetlenia</text>
+<text class="s" x="104" y="124" text-anchor="middle">CTR</text>
+<text class="s" x="104" y="144" text-anchor="middle">średnia pozycja</text>
+<text class="s" x="104" y="164" text-anchor="middle">frazy i strony</text>
+<text class="tag good" x="104" y="212" text-anchor="middle">jak Cię widzą</text>
+<rect class="box " x="204" y="20" width="168" height="210" rx="12"/>
+<text class="t" x="288" y="52" text-anchor="middle">Strony</text>
+<text class="s" x="288" y="84" text-anchor="middle">zaindeksowane</text>
+<text class="s" x="288" y="104" text-anchor="middle">i niezaindeksowane</text>
+<text class="s" x="288" y="124" text-anchor="middle">z powodem:</text>
+<text class="s" x="288" y="144" text-anchor="middle">404, noindex,</text>
+<text class="s" x="288" y="164" text-anchor="middle">duplikat...</text>
+<text class="tag " x="288" y="212" text-anchor="middle">indeksowanie</text>
+<rect class="box " x="388" y="20" width="168" height="210" rx="12"/>
+<text class="t" x="472" y="52" text-anchor="middle">Sprawdzenie URL</text>
+<text class="s" x="472" y="84" text-anchor="middle">status jednego</text>
+<text class="s" x="472" y="104" text-anchor="middle">adresu</text>
+<text class="s" x="472" y="124" text-anchor="middle">test na żywo</text>
+<text class="s" x="472" y="144" text-anchor="middle">prośba</text>
+<text class="s" x="472" y="164" text-anchor="middle">o zaindeksowanie</text>
+<text class="tag " x="472" y="212" text-anchor="middle">diagnoza</text>
+<rect class="box " x="572" y="20" width="168" height="210" rx="12"/>
+<text class="t" x="656" y="52" text-anchor="middle">Mapy witryn</text>
+<text class="s" x="656" y="84" text-anchor="middle">adres sitemap</text>
+<text class="s" x="656" y="104" text-anchor="middle">np. /sitemap.xml</text>
+<text class="s" x="656" y="124" text-anchor="middle">liczba</text>
+<text class="s" x="656" y="144" text-anchor="middle">znalezionych</text>
+<text class="s" x="656" y="164" text-anchor="middle">adresów</text>
+<text class="tag " x="656" y="212" text-anchor="middle">dla robota</text>
+</svg>

@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 250" role="img" aria-labelledby="title">
+<title id="title">SEO lokalne: Google ocenia wizytówki według trafności, odległości i popularności, a dane NAP muszą być wszędzie takie same</title>
+<style>
+svg{--fg:#1d1d1b;--muted:#6b6b66;--box:#ffffff;--line:#c9c9c1;--accent:#2b6cb0;--site:#2f8f4e;--bad:#c0392b;font-family:system-ui,sans-serif}
+@media (prefers-color-scheme:dark){svg{--fg:#ecece6;--muted:#a0a09a;--box:#1f1f1d;--line:#4a4a44;--accent:#63a4ec;--site:#5cbf7d;--bad:#ec7f72}}
+.box{fill:var(--box);stroke:var(--line);stroke-width:1.5}
+.box.good{stroke:var(--site);stroke-width:2}
+.box.bad{stroke:var(--bad);stroke-width:2}
+.t{fill:var(--fg);font-size:16px;font-weight:700}
+.s{fill:var(--muted);font-size:13px}
+.ar{stroke:var(--line);stroke-width:2}
+#m path{fill:var(--line)}
+.tag{fill:var(--accent);font-size:14px;font-weight:700}
+.tag.good{fill:var(--site)}
+.tag.bad{fill:var(--bad)}
+.hl{fill:none;stroke:var(--accent);stroke-width:3;opacity:0}
+.cap{fill:var(--fg);font-size:15px;opacity:0}
+.static{fill:var(--muted);font-size:14px;opacity:0}
+</style>
+
+<rect class="box " x="20" y="20" width="168" height="210" rx="12"/>
+<text class="t" x="104" y="52" text-anchor="middle">Trafność</text>
+<text class="s" x="104" y="84" text-anchor="middle">kategoria główna</text>
+<text class="s" x="104" y="104" text-anchor="middle">usługi i opis</text>
+<text class="s" x="104" y="124" text-anchor="middle">pasują do</text>
+<text class="s" x="104" y="144" text-anchor="middle">zapytania</text>
+<text class="tag " x="104" y="212" text-anchor="middle">czy pasuje</text>
+<rect class="box " x="204" y="20" width="168" height="210" rx="12"/>
+<text class="t" x="288" y="52" text-anchor="middle">Odległość</text>
+<text class="s" x="288" y="84" text-anchor="middle">jak blisko</text>
+<text class="s" x="288" y="104" text-anchor="middle">jest firma</text>
+<text class="s" x="288" y="124" text-anchor="middle">od szukającego</text>
+<text class="s" x="288" y="144" text-anchor="middle">lub miasta</text>
+<text class="s" x="288" y="164" text-anchor="middle"></text>
+<text class="tag " x="288" y="212" text-anchor="middle">gdzie</text>
+<rect class="box good" x="388" y="20" width="168" height="210" rx="12"/>
+<text class="t" x="472" y="52" text-anchor="middle">Popularność</text>
+<text class="s" x="472" y="84" text-anchor="middle">opinie i oceny</text>
+<text class="s" x="472" y="104" text-anchor="middle">odpowiedzi</text>
+<text class="s" x="472" y="124" text-anchor="middle">linki, wzmianki</text>
+<text class="s" x="472" y="144" text-anchor="middle">strona WWW</text>
+<text class="tag good" x="472" y="212" text-anchor="middle">czy znana</text>
+<rect class="box " x="572" y="20" width="168" height="210" rx="12"/>
+<text class="t" x="656" y="52" text-anchor="middle">NAP</text>
+<text class="s" x="656" y="84" text-anchor="middle">Nazwa, Adres,</text>
+<text class="s" x="656" y="104" text-anchor="middle">telefon (Phone)</text>
+<text class="s" x="656" y="124" text-anchor="middle">identyczne:</text>
+<text class="s" x="656" y="144" text-anchor="middle">wizytówka, strona,</text>
+<text class="s" x="656" y="164" text-anchor="middle">katalogi</text>
+<text class="tag " x="656" y="212" text-anchor="middle">spójność</text>
+</svg>

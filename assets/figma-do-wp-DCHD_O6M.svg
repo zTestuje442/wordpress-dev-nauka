@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 330" role="img" aria-labelledby="title">
+<title id="title">Z projektu Figma na stronę: odczyt wymiarów, kolorów i fontów, eksport grafik, budowa w WordPressie i porównanie z projektem</title>
+<style>
+svg{--fg:#1d1d1b;--muted:#6b6b66;--box:#ffffff;--line:#c9c9c1;--accent:#2b6cb0;--site:#2f8f4e;--bad:#c0392b;font-family:system-ui,sans-serif}
+@media (prefers-color-scheme:dark){svg{--fg:#ecece6;--muted:#a0a09a;--box:#1f1f1d;--line:#4a4a44;--accent:#63a4ec;--site:#5cbf7d;--bad:#ec7f72}}
+.box{fill:var(--box);stroke:var(--line);stroke-width:1.5}
+.box.good{stroke:var(--site);stroke-width:2}
+.box.bad{stroke:var(--bad);stroke-width:2}
+.t{fill:var(--fg);font-size:16px;font-weight:700}
+.s{fill:var(--muted);font-size:13px}
+.ar{stroke:var(--line);stroke-width:2}
+#m path{fill:var(--line)}
+.tag{fill:var(--accent);font-size:14px;font-weight:700}
+.tag.good{fill:var(--site)}
+.tag.bad{fill:var(--bad)}
+.hl{fill:none;stroke:var(--accent);stroke-width:3;opacity:0}
+.cap{fill:var(--fg);font-size:15px;opacity:0}
+.static{fill:var(--muted);font-size:14px;opacity:0}
+@keyframes c0{0%{opacity:0}0.00%{opacity:1}25.00%{opacity:0}50.00%{opacity:0}75.00%{opacity:0}100%{opacity:0}}.c0{animation:c0 12s step-end infinite}@keyframes c1{0%{opacity:0}0.00%{opacity:0}25.00%{opacity:1}50.00%{opacity:0}75.00%{opacity:0}100%{opacity:0}}.c1{animation:c1 12s step-end infinite}@keyframes c2{0%{opacity:0}0.00%{opacity:0}25.00%{opacity:0}50.00%{opacity:1}75.00%{opacity:0}100%{opacity:0}}.c2{animation:c2 12s step-end infinite}@keyframes c3{0%{opacity:0}0.00%{opacity:0}25.00%{opacity:0}50.00%{opacity:0}75.00%{opacity:1}100%{opacity:0}}.c3{animation:c3 12s step-end infinite}@keyframes h_f{0%{opacity:0}0.00%{opacity:1}25.00%{opacity:0}50.00%{opacity:0}75.00%{opacity:0}100%{opacity:0}}.h_f{animation:h_f 12s step-end infinite}@keyframes h_o{0%{opacity:0}0.00%{opacity:0}25.00%{opacity:1}50.00%{opacity:0}75.00%{opacity:0}100%{opacity:0}}.h_o{animation:h_o 12s step-end infinite}@keyframes h_e{0%{opacity:0}0.00%{opacity:0}25.00%{opacity:0}50.00%{opacity:1}75.00%{opacity:0}100%{opacity:0}}.h_e{animation:h_e 12s step-end infinite}@keyframes h_w{0%{opacity:0}0.00%{opacity:0}25.00%{opacity:0}50.00%{opacity:1}75.00%{opacity:0}100%{opacity:0}}.h_w{animation:h_w 12s step-end infinite}@keyframes h_p{0%{opacity:0}0.00%{opacity:0}25.00%{opacity:0}50.00%{opacity:0}75.00%{opacity:1}100%{opacity:0}}.h_p{animation:h_p 12s step-end infinite}
+@media (prefers-reduced-motion:reduce){.cap,.hl{animation:none;opacity:0}.static{opacity:1}}
+</style>
+<defs><marker id="m" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z"/></marker></defs>
+<line class="ar" x1="180" y1="75" x2="298" y2="75" marker-end="url(#m)"/><line class="ar" x1="460" y1="75" x2="578" y2="75" marker-end="url(#m)"/><line class="ar" x1="660" y1="110" x2="660" y2="188" marker-end="url(#m)"/><line class="ar" x1="578" y1="225" x2="462" y2="225" marker-end="url(#m)"/>
+<rect class="hl h_f" x="16" y="36" width="168" height="78" rx="13"/><rect class="box " x="20" y="40" width="160" height="70" rx="10"/><text class="t" x="100" y="72" text-anchor="middle">Projekt Figma</text><text class="s" x="100" y="92" text-anchor="middle">link od grafika</text><rect class="hl h_o" x="296" y="36" width="168" height="78" rx="13"/><rect class="box " x="300" y="40" width="160" height="70" rx="10"/><text class="t" x="380" y="72" text-anchor="middle">Odczyt</text><text class="s" x="380" y="92" text-anchor="middle">kolory, fonty, odstępy</text><rect class="hl h_e" x="576" y="36" width="168" height="78" rx="13"/><rect class="box " x="580" y="40" width="160" height="70" rx="10"/><text class="t" x="660" y="72" text-anchor="middle">Eksport grafik</text><text class="s" x="660" y="92" text-anchor="middle">SVG, PNG, JPG</text><rect class="hl h_w" x="576" y="186" width="168" height="78" rx="13"/><rect class="box " x="580" y="190" width="160" height="70" rx="10"/><text class="t" x="660" y="222" text-anchor="middle">Budowa w WP</text><text class="s" x="660" y="242" text-anchor="middle">Style + bloki/builder</text><rect class="hl h_p" x="296" y="186" width="168" height="78" rx="13"/><rect class="box good" x="300" y="190" width="160" height="70" rx="10"/><text class="t" x="380" y="222" text-anchor="middle">Porównanie</text><text class="s" x="380" y="242" text-anchor="middle">projekt vs strona</text>
+<text class="cap c0" x="380" y="310" text-anchor="middle">1. Dostajesz link do projektu (wystarczy dostęp do podglądu)</text><text class="cap c1" x="380" y="310" text-anchor="middle">2. Klikasz elementy i odczytujesz kolory, fonty, rozmiary i odstępy</text><text class="cap c2" x="380" y="310" text-anchor="middle">3. Eksportujesz grafiki i budujesz sekcje w WordPressie</text><text class="cap c3" x="380" y="310" text-anchor="middle">4. Porównujesz stronę z projektem na komputerze i telefonie</text>
+<text class="static" x="380" y="310" text-anchor="middle">Projekt → odczyt stylów → eksport grafik → budowa → porównanie</text>
+</svg>

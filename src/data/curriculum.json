@@ -7249,5 +7249,1096 @@
       ],
       "solution": "```php\nadd_filter( 'the_content', function ( $content ) {\n    if ( is_singular( 'post' ) ) {\n        return '<p class=\"wycena\">Bezpłatna wycena w 24 h</p>' . $content;\n    }\n    return $content;\n} );\n```\n\n- Filtr `the_content` dostaje treść wpisu (`$content`).\n- Jeśli to pojedynczy wpis (`is_singular( 'post' )`), dokleja akapit z tekstem przed treścią i oddaje całość.\n- W innym przypadku oddaje treść bez zmian. Dlatego na stronach tekstu nie ma."
     }
+  },
+  {
+    "id": "t7-obrazy-seo",
+    "week": 7,
+    "order": 1,
+    "title": "Obrazy pod SEO",
+    "lesson": "Obrazy to zwykle **największa część wagi strony**. Źle przygotowane spowalniają ją bardziej niż cokolwiek innego. Dobrze przygotowane przyspieszają stronę i dają dodatkowy ruch z Grafiki Google.\n\n![Jak przygotować obraz](diagram:obrazy-seo)\n\n## Nazwa pliku\n\nZmień nazwę **przed wgraniem**: `remont-lazienki-krakow.jpg` zamiast `IMG_4521.jpg`. Małe litery, myślniki, bez polskich znaków (jak w adresach URL z tygodnia 4).\n\n## Rozmiar i waga\n\n- **Szerokość**: nie większa niż potrzeba. Zdjęcie na całą szerokość ekranu: ok. 1600–2000 px. Zdjęcie w treści: ok. 1200 px. Miniatura: kilkaset px.\n- **Waga**: celuj w **poniżej 200 KB** dla dużych zdjęć, mniej dla małych.\n- WordPress sam tworzy kilka mniejszych wersji obrazka i podaje przeglądarce odpowiednią (atrybut `srcset`), ale oryginał i tak warto zmniejszyć.\n\n## Format\n\n- **WebP**: o 25–35% lżejszy niż JPG przy tej samej jakości. Obsługiwany przez wszystkie nowoczesne przeglądarki i WordPressa.\n- **AVIF**: jeszcze lżejszy, WordPress obsługuje go od wersji 6.5 (jeśli serwer go wspiera).\n- **SVG**: logo i ikony (wymaga wtyczki, bo SVG może zawierać kod).\n- **PNG**: tylko grafiki z przezroczystością, gdy WebP nie wystarcza.\n\nKonwersję zrobi wtyczka (np. Converter for Media, EWWW Image Optimizer, Imagify) albo narzędzie [Squoosh](https://squoosh.app/) przed wgraniem.\n\n## Tekst alternatywny (alt)\n\nAlt opisuje, **co jest na obrazku**. Czyta go czytnik ekranu dla osób niewidomych i Google. Wpiszesz go w Bibliotece mediów lub w bloku Obrazek.\n\n- Dobrze: „Łazienka po remoncie z szarymi płytkami i prysznicem walk-in”.\n- Źle: „remont łazienki kraków remonty łazienek tanio” (upychanie fraz) albo „zdjęcie1”.\n- Grafiki czysto ozdobne (tła, ozdobniki) mogą mieć pusty alt.\n\n## Lazy loading\n\nObrazy niżej na stronie ładują się dopiero przy przewijaniu (`loading=\"lazy\"`). WordPress dodaje to automatycznie, **oprócz** pierwszego dużego obrazu, który ma się załadować od razu (ważne dla LCP, lekcja o szybkości).\n\n## Czytaj dalej\n\n- [Google: sprawdzone metody dotyczące obrazów](https://developers.google.com/search/docs/appearance/google-images?hl=pl)\n- [web.dev: optymalizacja obrazów (po angielsku)](https://web.dev/learn/images)",
+    "questions": [
+      {
+        "id": "t7-obrazy-seo-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Która nazwa pliku jest najlepsza?",
+        "answer": "`remont-lazienki-krakow.webp`",
+        "distractors": [
+          "`IMG_4521.JPG`",
+          "`Remont Łazienki Kraków.jpg`"
+        ],
+        "explanation": "Opisowa, małe litery, myślniki, bez polskich znaków i spacji."
+      },
+      {
+        "id": "t7-obrazy-seo-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Opis obrazka czytany przez czytnik ekranu i Google to tekst ___.",
+        "answer": "alternatywny",
+        "explanation": "Tekst alternatywny, czyli atrybut alt."
+      },
+      {
+        "id": "t7-obrazy-seo-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Który format zwykle daje najlżejsze zdjęcia przy dobrej jakości i jest powszechnie obsługiwany?",
+        "answer": "WebP",
+        "distractors": [
+          "BMP",
+          "PNG"
+        ],
+        "explanation": "WebP jest o 25–35% lżejszy niż JPG. AVIF bywa jeszcze lżejszy, ale nie każdy serwer go obsługuje."
+      },
+      {
+        "id": "t7-obrazy-seo-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Obraz w galerii realizacji: `nazwa: lazienka-szare-plytki.webp`, `szerokość 1200 px, 140 KB`, `alt: remont łazienki kraków remonty tanio najlepsze`, `loading=\"lazy\"`. Co poprawić?",
+        "answer": "`alt: remont łazienki kraków remonty tanio najlepsze`",
+        "distractors": [
+          "`nazwa: lazienka-szare-plytki.webp`",
+          "`szerokość 1200 px, 140 KB`",
+          "`loading=\"lazy\"`"
+        ],
+        "explanation": "Alt ma opisywać obraz, a nie powtarzać frazy. Upychanie słów kluczowych szkodzi dostępności i może szkodzić SEO."
+      },
+      {
+        "id": "t7-obrazy-seo-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Czy główny, duży obraz na górze strony powinien mieć lazy loading?",
+        "answer": "Nie, powinien załadować się od razu, bo zwykle decyduje o LCP",
+        "distractors": [
+          "Tak, każdy obraz powinien mieć lazy loading",
+          "Tak, ale tylko na telefonach"
+        ],
+        "explanation": "Lazy loading pierwszego obrazu opóźnia jego wyświetlenie i pogarsza LCP."
+      },
+      {
+        "id": "t7-obrazy-seo-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Opisz, jak przygotujesz zdjęcie z telefonu do wstawienia na stronę.",
+        "answer": "Zmienię nazwę pliku na opisową, np. remont-lazienki-krakow, zmniejszę szerokość do potrzebnej, np. 1200–1600 px, skompresuję i zapiszę jako WebP, celując poniżej 200 KB, a po wgraniu dodam tekst alternatywny opisujący, co jest na zdjęciu.",
+        "keyPoints": [
+          "opisowa nazwa pliku",
+          "zmniejszenie szerokości",
+          "kompresja i WebP",
+          "waga poniżej ~200 KB",
+          "tekst alt"
+        ],
+        "explanation": "Wtyczka może konwertować automatycznie, ale nazwę pliku i alt wpisuje człowiek."
+      },
+      {
+        "id": "t7-obrazy-seo-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak napisać dobry tekst alternatywny?",
+        "answer": "Opisuję konkretnie, co widać na obrazku i co jest ważne w kontekście strony, np. „Łazienka po remoncie z szarymi płytkami i prysznicem walk-in”. Bez upychania fraz, bez „zdjęcie” czy „obrazek”. Fraza może się pojawić, jeśli naturalnie pasuje. Grafiki czysto ozdobne mogą mieć pusty alt.",
+        "keyPoints": [
+          "opis tego, co widać",
+          "kontekst strony",
+          "bez upychania fraz",
+          "fraza tylko naturalnie",
+          "ozdobniki: pusty alt"
+        ],
+        "explanation": "Pomyśl, jak opisać zdjęcie przez telefon komuś, kto go nie widzi."
+      },
+      {
+        "id": "t7-obrazy-seo-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Dlaczego obrazy mają tak duży wpływ na szybkość strony?",
+        "answer": "Bo zwykle stanowią największą część wagi strony. Zdjęcie z telefonu waży kilka MB, a cała dobrze zrobiona strona powinna ważyć mniej. Duże obrazy wydłużają ładowanie, szczególnie na telefonie przy słabym internecie, i pogarszają LCP, czyli czas wyświetlenia największego elementu.",
+        "keyPoints": [
+          "największa część wagi strony",
+          "zdjęcia z telefonu ważą MB",
+          "wolniej na telefonie",
+          "gorszy LCP"
+        ],
+        "explanation": "Optymalizacja obrazów to często najszybszy sposób na lepszy wynik PageSpeed."
+      },
+      {
+        "id": "t7-obrazy-seo-09",
+        "type": "open",
+        "difficulty": 3,
+        "prompt": "Na stronie jest 300 starych zdjęć w JPG po 3 MB. Jak to naprawisz bez ręcznej pracy przy każdym?",
+        "answer": "Zrobię kopię, zainstaluję wtyczkę do optymalizacji, np. EWWW lub Converter for Media, i uruchomię masową optymalizację: zmniejszenie zbyt dużych oryginałów i konwersję do WebP. Sprawdzę kilka stron, czy obrazy wyglądają dobrze, i porównam wynik PageSpeed przed i po. Alt uzupełnię przynajmniej dla najważniejszych stron.",
+        "keyPoints": [
+          "kopia",
+          "wtyczka z masową optymalizacją",
+          "zmniejszenie i WebP",
+          "sprawdzenie wyglądu",
+          "porównanie PageSpeed",
+          "alt dla ważnych stron"
+        ],
+        "explanation": "Masowa optymalizacja na słabym hostingu może trwać godzinami. Rób ją poza godzinami szczytu."
+      },
+      {
+        "id": "t7-obrazy-seo-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Klient wrzuca logo jako JPG 3000 × 3000 px. Co zaproponujesz i dlaczego?",
+        "answer": "Logo w SVG, bo to grafika wektorowa: jest ostra w każdym rozmiarze i waży kilka KB. Jeśli SVG nie ma, PNG lub WebP z przezroczystością w rozmiarze ok. dwa razy większym niż wyświetlany, np. 400 px szerokości. SVG wymaga wtyczki lub ustawienia, które pozwala go bezpiecznie wgrywać, bo plik SVG może zawierać kod.",
+        "keyPoints": [
+          "SVG: ostre i lekkie",
+          "alternatywa: PNG/WebP z przezroczystością",
+          "rozmiar ok. 2x wyświetlanego",
+          "SVG wymaga wtyczki (może zawierać kod)"
+        ],
+        "explanation": "Wgrywaj SVG tylko z zaufanych źródeł."
+      }
+    ],
+    "task": {
+      "task": "Zoptymalizuj grafiki na stronie testowej.\n\n1. Weź 3 zdjęcia z telefonu. Zapisz ich wagę i rozmiar w pikselach.\n2. Zmień nazwy na opisowe.\n3. Zmniejsz je i przekonwertuj na WebP w [Squoosh](https://squoosh.app/) (szerokość 1200–1600 px, jakość ok. 75).\n4. Wgraj na stronę, dodaj tekst alternatywny do każdego i wstaw do wpisu.\n5. Zainstaluj wtyczkę do optymalizacji (np. Converter for Media) i przekonwertuj resztę biblioteki.",
+      "checklist": [
+        "Waga i rozmiar zdjęć przed zapisane",
+        "Opisowe nazwy plików",
+        "Zdjęcia w WebP poniżej 200 KB",
+        "Alt dodany do każdego zdjęcia",
+        "Wtyczka do optymalizacji uruchomiona"
+      ],
+      "hints": [
+        "W Squoosh po prawej wybierz WebP, a w **Resize** szerokość.",
+        "Alt dodasz w **Media → Biblioteka** → kliknij obrazek → pole **Tekst alternatywny**.",
+        "Porównaj wagę przed i po. Zwykle spada o 90% lub więcej."
+      ],
+      "solution": "- Przed: `IMG_4521.jpg`, 4032 × 3024 px, 4,2 MB.\n- Po: `lazienka-szare-plytki.webp`, 1600 × 1200 px, 160 KB (spadek o ponad 95%).\n- Alt: „Łazienka po remoncie z szarymi płytkami wielkoformatowymi i prysznicem walk-in”.\n- Wtyczka: Converter for Media → Start bulk optimization, obrazy podawane jako WebP."
+    }
+  },
+  {
+    "id": "t7-robots-sitemap",
+    "week": 7,
+    "order": 2,
+    "title": "Robots.txt i mapa witryny",
+    "lesson": "Dwa małe pliki pomagają robotom Google sprawnie poruszać się po stronie. **robots.txt** mówi, gdzie **nie** wchodzić. **Mapa witryny** (sitemap) podaje listę stron, które **warto** odwiedzić.\n\n![Jak robot używa obu plików](diagram:robots-sitemap)\n\n## robots.txt\n\nPlik tekstowy pod adresem `twojadomena.pl/robots.txt`. WordPress tworzy go automatycznie (wirtualnie), a wtyczki SEO pozwalają go edytować. Typowa zawartość:\n\n```\nUser-agent: *\nDisallow: /wp-admin/\nAllow: /wp-admin/admin-ajax.php\n\nSitemap: https://firma.pl/sitemap_index.xml\n```\n\n- `User-agent: *`: zasady dla wszystkich robotów,\n- `Disallow`: czego nie odwiedzać,\n- `Allow`: wyjątek od zakazu,\n- `Sitemap`: adres mapy witryny.\n\n**Ważne**: robots.txt **blokuje odwiedzanie, a nie indeksowanie**. Zablokowana strona może pojawić się w Google (bez opisu), jeśli prowadzą do niej linki. Żeby strona **nie była w Google**, użyj `noindex` (lekcja o meta tagach z tygodnia 4) i **nie** blokuj jej w robots.txt, bo robot musi wejść, żeby zobaczyć noindex.\n\nNajgroźniejszy błąd: `Disallow: /` blokuje całą stronę. Zdarza się po przeniesieniu strony ze stagingu. Sprawdź też **Ustawienia → Czytanie → Proś wyszukiwarki o nieindeksowanie** (z tygodnia 2).\n\n## Mapa witryny (sitemap XML)\n\nLista adresów stron w formacie XML. WordPress od wersji 5.5 tworzy ją sam pod `/wp-sitemap.xml`. Wtyczki SEO (Yoast, Rank Math) podmieniają ją na własną, zwykle `/sitemap_index.xml`, z podziałem na wpisy, strony, kategorie, produkty.\n\nW mapie mają być **tylko strony, które mają być w Google**: bez stron z noindex, przekierowań, błędów 404 i duplikatów.\n\nMapę zgłaszasz w **Search Console → Mapy witryn** (z tygodnia 4) i sprawdzasz, ile adresów Google znalazł i zaindeksował.\n\n## Crawl budget\n\nGoogle ma dla każdej strony ograniczony „budżet” odwiedzin. Dla małych stron (do kilku tysięcy adresów) to zwykle nie problem. W dużych sklepach warto ograniczyć odwiedzanie bezużytecznych adresów, np. tysięcy kombinacji filtrów (`?kolor=czerwony&rozmiar=m`), przez robots.txt.\n\n## Czytaj dalej\n\n- [Google: wprowadzenie do robots.txt](https://developers.google.com/search/docs/crawling-indexing/robots/intro?hl=pl)\n- [Google: mapy witryn](https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview?hl=pl)",
+    "questions": [
+      {
+        "id": "t7-robots-sitemap-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Do czego służy plik robots.txt?",
+        "answer": "Mówi robotom, których adresów nie odwiedzać",
+        "distractors": [
+          "Usuwa strony z Google",
+          "Przyspiesza ładowanie strony"
+        ],
+        "explanation": "robots.txt steruje odwiedzaniem (crawlingiem), nie indeksowaniem."
+      },
+      {
+        "id": "t7-robots-sitemap-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Linia w robots.txt, która zakazuje odwiedzania ścieżki, zaczyna się od słowa ___:",
+        "answer": "Disallow",
+        "explanation": "Disallow: /wp-admin/ zakazuje odwiedzania panelu."
+      },
+      {
+        "id": "t7-robots-sitemap-03",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Gdzie zgłaszasz mapę witryny Google?",
+        "answer": "W Search Console, w sekcji Mapy witryn",
+        "distractors": [
+          "W Google Analytics",
+          "W ustawieniach motywu"
+        ],
+        "explanation": "Search Console pokazuje, ile adresów z mapy Google znalazł i zaindeksował."
+      },
+      {
+        "id": "t7-robots-sitemap-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "robots.txt po przeniesieniu strony ze stagingu: `User-agent: *`, `Disallow: /`, `Sitemap: https://firma.pl/sitemap_index.xml`, `(plik dostępny pod /robots.txt)`. Co jest groźne?",
+        "answer": "`Disallow: /`",
+        "distractors": [
+          "`User-agent: *`",
+          "`Sitemap: https://firma.pl/sitemap_index.xml`",
+          "`(plik dostępny pod /robots.txt)`"
+        ],
+        "explanation": "Disallow: / blokuje całą stronę. Często zostaje po stagingu i odcina stronę od Google."
+      },
+      {
+        "id": "t7-robots-sitemap-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Chcesz, żeby strona podziękowania nie była w Google. Co zrobić?",
+        "answer": "Dodać noindex i nie blokować jej w robots.txt",
+        "distractors": [
+          "Zablokować ją w robots.txt",
+          "Usunąć ją z mapy witryny i nic więcej"
+        ],
+        "explanation": "Robot musi wejść na stronę, żeby zobaczyć noindex. Blokada w robots.txt to uniemożliwia."
+      },
+      {
+        "id": "t7-robots-sitemap-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Wyjaśnij różnicę między robots.txt a mapą witryny.",
+        "answer": "robots.txt mówi robotom, czego nie odwiedzać, np. panelu administracyjnego, i podaje adres mapy. Mapa witryny to lista adresów stron, które chcemy mieć w Google, żeby robot je szybko znalazł. Jeden plik zakazuje, drugi podpowiada.",
+        "keyPoints": [
+          "robots.txt: czego nie odwiedzać",
+          "robots.txt podaje adres mapy",
+          "mapa: lista ważnych stron",
+          "zakaz vs podpowiedź"
+        ],
+        "explanation": "Oba pliki to wskazówki. Złośliwe boty ich nie przestrzegają."
+      },
+      {
+        "id": "t7-robots-sitemap-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Co powinno, a co nie powinno być w mapie witryny?",
+        "answer": "Powinny być strony, które mają być w Google: strony, wpisy, produkty, ważne kategorie, z kodem 200. Nie powinno być stron z noindex, przekierowań, błędów 404, duplikatów i stron z parametrami, np. filtrami. Wtyczka SEO zwykle robi to automatycznie, ale warto sprawdzić.",
+        "keyPoints": [
+          "tylko strony do indeksowania (200)",
+          "bez noindex",
+          "bez przekierowań i 404",
+          "bez duplikatów i parametrów"
+        ],
+        "explanation": "Błędy w mapie Search Console pokazuje w raporcie Mapy witryn i Strony."
+      },
+      {
+        "id": "t7-robots-sitemap-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Dlaczego robots.txt nie wystarczy, żeby strona zniknęła z Google?",
+        "answer": "Bo blokuje tylko odwiedzanie, a nie indeksowanie. Jeśli do strony prowadzą linki, Google może ją zaindeksować bez odwiedzenia i pokazać w wynikach bez opisu. Żeby usunąć stronę z wyników, trzeba dać noindex i pozwolić robotowi wejść, żeby go zobaczył.",
+        "keyPoints": [
+          "blokuje odwiedzanie, nie indeksowanie",
+          "linki mogą doprowadzić do indeksu",
+          "wynik bez opisu",
+          "potrzebny noindex i dostęp robota"
+        ],
+        "explanation": "Do pilnego usunięcia jest też narzędzie Usuń adresy URL w Search Console."
+      },
+      {
+        "id": "t7-robots-sitemap-09",
+        "type": "open",
+        "difficulty": 3,
+        "prompt": "Czym jest crawl budget i kiedy trzeba się nim przejmować?",
+        "answer": "To ograniczona liczba stron, które Google odwiedza na danej witrynie w danym czasie. Małe strony z kilkuset czy kilku tysięcy adresów zwykle nie muszą się nim przejmować. Problem pojawia się w dużych sklepach z tysiącami adresów, np. kombinacji filtrów, które marnują odwiedziny robota i opóźniają odkrycie ważnych stron.",
+        "keyPoints": [
+          "ograniczona liczba odwiedzin robota",
+          "małe strony: zwykle bez problemu",
+          "duże sklepy, filtry, parametry",
+          "marnowanie budżetu opóźnia ważne strony"
+        ],
+        "explanation": "Raport Statystyki indeksowania w Search Console pokazuje, jak często Google odwiedza stronę."
+      },
+      {
+        "id": "t7-robots-sitemap-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Nowa strona klienta od miesiąca nie pojawia się w Google. Co sprawdzisz po kolei?",
+        "answer": "Czy w Ustawienia → Czytanie nie jest zaznaczone proszenie wyszukiwarek o nieindeksowanie, czy robots.txt nie ma Disallow: /, czy strony nie mają noindex we wtyczce SEO, czy mapa witryny działa i jest zgłoszona w Search Console, a w Sprawdzeniu adresu URL jaki jest status strony głównej. Na koniec poproszę o zaindeksowanie.",
+        "keyPoints": [
+          "Ustawienia → Czytanie",
+          "robots.txt bez Disallow: /",
+          "brak noindex",
+          "mapa zgłoszona w GSC",
+          "Sprawdzenie adresu URL i prośba o indeksowanie"
+        ],
+        "explanation": "Te trzy blokady często zostają po etapie budowy strony."
+      }
+    ],
+    "task": {
+      "task": "Sprawdź robots.txt i wyślij mapę witryny w Search Console.\n\n1. Otwórz `twojadomena.pl/robots.txt` (lub na stronie lokalnej `nauka.local/robots.txt`). Przepisz zawartość i wyjaśnij każdą linię.\n2. Otwórz mapę witryny: `/wp-sitemap.xml` lub, z wtyczką SEO, `/sitemap_index.xml`. Policz, ile jest map częściowych.\n3. Sprawdź, czy w mapie nie ma stron, które nie powinny być w Google (np. strona podziękowania).\n4. Jeśli masz stronę na żywo: w Search Console → **Mapy witryn** dodaj adres mapy.\n5. Po kilku dniach sprawdź liczbę wykrytych adresów.",
+      "checklist": [
+        "robots.txt przeczytany i wyjaśniony",
+        "Mapa witryny otwarta",
+        "Mapa sprawdzona pod kątem zbędnych stron",
+        "Mapa wysłana w Search Console (strona na żywo)"
+      ],
+      "hints": [
+        "W GSC wpisujesz tylko końcówkę adresu, np. `sitemap_index.xml`.",
+        "Na stronie lokalnej nie wyślesz mapy do Google, zrób kroki 1–3.",
+        "Strona podziękowania powinna mieć noindex, wtedy wtyczka SEO sama usunie ją z mapy."
+      ],
+      "solution": "- robots.txt: `User-agent: *` (wszystkie roboty), `Disallow: /wp-admin/` (bez panelu), `Allow: /wp-admin/admin-ajax.php` (wyjątek potrzebny dla części funkcji), `Sitemap: ...` (adres mapy).\n- Mapa z Yoast: `sitemap_index.xml` z mapami `post-sitemap.xml`, `page-sitemap.xml`, `category-sitemap.xml`.\n- W GSC: status „Sukces”, np. 24 wykryte adresy."
+    }
+  },
+  {
+    "id": "t7-canonical-duplikaty",
+    "week": 7,
+    "order": 3,
+    "title": "Canonical i duplicate content",
+    "lesson": "**Duplicate content** (zduplikowana treść) to ta sama lub prawie ta sama treść pod różnymi adresami. Google nie karze za to wprost, ale musi wybrać, który adres pokazać, i rozdziela między nie siłę linków. Lepiej, żeby wybór należał do Ciebie.\n\n![Jak działa canonical](diagram:canonical)\n\n## Skąd się biorą duplikaty\n\n- **parametry w adresie**: `?utm_source=facebook`, `?orderby=price`, filtry w sklepie,\n- **http i https, z www i bez**: jeśli brakuje przekierowań (tydzień 1),\n- **archiwa WordPressa**: tagi, archiwa autora i dat pokazują te same wpisy co kategorie,\n- **paginacja**: `/blog/page/2/`, `/blog/page/3/`,\n- **produkt w kilku kategoriach**, wersje do druku,\n- **skopiowane opisy** od producenta (ten sam tekst w 100 sklepach).\n\n## Tag canonical\n\nW kodzie strony (w `<head>`):\n\n```html\n<link rel=\"canonical\" href=\"https://firma.pl/produkt/buty-x/\" />\n```\n\nMówi Google: „główna wersja tej strony jest pod tym adresem”. Wtyczka SEO dodaje go **automatycznie** na każdej stronie, wskazując ją samą (self-canonical). W razie potrzeby zmienisz go ręcznie w ustawieniach wpisu (Yoast: zakładka Zaawansowane, Rank Math: Advanced).\n\nCanonical to **wskazówka**, nie polecenie. Google może wybrać inny adres, jeśli sygnały są sprzeczne (np. linki wewnętrzne wskazują na inną wersję).\n\n## Co zrobić z duplikatami w WordPressie\n\n- **Przekierowanie 301**, gdy stara wersja nie jest potrzebna (http → https, bez www → z www).\n- **Canonical**, gdy obie wersje muszą istnieć (parametry, produkt w kilku kategoriach).\n- **noindex** dla bezwartościowych archiwów: tagi (jeśli są nieprzemyślane), archiwa autora na stronie z jednym autorem, archiwa dat. Wtyczka SEO ma do tego przełączniki.\n- **Paginacja**: każda strona (`/page/2/`) ma własny canonical i zostaje indeksowana. Nie ustawiaj canonical stron 2, 3 na stronę 1.\n- **Unikalne opisy** produktów i kategorii zamiast kopii od producenta (tydzień 8).\n\n## Jak znaleźć duplikaty\n\n- Search Console → **Strony**: statusy „Duplikat, użytkownik nie oznaczył strony kanonicznej” i „Duplikat, Google wybrał inną stronę kanoniczną niż użytkownik”.\n- Wyszukanie w Google fragmentu tekstu w cudzysłowie.\n- Narzędzia do audytu (Screaming Frog, tydzień 10).\n\n## Czytaj dalej\n\n- [Google: jak określić adres kanoniczny](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls?hl=pl)",
+    "questions": [
+      {
+        "id": "t7-canonical-duplikaty-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Co robi tag `rel=\"canonical\"`?",
+        "answer": "Wskazuje Google główny adres strony, gdy ta sama treść jest pod kilkoma adresami",
+        "distractors": [
+          "Blokuje stronę przed robotami",
+          "Przekierowuje odwiedzających na inny adres"
+        ],
+        "explanation": "Canonical to wskazówka dla Google, odwiedzający zostaje na tym samym adresie."
+      },
+      {
+        "id": "t7-canonical-duplikaty-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Wtyczka SEO domyślnie ustawia canonical każdej strony na jej własny adres. To tzw. self-___.",
+        "answer": "canonical",
+        "explanation": "Self-canonical chroni przed duplikatami z parametrami, np. ?utm_source=..."
+      },
+      {
+        "id": "t7-canonical-duplikaty-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Strona działa pod http i https. Co jest najlepszym rozwiązaniem?",
+        "answer": "Przekierowanie 301 z http na https",
+        "distractors": [
+          "Canonical na obu wersjach i nic więcej",
+          "noindex na wersji http"
+        ],
+        "explanation": "Gdy stara wersja nie jest potrzebna, przekierowanie 301 to najmocniejszy sygnał."
+      },
+      {
+        "id": "t7-canonical-duplikaty-04",
+        "type": "error",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Ustawienia bloga: `self-canonical na wpisach`, `noindex dla archiwów dat`, `canonical stron /page/2/ i /page/3/ wskazuje /blog/`, `301 z wersji bez www na www`. Co jest błędem?",
+        "answer": "`canonical stron /page/2/ i /page/3/ wskazuje /blog/`",
+        "distractors": [
+          "`self-canonical na wpisach`",
+          "`noindex dla archiwów dat`",
+          "`301 z wersji bez www na www`"
+        ],
+        "explanation": "Kolejne strony paginacji mają inną treść (inne wpisy). Powinny mieć własny canonical, inaczej starsze wpisy trudniej odkryć."
+      },
+      {
+        "id": "t7-canonical-duplikaty-05",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Czy Google zawsze stosuje się do tagu canonical?",
+        "answer": "Nie, to wskazówka, a sprzeczne sygnały mogą sprawić, że wybierze inny adres",
+        "distractors": [
+          "Tak, zawsze",
+          "Tylko na stronach WooCommerce"
+        ],
+        "explanation": "Linki wewnętrzne, mapa witryny i przekierowania powinny wskazywać ten sam adres co canonical."
+      },
+      {
+        "id": "t7-canonical-duplikaty-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Wymień źródła zduplikowanej treści na stronach WordPress.",
+        "answer": "Parametry w adresie, np. UTM i sortowanie, wersje http i https lub z www i bez bez przekierowań, archiwa tagów, autora i dat pokazujące te same wpisy, paginacja, produkty w kilku kategoriach i opisy produktów skopiowane od producenta.",
+        "keyPoints": [
+          "parametry w adresie",
+          "http/https, www/bez www",
+          "archiwa tagów, autora, dat",
+          "produkty w kilku kategoriach",
+          "skopiowane opisy"
+        ],
+        "explanation": "Większość z nich wtyczka SEO ogarnia automatycznie, ale nie wszystkie."
+      },
+      {
+        "id": "t7-canonical-duplikaty-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Kiedy użyjesz przekierowania 301, kiedy canonical, a kiedy noindex?",
+        "answer": "301, gdy duplikat nie jest potrzebny odwiedzającym, np. http na https lub stary adres. Canonical, gdy obie wersje muszą istnieć, np. adres z parametrami lub produkt w kilku kategoriach. noindex dla stron, które mają działać, ale nie mają wartości w Google, np. archiwa dat, autora na stronie z jednym autorem, wyniki wyszukiwania.",
+        "keyPoints": [
+          "301: duplikat niepotrzebny",
+          "canonical: obie wersje muszą istnieć",
+          "noindex: strona potrzebna, ale bez wartości w Google",
+          "przykłady do każdego"
+        ],
+        "explanation": "Nie łącz noindex z canonical wskazującym inną stronę, bo to sprzeczne sygnały."
+      },
+      {
+        "id": "t7-canonical-duplikaty-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak sprawdzisz, jaki canonical ma konkretna strona?",
+        "answer": "Otworzę źródło strony (Ctrl+U) i wyszukam rel=\"canonical\", żeby zobaczyć adres. W Search Console w Sprawdzeniu adresu URL zobaczę kanoniczny adres wskazany przez użytkownika i ten wybrany przez Google. Ustawienie zmienię w zakładce zaawansowanej wtyczki SEO przy wpisie.",
+        "keyPoints": [
+          "źródło strony i rel=canonical",
+          "Sprawdzenie adresu URL w GSC",
+          "porównanie wskazanego i wybranego przez Google",
+          "zmiana w ustawieniach wtyczki SEO"
+        ],
+        "explanation": "Rozbieżność między wskazanym a wybranym to sygnał, że coś jest niespójne."
+      },
+      {
+        "id": "t7-canonical-duplikaty-09",
+        "type": "open",
+        "difficulty": 3,
+        "prompt": "Sklep ma 500 produktów z opisami skopiowanymi od producenta. Dlaczego to problem i jak go rozwiązać?",
+        "answer": "Ten sam opis jest w dziesiątkach innych sklepów, więc Google nie ma powodu, żeby pokazać właśnie ten. Strony produktów mają małą wartość i słabo się pozycjonują. Rozwiązanie: zacząć od najważniejszych produktów i kategorii, napisać unikalne opisy z własnymi informacjami, np. zastosowania, opinie, zdjęcia, a resztę uzupełniać stopniowo.",
+        "keyPoints": [
+          "ten sam opis w wielu sklepach",
+          "brak powodu, by Google wybrał ten sklep",
+          "unikalne opisy",
+          "zacząć od najważniejszych produktów",
+          "własne informacje i zdjęcia"
+        ],
+        "explanation": "Opisy produktów rozwiniesz w tygodniu 8."
+      },
+      {
+        "id": "t7-canonical-duplikaty-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "W Search Console widzisz „Duplikat, Google wybrał inną stronę kanoniczną niż użytkownik” dla strony usługi. Co sprawdzisz?",
+        "answer": "Który adres Google wybrał (Sprawdzenie adresu URL) i czemu: czy strony nie mają prawie identycznej treści, np. dwie podstrony usług różniące się tylko miastem, czy linki wewnętrzne i mapa witryny nie wskazują drugiej wersji, czy nie ma problemu z przekierowaniami. Potem albo połączę strony z 301, albo wyraźnie je zróżnicuję i ujednolicę sygnały.",
+        "keyPoints": [
+          "który adres wybrał Google",
+          "zbyt podobna treść stron",
+          "linki i mapa wskazują drugą wersję",
+          "połączenie (301) lub zróżnicowanie treści",
+          "spójne sygnały"
+        ],
+        "explanation": "Strony „usługa + miasto” z podmienioną tylko nazwą miasta to klasyczny przypadek."
+      }
+    ],
+    "task": {
+      "task": "Znajdź i usuń duplikaty na stronie testowej.\n\n1. Sprawdź w źródle strony głównej, wpisu i strony, czy mają canonical i na jaki adres.\n2. Otwórz wpis z dopiskiem `?utm_source=test`. Sprawdź canonical (powinien wskazywać adres bez parametru).\n3. Sprawdź, czy działają archiwa: tagu, autora, daty (np. `/2026/`). Zdecyduj, które mają mieć noindex.\n4. Ustaw noindex dla wybranych archiwów w wtyczce SEO.\n5. Jeśli masz stronę na żywo: przejrzyj w Search Console raport **Strony** pod kątem statusów „Duplikat”.",
+      "checklist": [
+        "Canonical sprawdzony na 3 typach stron",
+        "Canonical przy parametrze UTM poprawny",
+        "Decyzja o archiwach zapisana",
+        "noindex ustawiony dla zbędnych archiwów"
+      ],
+      "hints": [
+        "W Yoast: **Yoast SEO → Ustawienia → Typy treści / Kategorie i tagi / Archiwa** (przełącznik pokazywania w wynikach).",
+        "Archiwum autora na stronie z jednym autorem dubluje bloga. Archiwa dat prawie zawsze są zbędne.",
+        "Tagi zostaw w Google tylko wtedy, gdy są przemyślane i mają po kilka wpisów."
+      ],
+      "solution": "- Wpis `/jak-dobrac-plytki/?utm_source=test` ma canonical `https://nauka.local/jak-dobrac-plytki/`.\n- Decyzje: kategorie indeksowane, tagi noindex (przypadkowe, po 1 wpisie), archiwum autora wyłączone, archiwa dat wyłączone.\n- W Yoast: Archiwa autora i dat wyłączone, Tagi: „Pokazuj tagi w wynikach wyszukiwania” wyłączone."
+    }
+  },
+  {
+    "id": "t7-szybkosc-cwv",
+    "week": 7,
+    "order": 4,
+    "title": "Szybkość strony i Core Web Vitals",
+    "lesson": "Wolna strona traci klientów: wiele osób zamyka ją, zanim się załaduje. Google mierzy wrażenia odwiedzających za pomocą **Core Web Vitals** (podstawowych wskaźników internetowych) i bierze je pod uwagę w rankingu.\n\n![Trzy wskaźniki Core Web Vitals](diagram:core-web-vitals)\n\n## Trzy wskaźniki\n\n- **LCP** (Largest Contentful Paint): po ilu sekundach wyświetla się **największy element** na ekranie, zwykle główne zdjęcie lub nagłówek. Dobrze: **do 2,5 s**.\n- **INP** (Interaction to Next Paint): jak szybko strona **reaguje na kliknięcie**, np. otwarcie menu. Dobrze: **do 200 ms**.\n- **CLS** (Cumulative Layout Shift): czy elementy **przesuwają się** w trakcie ładowania (np. tekst skacze w dół, bo doładował się baner). Dobrze: **do 0,1**.\n\n## Jak mierzyć\n\n[PageSpeed Insights](https://pagespeed.web.dev/): wpisujesz adres i dostajesz:\n\n- **dane od prawdziwych użytkowników** (z Chrome), jeśli strona ma wystarczający ruch, to one się liczą dla Google,\n- **wynik laboratoryjny** (0–100) i listę zaleceń. Patrz głównie na **telefon**.\n\nW Search Console raport **Podstawowe wskaźniki internetowe** pokazuje grupy stron z problemami.\n\n## Co najczęściej pomaga (bez kodu)\n\n1. **Dobry hosting** z nowym PHP i LiteSpeed lub Nginx (tydzień 1). Na tanim, przeładowanym serwerze nic nie pomoże.\n2. **Cache strony**: wtyczka (LiteSpeed Cache, WP Rocket, WP Super Cache) zapisuje gotowe strony, zamiast budować je przy każdej wizycie.\n3. **Obrazy**: WebP, właściwy rozmiar, lazy loading poza pierwszym ekranem (lekcja 1).\n4. **Mniej wtyczek i skryptów**: każdy czat, Pixel, slider dokłada czasu (tydzień 5 i 6).\n5. **Fonty**: 1–2 kroje, tylko potrzebne grubości, najlepiej wgrane lokalnie (Elementor i wtyczki mają opcję lokalnych fontów Google).\n6. **Lżejszy motyw i builder**: ciężki motyw z 20 sliderami nie będzie szybki.\n7. **CDN** (np. Cloudflare z tygodnia 5): pliki z serwera bliżej odwiedzającego.\n\n## CLS w praktyce\n\n- obrazy i filmy z podanymi **wymiarami** (WordPress dodaje je sam w bloku Obrazek),\n- baner cookies i reklamy, które **nie wypychają** treści,\n- fonty, które nie zmieniają mocno rozmiaru tekstu po załadowaniu.\n\n## Realne oczekiwania\n\nWynik 100/100 nie jest celem. Celem są **zielone Core Web Vitals** u prawdziwych użytkowników i szybka strona na telefonie. Treść i dopasowanie do intencji ważą w rankingu więcej niż kilka punktów PageSpeed.\n\n## Czytaj dalej\n\n- [Google: Core Web Vitals](https://developers.google.com/search/docs/appearance/core-web-vitals?hl=pl)\n- [web.dev: Core Web Vitals (po angielsku)](https://web.dev/articles/vitals)",
+    "questions": [
+      {
+        "id": "t7-szybkosc-cwv-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Co mierzy LCP?",
+        "answer": "Czas wyświetlenia największego elementu na ekranie",
+        "distractors": [
+          "Liczbę linków na stronie",
+          "Czas reakcji na kliknięcie"
+        ],
+        "explanation": "LCP to zwykle główne zdjęcie lub nagłówek. Dobry wynik to do 2,5 s."
+      },
+      {
+        "id": "t7-szybkosc-cwv-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Wskaźnik, który mierzy przesuwanie się elementów podczas ładowania, to ___.",
+        "answer": "CLS",
+        "explanation": "CLS (Cumulative Layout Shift): dobrze do 0,1."
+      },
+      {
+        "id": "t7-szybkosc-cwv-03",
+        "type": "choice",
+        "difficulty": 2,
+        "tricky": true,
+        "prompt": "Który wynik w PageSpeed Insights liczy się dla Google w rankingu?",
+        "answer": "Dane od prawdziwych użytkowników (Core Web Vitals z Chrome)",
+        "distractors": [
+          "Tylko wynik laboratoryjny 0–100",
+          "Wynik dla komputera"
+        ],
+        "explanation": "Wynik laboratoryjny pomaga znaleźć problemy, ale Google patrzy na dane z prawdziwych wizyt."
+      },
+      {
+        "id": "t7-szybkosc-cwv-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Plan przyspieszenia strony: `wtyczka cache włączona`, `obrazy w WebP`, `lazy loading także na głównym zdjęciu na górze strony`, `fonty wgrane lokalnie`. Co pogorszy LCP?",
+        "answer": "`lazy loading także na głównym zdjęciu na górze strony`",
+        "distractors": [
+          "`wtyczka cache włączona`",
+          "`obrazy w WebP`",
+          "`fonty wgrane lokalnie`"
+        ],
+        "explanation": "Główne zdjęcie to zwykle element LCP. Lazy loading opóźni jego ładowanie."
+      },
+      {
+        "id": "t7-szybkosc-cwv-05",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Po załadowaniu strony tekst przeskakuje w dół, bo pojawia się baner. Który wskaźnik to pogarsza?",
+        "answer": "CLS",
+        "distractors": [
+          "LCP",
+          "INP"
+        ],
+        "explanation": "Przesuwanie się układu to CLS."
+      },
+      {
+        "id": "t7-szybkosc-cwv-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Wyjaśnij trzy wskaźniki Core Web Vitals i podaj dobre wartości.",
+        "answer": "LCP to czas wyświetlenia największego elementu, np. głównego zdjęcia, dobrze do 2,5 s. INP to szybkość reakcji strony na kliknięcia i interakcje, dobrze do 200 ms. CLS to stabilność układu, czyli czy elementy nie przesuwają się podczas ładowania, dobrze do 0,1.",
+        "keyPoints": [
+          "LCP: największy element, do 2,5 s",
+          "INP: reakcja na interakcje, do 200 ms",
+          "CLS: przesuwanie układu, do 0,1"
+        ],
+        "explanation": "Wartości dotyczą 75% wizyt (tzw. 75. percentyl)."
+      },
+      {
+        "id": "t7-szybkosc-cwv-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Wymień działania bez programowania, które zwykle najbardziej przyspieszają stronę WordPress.",
+        "answer": "Dobry hosting z aktualnym PHP, wtyczka cache, optymalizacja obrazów (WebP, rozmiar, lazy loading), mniej wtyczek i skryptów, ograniczone i lokalne fonty, lżejszy motyw lub builder i CDN, np. Cloudflare.",
+        "keyPoints": [
+          "hosting i PHP",
+          "cache",
+          "obrazy",
+          "mniej wtyczek i skryptów",
+          "fonty",
+          "lekki motyw, CDN"
+        ],
+        "explanation": "Zawsze mierz przed i po, żeby wiedzieć, co pomogło."
+      },
+      {
+        "id": "t7-szybkosc-cwv-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak zmniejszysz CLS na stronie?",
+        "answer": "Sprawdzę w PageSpeed, które elementy się przesuwają. Obrazy i filmy muszą mieć podane wymiary, baner cookies i reklamy nie mogą wypychać treści, tylko nakładać się lub mieć zarezerwowane miejsce, a fonty powinny ładować się tak, żeby tekst nie zmieniał mocno rozmiaru. Unikam elementów doładowywanych nad istniejącą treścią.",
+        "keyPoints": [
+          "diagnoza w PageSpeed",
+          "wymiary obrazów i filmów",
+          "baner i reklamy bez wypychania",
+          "fonty bez skoku rozmiaru"
+        ],
+        "explanation": "CLS najczęściej psują banery, slidery i reklamy."
+      },
+      {
+        "id": "t7-szybkosc-cwv-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Dlaczego wynik PageSpeed na telefonie jest zwykle niższy niż na komputerze i czemu to ważniejsze?",
+        "answer": "Test na telefonie symuluje wolniejszy procesor i słabsze połączenie, więc te same skrypty i obrazy ładują się dłużej. To ważniejsze, bo większość ruchu to telefony, a Google ocenia strony głównie w wersji mobilnej (mobile-first indexing).",
+        "keyPoints": [
+          "symulacja słabszego telefonu i sieci",
+          "większość ruchu z telefonów",
+          "Google ocenia wersję mobilną",
+          "mobile-first indexing"
+        ],
+        "explanation": "Optymalizuj najpierw pod telefon."
+      },
+      {
+        "id": "t7-szybkosc-cwv-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Klient pyta, czy musi mieć 100/100 w PageSpeed, bo konkurencja się tym chwali. Co odpowiesz?",
+        "answer": "Że 100/100 nie jest celem. Liczą się zielone Core Web Vitals u prawdziwych użytkowników i szybka strona na telefonie. Szybkość to jeden z wielu sygnałów, a treść, dopasowanie do intencji i linki ważą więcej. Pogoń za ostatnimi punktami często kosztuje więcej, niż daje, np. usuwanie potrzebnych funkcji.",
+        "keyPoints": [
+          "100/100 nie jest celem",
+          "liczą się CWV prawdziwych użytkowników",
+          "szybkość to jeden z wielu sygnałów",
+          "treść i intencja ważą więcej",
+          "koszt ostatnich punktów"
+        ],
+        "explanation": "Dobra odpowiedź: „poprawimy to, co realnie wpływa na klientów”."
+      }
+    ],
+    "task": {
+      "task": "Podnieś wynik PageSpeed strony o 20 punktów.\n\n1. Zmierz stronę główną w [PageSpeed Insights](https://pagespeed.web.dev/) (telefon). Zapisz wynik, LCP, CLS i 3 główne zalecenia. Na stronie lokalnej użyj zakładki **Lighthouse** w DevTools.\n2. Zoptymalizuj obrazy (lekcja 1).\n3. Zainstaluj i włącz wtyczkę cache (np. LiteSpeed Cache na hostingu LiteSpeed albo WP Super Cache).\n4. Usuń lub wyłącz jedną zbędną wtyczkę albo skrypt, ogranicz fonty.\n5. Zmierz ponownie i porównaj.",
+      "checklist": [
+        "Pomiar przed zapisany",
+        "Obrazy zoptymalizowane",
+        "Cache włączony",
+        "Zbędne wtyczki lub fonty ograniczone",
+        "Pomiar po i porównanie"
+      ],
+      "hints": [
+        "Lighthouse w DevTools: F12 → zakładka **Lighthouse** → Mobile → Analyze.",
+        "Na stronie lokalnej wynik będzie inny niż na hostingu. Liczy się różnica przed i po.",
+        "Zalecenia PageSpeed „Zmniejsz nieużywany JavaScript” często wskazują konkretną wtyczkę."
+      ],
+      "solution": "- Przed: wynik 48, LCP 5,8 s, CLS 0,21. Zalecenia: obrazy w nowoczesnym formacie, właściwy rozmiar obrazów, nieużywany JavaScript.\n- Zmiany: obrazy w WebP i zmniejszone, LiteSpeed Cache, usunięty slider na stronie głównej (zamiast niego jedno zdjęcie), fonty: 1 krój w 2 grubościach lokalnie, wymiary dla obrazów w banerze.\n- Po: wynik 74 (+26), LCP 2,4 s, CLS 0,03."
+    }
+  },
+  {
+    "id": "t7-dane-strukturalne",
+    "week": 7,
+    "order": 5,
+    "title": "Dane strukturalne i rich snippets",
+    "lesson": "**Dane strukturalne** to opis strony w języku, który Google rozumie bez zgadywania: „to jest produkt, kosztuje 199 zł, ma 4,8 gwiazdki”. Dzięki nim wynik w Google może być **rozszerzony** (rich snippet): z gwiazdkami, ceną, okruszkami nawigacji, datą wydarzenia.\n\n![Od danych do wyniku rozszerzonego](diagram:dane-strukturalne)\n\n## Słownik schema.org i format JSON-LD\n\n[Schema.org](https://schema.org/) to wspólny słownik typów: `Organization`, `LocalBusiness`, `Product`, `Article`, `BreadcrumbList`, `FAQPage`, `Event` i setki innych. Google zaleca zapis w formacie **JSON-LD**, czyli bloku kodu w `<head>`:\n\n```html\n<script type=\"application/ld+json\">\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"LocalBusiness\",\n  \"name\": \"Remonty Kowalski\",\n  \"telephone\": \"+48 600 100 200\",\n  \"address\": {\n    \"@type\": \"PostalAddress\",\n    \"streetAddress\": \"ul. Długa 5\",\n    \"addressLocality\": \"Kraków\",\n    \"postalCode\": \"31-100\"\n  }\n}\n</script>\n```\n\nNie musisz pisać tego ręcznie. **Wtyczka SEO** (Yoast, Rank Math) dodaje podstawowe dane sama, a **WooCommerce** dodaje `Product` z ceną i dostępnością.\n\n## Najprzydatniejsze typy\n\n- **Organization / LocalBusiness**: nazwa firmy, logo, adres, telefon, godziny (spójne z NAP z tygodnia 4),\n- **BreadcrumbList**: okruszki nawigacji, np. Strona główna › Oferta › Remont łazienki. W Google zamiast adresu pojawia się ścieżka. Okruszki dodasz blokiem w nowszych wersjach WordPressa, w Yoast lub Rank Math albo w motywie,\n- **Product**: cena, dostępność, oceny (WooCommerce),\n- **Article**: wpisy na blogu (autor, data),\n- **FAQPage**: pytania i odpowiedzi. Google pokazuje je w wynikach już tylko dla nielicznych, autorytatywnych stron (np. rządowych i medycznych), ale dane nadal pomagają zrozumieć treść.\n\n## Zasady\n\n- Dane muszą **zgadzać się z tym, co widać na stronie**. Gwiazdki bez prawdziwych opinii na stronie łamią zasady Google i mogą skończyć się ręczną karą.\n- Poprawne dane **nie gwarantują** wyniku rozszerzonego. Google decyduje sam.\n\n## Jak sprawdzić\n\n- [Test wyników z elementami rozszerzonymi](https://search.google.com/test/rich-results): wpisujesz adres i widzisz znalezione typy oraz błędy.\n- [Schema Markup Validator](https://validator.schema.org/): sprawdza poprawność wszystkich typów.\n- Search Console → sekcja **Ulepszenia**: raporty dla produktów, okruszków itp.\n\n## Czytaj dalej\n\n- [Google: wprowadzenie do danych strukturalnych](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data?hl=pl)",
+    "questions": [
+      {
+        "id": "t7-dane-strukturalne-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Do czego służą dane strukturalne?",
+        "answer": "Opisują treść strony w sposób zrozumiały dla Google i mogą dać wynik rozszerzony",
+        "distractors": [
+          "Przyspieszają ładowanie strony",
+          "Blokują roboty przed kopiowaniem treści"
+        ],
+        "explanation": "Dzięki nim Google może pokazać np. gwiazdki, cenę lub okruszki."
+      },
+      {
+        "id": "t7-dane-strukturalne-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Format danych strukturalnych zalecany przez Google to JSON-___.",
+        "answer": "LD",
+        "explanation": "JSON-LD to blok kodu w `<head>`, niezależny od wyglądu strony."
+      },
+      {
+        "id": "t7-dane-strukturalne-03",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Który typ schema.org opisuje lokalną firmę z adresem i telefonem?",
+        "answer": "`LocalBusiness`",
+        "distractors": [
+          "`Article`",
+          "`BreadcrumbList`"
+        ],
+        "explanation": "LocalBusiness wspiera SEO lokalne i powinien zgadzać się z wizytówką."
+      },
+      {
+        "id": "t7-dane-strukturalne-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Dane strukturalne strony usługi: `@type: LocalBusiness`, `telephone zgodny ze stopką`, `aggregateRating: 4,9 z 120 opinii, choć na stronie nie ma żadnych opinii`, `BreadcrumbList z okruszkami`. Co łamie zasady Google?",
+        "answer": "`aggregateRating: 4,9 z 120 opinii, choć na stronie nie ma żadnych opinii`",
+        "distractors": [
+          "`@type: LocalBusiness`",
+          "`telephone zgodny ze stopką`",
+          "`BreadcrumbList z okruszkami`"
+        ],
+        "explanation": "Dane muszą odpowiadać temu, co widać na stronie. Fikcyjne oceny grożą ręczną karą."
+      },
+      {
+        "id": "t7-dane-strukturalne-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Dane strukturalne są poprawne w teście, ale Google nie pokazuje gwiazdek. Dlaczego może tak być?",
+        "answer": "Poprawne dane nie gwarantują wyniku rozszerzonego, Google decyduje sam",
+        "distractors": [
+          "Test jest zepsuty",
+          "Trzeba dodać dane drugi raz"
+        ],
+        "explanation": "Google pokazuje wyniki rozszerzone według własnej oceny strony i zapytania."
+      },
+      {
+        "id": "t7-dane-strukturalne-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Czym są dane strukturalne i jak dodać je na stronie WordPress bez programowania?",
+        "answer": "To opis treści strony słownikiem schema.org, zwykle w formacie JSON-LD, np. że strona to produkt z ceną albo firma z adresem. Bez programowania dodaje je wtyczka SEO (Yoast, Rank Math) na podstawie ustawień firmy i treści, a WooCommerce dodaje dane produktów. Potem sprawdzam je w teście wyników rozszerzonych.",
+        "keyPoints": [
+          "opis treści słownikiem schema.org",
+          "format JSON-LD",
+          "wtyczka SEO / WooCommerce dodaje je sama",
+          "sprawdzenie w teście"
+        ],
+        "explanation": "Ręczne dodawanie przyda się tylko w nietypowych przypadkach."
+      },
+      {
+        "id": "t7-dane-strukturalne-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Wymień 4 przydatne typy danych strukturalnych dla małej firmy usługowej i sklepu.",
+        "answer": "Organization lub LocalBusiness z nazwą, adresem, telefonem i godzinami, BreadcrumbList dla okruszków, Article dla wpisów na blogu i Product z ceną, dostępnością i opiniami dla sklepu. Opcjonalnie FAQPage, choć Google rzadko pokazuje już FAQ w wynikach.",
+        "keyPoints": [
+          "Organization / LocalBusiness",
+          "BreadcrumbList",
+          "Article",
+          "Product"
+        ],
+        "explanation": "Dla wydarzeń jest Event, dla przepisów Recipe."
+      },
+      {
+        "id": "t7-dane-strukturalne-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak sprawdzisz dane strukturalne na stronie?",
+        "answer": "Wpiszę adres w Teście wyników z elementami rozszerzonymi od Google, który pokaże znalezione typy i błędy, a dla pełnej poprawności w Schema Markup Validator. Na stronie na żywo sprawdzę też raporty w Search Console w sekcji Ulepszenia. Mogę też otworzyć źródło strony i wyszukać ld+json.",
+        "keyPoints": [
+          "Test wyników z elementami rozszerzonymi",
+          "Schema Markup Validator",
+          "Search Console → Ulepszenia",
+          "źródło strony i ld+json"
+        ],
+        "explanation": "Ostrzeżenia (np. brak opcjonalnego pola) nie blokują wyniku, błędy tak."
+      },
+      {
+        "id": "t7-dane-strukturalne-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Po co okruszki (breadcrumbs) na stronie i w danych strukturalnych?",
+        "answer": "Na stronie pokazują odwiedzającemu, gdzie jest, i pozwalają łatwo wrócić do kategorii, co pomaga też w linkowaniu wewnętrznym. W danych strukturalnych BreadcrumbList sprawia, że Google może pokazać w wyniku czytelną ścieżkę zamiast adresu i lepiej rozumie strukturę strony.",
+        "keyPoints": [
+          "orientacja odwiedzającego",
+          "łatwy powrót do kategorii",
+          "linki wewnętrzne",
+          "ścieżka w wyniku Google",
+          "zrozumienie struktury"
+        ],
+        "explanation": "Okruszki dodasz blokiem, wtyczką SEO lub w ustawieniach motywu."
+      },
+      {
+        "id": "t7-dane-strukturalne-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Sklep ma i Yoast, i osobną wtyczkę do schema, i dane w motywie. Test pokazuje dwa różne `Organization` i dwa `Product`. Co zrobisz?",
+        "answer": "Zdublowane i sprzeczne dane mogą zdezorientować Google. Wybiorę jedno źródło, zwykle wtyczkę SEO razem z danymi WooCommerce, i wyłączę dane strukturalne w drugiej wtyczce oraz w motywie (albo usunę zbędną wtyczkę). Potem sprawdzę test ponownie, czy każdy typ jest raz i ma spójne dane.",
+        "keyPoints": [
+          "duplikaty i sprzeczne dane",
+          "jedno źródło danych",
+          "wyłączenie w drugiej wtyczce i motywie",
+          "ponowny test"
+        ],
+        "explanation": "Najczęściej dubluje się Organization i Product."
+      }
+    ],
+    "task": {
+      "task": "Dodaj okruszki i dane firmy.\n\n1. W wtyczce SEO (Yoast lub Rank Math) uzupełnij dane firmy: nazwa, logo, typ (organizacja).\n2. Włącz okruszki (breadcrumbs) i dodaj je na stronach: blokiem, przez ustawienie motywu albo blok wtyczki SEO.\n3. Utwórz podstronę w strukturze Oferta → Remont łazienki i sprawdź, czy okruszki pokazują ścieżkę.\n4. Sprawdź stronę w [Schema Markup Validator](https://validator.schema.org/), wklejając kod źródłowy (na stronie lokalnej) lub adres (na żywej).\n5. Zapisz, jakie typy danych znalazł walidator.",
+      "checklist": [
+        "Dane firmy uzupełnione",
+        "Okruszki włączone i widoczne",
+        "Struktura stron z rodzicem",
+        "Dane sprawdzone w walidatorze",
+        "Lista znalezionych typów"
+      ],
+      "hints": [
+        "Yoast: **Yoast SEO → Ustawienia → Reprezentacja witryny** i **Breadcrumbs** (Ustawienia zaawansowane).",
+        "Stronie „Remont łazienki” ustaw stronę nadrzędną „Oferta” w panelu po prawej.",
+        "Na stronie lokalnej walidator nie otworzy adresu. Skopiuj źródło strony (Ctrl+U, Ctrl+A) i wklej w zakładce Code."
+      ],
+      "solution": "- Yoast: Reprezentacja witryny → Organizacja „Remonty Kowalski”, logo.\n- Okruszki: Strona główna › Oferta › Remont łazienki.\n- Walidator znalazł: `WebPage`, `WebSite`, `Organization`, `BreadcrumbList` (3 elementy), bez błędów."
+    }
+  },
+  {
+    "id": "t7-wtyczka-seo",
+    "week": 7,
+    "order": 6,
+    "title": "Wtyczka SEO: Yoast lub Rank Math",
+    "lesson": "WordPress sam z siebie robi niewiele dla SEO. **Wtyczka SEO** dodaje to, czego brakuje: edycję title i meta description, mapę witryny, dane strukturalne, canonical, noindex, przekierowania (część funkcji płatna). Najpopularniejsze to **Yoast SEO** i **Rank Math**. Wybierz jedną, nigdy dwie naraz.\n\n![Konfiguracja wtyczki SEO](diagram:wtyczka-seo)\n\n## Yoast czy Rank Math\n\n- **Yoast SEO**: najstarsza i najpopularniejsza, spokojny interfejs, mniej funkcji w darmowej wersji (np. przekierowania są w płatnej).\n- **Rank Math**: więcej funkcji za darmo (przekierowania, schema, 404 monitor), więcej przełączników.\n\nObie są dobre. Ważniejsze niż wybór jest **dobre ustawienie**. Przy przejściu z jednej na drugą jest kreator importu danych.\n\n## Krok 1: kreator\n\nPo instalacji przejdź kreator: rodzaj strony, **firma czy osoba**, nazwa i logo (trafią do danych strukturalnych), profile w mediach społecznościowych.\n\n## Krok 2: szablony tytułów i opisów\n\nDla każdego typu treści ustaw szablon, który zadziała, gdy nie wpiszesz własnego:\n\n- wpisy i strony: `%%title%% | %%sitename%%` (Yoast) lub `%title% | %sitename%` (Rank Math),\n- produkty: `%%title%% – kup online | %%sitename%%`,\n- kategorie: `%%term_title%% | %%sitename%%`.\n\nSeparator (`|`, `–`) wybierasz w ustawieniach.\n\n## Krok 3: decyzje o indeksowaniu\n\n- **Załączniki** (strony pojedynczych obrazków): wyłącz, wtyczki robią to domyślnie.\n- **Archiwa dat i autora** (przy jednym autorze): noindex lub wyłączone.\n- **Tagi**: noindex, chyba że są przemyślane.\n- **Mapa witryny**: włączona.\n\nTo kontynuacja lekcji o canonical i duplikatach.\n\n## Krok 4: przy każdej ważnej stronie\n\nW edytorze pod treścią lub w panelu bocznym:\n\n- **fraza kluczowa** (focus keyphrase) z badania słów kluczowych z tygodnia 4,\n- **własny title** i **meta description** (podgląd pokazuje, jak będzie wyglądał wynik),\n- slug, canonical i noindex w zakładce zaawansowanej.\n\n## Analiza treści: z rozsądkiem\n\nZielone i czerwone kropki (Yoast) i punkty (Rank Math) to **podpowiedzi**, a nie ocena Google. Tekst pisany pod „100/100” bywa sztuczny (fraza wciśnięta 8 razy). Pisz dla człowieka, a podpowiedzi traktuj jak listę kontrolną.\n\n## Czytaj dalej\n\n- [Yoast: konfiguracja (po angielsku)](https://yoast.com/help/configuration-guide-for-yoast-seo/)\n- [Rank Math: konfiguracja (po angielsku)](https://rankmath.com/kb/how-to-setup/)",
+    "questions": [
+      {
+        "id": "t7-wtyczka-seo-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Ile wtyczek SEO powinno być aktywnych na stronie?",
+        "answer": "Jedna",
+        "distractors": [
+          "Dwie, dla pewności",
+          "Tyle, ile funkcji potrzeba"
+        ],
+        "explanation": "Dwie wtyczki SEO dublują title, meta, mapy i dane strukturalne."
+      },
+      {
+        "id": "t7-wtyczka-seo-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Szablon tytułu w Yoast `%%title%% | %%sitename%%` łączy tytuł strony z nazwą ___.",
+        "answer": "witryny",
+        "explanation": "%%sitename%% to nazwa witryny z Ustawienia → Ogólne."
+      },
+      {
+        "id": "t7-wtyczka-seo-03",
+        "type": "choice",
+        "difficulty": 2,
+        "tricky": true,
+        "prompt": "Czy zielona ocena w analizie Yoast oznacza, że strona będzie wysoko w Google?",
+        "answer": "Nie, to tylko podpowiedzi wtyczki, a nie ocena Google",
+        "distractors": [
+          "Tak, Google używa tej oceny",
+          "Tak, ale tylko dla wpisów"
+        ],
+        "explanation": "Podpowiedzi pomagają, ale ranking zależy od wielu czynników, których wtyczka nie widzi."
+      },
+      {
+        "id": "t7-wtyczka-seo-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Ustawienia wtyczki SEO: `szablon wpisów: %%title%% | %%sitename%%`, `strony załączników wyłączone`, `mapa witryny włączona`, `Rank Math aktywny obok Yoast dla dodatkowych funkcji`. Co jest błędem?",
+        "answer": "`Rank Math aktywny obok Yoast dla dodatkowych funkcji`",
+        "distractors": [
+          "`szablon wpisów: %%title%% | %%sitename%%`",
+          "`strony załączników wyłączone`",
+          "`mapa witryny włączona`"
+        ],
+        "explanation": "Dwie wtyczki SEO dublują tagi i dane strukturalne. Wybierz jedną."
+      },
+      {
+        "id": "t7-wtyczka-seo-05",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Gdzie zmienisz title i meta description konkretnej strony?",
+        "answer": "W panelu wtyczki SEO w edytorze tej strony",
+        "distractors": [
+          "W Ustawienia → Ogólne",
+          "W pliku robots.txt"
+        ],
+        "explanation": "Pole SEO pod treścią lub w panelu bocznym ma podgląd wyniku w Google."
+      },
+      {
+        "id": "t7-wtyczka-seo-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Opisz kroki konfiguracji wtyczki SEO od zera.",
+        "answer": "Przechodzę kreator: rodzaj strony, firma lub osoba, nazwa, logo, profile społecznościowe. Ustawiam szablony tytułów i opisów dla wpisów, stron, produktów i kategorii. Decyduję o indeksowaniu: wyłączam strony załączników, archiwa dat i autora, tagi zwykle noindex, mapa witryny włączona. Potem przy ważnych stronach wpisuję frazę, własny title i meta description.",
+        "keyPoints": [
+          "kreator: firma, logo, profile",
+          "szablony tytułów i opisów",
+          "decyzje o indeksowaniu archiwów",
+          "mapa witryny",
+          "title i opis przy ważnych stronach"
+        ],
+        "explanation": "Mapę witryny z wtyczki zgłoś potem w Search Console."
+      },
+      {
+        "id": "t7-wtyczka-seo-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Porównaj Yoast SEO i Rank Math.",
+        "answer": "Obie robią to samo co do podstaw: title i opisy, mapy witryny, canonical, noindex, dane strukturalne. Yoast jest najpopularniejszy, ma spokojniejszy interfejs i mniej funkcji za darmo, np. przekierowania są płatne. Rank Math ma więcej funkcji za darmo, np. przekierowania i monitor 404, ale więcej przełączników. Wybór jest mniej ważny niż dobre ustawienie.",
+        "keyPoints": [
+          "te same podstawy",
+          "Yoast: popularny, prostszy, mniej za darmo",
+          "Rank Math: więcej za darmo",
+          "ważniejsze ustawienie niż wybór"
+        ],
+        "explanation": "Przy przejęciu strony zwykle zostaje się przy wtyczce, która już jest."
+      },
+      {
+        "id": "t7-wtyczka-seo-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Dlaczego szablony tytułów są ważne, skoro i tak można wpisać własny title?",
+        "answer": "Bo nikt nie wpisze ręcznie title dla setek wpisów, produktów i kategorii. Szablon gwarantuje, że każda strona ma sensowny, unikalny title, np. z nazwą produktu i sklepu. Ręcznie poprawia się tylko najważniejsze strony.",
+        "keyPoints": [
+          "setki stron bez ręcznego title",
+          "każda strona ma sensowny, unikalny title",
+          "nazwa produktu + sklep",
+          "ręcznie tylko ważne strony"
+        ],
+        "explanation": "Szablon produktu może zawierać np. kategorię lub słowo „kup”."
+      },
+      {
+        "id": "t7-wtyczka-seo-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak traktować analizę treści i czytelności we wtyczce SEO?",
+        "answer": "Jak listę kontrolną, a nie cel. Przypomina o frazie w tytule, nagłówkach, linkach i długości tekstu. Nie dopisuję jednak frazy na siłę ani nie zmieniam naturalnego tekstu tylko po to, żeby kropka była zielona. Google ocenia przydatność dla człowieka, a nie liczbę powtórzeń frazy.",
+        "keyPoints": [
+          "lista kontrolna, nie cel",
+          "przypomina o podstawach",
+          "bez upychania frazy",
+          "Google ocenia przydatność"
+        ],
+        "explanation": "Czerwona kropka przy dobrym tekście to nie problem."
+      },
+      {
+        "id": "t7-wtyczka-seo-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Przejmujesz stronę, na której ktoś przełączył się z Yoast na Rank Math i nagle zniknęły tytuły i opisy. Co się stało i jak to naprawisz?",
+        "answer": "Prawdopodobnie nie użyto importu danych, więc własne title i opisy zapisane przez Yoast zostały w bazie, ale Rank Math ich nie czyta. Zrobię kopię i uruchomię w Rank Math import z Yoast (jeśli dane Yoast są jeszcze w bazie), potem sprawdzę kilka stron w źródle i podgląd w Google. Jeśli danych nie ma, odtworzę je z kopii lub wpiszę ręcznie dla najważniejszych stron.",
+        "keyPoints": [
+          "brak importu danych przy zmianie",
+          "dane Yoast w bazie, Rank Math ich nie czyta",
+          "kopia i import z Yoast",
+          "sprawdzenie stron",
+          "odtworzenie z kopii lub ręcznie"
+        ],
+        "explanation": "Obie wtyczki mają kreator importu z drugiej."
+      }
+    ],
+    "task": {
+      "task": "Skonfiguruj wtyczkę SEO na stronie testowej.\n\n1. Zainstaluj Yoast SEO lub Rank Math (jedną) i przejdź kreator.\n2. Ustaw szablony tytułów dla wpisów, stron i kategorii.\n3. Wyłącz strony załączników, archiwa dat, archiwum autora (przy jednym autorze). Zdecyduj o tagach.\n4. Dla strony głównej i 2 stron usług wpisz frazę, własny title i meta description. Sprawdź podgląd.\n5. Otwórz mapę witryny wtyczki i sprawdź, czy są w niej tylko potrzebne typy treści.",
+      "checklist": [
+        "Kreator ukończony",
+        "Szablony tytułów ustawione",
+        "Decyzje o indeksowaniu",
+        "Title i opisy dla 3 stron",
+        "Mapa witryny sprawdzona"
+      ],
+      "hints": [
+        "Yoast: **Yoast SEO → Ustawienia → Typy treści** (szablony) i **Zaawansowane** (archiwa, załączniki).",
+        "Rank Math: **Rank Math → Tytuły i meta**.",
+        "Długość title: podgląd pokazuje, czy tytuł się nie ucina."
+      ],
+      "solution": "- Kreator: Organizacja, „Remonty Kowalski”, logo, profil Facebook.\n- Szablony: wpisy i strony `%%title%% %%sep%% %%sitename%%`, kategorie `%%term_title%% – porady %%sep%% %%sitename%%`.\n- Indeksowanie: załączniki wyłączone, archiwa dat i autora wyłączone, tagi noindex.\n- Strona główna: fraza „remonty łazienek Kraków”, title „Remonty łazienek w Krakowie – kompleksowo | Remonty Kowalski”, opis 150 znaków z zachętą.\n- Mapa: `post-sitemap.xml`, `page-sitemap.xml`, `category-sitemap.xml`, bez tagów i autorów."
+    }
+  },
+  {
+    "id": "t7-linkowanie-wewnetrzne",
+    "week": 7,
+    "order": 7,
+    "title": "Architektura i linkowanie wewnętrzne",
+    "lesson": "**Architektura strony** to sposób, w jaki strony są ułożone i połączone linkami. Dobra architektura pomaga odwiedzającym znaleźć to, czego szukają, a Google zrozumieć, które strony są najważniejsze i o czym jest cała witryna.\n\n![Klaster tematyczny](diagram:linkowanie-wewnetrzne)\n\n## Płaska i logiczna struktura\n\n- Każda ważna strona **najwyżej 3 kliknięcia** od strony głównej.\n- Menu odpowiada głównym grupom: Oferta, Realizacje, Blog, Kontakt.\n- Adresy odzwierciedlają strukturę (`/oferta/remont-lazienki/`), a okruszki ją pokazują (lekcja 5).\n\n## Klastry tematyczne\n\n**Strona filarowa** (pillar page) omawia szeroki temat, np. „Remont łazienki”, i linkuje do **artykułów szczegółowych**: „Ile kosztuje remont łazienki”, „Jak dobrać płytki”, „Prysznic walk-in: wady i zalety”. Artykuły linkują z powrotem do filaru i do siebie nawzajem. Google widzi, że strona zna temat dogłębnie (więcej w tygodniu 8).\n\n## Linki w treści i anchory\n\n**Anchor** to klikalny tekst linku. Powinien mówić, dokąd prowadzi:\n\n- dobrze: „sprawdź, [ile kosztuje remont łazienki]”,\n- źle: „[kliknij tutaj]”, „[więcej]”.\n\nAnchory mogą zawierać frazę, ale nie zawsze tę samą słowo w słowo. Naturalna różnorodność jest lepsza.\n\nIle linków? Tyle, ile pomaga czytelnikowi. Zwykle kilka linków wewnętrznych w dłuższym tekście, do naprawdę powiązanych stron.\n\n## Strony osierocone\n\n**Strona osierocona** (orphan page) to strona, do której **nie prowadzi żaden link** wewnętrzny. Google trudno ją znaleźć i uznaje za mało ważną. Częste przypadki: stary wpis, landing page z kampanii, podstrona usunięta z menu. Rozwiązanie: dodać do niej linki z powiązanych stron albo, jeśli jest zbędna, usunąć z 301.\n\n## Narzędzia\n\n- Yoast (wersja płatna) i Rank Math pokazują liczbę linków wewnętrznych do każdej strony i podpowiadają powiązane wpisy.\n- Search Console → **Linki** → Najczęściej linkowane strony (linki wewnętrzne).\n- Crawler, np. Screaming Frog (tydzień 10), znajdzie strony z małą liczbą linków.\n\n## Czytaj dalej\n\n- [Google: linki, które da się zindeksować, i teksty linków](https://developers.google.com/search/docs/crawling-indexing/links-crawlable?hl=pl)",
+    "questions": [
+      {
+        "id": "t7-linkowanie-wewnetrzne-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Czym jest strona osierocona?",
+        "answer": "Stroną, do której nie prowadzi żaden link wewnętrzny",
+        "distractors": [
+          "Stroną bez obrazków",
+          "Stroną, która ma tylko jeden akapit"
+        ],
+        "explanation": "Bez linków Google trudno ją znaleźć i uznaje ją za mało ważną."
+      },
+      {
+        "id": "t7-linkowanie-wewnetrzne-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Klikalny tekst linku to tzw. ___.",
+        "answer": "anchor",
+        "explanation": "Anchor (tekst kotwicy) powinien mówić, dokąd prowadzi link."
+      },
+      {
+        "id": "t7-linkowanie-wewnetrzne-03",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Który anchor jest najlepszy w linku do artykułu o kosztach remontu?",
+        "answer": "„ile kosztuje remont łazienki”",
+        "distractors": [
+          "„kliknij tutaj”",
+          "„więcej”"
+        ],
+        "explanation": "Opisowy anchor pomaga czytelnikowi i Google zrozumieć cel linku."
+      },
+      {
+        "id": "t7-linkowanie-wewnetrzne-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Plan linkowania: `strona filarowa linkuje do 5 artykułów`, `artykuły linkują do filaru`, `anchory: kliknij tutaj, więcej, tutaj`, `każda usługa w menu`. Co poprawić?",
+        "answer": "`anchory: kliknij tutaj, więcej, tutaj`",
+        "distractors": [
+          "`strona filarowa linkuje do 5 artykułów`",
+          "`artykuły linkują do filaru`",
+          "`każda usługa w menu`"
+        ],
+        "explanation": "Anchory powinny opisywać stronę docelową, a nie być ogólnikami."
+      },
+      {
+        "id": "t7-linkowanie-wewnetrzne-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "W każdym linku do strony filarowej używasz dokładnie tego samego anchora z frazą. Czy to dobrze?",
+        "answer": "Lepiej różnicować anchory naturalnie, fraza nie musi być zawsze słowo w słowo",
+        "distractors": [
+          "Tak, to najlepsza praktyka",
+          "Nie, anchor nie może zawierać frazy"
+        ],
+        "explanation": "Naturalna różnorodność wygląda lepiej i lepiej opisuje kontekst."
+      },
+      {
+        "id": "t7-linkowanie-wewnetrzne-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Wyjaśnij, czym jest klaster tematyczny ze stroną filarową.",
+        "answer": "To grupa stron o jednym temacie: strona filarowa omawia temat szeroko, np. remont łazienki, i linkuje do artykułów szczegółowych o węższych zagadnieniach, np. koszty, płytki, prysznic. Artykuły linkują z powrotem do filaru i do siebie. Google widzi, że strona zna temat dogłębnie, a siła linków skupia się na filarze.",
+        "keyPoints": [
+          "strona filarowa: szeroki temat",
+          "artykuły szczegółowe: węższe zagadnienia",
+          "linki w obie strony i między artykułami",
+          "pokazuje znajomość tematu"
+        ],
+        "explanation": "Klastry planuje się na podstawie badania słów kluczowych."
+      },
+      {
+        "id": "t7-linkowanie-wewnetrzne-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak znajdziesz i naprawisz strony osierocone?",
+        "answer": "Porównam listę stron z mapy witryny z listą stron, do których prowadzą linki wewnętrzne, np. w Rank Math, płatnym Yoast, crawlerze jak Screaming Frog lub raporcie Linki w Search Console. Do wartościowych stron dodam linki z powiązanych treści i ewentualnie z menu lub kategorii. Zbędne usunę z przekierowaniem 301.",
+        "keyPoints": [
+          "porównanie mapy z linkami wewnętrznymi",
+          "narzędzia: wtyczka SEO, crawler, GSC",
+          "dodanie linków z powiązanych stron",
+          "zbędne: usunięcie z 301"
+        ],
+        "explanation": "Osierocone bywają landing page po kampaniach."
+      },
+      {
+        "id": "t7-linkowanie-wewnetrzne-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Zasada „najwyżej 3 kliknięcia od strony głównej”: dlaczego jest ważna?",
+        "answer": "Bo strony głęboko schowane są trudniej dostępne dla odwiedzających i rzadziej odwiedzane przez roboty. Google traktuje odległość od strony głównej jako sygnał ważności, a odwiedzający rezygnują, gdy muszą długo klikać. Płaska struktura przez menu, kategorie i linki w treści pomaga obu.",
+        "keyPoints": [
+          "łatwiejszy dostęp dla ludzi",
+          "częstsze odwiedziny robotów",
+          "odległość jako sygnał ważności",
+          "menu, kategorie, linki w treści"
+        ],
+        "explanation": "W dużym sklepie pomagają kategorie, filtry i bloki „powiązane produkty”."
+      },
+      {
+        "id": "t7-linkowanie-wewnetrzne-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Zaprojektuj menu i linki wewnętrzne dla firmy remontowej z 4 usługami i blogiem.",
+        "answer": "Menu: Oferta (z rozwijaną listą 4 usług), Realizacje, Blog, O nas, Kontakt. Każda usługa to strona filarowa z linkami do 2–3 wpisów blogowych na swój temat i do realizacji z tej kategorii. Wpisy linkują do strony usługi opisowym anchorem i do siebie nawzajem. Strona główna linkuje do usług i najlepszych realizacji. W stopce dane kontaktowe i linki do usług.",
+        "keyPoints": [
+          "menu z ofertą i 4 usługami",
+          "usługi jako strony filarowe",
+          "wpisy linkują do usługi",
+          "realizacje powiązane z usługami",
+          "strona główna i stopka z linkami"
+        ],
+        "explanation": "Zacznij od listy stron i strzałek na kartce, potem dopiero w WordPressie."
+      },
+      {
+        "id": "t7-linkowanie-wewnetrzne-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Na blogu jest 80 wpisów, ale każdy ma linki tylko w menu. Jak zaplanujesz linkowanie wewnętrzne bez przepisywania wszystkiego?",
+        "answer": "Pogrupuję wpisy w kilka tematów, zgodnie z usługami. Dla każdego tematu wskażę lub napiszę stronę filarową. Zacznę od wpisów z największym ruchem w Search Console i dodam w nich 2–4 opisowe linki do filaru i powiązanych wpisów. Potem dodam w każdym filarze listę linków do wpisów z tematu, a resztę uzupełniam stopniowo. Pomocny jest blok powiązanych wpisów lub podpowiedzi wtyczki SEO.",
+        "keyPoints": [
+          "grupowanie wpisów w tematy",
+          "strony filarowe dla tematów",
+          "start od wpisów z największym ruchem",
+          "2–4 opisowe linki we wpisie",
+          "stopniowe uzupełnianie, narzędzia wtyczki"
+        ],
+        "explanation": "Lepiej zrobić porządnie 20 najważniejszych wpisów niż byle jak wszystkie 80."
+      }
+    ],
+    "task": {
+      "task": "Zaprojektuj menu i linki wewnętrzne.\n\n1. Wypisz strony firmy (np. remontowej): usługi, realizacje, blog, kontakt.\n2. Narysuj na kartce lub w Figmie strukturę: strona główna → grupy → strony. Sprawdź zasadę 3 kliknięć.\n3. Wybierz jedną usługę jako stronę filarową i 3 wpisy na blogu do jej klastra (tytuły mogą być wymyślone).\n4. Zbuduj menu w WordPressie według projektu.\n5. Na stronie testowej dodaj we wpisie 2 linki wewnętrzne z opisowymi anchorami: do filaru i do innego wpisu.",
+      "checklist": [
+        "Lista stron",
+        "Schemat struktury (max 3 kliknięcia)",
+        "Klaster: filar + 3 wpisy",
+        "Menu zbudowane",
+        "2 linki z opisowymi anchorami"
+      ],
+      "hints": [
+        "Link wewnętrzny w edytorze: zaznacz tekst, Ctrl+K i wpisz fragment tytułu strony.",
+        "Menu: w motywie blokowym blok Nawigacja w Edytorze witryny, w klasycznym **Wygląd → Menu**.",
+        "Anchor powinien zmieścić się w zdaniu naturalnie."
+      ],
+      "solution": "Struktura:\n\n- Strona główna\n- Oferta: Remont łazienki (filar), Remont kuchni, Malowanie, Układanie płytek\n- Realizacje (z podziałem na łazienki, kuchnie)\n- Blog\n- O nas, Kontakt\n\nKlaster „Remont łazienki”: „Ile kosztuje remont łazienki w 2026”, „Jak dobrać płytki do małej łazienki”, „Prysznic walk-in: wady i zalety”.\n\nLinki we wpisie o płytkach: „Zobacz, jak wygląda kompleksowy remont łazienki” (anchor „jak wygląda kompleksowy remont łazienki”, link do `/oferta/remont-lazienki/`) i „Przed zakupem płytek sprawdź, ile kosztuje remont łazienki” (link do `/blog/ile-kosztuje-remont-lazienki/`)."
+    }
   }
 ]

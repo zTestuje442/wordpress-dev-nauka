@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 250" role="img" aria-labelledby="title">
+<title id="title">Opisy w sklepie: kategoria ma krótki wstęp na górze i poradnik na dole, produkt ma unikalny opis z korzyściami, parametrami i odpowiedziami na pytania</title>
+<style>
+svg{--fg:#1d1d1b;--muted:#6b6b66;--box:#ffffff;--line:#c9c9c1;--accent:#2b6cb0;--site:#2f8f4e;--bad:#c0392b;font-family:system-ui,sans-serif}
+@media (prefers-color-scheme:dark){svg{--fg:#ecece6;--muted:#a0a09a;--box:#1f1f1d;--line:#4a4a44;--accent:#63a4ec;--site:#5cbf7d;--bad:#ec7f72}}
+.box{fill:var(--box);stroke:var(--line);stroke-width:1.5}
+.box.good{stroke:var(--site);stroke-width:2}
+.box.bad{stroke:var(--bad);stroke-width:2}
+.t{fill:var(--fg);font-size:16px;font-weight:700}
+.s{fill:var(--muted);font-size:13px}
+.ar{stroke:var(--line);stroke-width:2}
+#m path{fill:var(--line)}
+.tag{fill:var(--accent);font-size:14px;font-weight:700}
+.tag.good{fill:var(--site)}
+.tag.bad{fill:var(--bad)}
+.hl{fill:none;stroke:var(--accent);stroke-width:3;opacity:0}
+.cap{fill:var(--fg);font-size:15px;opacity:0}
+.static{fill:var(--muted);font-size:14px;opacity:0}
+</style>
+
+<rect class="box " x="20" y="20" width="168" height="210" rx="12"/>
+<text class="t" x="104" y="52" text-anchor="middle">Kategoria: góra</text>
+<text class="s" x="104" y="84" text-anchor="middle">2–3 zdania</text>
+<text class="s" x="104" y="104" text-anchor="middle">co tu znajdziesz</text>
+<text class="s" x="104" y="124" text-anchor="middle">nie spycha</text>
+<text class="s" x="104" y="144" text-anchor="middle">produktów</text>
+<text class="s" x="104" y="164" text-anchor="middle">w dół</text>
+<text class="tag " x="104" y="212" text-anchor="middle">krótko</text>
+<rect class="box good" x="204" y="20" width="168" height="210" rx="12"/>
+<text class="t" x="288" y="52" text-anchor="middle">Kategoria: dół</text>
+<text class="s" x="288" y="84" text-anchor="middle">poradnik wyboru</text>
+<text class="s" x="288" y="104" text-anchor="middle">H2, pytania</text>
+<text class="s" x="288" y="124" text-anchor="middle">linki do</text>
+<text class="s" x="288" y="144" text-anchor="middle">podkategorii</text>
+<text class="s" x="288" y="164" text-anchor="middle"></text>
+<text class="tag good" x="288" y="212" text-anchor="middle">więcej treści</text>
+<rect class="box good" x="388" y="20" width="168" height="210" rx="12"/>
+<text class="t" x="472" y="52" text-anchor="middle">Produkt</text>
+<text class="s" x="472" y="84" text-anchor="middle">korzyści</text>
+<text class="s" x="472" y="104" text-anchor="middle">parametry (lista)</text>
+<text class="s" x="472" y="124" text-anchor="middle">zastosowanie</text>
+<text class="s" x="472" y="144" text-anchor="middle">pytania i opinie</text>
+<text class="s" x="472" y="164" text-anchor="middle">własne zdjęcia</text>
+<text class="tag good" x="472" y="212" text-anchor="middle">unikalny</text>
+<rect class="box bad" x="572" y="20" width="168" height="210" rx="12"/>
+<text class="t" x="656" y="52" text-anchor="middle">Nie tak</text>
+<text class="s" x="656" y="84" text-anchor="middle">opis producenta</text>
+<text class="s" x="656" y="104" text-anchor="middle">kopiuj-wklej</text>
+<text class="s" x="656" y="124" text-anchor="middle">ten sam tekst</text>
+<text class="s" x="656" y="144" text-anchor="middle">w 100 sklepach</text>
+<text class="s" x="656" y="164" text-anchor="middle"></text>
+<text class="tag bad" x="656" y="212" text-anchor="middle">duplikat</text>
+</svg>

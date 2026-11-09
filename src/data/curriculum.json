@@ -5070,5 +5070,1249 @@
       ],
       "solution": "Przed: dwa H1 (tytuł strony „Strona główna” i nagłówek w okładce), sekcje jako H4, w stopce trzy H2.\n\nPo:\n\n- H1: „Firma remontowa w Krakowie” (w okładce, tytuł strony ukryty)\n- H2: „Nasze usługi” → H3: „Remont łazienki”, „Remont kuchni”, „Malowanie”\n- H2: „Realizacje”\n- H2: „Dlaczego my”\n- H2: „Kontakt”\n- Stopka: „Kontakt” i „Na skróty” jako pogrubiony akapit zamiast H2."
     }
+  },
+  {
+    "id": "t5-jak-wlamuja-sie",
+    "week": 5,
+    "order": 1,
+    "title": "Jak włamują się na strony WordPress",
+    "lesson": "Większość włamań na strony WordPress to nie atak hakera, który wybrał akurat Twoją stronę. To **automaty (boty)**, które codziennie skanują tysiące stron i szukają łatwych celów. Mała strona firmy remontowej jest tak samo narażona jak duży sklep.\n\n![Jak przebiega typowe włamanie](diagram:wlamania-wp)\n\n## Najczęstsze drogi włamania\n\n1. **Dziurawe wtyczki i motywy.** To zdecydowanie najczęstsza przyczyna. Ktoś znajduje lukę w wtyczce, autor wydaje poprawkę, a informacja o luce trafia do publicznych baz. Boty szukają stron, które **nie zaktualizowały** wtyczki.\n2. **Słabe lub wykradzione hasła.** Login `admin` i hasło `firma2024` boty odgadną w kilka minut (atak brute force). Hasła wyciekają też z innych serwisów, gdy ktoś używa jednego hasła wszędzie.\n3. **„Nulled” motywy i wtyczki**, czyli płatne dodatki ściągnięte za darmo z podejrzanych stron. Bardzo często mają wbudowany złośliwy kod (tylne drzwi).\n4. **Słaby hosting**: stara wersja PHP, brak izolacji między kontami.\n5. **Za szerokie uprawnienia**: każdy pracownik z rolą Administrator.\n\n## Co robi włamywacz\n\n- dokleja **spam** (linki do kasyn, leków), często widoczny tylko dla Google,\n- **przekierowuje** odwiedzających na podejrzane strony,\n- tworzy ukryte konto administratora, żeby wrócić,\n- wysyła spam z Twojego serwera, przez co poczta firmy trafia na czarne listy.\n\n## Bazy luk: skąd wiadomo, że wtyczka jest dziurawa\n\n- [Patchstack Database](https://patchstack.com/database/): wpisujesz nazwę wtyczki i widzisz znane luki oraz wersję, w której je naprawiono.\n- [WPScan](https://wpscan.com/): podobna baza, używana też przez wtyczki bezpieczeństwa.\n\nWażne jest pole **„naprawiono w wersji”**. Jeśli masz nowszą wersję, luka Cię nie dotyczy. Jeśli luka **nie ma poprawki**, wtyczkę trzeba usunąć lub zastąpić.\n\n## Czytaj dalej\n\n- [WordPress: utwardzanie (po angielsku)](https://developer.wordpress.org/advanced-administration/security/hardening/)\n- [WPBeginner: poradnik bezpieczeństwa WordPressa (po angielsku)](https://www.wpbeginner.com/wordpress-security/)",
+    "questions": [
+      {
+        "id": "t5-jak-wlamuja-sie-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Co jest najczęstszą drogą włamania na strony WordPress?",
+        "answer": "Niezaktualizowane wtyczki i motywy ze znanymi lukami",
+        "distractors": [
+          "Luki w samym rdzeniu WordPressa",
+          "Ataki na komputer właściciela strony"
+        ],
+        "explanation": "Luki we wtyczkach i motywach to zdecydowana większość przypadków."
+      },
+      {
+        "id": "t5-jak-wlamuja-sie-02",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Kto zwykle włamuje się na małą stronę firmy?",
+        "answer": "Automatyczny bot skanujący wiele stron",
+        "distractors": [
+          "Konkurencja firmy",
+          "Haker, który wybrał właśnie tę stronę"
+        ],
+        "explanation": "Boty nie wybierają ofiar. Szukają każdej strony z luką lub słabym hasłem."
+      },
+      {
+        "id": "t5-jak-wlamuja-sie-03",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Płatny motyw ściągnięty za darmo z podejrzanej strony to tzw. motyw ___.",
+        "answer": "nulled",
+        "explanation": "„Nulled” dodatki często mają wbudowane tylne drzwi lub złośliwy kod."
+      },
+      {
+        "id": "t5-jak-wlamuja-sie-04",
+        "type": "error",
+        "difficulty": 2,
+        "tricky": true,
+        "prompt": "Stan strony: `WordPress 6.9 aktualny`, `wtyczka formularza z luką naprawioną w 3.2, zainstalowana 3.4`, `wtyczka galerii z luką bez poprawki`, `hasła z menedżera haseł`. Co jest problemem?",
+        "answer": "`wtyczka galerii z luką bez poprawki`",
+        "distractors": [
+          "`WordPress 6.9 aktualny`",
+          "`wtyczka formularza z luką naprawioną w 3.2, zainstalowana 3.4`",
+          "`hasła z menedżera haseł`"
+        ],
+        "explanation": "Wersja 3.4 jest nowsza niż poprawka 3.2, więc formularz jest bezpieczny. Wtyczkę bez poprawki trzeba usunąć lub zastąpić."
+      },
+      {
+        "id": "t5-jak-wlamuja-sie-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Strona wygląda normalnie, ale w Google przy jej wynikach widać teksty o kasynach. Co to oznacza?",
+        "answer": "Prawdopodobnie włamanie ze spamem pokazywanym tylko robotom Google",
+        "distractors": [
+          "Błąd Google, który sam zniknie",
+          "Ktoś kupił reklamę na frazę z nazwą firmy"
+        ],
+        "explanation": "Włamywacze często ukrywają spam przed właścicielem i pokazują go tylko Googlebotowi."
+      },
+      {
+        "id": "t5-jak-wlamuja-sie-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Wymień najczęstsze drogi włamania na strony WordPress.",
+        "answer": "Niezaktualizowane wtyczki i motywy ze znanymi lukami, słabe lub wykradzione hasła (brute force, to samo hasło w wielu miejscach), motywy i wtyczki nulled z tylnymi drzwiami, słaby hosting ze starym PHP i zbyt wiele kont z rolą administratora.",
+        "keyPoints": [
+          "dziurawe, nieaktualne wtyczki i motywy",
+          "słabe lub powtarzane hasła",
+          "nulled dodatki",
+          "słaby hosting / stare PHP",
+          "za szerokie uprawnienia"
+        ],
+        "explanation": "Pierwsza przyczyna odpowiada za większość włamań."
+      },
+      {
+        "id": "t5-jak-wlamuja-sie-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak sprawdzisz, czy wtyczka zainstalowana na stronie ma znaną lukę?",
+        "answer": "Wpiszę jej nazwę w bazie luk, np. Patchstack lub WPScan, i porównam swoją wersję z wersją, w której lukę naprawiono. Jeśli mam nowszą, jest dobrze. Jeśli starszą, aktualizuję. Jeśli poprawki nie ma, usuwam wtyczkę lub szukam zamiennika.",
+        "keyPoints": [
+          "baza luk: Patchstack lub WPScan",
+          "porównanie wersji z „naprawiono w”",
+          "starsza wersja → aktualizacja",
+          "brak poprawki → usunięcie lub zamiennik"
+        ],
+        "explanation": "Wtyczki bezpieczeństwa robią to automatycznie, ale warto rozumieć mechanizm."
+      },
+      {
+        "id": "t5-jak-wlamuja-sie-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Dlaczego włamywacze ukrywają spam przed właścicielem strony?",
+        "answer": "Żeby właściciel jak najdłużej nie zauważył włamania. Spam i linki pokazują tylko robotom Google, a człowiek widzi normalną stronę. Dzięki temu strona długo przekazuje moc linków stronom spamerów, a właściciel dowiaduje się dopiero z Search Console lub z wyników Google.",
+        "keyPoints": [
+          "właściciel ma nie zauważyć",
+          "spam widoczny tylko dla robotów",
+          "zysk dla spamerów (linki)",
+          "wykrycie przez Search Console lub wyniki"
+        ],
+        "explanation": "Sprawdzaj wyniki komendą site:twojadomena.pl i raport Problemy z bezpieczeństwem w GSC."
+      },
+      {
+        "id": "t5-jak-wlamuja-sie-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Dlaczego nie warto instalować płatnego motywu pobranego za darmo z forum?",
+        "answer": "Bo takie pliki często mają wbudowany złośliwy kod: tylne drzwi, ukryte linki lub skrypty. Do tego nie dostaje się aktualizacji, więc luki zostają na zawsze, a użycie jest niezgodne z licencją sprzedawcy. Koszt naprawy po włamaniu jest wielokrotnie wyższy niż cena licencji.",
+        "keyPoints": [
+          "złośliwy kod / tylne drzwi",
+          "brak aktualizacji",
+          "problem z licencją",
+          "naprawa droższa niż licencja"
+        ],
+        "explanation": "Kupuj tylko u autora lub w oficjalnym sklepie."
+      },
+      {
+        "id": "t5-jak-wlamuja-sie-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Klient mówi: „Moja strona jest mała, nikt się na nią nie włamie”. Co odpowiesz?",
+        "answer": "Że włamania robią automaty, które skanują wszystkie strony po kolei i nie patrzą na wielkość firmy. Mała strona jest nawet łatwiejszym celem, bo rzadziej jest aktualizowana. Po włamaniu może rozsyłać spam, przekierowywać klientów i stracić pozycje w Google.",
+        "keyPoints": [
+          "ataki są automatyczne",
+          "boty nie wybierają według wielkości",
+          "małe strony rzadziej aktualizowane",
+          "skutki: spam, przekierowania, utrata pozycji"
+        ],
+        "explanation": "To częsty argument przy sprzedaży opieki technicznej (tydzień 12)."
+      }
+    ],
+    "task": {
+      "task": "Sprawdź wtyczki swojej strony testowej w bazie luk.\n\n1. Wypisz wszystkie wtyczki i motywy z ich wersjami (**Wtyczki → Zainstalowane wtyczki**).\n2. Każdą wyszukaj w [Patchstack Database](https://patchstack.com/database/).\n3. Przy każdej znanej luce zapisz: czego dotyczy i w jakiej wersji ją naprawiono.\n4. Porównaj ze swoją wersją i zapisz, czy coś trzeba zaktualizować lub usunąć.\n5. Sprawdź, czy w Google przy komendzie `site:twojadomena.pl` nie ma dziwnych wyników (jeśli masz stronę na żywo).",
+      "checklist": [
+        "Lista wtyczek i wersji",
+        "Wtyczki sprawdzone w bazie luk",
+        "Decyzja przy każdej wtyczce: zostaje, aktualizacja, usunięcie"
+      ],
+      "hints": [
+        "Wersję wtyczki widać pod jej nazwą na liście wtyczek.",
+        "Luki z poprawką w wersji niższej niż Twoja Cię nie dotyczą.",
+        "Na stronie lokalnej komenda site: nic nie pokaże, bo Google jej nie zna."
+      ],
+      "solution": "Przykładowa tabela (jako lista):\n\n- Contact Form 7 6.x: znane luki naprawione w starszych wersjach, mam nowszą → zostaje.\n- Stara wtyczka galerii, ostatnia aktualizacja 3 lata temu, luka bez poprawki → usuwam i zastępuję galerią z edytora blokowego.\n- Elementor: luka naprawiona w nowszej wersji niż moja → aktualizuję (najpierw kopia)."
+    }
+  },
+  {
+    "id": "t5-porzadek-wtyczki",
+    "week": 5,
+    "order": 2,
+    "title": "Porządek z wtyczkami i motywami",
+    "lesson": "Każda wtyczka to cudzy kod na Twoim serwerze. Im mniej wtyczek, tym mniej miejsc, w których może pojawić się luka, i tym szybsza strona. Regularny przegląd to jedna z najprostszych metod ochrony.\n\n![Co zrobić z każdą wtyczką](diagram:porzadek-wtyczki)\n\n## Dezaktywowana to nie usunięta\n\nWyłączona (dezaktywowana) wtyczka **dalej leży na serwerze**. Jej pliki można wywołać bezpośrednio z przeglądarki, więc **luka w wyłączonej wtyczce nadal działa**. Wtyczki i motywy, których nie używasz, **usuwaj**. Zostaw tylko jeden domyślny motyw (np. Twenty Twenty-Five) jako zapasowy.\n\n## Na co patrzeć przy każdej wtyczce\n\n- **Czy jej używam?** Często została po teście albo zrobiła jednorazową rzecz.\n- **Data ostatniej aktualizacji** (karta wtyczki na wordpress.org). Ponad rok bez zmian to sygnał ostrzegawczy.\n- **„Nie testowano z Twoją wersją WordPressa”**: autor mógł ją porzucić.\n- **Zamknięta wtyczka** na wordpress.org (komunikat, że jest niedostępna) często oznacza lukę bezpieczeństwa.\n- **Czy coś innego robi to samo?** Dwie wtyczki SEO, dwie od cache albo galeria, którą zastąpi blok edytora.\n\n## Automatyczne aktualizacje\n\nW **Wtyczki → Zainstalowane** przy każdej wtyczce jest link **Włącz automatyczne aktualizacje**. Rozsądne podejście:\n\n- **auto** dla małych, prostych wtyczek i poprawek bezpieczeństwa WordPressa (te włączone są domyślnie),\n- **ręcznie, po kopii i najlepiej na stagingu** dla dużych: page builder, WooCommerce, motyw, wtyczki sklepu.\n\n## Przed usunięciem\n\nZrób kopię strony. Niektóre wtyczki przy usuwaniu kasują swoje dane (np. ustawienia, formularze). Sprawdź po usunięciu kilka kluczowych stron.\n\n## Czytaj dalej\n\n- [WordPress: zarządzanie wtyczkami (po angielsku)](https://wordpress.org/documentation/article/manage-plugins/)",
+    "questions": [
+      {
+        "id": "t5-porzadek-wtyczki-01",
+        "type": "choice",
+        "difficulty": 1,
+        "tricky": true,
+        "prompt": "Czy dezaktywowana wtyczka z luką jest groźna?",
+        "answer": "Tak, jej pliki dalej są na serwerze i można je wywołać",
+        "distractors": [
+          "Nie, wyłączona wtyczka nie działa wcale",
+          "Tylko gdy ktoś zaloguje się do panelu"
+        ],
+        "explanation": "Dlatego nieużywane wtyczki trzeba usuwać, a nie tylko wyłączać."
+      },
+      {
+        "id": "t5-porzadek-wtyczki-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Nieużywane wtyczki i motywy należy ___, a nie tylko dezaktywować.",
+        "answer": "usunąć",
+        "explanation": "Usunięcie kasuje pliki z serwera, więc luka znika razem z nimi."
+      },
+      {
+        "id": "t5-porzadek-wtyczki-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Wtyczka nie była aktualizowana od 3 lat i ma komunikat „nie testowano z Twoją wersją”. Co zrobić?",
+        "answer": "Poszukać aktywnie rozwijanego zamiennika",
+        "distractors": [
+          "Nic, skoro działa",
+          "Włączyć jej automatyczne aktualizacje"
+        ],
+        "explanation": "Porzucona wtyczka nie dostanie poprawek, gdy ktoś znajdzie w niej lukę."
+      },
+      {
+        "id": "t5-porzadek-wtyczki-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Plan aktualizacji: `małe wtyczki: automatycznie`, `poprawki bezpieczeństwa WordPressa: automatycznie`, `WooCommerce i builder: automatycznie w nocy bez kopii`, `motyw: ręcznie po kopii`. Co jest błędem?",
+        "answer": "`WooCommerce i builder: automatycznie w nocy bez kopii`",
+        "distractors": [
+          "`małe wtyczki: automatycznie`",
+          "`poprawki bezpieczeństwa WordPressa: automatycznie`",
+          "`motyw: ręcznie po kopii`"
+        ],
+        "explanation": "Duże wtyczki potrafią zepsuć sklep lub układ. Aktualizuje się je ręcznie, po kopii, najlepiej na stagingu."
+      },
+      {
+        "id": "t5-porzadek-wtyczki-05",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Ile motywów warto zostawić na stronie?",
+        "answer": "Używany (i jego rodzica) plus jeden domyślny jako zapasowy",
+        "distractors": [
+          "Wszystkie, które kiedyś testowano",
+          "Tylko jeden, bez żadnego zapasowego"
+        ],
+        "explanation": "Domyślny motyw pozwala uruchomić stronę, gdy główny się zepsuje."
+      },
+      {
+        "id": "t5-porzadek-wtyczki-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Co sprawdzisz przy każdej wtyczce podczas przeglądu?",
+        "answer": "Czy jest używana, kiedy była ostatnio aktualizowana, czy jest testowana z moją wersją WordPressa, czy nie została zamknięta na wordpress.org, czy ma znane luki i czy inna wtyczka lub wbudowana funkcja nie robi tego samego.",
+        "keyPoints": [
+          "czy używana",
+          "data ostatniej aktualizacji",
+          "zgodność z wersją WP",
+          "czy nie zamknięta / luki",
+          "dublowanie funkcji"
+        ],
+        "explanation": "Przegląd warto robić co kilka miesięcy."
+      },
+      {
+        "id": "t5-porzadek-wtyczki-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Dlaczego mniej wtyczek to bezpieczniejsza i szybsza strona?",
+        "answer": "Bo każda wtyczka to dodatkowy kod, w którym może być luka, więc mniej wtyczek to mniej potencjalnych dziur. Wtyczki dodają też skrypty, style i zapytania do bazy, które spowalniają stronę, i mogą się ze sobą gryźć.",
+        "keyPoints": [
+          "każda wtyczka to możliwa luka",
+          "mniej kodu do aktualizowania",
+          "skrypty i zapytania spowalniają",
+          "konflikty między wtyczkami"
+        ],
+        "explanation": "Liczy się jakość wtyczek, nie tylko liczba, ale zbędne zawsze warto usunąć."
+      },
+      {
+        "id": "t5-porzadek-wtyczki-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak ustawisz automatyczne aktualizacje na stronie klienta i dlaczego tak?",
+        "answer": "Małe, proste wtyczki i poprawki bezpieczeństwa WordPressa zostawiam na automacie, bo szybko łatają luki i rzadko coś psują. Duże elementy, czyli builder, WooCommerce, motyw i wtyczki płatności, aktualizuję ręcznie po kopii, najlepiej najpierw na stagingu, bo ich aktualizacja może zepsuć wygląd lub zamówienia.",
+        "keyPoints": [
+          "małe wtyczki i poprawki WP: auto",
+          "duże (builder, sklep, motyw): ręcznie",
+          "kopia / staging przed dużymi",
+          "balans szybkości łatania i ryzyka"
+        ],
+        "explanation": "Zawsze warto mieć kopię z ostatniej doby."
+      },
+      {
+        "id": "t5-porzadek-wtyczki-09",
+        "type": "open",
+        "difficulty": 3,
+        "prompt": "Przed usunięciem starej wtyczki formularzy co musisz sprawdzić?",
+        "answer": "Gdzie jest używana: na których stronach są jej formularze lub shortcody, żeby je zastąpić nową wtyczką. Czy trzymała zgłoszenia, które trzeba wyeksportować. Zrobić kopię strony, a po usunięciu sprawdzić strony z formularzami i wysłać testowe zgłoszenie.",
+        "keyPoints": [
+          "gdzie są jej formularze / shortcody",
+          "zastąpienie nowym formularzem",
+          "eksport zapisanych zgłoszeń",
+          "kopia przed usunięciem",
+          "test po usunięciu"
+        ],
+        "explanation": "Po usunięciu wtyczki shortcode zostaje w treści jako zwykły tekst, np. [contact-form-7 id=...]."
+      },
+      {
+        "id": "t5-porzadek-wtyczki-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Klient ma 45 wtyczek i wolną stronę. Jak podejdziesz do porządków?",
+        "answer": "Zrobię kopię, potem przejdę listę i przy każdej wtyczce sprawdzę, czy jest potrzebna, aktualna i czy coś jej nie dubluje. Najpierw usunę dezaktywowane, potem zbędne i dublujące, a porzucone wymienię. Po każdej większej zmianie sprawdzę stronę, a na końcu zmierzę szybkość, np. w PageSpeed Insights.",
+        "keyPoints": [
+          "kopia przed zmianami",
+          "przegląd każdej wtyczki",
+          "najpierw dezaktywowane, potem dublujące",
+          "wymiana porzuconych",
+          "sprawdzanie strony i pomiar szybkości"
+        ],
+        "explanation": "Wtyczki usuwaj partiami, żeby wiedzieć, która zmiana coś zepsuła."
+      }
+    ],
+    "task": {
+      "task": "Zrób przegląd wtyczek na stronie testowej.\n\n1. Zrób kopię strony (np. eksport w Local lub kopia z tygodnia 2).\n2. Usuń wszystkie dezaktywowane wtyczki i nieużywane motywy (zostaw jeden domyślny).\n3. Przy każdej aktywnej wtyczce sprawdź na wordpress.org datę ostatniej aktualizacji.\n4. Znajdź co najmniej jedną wtyczkę, która dubluje funkcję innej albo edytora, i ją usuń.\n5. Włącz automatyczne aktualizacje dla 2–3 małych wtyczek.",
+      "checklist": [
+        "Kopia zrobiona",
+        "Dezaktywowane wtyczki i zbędne motywy usunięte",
+        "Daty aktualizacji sprawdzone",
+        "Zbędna wtyczka usunięta",
+        "Auto-aktualizacje włączone dla małych wtyczek"
+      ],
+      "hints": [
+        "Na liście wtyczek link **Zobacz szczegóły** pokazuje datę ostatniej aktualizacji.",
+        "Motywy usuniesz w **Wygląd → Motywy** → kliknij motyw → **Usuń** (w prawym dolnym rogu).",
+        "Kandydaci do usunięcia: wtyczki „Hello Dolly”, stare galerie, drugie wtyczki SEO lub cache."
+      ],
+      "solution": "- Usunięte: Hello Dolly, Akismet (jeśli nie używasz komentarzy), motywy Twenty Twenty-Three i Twenty Twenty-Four (został Twenty Twenty-Five i motyw używany).\n- Dublowanie: osobna wtyczka „Classic Widgets” lub galerii, gdy wystarcza blok Galeria.\n- Auto-aktualizacje: np. Redirection, Code Snippets. Elementor i WooCommerce zostają na ręcznych."
+    }
+  },
+  {
+    "id": "t5-firewall",
+    "week": 5,
+    "order": 3,
+    "title": "Firewall (WAF)",
+    "lesson": "**WAF** (Web Application Firewall) to filtr, który sprawdza każde zapytanie do strony i odrzuca te, które wyglądają na atak, zanim zrobią szkodę. Działa jak ochroniarz przy wejściu.\n\n![Dwie warstwy firewalla](diagram:firewall-waf)\n\n## Dwa rodzaje firewalla\n\n**Przed serwerem (chmurowy)**: [Cloudflare](https://www.cloudflare.com/pl-pl/), Sucuri. Ruch do Twojej domeny płynie najpierw przez ich serwery. Zalety: ataki nie obciążają Twojego hostingu, dodatkowo dostajesz CDN (szybsze ładowanie) i ochronę przed zalewaniem strony zapytaniami (DDoS). Cloudflare ma darmowy plan, który wystarcza małym stronom.\n\n**We wtyczce (na serwerze)**: [Wordfence](https://wordpress.org/plugins/wordfence/), Solid Security. Sprawdza zapytania już na Twoim serwerze, zna dobrze WordPressa i ma skaner plików. Minus: atak i tak obciąża hosting.\n\nNajlepiej mieć **obie warstwy**. Nie instaluj natomiast dwóch wtyczek bezpieczeństwa naraz, bo będą się gryźć.\n\n## Jak podłączyć Cloudflare\n\n1. Zakładasz konto i dodajesz domenę.\n2. Cloudflare kopiuje Twoje rekordy DNS. **Sprawdź je**, szczególnie rekordy poczty (MX).\n3. U rejestratora domeny zmieniasz **serwery nazw (DNS)** na te od Cloudflare (pamiętasz rekordy DNS z tygodnia 1).\n4. W SSL/TLS ustaw tryb **Full (strict)**, jeśli hosting ma certyfikat. Tryb Flexible przy wymuszonym HTTPS na serwerze daje błąd „za dużo przekierowań”.\n\n## Przydatne reguły\n\n- **Blokowanie złych botów** (Bot Fight Mode w Cloudflare).\n- **Blokowanie krajów**: jeśli sklep sprzedaje tylko w Polsce, można blokować lub sprawdzać zapytania do logowania z innych krajów. Ostrożnie: nie blokuj Googlebota ani całego ruchu, bo stracisz klientów z zagranicy i podróżujących.\n- **Limit zapytań** (rate limiting): np. nie więcej niż 5 prób logowania na minutę z jednego adresu.\n- **Ochrona strony logowania**: dodatkowe sprawdzenie (challenge) dla `/wp-login.php`.\n\n## Czytaj dalej\n\n- [Cloudflare: dokumentacja (po angielsku)](https://developers.cloudflare.com/fundamentals/)\n- [Wordfence: dokumentacja firewalla (po angielsku)](https://www.wordfence.com/help/firewall/)",
+    "questions": [
+      {
+        "id": "t5-firewall-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Czym jest WAF?",
+        "answer": "Firewallem aplikacji webowej, który filtruje zapytania do strony",
+        "distractors": [
+          "Wtyczką do kopii zapasowych",
+          "Rodzajem certyfikatu SSL"
+        ],
+        "explanation": "WAF = Web Application Firewall. Odrzuca zapytania wyglądające na atak."
+      },
+      {
+        "id": "t5-firewall-02",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Jaka jest główna zaleta firewalla przed serwerem (np. Cloudflare)?",
+        "answer": "Ataki są zatrzymywane, zanim obciążą hosting",
+        "distractors": [
+          "Działa tylko w panelu WordPressa",
+          "Nie wymaga zmiany DNS"
+        ],
+        "explanation": "Ruch przechodzi najpierw przez serwery Cloudflare, więc atak nie dociera do Twojego serwera."
+      },
+      {
+        "id": "t5-firewall-03",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Żeby podłączyć Cloudflare, u rejestratora domeny zmienia się ___ nazw.",
+        "answer": "serwery",
+        "explanation": "Serwery nazw (nameservery) Cloudflare przejmują obsługę DNS domeny."
+      },
+      {
+        "id": "t5-firewall-04",
+        "type": "error",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Konfiguracja: `Cloudflare z planem Free`, `SSL/TLS: Flexible przy wymuszonym HTTPS na serwerze`, `Bot Fight Mode włączony`, `Wordfence jako jedyna wtyczka bezpieczeństwa`. Co spowoduje problem?",
+        "answer": "`SSL/TLS: Flexible przy wymuszonym HTTPS na serwerze`",
+        "distractors": [
+          "`Cloudflare z planem Free`",
+          "`Bot Fight Mode włączony`",
+          "`Wordfence jako jedyna wtyczka bezpieczeństwa`"
+        ],
+        "explanation": "Flexible łączy się z serwerem przez HTTP, a serwer przekierowuje na HTTPS, i tak w kółko. Ustaw Full (strict)."
+      },
+      {
+        "id": "t5-firewall-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Sklep sprzedaje tylko w Polsce. Czy zablokować cały ruch spoza Polski?",
+        "answer": "Lepiej nie, wystarczy ochrona logowania i limity, bo blokada utnie klientów za granicą i może utrudnić pracę robotom",
+        "distractors": [
+          "Tak, zawsze, to najlepsza ochrona",
+          "Tak, ale tylko dla Googlebota"
+        ],
+        "explanation": "Blokada krajów to grube narzędzie. Lepiej zawęzić ją do logowania i panelu."
+      },
+      {
+        "id": "t5-firewall-06",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Porównaj firewall przed serwerem i firewall we wtyczce.",
+        "answer": "Firewall przed serwerem (Cloudflare, Sucuri) filtruje ruch na swoich serwerach, więc ataki nie obciążają hostingu, i daje też CDN i ochronę DDoS. Wymaga zmiany DNS. Firewall we wtyczce (Wordfence) działa na Twoim serwerze, dobrze zna WordPressa i ma skaner plików, ale atak i tak trafia na hosting. Najlepiej łączyć obie warstwy.",
+        "keyPoints": [
+          "przed serwerem: ataki nie obciążają hostingu",
+          "przed serwerem: CDN, DDoS, zmiana DNS",
+          "wtyczka: na serwerze, zna WP, skaner",
+          "wtyczka: obciążenie hostingu",
+          "najlepiej obie warstwy"
+        ],
+        "explanation": "Dwóch wtyczek bezpieczeństwa naraz natomiast nie łącz."
+      },
+      {
+        "id": "t5-firewall-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Opisz kroki podłączenia domeny do Cloudflare.",
+        "answer": "Zakładam konto, dodaję domenę, Cloudflare skanuje rekordy DNS, a ja sprawdzam, czy są wszystkie, szczególnie MX i rekordy poczty. Potem u rejestratora zmieniam serwery nazw na te od Cloudflare. Po aktywacji ustawiam SSL/TLS na Full (strict) i sprawdzam stronę oraz pocztę.",
+        "keyPoints": [
+          "konto i dodanie domeny",
+          "sprawdzenie skopiowanych rekordów (MX)",
+          "zmiana serwerów nazw u rejestratora",
+          "SSL Full (strict)",
+          "test strony i poczty"
+        ],
+        "explanation": "Zmiana serwerów nazw może potrwać do kilku godzin."
+      },
+      {
+        "id": "t5-firewall-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jakie reguły firewalla ustawisz dla strony logowania WordPressa?",
+        "answer": "Limit prób logowania z jednego adresu, np. 5 na minutę, dodatkowe sprawdzenie (challenge) dla wp-login.php, ewentualnie blokadę lub challenge dla logowania spoza Polski, jeśli wszyscy administratorzy są w Polsce, i blokadę złych botów.",
+        "keyPoints": [
+          "limit prób logowania",
+          "challenge dla wp-login.php",
+          "ograniczenie krajów tylko dla logowania",
+          "blokada złych botów"
+        ],
+        "explanation": "Reguły dla logowania łączą się z lekcją o bezpiecznym logowaniu."
+      },
+      {
+        "id": "t5-firewall-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Dlaczego nie warto instalować jednocześnie Wordfence i drugiej wtyczki bezpieczeństwa?",
+        "answer": "Bo obie robią to samo: filtrują zapytania, skanują pliki i zmieniają ustawienia logowania. Mogą się nawzajem blokować, dublować pracę i spowalniać stronę, a komunikaty o błędach stają się trudne do zrozumienia. Lepiej mieć jedną wtyczkę i firewall chmurowy.",
+        "keyPoints": [
+          "dublowanie funkcji",
+          "wzajemne blokowanie / konflikty",
+          "spowolnienie strony",
+          "trudniejsza diagnoza"
+        ],
+        "explanation": "Wtyczka bezpieczeństwa + Cloudflare to dobra, niekonfliktowa para."
+      },
+      {
+        "id": "t5-firewall-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Po podłączeniu Cloudflare klientowi przestały dochodzić maile. Co sprawdzisz?",
+        "answer": "Rekordy DNS poczty w Cloudflare: czy są rekordy MX, SPF, DKIM i ewentualnie rekord A lub CNAME dla serwera poczty. Rekordy dotyczące poczty muszą mieć wyłączone proxy (szara chmurka, DNS only), bo Cloudflare przepuszcza przez proxy tylko ruch WWW.",
+        "keyPoints": [
+          "czy skopiowano MX, SPF, DKIM",
+          "porównanie ze starymi rekordami",
+          "rekordy poczty bez proxy (szara chmurka)",
+          "proxy Cloudflare tylko dla WWW"
+        ],
+        "explanation": "Dlatego przed zmianą serwerów nazw zapisz pełną listę starych rekordów."
+      }
+    ],
+    "task": {
+      "task": "Włącz firewall na stronie testowej.\n\n1. Zainstaluj Wordfence na stronie lokalnej i przejdź konfigurację firewalla (tryb uczenia się, potem ochrona).\n2. Sprawdź w Wordfence → Firewall, jakie reguły są aktywne.\n3. Jeśli masz domenę testową na hostingu: dodaj ją do Cloudflare (plan Free), sprawdź rekordy DNS i zmień serwery nazw.\n4. Ustaw SSL/TLS na Full (strict) i włącz Bot Fight Mode.\n5. Zapisz, czy strona i poczta działają po zmianie.",
+      "checklist": [
+        "Wordfence zainstalowany i firewall włączony",
+        "Reguły firewalla przejrzane",
+        "Domena w Cloudflare (jeśli masz hosting)",
+        "SSL Full (strict) i Bot Fight Mode"
+      ],
+      "hints": [
+        "Wordfence przez pierwszy tydzień działa w trybie uczenia się, żeby nie blokować normalnego ruchu.",
+        "Przed zmianą serwerów nazw zrób zrzut ekranu wszystkich rekordów DNS z obecnego panelu.",
+        "Bez hostingu zrób tylko część z Wordfence i przeczytaj, jak wygląda panel Cloudflare."
+      ],
+      "solution": "- Wordfence: Firewall → Manage Firewall, tryb „Learning Mode”, potem „Enabled and Protecting”.\n- Cloudflare: domena aktywna po zmianie serwerów nazw (np. `ada.ns.cloudflare.com`), SSL/TLS Full (strict), Security → Bots → Bot Fight Mode włączony.\n- Rekordy MX i poczty z szarą chmurką (DNS only)."
+    }
+  },
+  {
+    "id": "t5-bezpieczne-logowanie",
+    "week": 5,
+    "order": 4,
+    "title": "Bezpieczne logowanie",
+    "lesson": "Panel WordPressa pod adresem `/wp-admin` lub `/wp-login.php` jest znany każdemu botowi. Codziennie trafiają tam setki prób zgadywania haseł. Kilka prostych ustawień sprawia, że te próby nie mają szans.\n\n![Warstwy ochrony logowania](diagram:bezpieczne-logowanie)\n\n## Hasła\n\n- **Menedżer haseł** (Bitwarden, 1Password, menedżer w przeglądarce): generuje długie, losowe hasła i je pamięta. Każdy serwis ma inne hasło.\n- **Login inny niż `admin`**. Jeśli strona ma użytkownika `admin`, utwórz nowe konto administratora, zaloguj się na nie i usuń stare, przypisując jego treści nowemu kontu.\n- Wyświetlana nazwa autora (przy wpisach) powinna być inna niż login.\n\n## Logowanie dwuskładnikowe (2FA)\n\nPo haśle trzeba wpisać **kod z aplikacji w telefonie** (Google Authenticator, Microsoft Authenticator, Authy). Nawet jeśli hasło wycieknie, nikt bez telefonu się nie zaloguje. Włączysz to we wtyczce, np. [Two Factor](https://wordpress.org/plugins/two-factor/), Wordfence lub Solid Security. Zapisz **kody zapasowe** w menedżerze haseł na wypadek zgubienia telefonu.\n\n## Limit prób logowania\n\nDomyślnie WordPress pozwala zgadywać hasło bez końca. Wtyczka (np. Wordfence, Limit Login Attempts Reloaded) **blokuje adres IP** po kilku błędnych próbach.\n\n## Inne ustawienia\n\n- **Własny adres logowania** (np. `/panel-firmy/` zamiast `/wp-login.php`, wtyczka WPS Hide Login): odcina większość botów. To dodatek, nie zamiennik silnego hasła i 2FA.\n- **XML-RPC**: stary sposób łączenia się z WordPressem z zewnątrz (pliki `xmlrpc.php`). Boty używają go do zgadywania wielu haseł naraz. Jeśli nie używasz aplikacji mobilnej WordPress ani Jetpacka, wyłącz go (opcja w Wordfence lub w Cloudflare).\n- **Role**: każdy dostaje najniższą wystarczającą rolę. Copywriter to Redaktor lub Autor, nie Administrator (role znasz z tygodnia 2).\n\n## Czytaj dalej\n\n- [WordPress: utwardzanie, sekcja o hasłach i logowaniu (po angielsku)](https://developer.wordpress.org/advanced-administration/security/hardening/)",
+    "questions": [
+      {
+        "id": "t5-bezpieczne-logowanie-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Co daje logowanie dwuskładnikowe (2FA)?",
+        "answer": "Samo wykradzione hasło nie wystarcza do zalogowania",
+        "distractors": [
+          "Strona ładuje się szybciej",
+          "Nie trzeba już pamiętać hasła"
+        ],
+        "explanation": "Drugi składnik to kod z telefonu, którego włamywacz nie ma."
+      },
+      {
+        "id": "t5-bezpieczne-logowanie-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Plik, przez który boty mogą zgadywać wiele haseł naraz, to ___.php.",
+        "answer": "xmlrpc",
+        "explanation": "XML-RPC to stary interfejs. Jeśli z niego nie korzystasz, wyłącz go."
+      },
+      {
+        "id": "t5-bezpieczne-logowanie-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Strona ma konto `admin`. Jak bezpiecznie się go pozbyć?",
+        "answer": "Utworzyć nowe konto administratora, zalogować się na nie i usunąć `admin`, przypisując treści nowemu kontu",
+        "distractors": [
+          "Zmienić login w profilu użytkownika",
+          "Usunąć konto razem ze wszystkimi wpisami"
+        ],
+        "explanation": "WordPress nie pozwala zmienić loginu w profilu. Przy usuwaniu wybierz, komu przypisać treści."
+      },
+      {
+        "id": "t5-bezpieczne-logowanie-04",
+        "type": "error",
+        "difficulty": 2,
+        "tricky": true,
+        "prompt": "Ustawienia logowania: `hasła z menedżera haseł`, `2FA dla administratorów`, `własny adres logowania zamiast 2FA dla reszty kont`, `limit 5 prób`. Co jest błędem?",
+        "answer": "`własny adres logowania zamiast 2FA dla reszty kont`",
+        "distractors": [
+          "`hasła z menedżera haseł`",
+          "`2FA dla administratorów`",
+          "`limit 5 prób`"
+        ],
+        "explanation": "Ukryty adres logowania to dodatek. Nie zastępuje silnych haseł i 2FA."
+      },
+      {
+        "id": "t5-bezpieczne-logowanie-05",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Copywriter ma pisać wpisy na blogu klienta. Jaką rolę mu nadać?",
+        "answer": "Autor lub Redaktor",
+        "distractors": [
+          "Administrator, żeby nie było problemów",
+          "Subskrybent"
+        ],
+        "explanation": "Najniższa wystarczająca rola ogranicza szkody, gdy jego hasło wycieknie."
+      },
+      {
+        "id": "t5-bezpieczne-logowanie-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Wymień ustawienia, które chronią logowanie do WordPressa.",
+        "answer": "Silne, unikalne hasła z menedżera haseł, login inny niż admin, logowanie dwuskładnikowe (2FA), limit prób logowania z blokadą IP, wyłączony XML-RPC, jeśli nie jest potrzebny, własny adres logowania jako dodatek i najniższe wystarczające role dla użytkowników.",
+        "keyPoints": [
+          "menedżer haseł",
+          "login nie admin",
+          "2FA",
+          "limit prób",
+          "XML-RPC wyłączony",
+          "role minimalne"
+        ],
+        "explanation": "Każda warstwa zatrzymuje inny rodzaj ataku."
+      },
+      {
+        "id": "t5-bezpieczne-logowanie-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Dlaczego menedżer haseł jest bezpieczniejszy niż zapamiętywanie haseł?",
+        "answer": "Bo generuje długie, losowe hasła, których nie da się zgadnąć, i pozwala mieć inne hasło do każdego serwisu. Gdy hasło wycieknie z jednego serwisu, nie otworzy innych. Człowiek bez menedżera zwykle używa krótkich, podobnych haseł w wielu miejscach.",
+        "keyPoints": [
+          "długie losowe hasła",
+          "inne hasło do każdego serwisu",
+          "wyciek nie otwiera innych kont",
+          "ludzie powtarzają hasła"
+        ],
+        "explanation": "Menedżer chroń silnym hasłem głównym i 2FA."
+      },
+      {
+        "id": "t5-bezpieczne-logowanie-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak włączysz 2FA dla administratora i o czym musisz pamiętać?",
+        "answer": "Instaluję wtyczkę z 2FA, np. Two Factor lub Wordfence, w profilu użytkownika włączam metodę z aplikacją, skanuję kod QR aplikacją uwierzytelniającą i wpisuję kod testowy. Muszę zapisać kody zapasowe w bezpiecznym miejscu, np. w menedżerze haseł, na wypadek zgubienia telefonu.",
+        "keyPoints": [
+          "wtyczka z 2FA",
+          "w profilu: aplikacja + kod QR",
+          "kod testowy",
+          "kody zapasowe zapisane"
+        ],
+        "explanation": "Bez kodów zapasowych zgubiony telefon może oznaczać utratę dostępu do panelu."
+      },
+      {
+        "id": "t5-bezpieczne-logowanie-09",
+        "type": "open",
+        "difficulty": 3,
+        "prompt": "Czym jest XML-RPC i kiedy można go wyłączyć?",
+        "answer": "To stary interfejs do łączenia się z WordPressem z zewnątrz, przez plik xmlrpc.php, używany kiedyś przez aplikacje i do publikowania zdalnego. Boty używają go do zgadywania wielu haseł w jednym zapytaniu. Można go wyłączyć, jeśli nie korzystasz z aplikacji mobilnej WordPress, Jetpacka ani innych usług, które go wymagają.",
+        "keyPoints": [
+          "stary interfejs zdalny (xmlrpc.php)",
+          "używany do masowego zgadywania haseł",
+          "wyłączyć, gdy nie używasz aplikacji/Jetpacka",
+          "nowe narzędzia używają REST API"
+        ],
+        "explanation": "Wyłączysz go we wtyczce bezpieczeństwa lub regułą w Cloudflare."
+      },
+      {
+        "id": "t5-bezpieczne-logowanie-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Klient zgubił telefon z aplikacją 2FA i nie może się zalogować. Co zrobisz?",
+        "answer": "Najpierw kod zapasowy, jeśli go zapisał. Jeśli nie, mam inne konto administratora, więc wyłączę 2FA dla jego konta w profilu. W ostateczności przez FTP lub menedżer plików zmienię nazwę folderu wtyczki 2FA, zaloguję się, ustawię 2FA od nowa i przywrócę wtyczkę. Potem przypomnę o zapisaniu kodów zapasowych.",
+        "keyPoints": [
+          "kod zapasowy",
+          "drugie konto administratora",
+          "wyłączenie 2FA w profilu",
+          "w ostateczności zmiana nazwy folderu wtyczki przez FTP",
+          "ponowna konfiguracja i kody zapasowe"
+        ],
+        "explanation": "Zmiana nazwy folderu wtyczki wyłącza ją. Ten trik przyda się też przy błędach (lekcja o błędach WordPressa)."
+      }
+    ],
+    "task": {
+      "task": "Zabezpiecz logowanie na stronie testowej.\n\n1. Sprawdź, czy istnieje użytkownik `admin`. Jeśli tak, utwórz nowe konto administratora i usuń `admin`, przypisując treści nowemu kontu.\n2. Zainstaluj wtyczkę z 2FA (Two Factor lub Wordfence) i włącz ją dla swojego konta. Zapisz kody zapasowe.\n3. Włącz limit prób logowania (np. 5 prób, blokada na 20 minut).\n4. Wyloguj się i spróbuj zalogować z błędnym hasłem 6 razy (najlepiej w oknie prywatnym). Zobacz komunikat blokady.\n5. Wyłącz XML-RPC.",
+      "checklist": [
+        "Brak konta admin",
+        "2FA działa i kody zapasowe zapisane",
+        "Limit prób logowania działa",
+        "XML-RPC wyłączony"
+      ],
+      "hints": [
+        "Konto użytkownika usuniesz w **Użytkownicy**; WordPress zapyta, komu przypisać treści.",
+        "W Wordfence: **Login Security** dla 2FA, **Firewall → Brute Force Protection** dla limitu.",
+        "Jeśli zablokujesz sam siebie, poczekaj albo odblokuj swój IP z innego konta."
+      ],
+      "solution": "- Nowe konto np. `alek-wp`, rola Administrator. `admin` usunięty, wpisy przypisane do `alek-wp`.\n- 2FA: Wordfence → Login Security → zeskanowany kod QR, 5 kodów zapasowych w menedżerze haseł.\n- Brute Force Protection: blokada po 5 nieudanych próbach na 20 minut, natychmiastowa blokada dla loginu `admin`.\n- Wordfence → All Options → Disable XML-RPC authentication (lub reguła w Cloudflare dla `/xmlrpc.php`)."
+    }
+  },
+  {
+    "id": "t5-utwardzanie",
+    "week": 5,
+    "order": 5,
+    "title": "Utwardzanie WordPressa",
+    "lesson": "**Utwardzanie** (hardening) to zmiana domyślnych ustawień tak, żeby nawet gdy ktoś znajdzie lukę, mógł zrobić jak najmniej. To jak zamki w drzwiach wewnątrz domu: włamywacz, który wejdzie przez okno, nie otworzy wszystkiego.\n\n![Najważniejsze ustawienia utwardzania](diagram:utwardzanie)\n\nNie musisz tego robić w kodzie. Wtyczki bezpieczeństwa (Solid Security, All-In-One Security, Wordfence) mają te opcje jako przełączniki. Warto jednak wiedzieć, co każdy z nich robi.\n\n## Wyłączenie edytora plików\n\nW panelu jest **Wygląd → Edytor plików motywu** i **Wtyczki → Edytor plików wtyczek**. Kto przejmie konto administratora, może tam wkleić złośliwy kod. Wyłącza się to linijką w pliku `wp-config.php`:\n\n```php\ndefine( 'DISALLOW_FILE_EDIT', true );\n```\n\nZmiany w kodzie i tak robisz przez motyw potomny lub Code Snippets, nie w tym edytorze.\n\n## Blokada PHP w folderze uploads\n\n`/wp-content/uploads/` to folder na obrazy i PDF-y. Nie ma tam żadnego powodu, żeby uruchamiały się pliki `.php`. Jeśli przez lukę w formularzu ktoś wgra tam skrypt, blokada sprawi, że **skrypt się nie uruchomi**.\n\n## Uprawnienia plików\n\nUprawnienia mówią, kto może czytać i zmieniać plik. Bezpieczne wartości:\n\n- foldery: **755**,\n- pliki: **644**,\n- `wp-config.php`: **600** lub **640** (tylko właściciel).\n\n**Nigdy 777** („każdy może wszystko”). Uprawnienia zmienisz w kliencie FTP lub menedżerze plików hostingu (prawy przycisk → uprawnienia).\n\n## Listowanie katalogów\n\nJeśli wpiszesz adres folderu, np. `/wp-content/uploads/2026/`, serwer nie powinien pokazywać listy plików. Wtyczka lub linijka `Options -Indexes` w pliku `.htaccess` to wyłącza.\n\n## Inne\n\n- **Prefiks tabel bazy** inny niż `wp_` (ustawia się przy instalacji; zmiana później to drobny zysk i ryzyko).\n- **Klucze bezpieczeństwa** (salts) w `wp-config.php`: zmiana wylogowuje wszystkich, przydatna po włamaniu.\n- **Aktualne PHP** na hostingu (minimum wersja wspierana, np. 8.2+).\n\n## Czytaj dalej\n\n- [WordPress: utwardzanie (po angielsku)](https://developer.wordpress.org/advanced-administration/security/hardening/)\n- [WPBeginner: poradnik bezpieczeństwa WordPressa (po angielsku)](https://www.wpbeginner.com/wordpress-security/)",
+    "questions": [
+      {
+        "id": "t5-utwardzanie-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Co robi `define( 'DISALLOW_FILE_EDIT', true );`?",
+        "answer": "Wyłącza edytor plików motywów i wtyczek w panelu",
+        "distractors": [
+          "Blokuje aktualizacje wtyczek",
+          "Wyłącza edytor blokowy"
+        ],
+        "explanation": "Edytor plików to wygodna droga dla włamywacza z kontem admina."
+      },
+      {
+        "id": "t5-utwardzanie-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Bezpieczne uprawnienia dla zwykłych plików WordPressa to ___.",
+        "answer": "644",
+        "explanation": "Foldery 755, pliki 644, wp-config.php 600 lub 640."
+      },
+      {
+        "id": "t5-utwardzanie-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Po co blokować uruchamianie PHP w folderze uploads?",
+        "answer": "Żeby wgrany przez lukę skrypt nie mógł się uruchomić",
+        "distractors": [
+          "Żeby obrazy ładowały się szybciej",
+          "Żeby Google nie indeksował obrazów"
+        ],
+        "explanation": "W uploads mają być tylko media. Skrypt PHP tam zawsze oznacza problem."
+      },
+      {
+        "id": "t5-utwardzanie-04",
+        "type": "error",
+        "difficulty": 2,
+        "tricky": true,
+        "prompt": "Uprawnienia na serwerze: `foldery 755`, `pliki 644`, `wp-config.php 640`, `wp-content/uploads 777, bo wtyczka nie mogła zapisać obrazka`. Co jest błędem?",
+        "answer": "`wp-content/uploads 777, bo wtyczka nie mogła zapisać obrazka`",
+        "distractors": [
+          "`foldery 755`",
+          "`pliki 644`",
+          "`wp-config.php 640`"
+        ],
+        "explanation": "777 pozwala każdemu na wszystko. Problem z zapisem rozwiązuje się zmianą właściciela plików, a nie 777."
+      },
+      {
+        "id": "t5-utwardzanie-05",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Czy po instalacji wtyczki bezpieczeństwa trzeba ręcznie edytować wp-config.php?",
+        "answer": "Zwykle nie, większość opcji utwardzania jest w niej jako przełączniki",
+        "distractors": [
+          "Tak, wtyczka bez tego nie działa",
+          "Tak, trzeba skopiować do niego kod wtyczki"
+        ],
+        "explanation": "Dla osoby bez programowania wtyczka to najbezpieczniejsza droga."
+      },
+      {
+        "id": "t5-utwardzanie-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Wymień najważniejsze kroki utwardzania WordPressa.",
+        "answer": "Wyłączenie edytora plików w panelu, blokada uruchamiania PHP w folderze uploads, poprawne uprawnienia (foldery 755, pliki 644, wp-config 600 lub 640), wyłączone listowanie katalogów, aktualne PHP, a przy instalacji prefiks tabel inny niż wp_ i unikalne klucze bezpieczeństwa.",
+        "keyPoints": [
+          "wyłączony edytor plików",
+          "brak PHP w uploads",
+          "uprawnienia 755/644/600",
+          "brak listowania katalogów",
+          "aktualne PHP"
+        ],
+        "explanation": "Wszystko to zrobisz przełącznikami we wtyczce."
+      },
+      {
+        "id": "t5-utwardzanie-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Czym jest utwardzanie i czym różni się od firewalla?",
+        "answer": "Utwardzanie to zmiana ustawień strony i serwera tak, żeby ograniczyć szkody, gdy ktoś już znajdzie lukę lub przejmie konto, np. wyłączony edytor plików czy blokada PHP w uploads. Firewall działa wcześniej: filtruje zapytania i zatrzymuje ataki, zanim dotrą do strony. Jedno uzupełnia drugie.",
+        "keyPoints": [
+          "utwardzanie ogranicza skutki",
+          "przykłady: edytor plików, PHP w uploads",
+          "firewall zatrzymuje ataki wcześniej",
+          "uzupełniają się"
+        ],
+        "explanation": "Bezpieczeństwo to warstwy: firewall, logowanie, utwardzanie, kopie."
+      },
+      {
+        "id": "t5-utwardzanie-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Dlaczego uprawnienia 777 są niebezpieczne?",
+        "answer": "Bo pozwalają każdemu użytkownikowi i procesowi na serwerze czytać, zmieniać i uruchamiać plik. Na hostingu współdzielonym albo przez lukę ktoś może wtedy podmienić pliki strony lub wgrać złośliwy kod. Właściwe wartości to 755 dla folderów i 644 dla plików.",
+        "keyPoints": [
+          "777 = każdy może czytać, pisać, uruchamiać",
+          "łatwa podmiana plików",
+          "ryzyko na współdzielonym hostingu",
+          "poprawne: 755 i 644"
+        ],
+        "explanation": "Jeśli wtyczka prosi o 777, zgłoś problem hostingowi zamiast to robić."
+      },
+      {
+        "id": "t5-utwardzanie-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Po co wyłączać listowanie katalogów?",
+        "answer": "Żeby po wpisaniu adresu folderu, np. /wp-content/uploads/2026/, serwer nie pokazywał listy wszystkich plików. Taka lista zdradza nazwy plików, w tym prywatne PDF-y, kopie zapasowe czy wersje wtyczek, co ułatwia atak i wyciek danych.",
+        "keyPoints": [
+          "brak listy plików pod adresem folderu",
+          "lista zdradza prywatne pliki",
+          "ujawnia wersje i kopie",
+          "ułatwia atak"
+        ],
+        "explanation": "Wyłączysz to przełącznikiem we wtyczce lub Options -Indexes w .htaccess."
+      },
+      {
+        "id": "t5-utwardzanie-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Po wyłączeniu edytora plików klient pyta, jak teraz zmieni kolor przycisku. Co odpowiesz?",
+        "answer": "Że edytor plików był niebezpieczny i niewygodny, bo błąd mógł położyć stronę bez możliwości cofnięcia. Kolor zmieni w ustawieniach motywu lub buildera, a własny CSS dodaje się w Wygląd → Dostosuj → Dodatkowy CSS albo w Edytorze witryny, a większy kod przez motyw potomny lub Code Snippets.",
+        "keyPoints": [
+          "edytor plików był ryzykowny",
+          "kolor w ustawieniach motywu/buildera",
+          "Dodatkowy CSS",
+          "kod przez motyw potomny lub Code Snippets"
+        ],
+        "explanation": "Gdzie wklejać kod, poznasz dokładnie w tygodniu 6."
+      }
+    ],
+    "task": {
+      "task": "Przejdź listę utwardzania we wtyczce na stronie testowej.\n\n1. Zrób kopię strony.\n2. Zainstaluj wtyczkę z opcjami utwardzania (np. All-In-One Security lub Solid Security). Jeśli używasz Wordfence, wybierz wtyczkę tylko na czas ćwiczenia lub zrób utwardzanie ręcznie.\n3. Włącz: wyłączenie edytora plików, blokadę PHP w uploads, wyłączenie listowania katalogów.\n4. Sprawdź, że w menu **Wygląd** nie ma już edytora plików.\n5. W menedżerze plików lub FTP sprawdź uprawnienia `wp-config.php` i kilku folderów.",
+      "checklist": [
+        "Kopia zrobiona",
+        "Edytor plików wyłączony",
+        "PHP w uploads zablokowane",
+        "Listowanie katalogów wyłączone",
+        "Uprawnienia sprawdzone"
+      ],
+      "hints": [
+        "W All-In-One Security opcje są w zakładkach **File security** i **Filesystem security**.",
+        "Sprawdź listowanie: wpisz adres `/wp-content/uploads/` w przeglądarce. Powinien być błąd 403 lub pusta strona.",
+        "Na stronie lokalnej (Local) uprawnienia mogą wyglądać inaczej niż na hostingu."
+      ],
+      "solution": "- Edytor plików: przełącznik „Disable editing of plugins and themes” (dodaje `DISALLOW_FILE_EDIT`).\n- PHP w uploads: przełącznik w sekcji ochrony folderów; plik testowy `test.php` w uploads nie uruchamia się.\n- `/wp-content/uploads/` zwraca 403 zamiast listy plików.\n- `wp-config.php`: 640, foldery 755, pliki 644."
+    }
+  },
+  {
+    "id": "t5-kopie-zapasowe",
+    "week": 5,
+    "order": 6,
+    "title": "Kopie zapasowe i skanowanie",
+    "lesson": "Kopia zapasowa to Twoje ubezpieczenie. Gdy strona padnie po aktualizacji, ktoś się włamie albo klient usunie pół sklepu, kopia pozwala wrócić do działającej wersji w kilkanaście minut.\n\n![Zasada 3-2-1](diagram:kopie-321)\n\n## Co musi być w kopii\n\n- **Baza danych**: treści, ustawienia, użytkownicy, zamówienia.\n- **Pliki**: `wp-content` (motywy, wtyczki, uploads) i `wp-config.php`.\n\nKopia samych plików albo samej bazy nie wystarczy.\n\n## Zasada 3-2-1\n\n- **3** kopie danych,\n- na **2** różnych nośnikach,\n- **1** poza serwerem strony.\n\nKopia trzymana tylko na tym samym serwerze zniknie razem z nim przy awarii lub włamaniu. Kopie hostingu są dobre, ale nie zastąpią własnych.\n\n## UpdraftPlus\n\n[UpdraftPlus](https://wordpress.org/plugins/updraftplus/) to popularna darmowa wtyczka do kopii:\n\n1. **Ustawienia**: harmonogram plików (np. co tydzień) i bazy (np. codziennie; sklep nawet co kilka godzin), liczba przechowywanych kopii.\n2. **Zdalne miejsce**: Google Drive, Dropbox, Amazon S3 i inne. Podłączasz konto, a kopie wysyłają się same.\n3. **Przywracanie**: przycisk **Przywróć** przy kopii, wybór elementów (baza, wtyczki, motywy, uploads).\n\n## Jak często\n\nTak często, ile danych możesz stracić. Blog z jednym wpisem na tydzień: kopia tygodniowa wystarczy. Sklep z zamówieniami co godzinę: baza nawet co godzinę. **Zawsze** kopia ręczna przed aktualizacją dużej wtyczki lub zmianą motywu.\n\n## Test przywrócenia\n\nKopia, której nikt nie przywrócił, może okazać się pusta lub uszkodzona. Raz na jakiś czas **przywróć kopię na stronie testowej** (lokalnie lub na stagingu) i sprawdź, czy wszystko działa.\n\n## Skanowanie\n\nSkaner złośliwego kodu (Wordfence, Sucuri SiteCheck, skaner hostingu) porównuje pliki WordPressa i wtyczek z oryginałami i szuka podejrzanych fragmentów. Ustaw skan automatyczny i powiadomienia mailem.\n\n## Czytaj dalej\n\n- [WordPress: kopie zapasowe (po angielsku)](https://developer.wordpress.org/advanced-administration/security/backup/)\n- [WPBeginner: najlepsze wtyczki do kopii (po angielsku)](https://www.wpbeginner.com/plugins/7-best-wordpress-backup-plugins-compared-pros-and-cons/)",
+    "questions": [
+      {
+        "id": "t5-kopie-zapasowe-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Co musi zawierać pełna kopia strony WordPress?",
+        "answer": "Bazę danych i pliki (wp-content oraz wp-config.php)",
+        "distractors": [
+          "Tylko bazę danych",
+          "Tylko folder uploads z obrazkami"
+        ],
+        "explanation": "Treści są w bazie, a motywy, wtyczki i media w plikach. Potrzebne są oba."
+      },
+      {
+        "id": "t5-kopie-zapasowe-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Zasada 3-2-1: 3 kopie, 2 nośniki, ___ kopia poza serwerem.",
+        "answer": "1",
+        "explanation": "Kopia poza serwerem przetrwa awarię lub włamanie na serwer."
+      },
+      {
+        "id": "t5-kopie-zapasowe-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Dlaczego kopia tylko na tym samym serwerze nie wystarczy?",
+        "answer": "Zniknie razem ze stroną przy awarii lub włamaniu na serwer",
+        "distractors": [
+          "Bo zajmuje za dużo miejsca",
+          "Bo nie zawiera bazy danych"
+        ],
+        "explanation": "Dlatego co najmniej jedna kopia ma leżeć w chmurze lub lokalnie."
+      },
+      {
+        "id": "t5-kopie-zapasowe-04",
+        "type": "error",
+        "difficulty": 2,
+        "tricky": true,
+        "prompt": "Ustawienia kopii sklepu: `baza co 4 godziny`, `pliki co tydzień`, `kopie wysyłane do Google Drive`, `przywracania nigdy nie testowano, bo wtyczka pokazuje „sukces”`. Co jest problemem?",
+        "answer": "`przywracania nigdy nie testowano, bo wtyczka pokazuje „sukces”`",
+        "distractors": [
+          "`baza co 4 godziny`",
+          "`pliki co tydzień`",
+          "`kopie wysyłane do Google Drive`"
+        ],
+        "explanation": "Komunikat „sukces” nie gwarantuje, że kopia da się przywrócić. Trzeba to sprawdzić na stronie testowej."
+      },
+      {
+        "id": "t5-kopie-zapasowe-05",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Kiedy koniecznie zrobić ręczną kopię, nawet przy automatycznych?",
+        "answer": "Tuż przed aktualizacją dużej wtyczki lub zmianą motywu",
+        "distractors": [
+          "Tylko raz w roku",
+          "Po każdym logowaniu"
+        ],
+        "explanation": "Automatyczna kopia mogła być wiele godzin temu. Ręczna łapie najnowszy stan."
+      },
+      {
+        "id": "t5-kopie-zapasowe-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Wyjaśnij zasadę 3-2-1 i dlaczego ma sens.",
+        "answer": "Trzy kopie danych na dwóch różnych nośnikach, z czego jedna poza serwerem, np. kopia hostingu, kopia w chmurze i kopia lokalna. Dzięki temu jedna awaria, włamanie czy usunięcie konta nie zabiera wszystkich kopii naraz.",
+        "keyPoints": [
+          "3 kopie",
+          "2 różne nośniki",
+          "1 poza serwerem",
+          "jedna awaria nie niszczy wszystkiego"
+        ],
+        "explanation": "Kopie hostingu liczą się jako jedna z trzech."
+      },
+      {
+        "id": "t5-kopie-zapasowe-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak ustawisz UpdraftPlus dla małego sklepu?",
+        "answer": "Baza danych często, np. co 4–12 godzin, bo zamówienia zmieniają się cały czas, pliki rzadziej, np. raz w tygodniu. Wysyłka kopii do zdalnego miejsca, np. Google Drive, przechowywanie kilku ostatnich kopii i powiadomienia mailem. Do tego ręczna kopia przed każdą większą aktualizacją.",
+        "keyPoints": [
+          "baza często (godziny)",
+          "pliki rzadziej (tydzień)",
+          "zdalne miejsce, np. Google Drive",
+          "kilka kopii wstecz",
+          "ręczna kopia przed aktualizacją"
+        ],
+        "explanation": "Częstotliwość dobiera się do tego, ile danych można stracić."
+      },
+      {
+        "id": "t5-kopie-zapasowe-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Po co testować przywracanie kopii i jak to zrobić?",
+        "answer": "Bo kopia może być niekompletna, uszkodzona albo bez bazy, a dowiesz się o tym dopiero w kryzysie. Test: biorę kopię i przywracam ją na stronie lokalnej lub stagingu, potem sprawdzam stronę główną, podstrony, panel, formularz i w sklepie produkty oraz zamówienia.",
+        "keyPoints": [
+          "kopia może być uszkodzona / niepełna",
+          "przywrócenie na stronie testowej",
+          "sprawdzenie stron i panelu",
+          "w sklepie: produkty i zamówienia"
+        ],
+        "explanation": "Taki test warto robić co kilka miesięcy."
+      },
+      {
+        "id": "t5-kopie-zapasowe-09",
+        "type": "open",
+        "difficulty": 3,
+        "prompt": "Czym jest skaner złośliwego kodu i jak go używać?",
+        "answer": "To narzędzie, które porównuje pliki WordPressa, motywów i wtyczek z oryginalnymi wersjami i szuka podejrzanych fragmentów, np. ukrytych skryptów, linków i tylnych drzwi. Ustawiam skan automatyczny, np. codziennie w Wordfence, z powiadomieniem mailem, a przy alarmie sprawdzam, czy zmiana była moja.",
+        "keyPoints": [
+          "porównanie plików z oryginałami",
+          "szuka podejrzanego kodu",
+          "skan automatyczny",
+          "powiadomienia i weryfikacja alarmu"
+        ],
+        "explanation": "Skaner może zgłaszać fałszywe alarmy, np. po własnych zmianach w motywie."
+      },
+      {
+        "id": "t5-kopie-zapasowe-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Strona padła po aktualizacji, a ostatnia kopia jest sprzed tygodnia. W międzyczasie było 30 zamówień. Co robisz?",
+        "answer": "Nie przywracam od razu całej kopii, bo stracę 30 zamówień w bazie. Najpierw próbuję naprawić przyczynę: wyłączam zaktualizowaną wtyczkę lub przywracam z kopii tylko jej pliki (UpdraftPlus pozwala wybrać elementy). Bazę przywracam tylko w ostateczności, po wyeksportowaniu nowych zamówień. Potem ustawiam częstsze kopie bazy.",
+        "keyPoints": [
+          "pełne przywrócenie skasuje nowe zamówienia",
+          "najpierw wyłączenie wtyczki / przywrócenie tylko jej plików",
+          "baza tylko w ostateczności po eksporcie zamówień",
+          "częstsze kopie bazy na przyszłość"
+        ],
+        "explanation": "Dlatego kopia ręczna tuż przed aktualizacją jest tak ważna."
+      }
+    ],
+    "task": {
+      "task": "Ustaw automatyczną kopię i przywróć ją.\n\n1. Zainstaluj UpdraftPlus na stronie testowej.\n2. Ustaw harmonogram: baza codziennie, pliki co tydzień, przechowuj 5 kopii.\n3. Podłącz zdalne miejsce (np. Google Drive) albo, na stronie lokalnej, pobierz kopię na dysk.\n4. Zrób kopię ręczną. Potem usuń jeden wpis i jeden obrazek z biblioteki mediów.\n5. Przywróć kopię i sprawdź, że wpis i obrazek wróciły.",
+      "checklist": [
+        "UpdraftPlus zainstalowany",
+        "Harmonogram ustawiony",
+        "Kopia zapisana poza stroną",
+        "Przywrócenie przetestowane"
+      ],
+      "hints": [
+        "Zakładka **Ustawienia** w UpdraftPlus: harmonogram i zdalne miejsce.",
+        "Kopię pobierzesz na dysk przyciskami przy kopii (Baza danych, Wtyczki, Motywy, Uploads, Inne).",
+        "Przy przywracaniu zaznacz bazę danych i uploads."
+      ],
+      "solution": "- Harmonogram: Files backup schedule „Weekly”, retain 5; Database backup schedule „Daily”, retain 5.\n- Zdalne miejsce: Google Drive (autoryzacja kontem Google) lub pobranie 5 plików kopii na dysk.\n- Po przywróceniu bazy i uploads wpis i obrazek są z powrotem."
+    }
+  },
+  {
+    "id": "t5-bledy-wp",
+    "week": 5,
+    "order": 7,
+    "title": "Najczęstsze błędy WordPressa",
+    "lesson": "Prędzej czy później każda strona się zepsuje. Najczęstsze błędy mają kilka znanych przyczyn i da się je naprawić bez programowania, jeśli masz dostęp do plików (FTP lub menedżer plików z tygodnia 1) i kopię.\n\n![Najczęstsze błędy i co sprawdzić](diagram:bledy-wp)\n\n## „Na stronie wystąpił błąd krytyczny” (biały ekran)\n\nNajczęściej wina wtyczki lub motywu (np. po aktualizacji). WordPress wysyła na maila administratora wiadomość z **linkiem do trybu odzyskiwania**: logujesz się nim i wyłączasz winną wtyczkę. Bez maila: przez FTP zmień nazwę folderu wtyczki w `wp-content/plugins/` (np. `elementor` → `elementor-off`). Gdy nie wiesz którą, zmień nazwę całego folderu `plugins`, a potem przywracaj po jednej.\n\nSzczegóły pokaże **tryb debugowania**: w `wp-config.php` ustaw `WP_DEBUG` na `true` i `WP_DEBUG_LOG` na `true`, a błędy trafią do `wp-content/debug.log`. Po naprawie wyłącz.\n\n## „Błąd podczas nawiązywania połączenia z bazą danych”\n\nWordPress nie może połączyć się z bazą. Sprawdź w `wp-config.php` nazwę bazy, użytkownika, hasło i host (porównaj z panelem hostingu). Częsta przyczyna to też chwilowa awaria serwera bazy u hostingu.\n\n## 500 Internal Server Error\n\nOgólny błąd serwera. Sprawdź: uszkodzony plik `.htaccess` (zmień nazwę i zapisz na nowo **Ustawienia → Bezpośrednie odnośniki**), limit pamięci PHP, ostatnio dodaną wtyczkę. **Logi błędów** w panelu hostingu często podają dokładną przyczynę.\n\n## 403 Forbidden\n\nBrak dostępu: złe uprawnienia plików, reguła firewalla lub wtyczki bezpieczeństwa, blokada Twojego IP.\n\n## Za dużo przekierowań\n\nPętla przekierowań, zwykle przez SSL: inne adresy w **Ustawienia → Ogólne** (http i https), Cloudflare w trybie Flexible albo dwie wtyczki wymuszające HTTPS. Wyczyść też ciasteczka.\n\n## Brak pamięci (Allowed memory size exhausted)\n\nWtyczka potrzebuje więcej pamięci PHP. Podnieś limit w panelu hostingu lub w `wp-config.php`: `define( 'WP_MEMORY_LIMIT', '256M' );`.\n\n## „Strona jest chwilowo niedostępna z powodu konserwacji”\n\nAktualizacja przerwała się w połowie. Usuń plik `.maintenance` z głównego folderu WordPressa i dokończ aktualizację.\n\n## Brak dostępu do panelu\n\nHasło: link „Nie pamiętasz hasła?”. Brak maila: zmiana hasła przez phpMyAdmin lub hosting. Blokada wtyczką bezpieczeństwa: zmiana nazwy jej folderu.\n\n## Czytaj dalej\n\n- [WordPress: debugowanie (po angielsku)](https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/)\n- [WPBeginner: najczęstsze błędy WordPressa (po angielsku)](https://www.wpbeginner.com/common-wordpress-errors-and-how-to-fix-them/)",
+    "questions": [
+      {
+        "id": "t5-bledy-wp-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Po aktualizacji wtyczki pojawił się „błąd krytyczny”. Co zrobić najpierw?",
+        "answer": "Wyłączyć tę wtyczkę: przez link trybu odzyskiwania z maila lub zmianę nazwy folderu przez FTP",
+        "distractors": [
+          "Przeinstalować cały WordPress",
+          "Usunąć bazę danych"
+        ],
+        "explanation": "Najczęściej winna jest ostatnio zmieniona wtyczka."
+      },
+      {
+        "id": "t5-bledy-wp-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Plik, który blokuje stronę po przerwanej aktualizacji, nazywa się ___.",
+        "answer": ".maintenance",
+        "explanation": "Usuń go z głównego folderu WordPressa i dokończ aktualizację."
+      },
+      {
+        "id": "t5-bledy-wp-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Gdzie sprawdzisz dane, gdy pojawia się błąd połączenia z bazą danych?",
+        "answer": "W pliku wp-config.php i w panelu hostingu",
+        "distractors": [
+          "W pliku .htaccess",
+          "W ustawieniach motywu"
+        ],
+        "explanation": "wp-config.php zawiera nazwę bazy, użytkownika, hasło i host."
+      },
+      {
+        "id": "t5-bledy-wp-04",
+        "type": "error",
+        "difficulty": 2,
+        "prompt": "Ustawienia po przejściu na HTTPS: `Adres WordPressa: https://firma.pl`, `Adres witryny: http://firma.pl`, `certyfikat SSL aktywny`, `Cloudflare w trybie Full (strict)`. Co powoduje pętlę przekierowań?",
+        "answer": "`Adres witryny: http://firma.pl`",
+        "distractors": [
+          "`Adres WordPressa: https://firma.pl`",
+          "`certyfikat SSL aktywny`",
+          "`Cloudflare w trybie Full (strict)`"
+        ],
+        "explanation": "Oba adresy w Ustawienia → Ogólne muszą mieć https. Mieszanie powoduje pętlę."
+      },
+      {
+        "id": "t5-bledy-wp-05",
+        "type": "choice",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Nie wiesz, która z 20 wtyczek powoduje błąd krytyczny, a panel nie działa. Co zrobisz?",
+        "answer": "Zmienię nazwę folderu plugins, wejdę do panelu i będę włączać wtyczki po jednej",
+        "distractors": [
+          "Usunę wszystkie wtyczki na stałe",
+          "Zmienię motyw w bazie danych"
+        ],
+        "explanation": "Zmiana nazwy folderu wyłącza wszystkie wtyczki naraz bez utraty ich ustawień."
+      },
+      {
+        "id": "t5-bledy-wp-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Jak naprawisz „błąd krytyczny” po aktualizacji wtyczki, gdy nie możesz wejść do panelu?",
+        "answer": "Sprawdzam mail administratora z linkiem do trybu odzyskiwania i wyłączam nim wtyczkę. Jeśli maila nie ma, łączę się przez FTP lub menedżer plików i zmieniam nazwę folderu tej wtyczki w wp-content/plugins. Strona wraca, potem sprawdzam przyczynę, np. w debug.log, i przywracam starszą wersję wtyczki albo czekam na poprawkę.",
+        "keyPoints": [
+          "link trybu odzyskiwania z maila",
+          "zmiana nazwy folderu wtyczki przez FTP",
+          "sprawdzenie przyczyny (debug.log)",
+          "starsza wersja lub poprawka"
+        ],
+        "explanation": "Zmiana nazwy folderu nie kasuje ustawień wtyczki."
+      },
+      {
+        "id": "t5-bledy-wp-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Jak włączyć tryb debugowania i dlaczego trzeba go potem wyłączyć?",
+        "answer": "W wp-config.php ustawiam WP_DEBUG na true i WP_DEBUG_LOG na true, a WP_DEBUG_DISPLAY na false, żeby błędy zapisywały się do wp-content/debug.log zamiast pokazywać się odwiedzającym. Po naprawie wyłączam, bo komunikaty i plik logu mogą zdradzić ścieżki i szczegóły serwera.",
+        "keyPoints": [
+          "WP_DEBUG i WP_DEBUG_LOG na true",
+          "błędy w wp-content/debug.log",
+          "nie pokazywać błędów odwiedzającym",
+          "wyłączyć po naprawie (zdradza szczegóły)"
+        ],
+        "explanation": "Log pokazuje plik i linię, w której wystąpił błąd, co wystarcza, żeby wskazać wtyczkę."
+      },
+      {
+        "id": "t5-bledy-wp-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Co sprawdzisz przy błędzie 500?",
+        "answer": "Logi błędów w panelu hostingu, bo często wskazują przyczynę. Potem plik .htaccess: zmieniam nazwę i zapisuję bezpośrednie odnośniki, żeby powstał nowy. Limit pamięci PHP. Ostatnio dodane lub zaktualizowane wtyczki, wyłączając je przez zmianę nazwy folderu. Na koniec wersję PHP na hostingu.",
+        "keyPoints": [
+          "logi błędów hostingu",
+          "uszkodzony .htaccess",
+          "limit pamięci PHP",
+          "ostatnie wtyczki",
+          "wersja PHP"
+        ],
+        "explanation": "500 to ogólny błąd, więc logi są najkrótszą drogą do przyczyny."
+      },
+      {
+        "id": "t5-bledy-wp-09",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Strona pokazuje „Strona jest chwilowo niedostępna z powodu konserwacji” od godziny. Co się stało i jak to naprawić?",
+        "answer": "Aktualizacja przerwała się w połowie, np. przez zamknięcie karty lub limit czasu serwera, i WordPress nie usunął pliku .maintenance. Przez FTP usuwam ten plik z głównego folderu WordPressa, wchodzę do panelu i sprawdzam, czy aktualizacja się dokończyła, a jeśli nie, uruchamiam ją ponownie.",
+        "keyPoints": [
+          "przerwana aktualizacja",
+          "plik .maintenance w głównym folderze",
+          "usunięcie przez FTP",
+          "dokończenie aktualizacji"
+        ],
+        "explanation": "Aktualizuj po jednej dużej wtyczce, wtedy łatwiej o czystą aktualizację."
+      },
+      {
+        "id": "t5-bledy-wp-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Klient pisze: „Strona nie działa”. Jak zaczniesz diagnozę?",
+        "answer": "Zapytam lub sprawdzę: jaki dokładnie komunikat i na jakim urządzeniu, czy dotyczy całej strony czy panelu, od kiedy i co się wtedy zmieniało (aktualizacje, nowe wtyczki, hosting, domena). Otworzę stronę sam, sprawdzę kod odpowiedzi w zakładce Sieć, logi hostingu i mail z trybem odzyskiwania. Dopiero potem naprawiam, a najpierw robię kopię, jeśli jest dostęp.",
+        "keyPoints": [
+          "dokładny komunikat i zakres",
+          "od kiedy i co się zmieniło",
+          "samodzielny test i kod odpowiedzi",
+          "logi i mail odzyskiwania",
+          "kopia przed naprawą"
+        ],
+        "explanation": "„Nie działa” może znaczyć wszystko: od wygasłej domeny po literówkę w menu."
+      }
+    ],
+    "task": {
+      "task": "Wywołaj i napraw 3 błędy na stronie testowej (lokalnej, nigdy na żywej).\n\n1. Zrób kopię strony.\n2. **Błąd krytyczny**: w Code Snippets dodaj fragment z celowym błędem, np. `zrob_cos();`, i zapisz. Napraw przez zmianę nazwy folderu `code-snippets` w `wp-content/plugins/`.\n3. **Baza danych**: w `wp-config.php` zmień hasło bazy (`DB_PASSWORD`) na błędne, zobacz komunikat, przywróć poprawne.\n4. **Konserwacja**: utwórz pusty plik `.maintenance` w głównym folderze WordPressa, zobacz komunikat i usuń plik.\n5. Zapisz przy każdym błędzie: komunikat, przyczynę i sposób naprawy.",
+      "checklist": [
+        "Kopia zrobiona",
+        "Błąd krytyczny wywołany i naprawiony",
+        "Błąd bazy wywołany i naprawiony",
+        "Tryb konserwacji wywołany i naprawiony",
+        "Notatki z naprawy"
+      ],
+      "hints": [
+        "Pliki strony w Local otworzysz przyciskiem **Site folder** → `app/public`.",
+        "Code Snippets może sam wyłapać błąd przy zapisie. Wtedy zapisz fragment jako aktywny i obejrzyj stronę.",
+        "Plik `.maintenance` zaczyna się od kropki. W Windows nazwiesz go w edytorze tekstu, wybierając „Wszystkie pliki”."
+      ],
+      "solution": "- Błąd krytyczny: „Na stronie wystąpił błąd krytyczny”. Przyczyna: wywołanie nieistniejącej funkcji. Naprawa: zmiana nazwy folderu `code-snippets` → `code-snippets-off`, wejście do panelu, przywrócenie nazwy, usunięcie błędnego fragmentu.\n- Baza: „Błąd podczas nawiązywania połączenia z bazą danych”. Naprawa: poprawne `DB_PASSWORD` w `wp-config.php`.\n- Konserwacja: „Strona jest chwilowo niedostępna...”. Naprawa: usunięcie `.maintenance`."
+    }
+  },
+  {
+    "id": "t5-strona-zhakowana",
+    "week": 5,
+    "order": 8,
+    "title": "Strona zhakowana: plan działania",
+    "lesson": "Włamanie to stres dla klienta i dla Ciebie. Dlatego plan warto mieć **zanim** się zdarzy. Działaj po kolei, bez paniki, i notuj, co robisz.\n\n![Plan działania po włamaniu](diagram:zhakowana-plan)\n\n## Objawy\n\n- przekierowania na obce strony (często tylko z telefonu lub tylko z Google),\n- w Google wyniki z obcymi tytułami (kasyna, leki, podróbki), komenda `site:firma.pl`,\n- ostrzeżenie przeglądarki „Strona wprowadza w błąd” lub komunikat w Search Console **Problemy dotyczące bezpieczeństwa**,\n- nieznane konta administratorów, nowe pliki `.php` w uploads,\n- hosting blokuje konto lub informuje o wysyłce spamu.\n\n## Plan krok po kroku\n\n1. **Odetnij i zabezpiecz dowody.** Włącz tryb konserwacji lub poproś hosting o zablokowanie strony. Zrób kopię zainfekowanej strony (do analizy, nie do przywracania).\n2. **Zmień wszystkie hasła**: konta WordPress (zwłaszcza administratorów), FTP/SFTP, baza danych (i nowe hasło w `wp-config.php`), panel hostingu, mail. Zmień **klucze bezpieczeństwa** w `wp-config.php` (wyloguje wszystkich). Usuń nieznane konta.\n3. **Wyczyść stronę.** Najprościej: **przywróć czystą kopię** sprzed włamania (sprawdź, od kiedy jest problem). Jeśli kopii nie ma: skaner (Wordfence), ponowna instalacja WordPressa i wszystkich wtyczek z oficjalnych źródeł, sprawdzenie uploads i bazy. Przy poważnym włamaniu warto zlecić to specjalistom (np. Sucuri, Wordfence Care).\n4. **Usuń przyczynę**: zaktualizuj wszystko, usuń dziurawą lub nulled wtyczkę, włącz 2FA i firewall. Bez tego włamanie wróci za kilka dni.\n5. **Search Console**: jeśli Google oznaczył stronę, po czyszczeniu w raporcie **Problemy dotyczące bezpieczeństwa** kliknij **Poproś o weryfikację** i opisz, co zrobiono. Usuń z indeksu spamowe adresy (narzędzie Usuń adresy URL dla pilnych).\n6. **Poinformuj klienta** i, jeśli wyciekły dane osobowe (np. klientów sklepu), pamiętaj o obowiązku zgłoszenia naruszenia do UODO w ciągu 72 godzin (RODO z tygodnia 3).\n\n## Po wszystkim\n\nUstal przyczynę i zapisz wnioski. Obserwuj stronę i Search Console przez kilka tygodni.\n\n## Czytaj dalej\n\n- [Google: raport problemów z bezpieczeństwem](https://support.google.com/webmasters/answer/9044101?hl=pl)\n- [WordPress: FAQ o zhakowanej stronie (po angielsku)](https://wordpress.org/documentation/article/faq-my-site-was-hacked/)",
+    "questions": [
+      {
+        "id": "t5-strona-zhakowana-01",
+        "type": "choice",
+        "difficulty": 1,
+        "prompt": "Co zrobić najpierw, gdy strona jest zhakowana?",
+        "answer": "Odciąć ruch i zrobić kopię zainfekowanej strony do analizy",
+        "distractors": [
+          "Od razu usunąć całą stronę",
+          "Napisać do klientów sklepu, zanim cokolwiek sprawdzisz"
+        ],
+        "explanation": "Najpierw ograniczasz szkody i zabezpieczasz dowody, potem czyścisz."
+      },
+      {
+        "id": "t5-strona-zhakowana-02",
+        "type": "cloze",
+        "difficulty": 1,
+        "prompt": "Po wyczyszczeniu strony w Search Console klikasz „Poproś o ___”.",
+        "answer": "weryfikację",
+        "explanation": "Google sprawdza stronę ponownie i usuwa ostrzeżenie, gdy jest czysta."
+      },
+      {
+        "id": "t5-strona-zhakowana-03",
+        "type": "choice",
+        "difficulty": 2,
+        "prompt": "Które hasła trzeba zmienić po włamaniu?",
+        "answer": "Wszystkie: WordPress, FTP, baza danych, hosting i poczta",
+        "distractors": [
+          "Tylko hasło administratora WordPressa",
+          "Żadne, wystarczy przywrócić kopię"
+        ],
+        "explanation": "Włamywacz mógł zdobyć dowolne z nich. Zmiana jednego zostawia mu inne drzwi."
+      },
+      {
+        "id": "t5-strona-zhakowana-04",
+        "type": "error",
+        "difficulty": 2,
+        "tricky": true,
+        "prompt": "Plan klienta: `przywrócić kopię sprzed włamania`, `zmienić hasła i klucze`, `nie aktualizować wtyczek, bo po kopii wszystko działa`, `poprosić Google o weryfikację`. Co jest błędem?",
+        "answer": "`nie aktualizować wtyczek, bo po kopii wszystko działa`",
+        "distractors": [
+          "`przywrócić kopię sprzed włamania`",
+          "`zmienić hasła i klucze`",
+          "`poprosić Google o weryfikację`"
+        ],
+        "explanation": "Kopia przywraca też dziurawą wtyczkę. Bez usunięcia przyczyny włamanie wróci."
+      },
+      {
+        "id": "t5-strona-zhakowana-05",
+        "type": "choice",
+        "difficulty": 3,
+        "prompt": "Włamywacz wykradł dane klientów sklepu. Ile czasu jest na zgłoszenie naruszenia do UODO?",
+        "answer": "72 godziny od wykrycia",
+        "distractors": [
+          "30 dni",
+          "Nie trzeba zgłaszać, jeśli strona jest już czysta"
+        ],
+        "explanation": "RODO wymaga zgłoszenia naruszenia danych osobowych w ciągu 72 godzin."
+      },
+      {
+        "id": "t5-strona-zhakowana-06",
+        "type": "open",
+        "difficulty": 1,
+        "prompt": "Wymień objawy, że strona WordPress mogła zostać zhakowana.",
+        "answer": "Przekierowania na obce strony, często tylko z telefonu lub z Google, obce tytuły i spam w wynikach Google przy komendzie site:, ostrzeżenia przeglądarki lub w Search Console w Problemach dotyczących bezpieczeństwa, nieznane konta administratorów, nowe pliki PHP w uploads i informacja od hostingu o spamie lub blokadzie.",
+        "keyPoints": [
+          "przekierowania",
+          "spam w wynikach Google (site:)",
+          "ostrzeżenia przeglądarki / GSC",
+          "nieznane konta adminów",
+          "dziwne pliki, sygnał od hostingu"
+        ],
+        "explanation": "Część objawów widać tylko z Google lub z telefonu."
+      },
+      {
+        "id": "t5-strona-zhakowana-07",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Opisz plan działania po włamaniu krok po kroku.",
+        "answer": "Odciąć ruch i zrobić kopię zainfekowanej strony, zmienić wszystkie hasła i klucze bezpieczeństwa, usunąć obce konta, przywrócić czystą kopię albo wyczyścić stronę (skaner, ponowna instalacja z oficjalnych źródeł), usunąć przyczynę (aktualizacje, usunięcie dziurawych wtyczek, 2FA, firewall), zgłosić weryfikację w Search Console i poinformować klienta, a przy wycieku danych zgłosić naruszenie do UODO.",
+        "keyPoints": [
+          "odcięcie i kopia do analizy",
+          "zmiana haseł i kluczy",
+          "czysta kopia lub czyszczenie",
+          "usunięcie przyczyny",
+          "Search Console i informacja dla klienta"
+        ],
+        "explanation": "Plan warto mieć wydrukowany, zanim będzie potrzebny."
+      },
+      {
+        "id": "t5-strona-zhakowana-08",
+        "type": "open",
+        "difficulty": 2,
+        "prompt": "Dlaczego zmienia się klucze bezpieczeństwa (salts) w wp-config.php po włamaniu?",
+        "answer": "Bo od nich zależą ciasteczka logowania. Zmiana kluczy unieważnia wszystkie zalogowane sesje, więc włamywacz, który ma zapisane ciasteczko, zostaje wylogowany, nawet jeśli nie zna nowego hasła.",
+        "keyPoints": [
+          "klucze zabezpieczają ciasteczka logowania",
+          "zmiana unieważnia wszystkie sesje",
+          "wylogowuje włamywacza",
+          "działa niezależnie od hasła"
+        ],
+        "explanation": "Nowe klucze wygenerujesz na stronie api.wordpress.org/secret-key/1.1/salt/ lub we wtyczce bezpieczeństwa."
+      },
+      {
+        "id": "t5-strona-zhakowana-09",
+        "type": "open",
+        "difficulty": 3,
+        "prompt": "Kiedy przywrócić kopię, a kiedy czyścić stronę ręcznie?",
+        "answer": "Kopię, gdy mam czystą kopię sprzed włamania i strata danych od tamtej pory jest akceptowalna lub da się ją uzupełnić, np. wyeksportować nowe zamówienia. Ręczne czyszczenie lub specjalistę, gdy kopii nie ma, wszystkie kopie są już zainfekowane albo strata danych byłaby za duża.",
+        "keyPoints": [
+          "kopia: czysta i akceptowalna strata",
+          "eksport nowych danych przed przywróceniem",
+          "czyszczenie: brak czystej kopii",
+          "specjalista przy poważnym włamaniu"
+        ],
+        "explanation": "Trudno ustalić datę włamania, więc wybieraj kopię z wyraźnym zapasem."
+      },
+      {
+        "id": "t5-strona-zhakowana-10",
+        "type": "open",
+        "difficulty": 3,
+        "tricky": true,
+        "prompt": "Napisz krótką wiadomość do klienta, którego strona została zhakowana.",
+        "answer": "Spokojnie i konkretnie: co się stało (strona została zainfekowana, np. przekierowuje na obce strony), co już zrobiono (strona tymczasowo wyłączona, hasła zmienione), co dalej i kiedy (czyszczenie lub przywrócenie, termin), o co prosimy klienta (zmiana hasła do poczty, informacja, czy ktoś coś instalował) i jak zapobiegniemy temu w przyszłości (aktualizacje, 2FA, firewall, kopie).",
+        "keyPoints": [
+          "co się stało, bez paniki",
+          "co już zrobione",
+          "plan i termin",
+          "prośby do klienta",
+          "zapobieganie na przyszłość"
+        ],
+        "explanation": "Klient najbardziej boi się niewiedzy. Regularna informacja go uspokaja."
+      }
+    ],
+    "task": {
+      "task": "Rozpisz plan działania po włamaniu dla klienta.\n\n1. Weź firmę z poprzednich ćwiczeń (np. firma remontowa ze sklepem).\n2. Rozpisz plan w 6 krokach: odcięcie, hasła, czyszczenie, przyczyna, Search Console, komunikacja.\n3. Przy każdym kroku zapisz: kto to robi, jakie dostępy są potrzebne, ile to trwa.\n4. Wypisz wszystkie hasła i dostępy, które trzeba zmienić.\n5. Napisz krótką wiadomość do klienta o włamaniu (5–8 zdań).",
+      "checklist": [
+        "Plan w 6 krokach",
+        "Odpowiedzialność i czas przy każdym kroku",
+        "Lista haseł i dostępów",
+        "Wiadomość do klienta"
+      ],
+      "hints": [
+        "Myśl o dostępach: panel hostingu, FTP, baza, WordPress, poczta, domena, Cloudflare.",
+        "Zapisz, gdzie są kopie i jak sprawdzić, która jest czysta.",
+        "Wiadomość: co się stało, co zrobione, co dalej, kiedy, o co prosisz."
+      ],
+      "solution": "1. **Odcięcie** (ja, 15 min): tryb konserwacji, kopia zainfekowanej strony.\n2. **Hasła** (ja + klient, 30 min): WordPress (wszystkie konta), FTP, baza (+ `wp-config.php`), hosting, poczta, Cloudflare, rejestrator domeny; nowe klucze bezpieczeństwa; usunięcie obcych kont.\n3. **Czyszczenie** (ja, 1–3 h): przywrócenie kopii sprzed 10 dni z UpdraftPlus po eksporcie nowych zamówień; skan Wordfence.\n4. **Przyczyna** (ja, 1 h): aktualizacja wszystkiego, usunięcie dziurawej wtyczki, 2FA, firewall.\n5. **Search Console** (ja, 15 min): prośba o weryfikację z opisem działań.\n6. **Komunikacja** (ja): „Dzień dobry, dziś rano wykryliśmy, że strona została zainfekowana i przekierowywała część odwiedzających na obce strony. Stronę tymczasowo wyłączyliśmy i zmieniliśmy hasła. Dziś do 16:00 przywrócimy czystą wersję i zaktualizujemy zabezpieczenia. Prosimy o zmianę hasła do poczty firmowej. Dane klientów sklepu nie wyciekły, ale to sprawdzamy. Na przyszłość włączymy logowanie dwuskładnikowe i codzienne kopie.”"
+    }
   }
 ]

@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 250" role="img" aria-labelledby="title">
+<title id="title">Utwardzanie WordPressa: wyłączenie edytora plików, blokada PHP w uploads, właściwe uprawnienia plików i brak listowania katalogów</title>
+<style>
+svg{--fg:#1d1d1b;--muted:#6b6b66;--box:#ffffff;--line:#c9c9c1;--accent:#2b6cb0;--site:#2f8f4e;--bad:#c0392b;font-family:system-ui,sans-serif}
+@media (prefers-color-scheme:dark){svg{--fg:#ecece6;--muted:#a0a09a;--box:#1f1f1d;--line:#4a4a44;--accent:#63a4ec;--site:#5cbf7d;--bad:#ec7f72}}
+.box{fill:var(--box);stroke:var(--line);stroke-width:1.5}
+.box.good{stroke:var(--site);stroke-width:2}
+.box.bad{stroke:var(--bad);stroke-width:2}
+.t{fill:var(--fg);font-size:16px;font-weight:700}
+.s{fill:var(--muted);font-size:13px}
+.ar{stroke:var(--line);stroke-width:2}
+#m path{fill:var(--line)}
+.tag{fill:var(--accent);font-size:14px;font-weight:700}
+.tag.good{fill:var(--site)}
+.tag.bad{fill:var(--bad)}
+.hl{fill:none;stroke:var(--accent);stroke-width:3;opacity:0}
+.cap{fill:var(--fg);font-size:15px;opacity:0}
+.static{fill:var(--muted);font-size:14px;opacity:0}
+</style>
+
+<rect class="box good" x="20" y="20" width="168" height="210" rx="12"/>
+<text class="t" x="104" y="52" text-anchor="middle">Edytor plików</text>
+<text class="s" x="104" y="84" text-anchor="middle">Wygląd → Edytor</text>
+<text class="s" x="104" y="104" text-anchor="middle">plików motywu</text>
+<text class="s" x="104" y="124" text-anchor="middle">wyłączony:</text>
+<text class="s" x="104" y="144" text-anchor="middle">DISALLOW_</text>
+<text class="s" x="104" y="164" text-anchor="middle">FILE_EDIT</text>
+<text class="tag good" x="104" y="212" text-anchor="middle">wp-config</text>
+<rect class="box " x="204" y="20" width="168" height="210" rx="12"/>
+<text class="t" x="288" y="52" text-anchor="middle">PHP w uploads</text>
+<text class="s" x="288" y="84" text-anchor="middle">folder na obrazy</text>
+<text class="s" x="288" y="104" text-anchor="middle">nie uruchamia</text>
+<text class="s" x="288" y="124" text-anchor="middle">plików .php</text>
+<text class="s" x="288" y="144" text-anchor="middle">wgrany skrypt</text>
+<text class="s" x="288" y="164" text-anchor="middle">nie zadziała</text>
+<text class="tag " x="288" y="212" text-anchor="middle">blokada</text>
+<rect class="box " x="388" y="20" width="168" height="210" rx="12"/>
+<text class="t" x="472" y="52" text-anchor="middle">Uprawnienia</text>
+<text class="s" x="472" y="84" text-anchor="middle">foldery: 755</text>
+<text class="s" x="472" y="104" text-anchor="middle">pliki: 644</text>
+<text class="s" x="472" y="124" text-anchor="middle">wp-config.php:</text>
+<text class="s" x="472" y="144" text-anchor="middle">600 lub 640</text>
+<text class="s" x="472" y="164" text-anchor="middle">nigdy 777</text>
+<text class="tag " x="472" y="212" text-anchor="middle">chmod</text>
+<rect class="box " x="572" y="20" width="168" height="210" rx="12"/>
+<text class="t" x="656" y="52" text-anchor="middle">Listowanie</text>
+<text class="s" x="656" y="84" text-anchor="middle">/wp-content/</text>
+<text class="s" x="656" y="104" text-anchor="middle">uploads/2026/</text>
+<text class="s" x="656" y="124" text-anchor="middle">nie pokazuje</text>
+<text class="s" x="656" y="144" text-anchor="middle">listy plików</text>
+<text class="s" x="656" y="164" text-anchor="middle">Options -Indexes</text>
+<text class="tag " x="656" y="212" text-anchor="middle">ukryte</text>
+</svg>

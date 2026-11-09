@@ -41,3 +41,4 @@
 26. Temat jest ukończony, gdy quiz ma co najmniej 80% (`PASS_PERCENT`), a zadanie (jeśli jest) ma odhaczoną całą listę. Na ścieżce: ✓ przy temacie, znaczki „quiz 85%” i „zadanie ✓”, pasek ukończenia pod tygodniem.
 27. Logika postępu jest w `src/lib/progress.ts` (testy w `tests/progress.test.ts`); stan trzyma `App.tsx` i zapisuje go przy każdej zmianie.
 28. GitHub Actions: `ci.yml` uruchamia lint, testy i build przy każdym PR; `deploy.yml` publikuje `dist/` na GitHub Pages po scaleniu do `main`. `base: './'` w `vite.config.ts`, żeby strona działała pod adresem `/wordpress-dev-nauka/`.
+29. Publikacja przez gałąź `gh-pages`: `deploy.yml` buduje aplikację i wypycha `dist/` na `gh-pages`, a GitHub Pages publikuje tę gałąź. Wersja z „Source: GitHub Actions” wymagała ręcznego kliknięcia w ustawieniach, a wypchnięcie gałęzi `gh-pages` włącza Pages samo.
